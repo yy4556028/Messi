@@ -1,0 +1,67 @@
+[
+  {
+    "groupName": "理财",
+    "itemList": [
+      {
+        "name": "Finance",
+        "icon": "danjuan",
+        "clazz": "com.yuyang.messi.ui.finance.FinanceHomeActivity"
+      },
+      {
+        "name": "基金组合",
+        "icon": "danjuan",
+        "clazz": "com.yuyang.messi.kotlinui.fund.FundSetActivity"
+      }
+    ]
+  },
+  {
+    "groupName": "苏宁",
+    "itemList": [
+      {
+        "name": "豆芽登录",
+        "icon": "douya",
+        "clazz": "com.yuyang.messi.ui.suning.DouyaLoginActivity"
+      },
+      {
+        "name": "防疫战狮",
+        "icon": "fangyizhanshi_icon4",
+        "clazz": "com.yuyang.messi.ui.suning.FangyizhanshiActivity"
+      },
+      {
+        "name": "苏宁考试",
+        "icon": "douya",
+        "clazz": "com.yuyang.messi.ui.suning.ExamActivity"
+      }
+    ]
+  },
+  {
+    "groupName": "网址",
+    "itemList": [
+      {
+        "name": "添加网址",
+        "icon": "custom_add",
+        "clazz": null
+      },
+      {
+        "name": "清空网址",
+        "icon": "custom_delete",
+        "clazz": null
+      }
+    ]
+  },
+  {
+    "groupName": "其他",
+    "itemList": [
+      {
+        "name": "面试",
+        "icon": "interview",
+        "clazz": "com.yuyang.messi.ui.interview.InterviewActivity"
+      },
+      {
+        "name": "英语",
+        "icon": "interview",
+        "clazz": "com.yuyang.messi.ui.study.EnglishActivity"
+      }
+    ]
+  }
+]

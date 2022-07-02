@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <com.yuyang.messi.view.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.yuyang.messi.view.BiuEditText.BiuEditText
+                android:id="@+id/activity_qrcode_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="请输入要生成的二维码"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/colorPrimary"
+                app:biu_duration="800"
+                app:biu_text_color="@color/colorAccent"
+                app:biu_text_scale="1.5"
+                app:biu_text_start_size="@dimen/text_size_small"
+                app:biu_type="flyup"/>
+
+            <ImageView
+                android:id="@+id/activity_qrcode_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="48dp" />
+
+        </LinearLayout>
+
+    </com.yuyang.messi.view.OverScrollView>
+</LinearLayout>

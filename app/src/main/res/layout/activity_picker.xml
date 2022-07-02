@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.yuyang.messi.view.RangeSeekBar
+                android:id="@+id/activity_picker_rangeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:autoMoveDuration="300"
+                app:leftCursorBackground="@mipmap/ic_launcher"
+                app:markTextArray="@null"
+                app:rightCursorBackground="@drawable/facebook"
+                app:seekBarColorNormal="@color/red"
+                app:seekBarColorSelected="@color/blue"
+                app:spaceBetween="40dp"
+                app:textSize="@dimen/text_size_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_datetimeBtn0"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="年月日时分(系统)"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_dateBtn0"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="年月日(系统)"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_timeBtn0"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="时分(系统)"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_yearmonthBtn0"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="年月(系统)"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="0dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_monthdayBtn0"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="月日(系统)"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/theme"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_yearBtn0"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="年(系统)"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/theme"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/activity_picker_monthBtn0"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="月(系统)"
+                        android:textColor="@color/theme"
+                        app:cornerRadius="22.5dp"
+                        app:icon="@null"
+                        app:iconGravity="start"
+                        app:iconPadding="0dp"
+                        app:iconSize="0dp"
+                        app:strokeColor="@color/theme"
+                        app:strokeWidth="1dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/activity_picker_datetimeBtn1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="年月日时分" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/activity_picker_dateBtn1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="年月日" />
+
+                    <Button
+                        android:id="@+id/activity_picker_timeBtn1"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="时分" />
+
+                    <Button
+                        android:id="@+id/activity_picker_yearmonthBtn1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="年月" />
+
+                    <Button
+                        android:id="@+id/activity_picker_monthdayBtn1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="月日" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/activity_picker_choosePop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ChoosePopup" />
+
+            <Button
+                android:id="@+id/activity_picker_chooseDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ChooseDialog" />
+
+            <Button
+                android:id="@+id/activity_picker_bottomDialogPick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBottomDialog"
+                android:text="BottomDialog" />
+
+            <Button
+                android:id="@+id/activity_picker_bottomSheetDialogPick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onBottomSheetDialog"
+                android:text="BottomSheetDialog" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onOptionPicker"
+                android:text="单项选择" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onLinkagePicker"
+                android:text="二三级联动选择" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onConstellationPicker"
+                android:text="星座选择" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onChineseZodiacPicker"
+                android:text="生肖选择" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onNumberPicker"
+                android:text="数字选择（如身高、体重、年龄）" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onSexPicker"
+                android:text="性别选择" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onAddressPicker"
+                android:text="地址选择（包括省级、地级、县级）" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onAddress2Picker"
+                android:text="地址选择（只包括地级、县级）" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onAddress3Picker"
+                android:text="地址选择（只包括省级、地级）" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onColorPicker"
+                android:text="颜色选择" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onContact"
+                android:text="建议收集" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

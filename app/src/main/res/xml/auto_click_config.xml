@@ -1,0 +1,21 @@
+<!--
+这个就是给我们的AccessibilityService 设置属性的，当然你也可以在代码里 的 connnect函数里 手动设置。可以向下兼容。
+accessibilityFeedbackType 这个属性如果不设置的话 我们那个onAccessibilityEvent 这个回调函数 根本回调不了 所以这里要注意
+packageNames 这个属性 就是捕获什么app的行为的，比如我这里写的包名是packageinstaller 那就肯定只能捕获安装器的 事件了
+有的rom 安装器可能不是这个包名 那你就要进行特殊设置了，此外这个属性你如果什么都不写 就意味着 你可以捕获所有手机的动作
+如果你要做流氓软件的话 可以packageNames 里面什么都不写。。。甚至可以操作支付宝 给你打钱。。。如果你知道用户密码的话。
+当然你如果真这么做了 相信捕获一次用户输入密码的行为 也是很容易的。。细思极恐 我就不往下深入了。。。
+
+description 这个就是对你那个申请服务的时候说明了，可以写的煽情一点 让用户打开这个服务的可能性更高一点。。。
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFeedbackType="feedbackSpoken"
+    android:canRetrieveWindowContent="true"
+    android:description="@null"
+    android:notificationTimeout="100"
+    android:packageNames="com.suning.mobile.ebuy" />
+
+<!--    notificationTimeout 配置截获消息间隔时间  -->
+<!--    packageNames    配置需要截获信息的包名 -->
+<!--    android:canRetrieveWindowContent    配置是否可检索内容 true 可以检索内容 false 无法检索内容-->

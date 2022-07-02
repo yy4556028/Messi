@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
+
+        <item name="android:windowBackground">@color/background</item><!--默认每个页面的背景色-->
+        <!--<item name="windowNoTitle">true</item>--><!--加该属性，会导致键盘问题-->
+        <!--正常状态下字体颜色和icon颜色-->
+        <!--<item name="android:textColorPrimary">@color/text_black</item>-->
+        <!--<item name="android:windowAnimationStyle">@null</item>-->
+        <!--<item name="android:windowBackground">@color/background</item>-->
+        <!--<item name="android:windowContentTransitions">true</item>-->
+
+        <!--    解决AndroidX 5.0以下手机  CheckBox 和 RadioButton 设置button无效问题   -->
+        <item name="checkboxStyle">@style/NoButtonCheckBox</item>
+        <item name="radioButtonStyle">@style/NoButtonRadioButton</item>
+    </style>
+</resources>

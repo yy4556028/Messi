@@ -1,0 +1,10 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+dependencies {
+    implementation project(':lib_base')
+    api project(':lib_leancloud')
+    implementation 'com.github.w446108264:AndroidEmoji:1.3'
+}

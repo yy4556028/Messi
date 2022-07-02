@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragment_overwork_day_item_dayText"
+        style="@style/TextBlack_Middle"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:lines="1"
+        tools:text="31" />
+
+    <TextView
+        android:id="@+id/fragment_overwork_day_item_onTimeText"
+        style="@style/TextBlack_Tiny"
+        android:textColor="@color/white"
+        android:lines="1" />
+
+    <TextView
+        android:id="@+id/fragment_overwork_day_item_offTimeText"
+        style="@style/TextBlack_Tiny"
+        android:textColor="@color/white"
+        android:lines="1" />
+</LinearLayout>

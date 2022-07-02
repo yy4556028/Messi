@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/activity_calendar_calendar_pick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.yuyang.messi.view.scroll.WeekCalendarView
+                android:id="@+id/activity_calendar_weekCalendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/activity_calendar_weekCalendarPager_show"
+                    android:layout_width="88dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_small" />
+
+                <com.yuyang.messi.view.scroll.WeekCalendarPager
+                    android:id="@+id/activity_calendar_weekCalendarPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/activity_calendar_month_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="48dp" />
+
+                <ImageView
+                    android:id="@+id/activity_calendar_month_prev"
+                    android:layout_width="48dp"
+                    android:layout_height="33dp"
+                    android:layout_toLeftOf="@+id/activity_calendar_month_text"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/arrow_left" />
+
+                <ImageView
+                    android:id="@+id/activity_calendar_month_next"
+                    android:layout_width="48dp"
+                    android:layout_height="33dp"
+                    android:layout_toRightOf="@+id/activity_calendar_month_text"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/arrow_right" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="日"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="一"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="二"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="三"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="四"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="五"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="六"
+                    android:textSize="@dimen/text_size_normal" />
+            </LinearLayout>
+
+            <com.yuyang.messi.view.scroll.month_view.MonthPager
+                android:id="@+id/activity_calendar_monthPager"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

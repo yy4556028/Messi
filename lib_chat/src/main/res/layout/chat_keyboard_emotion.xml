@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line" />
+
+    <com.yamap.lib_chat.keyboard.widget.EmoticonViewPager
+        android:id="@+id/chat_keyboard_emotion_emotionView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/chat_keyboard_emotion_indicator"
+        android:orientation="vertical" />
+
+    <com.yamap.lib_chat.keyboard.widget.EmoticonsIndicator
+        android:id="@+id/chat_keyboard_emotion_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/chat_keyboard_emotion_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp" />
+
+    <View
+        android:id="@+id/chat_keyboard_emotion_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/chat_keyboard_emotion_toolBar"
+        android:background="@color/line"/>
+
+    <com.yamap.lib_chat.keyboard.widget.EmoticonsToolBar
+        android:id="@+id/chat_keyboard_emotion_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
+</RelativeLayout>

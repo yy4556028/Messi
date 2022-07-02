@@ -1,0 +1,156 @@
+{
+  "buildFiles": [
+    "C:\\Android\\Projects\\Messi\\lib_lpr\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\release\\mips --target clean"
+  ],
+  "libraries": {
+    "opencv_java-Release-mips": {
+      "artifactName": "opencv_java",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\libs\\mips\\libopencv_java3.so"
+    },
+    "opencv_highgui-Release-mips": {
+      "artifactName": "opencv_highgui",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_highgui.a"
+    },
+    "libwebp-Release-mips": {
+      "artifactName": "libwebp",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\liblibwebp.a"
+    },
+    "opencv_ml-Release-mips": {
+      "artifactName": "opencv_ml",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_ml.a"
+    },
+    "libpng-Release-mips": {
+      "artifactName": "libpng",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\liblibpng.a"
+    },
+    "libprotobuf-Release-mips": {
+      "artifactName": "libprotobuf",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\liblibprotobuf.a"
+    },
+    "opencv_flann-Release-mips": {
+      "artifactName": "opencv_flann",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_flann.a"
+    },
+    "tbb-Release-mips": {
+      "artifactName": "tbb",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\libtbb.a"
+    },
+    "IlmImf-Release-mips": {
+      "artifactName": "IlmImf",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\libIlmImf.a"
+    },
+    "libcpufeatures-Release-mips": {
+      "artifactName": "libcpufeatures",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\libcpufeatures.a"
+    },
+    "opencv_dnn-Release-mips": {
+      "artifactName": "opencv_dnn",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_dnn.a"
+    },
+    "opencv_core-Release-mips": {
+      "artifactName": "opencv_core",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_core.a"
+    },
+    "opencv_imgcodecs-Release-mips": {
+      "artifactName": "opencv_imgcodecs",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_imgcodecs.a"
+    },
+    "libjasper-Release-mips": {
+      "artifactName": "libjasper",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\liblibjasper.a"
+    },
+    "libjpeg-turbo-Release-mips": {
+      "artifactName": "libjpeg-turbo",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\liblibjpeg-turbo.a"
+    },
+    "opencv_superres-Release-mips": {
+      "artifactName": "opencv_superres",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_superres.a"
+    },
+    "opencv_videostab-Release-mips": {
+      "artifactName": "opencv_videostab",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_videostab.a"
+    },
+    "opencv_shape-Release-mips": {
+      "artifactName": "opencv_shape",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_shape.a"
+    },
+    "opencv_stitching-Release-mips": {
+      "artifactName": "opencv_stitching",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_stitching.a"
+    },
+    "opencv_videoio-Release-mips": {
+      "artifactName": "opencv_videoio",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_videoio.a"
+    },
+    "opencv_objdetect-Release-mips": {
+      "artifactName": "opencv_objdetect",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_objdetect.a"
+    },
+    "lpr-Release-mips": {
+      "artifactName": "lpr",
+      "buildCommand": "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\release\\mips --target lpr",
+      "abi": "mips",
+      "output": "C:\\Android\\Projects\\Messi\\lib_lpr\\build\\intermediates\\cmake\\release\\obj\\mips\\liblpr.so"
+    },
+    "opencv_photo-Release-mips": {
+      "artifactName": "opencv_photo",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_photo.a"
+    },
+    "opencv_video-Release-mips": {
+      "artifactName": "opencv_video",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_video.a"
+    },
+    "libtiff-Release-mips": {
+      "artifactName": "libtiff",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\liblibtiff.a"
+    },
+    "opencv_features2d-Release-mips": {
+      "artifactName": "opencv_features2d",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_features2d.a"
+    },
+    "opencv_imgproc-Release-mips": {
+      "artifactName": "opencv_imgproc",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_imgproc.a"
+    },
+    "opencv_calib3d-Release-mips": {
+      "artifactName": "opencv_calib3d",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\mips\\libopencv_calib3d.a"
+    },
+    "quirc-Release-mips": {
+      "artifactName": "quirc",
+      "abi": "mips",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\mips\\libquirc.a"
+    }
+  }
+}

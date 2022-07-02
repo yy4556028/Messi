@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_folder_rootLyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/textPrimary"
+    android:orientation="horizontal">
+
+    <HorizontalScrollView
+        android:id="@+id/activity_folder_leftLyt"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:verticalScrollbarPosition="left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.yuyang.messi.view.scroll.folder.FolderView
+                    android:id="@+id/activity_folder_folderView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/activity_folder_anchor"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:verticalScrollbarPosition="left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/activity_folder_show_lyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/activity_folder_show_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/activity_folder_show_imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+</LinearLayout>
+
+
+

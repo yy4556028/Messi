@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.library'
+    id 'com.mob.sdk'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+MobSDK {
+    appKey "34562f0c3b04b"
+    appSecret "4488205bcb70319c275ca0b7c0c05bcb"
+    ShareSDK {
+        gui true//添加OnekeyShare库
+        loopShare true
+        devInfo {
+            Wechat {
+                appId "wx4e4a7b8b47c289d4"
+                appSecret "20e84543b4743b125076b6a18ae1ce8e"
+                userName "gh_afb25ac019c9"
+                path "pages/index/index.html?id=1"
+                withShareTicket true
+                miniprogramType 2
+            }
+            WechatMoments {
+                appId "wx4e4a7b8b47c289d4"
+                appSecret "20e84543b4743b125076b6a18ae1ce8e"
+            }
+            Alipay {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            SinaWeibo {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            Facebook {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            Twitter {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+}

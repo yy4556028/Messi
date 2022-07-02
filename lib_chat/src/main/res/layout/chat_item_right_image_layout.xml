@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.yuyang.lib_base.ui.view.Mask.MaskImageView
+        android:id="@+id/chat_item_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:maskImage="@drawable/chat_left_image_background" />
+
+    <ImageView
+        android:id="@+id/chat_item_mask_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/chat_item_image_view"
+        android:layout_alignLeft="@+id/chat_item_image_view"
+        android:layout_alignRight="@+id/chat_item_image_view"
+        android:layout_alignTop="@+id/chat_item_image_view"
+        android:alpha="0.4"
+        android:clickable="true"
+        android:src="@drawable/selector_mask_view_right_bg" />
+
+</RelativeLayout>

@@ -1,0 +1,14 @@
+[1/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/Pipeline.cpp.o
+[2/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/PlateSegmentation.cpp.o
+[3/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/Recognizer.cpp.o
+[4/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/javaWarpper.cpp.o
+[5/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/PlateDetection.cpp.o
+[6/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/FastDeskew.cpp.o
+[7/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/CNNRecognizer.cpp.o
+[8/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/FineMapping.cpp.o
+[9/10] Building CXX object CMakeFiles/lpr.dir/src/main/jni/src/SegmentationFreeRecognizer.cpp.o
+C:\Android\Projects\Messi\lib_lpr\src\main\jni\src\Pipeline.cpp:35:9: warning: delete called on 'pr::GeneralRecognizer' that is abstract but has non-virtual destructor [-Wdelete-non-virtual-dtor]
+        delete generalRecognizer;
+        ^
+1 warning generated.
+[10/10] Linking CXX shared library ..\..\..\..\build\intermediates\cmake\debug\obj\x86\liblpr.so

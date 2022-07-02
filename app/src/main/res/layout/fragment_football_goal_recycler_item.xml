@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/fragment_football_goal_recycler_item_rank"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="排名"
+        android:textColor="@color/textPrimary"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:id="@+id/fragment_football_goal_recycler_item_player"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="球员"
+        android:textColor="@color/textPrimary"
+        android:textSize="@dimen/text_size_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_football_goal_recycler_item_teamIcon"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/fragment_football_goal_recycler_item_teamName"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|left"
+        android:text="球队"
+        android:textColor="@color/textPrimary"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:id="@+id/fragment_football_goal_recycler_item_goal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="进球"
+        android:textColor="@color/textPrimary"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:id="@+id/fragment_football_goal_recycler_item_penalty"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="点球"
+        android:textColor="@color/textPrimary"
+        android:textSize="@dimen/text_size_normal" />
+</LinearLayout>

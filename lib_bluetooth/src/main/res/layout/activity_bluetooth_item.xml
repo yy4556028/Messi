@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="1px"
+    android:background="@drawable/recycler_bg"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/activity_bluetooth_item_nameText"
+        style="@style/TextBlack_Big"
+        android:layout_width="0dp"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@+id/activity_bluetooth_item_addressText"
+        app:layout_constraintEnd_toStartOf="@+id/activity_bluetooth_item_actionText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="蓝牙名称" />
+
+    <TextView
+        android:id="@+id/activity_bluetooth_item_addressText"
+        style="@style/TextLight_Middle"
+        android:layout_width="0dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:lines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/activity_bluetooth_item_actionText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_bluetooth_item_nameText"
+        tools:text="蓝牙地址" />
+
+    <TextView
+        android:id="@+id/activity_bluetooth_item_actionText"
+        style="@style/TextBlack_Big"
+        android:background="@drawable/rectangle_theme_5_selector"
+        android:paddingStart="15dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="连接" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_menu_home"
+        android:icon="@drawable/tab_home"
+        android:title="主页" />
+
+    <item
+        android:id="@+id/nav_menu_tools"
+        android:icon="@drawable/tab_tools"
+        android:title="工具" />
+
+    <item
+        android:id="@+id/nav_menu_work"
+        android:icon="@drawable/tab_scan"
+        android:title="考勤" />
+
+    <item
+        android:id="@+id/nav_menu_profile"
+        android:icon="@drawable/tab_profile"
+        android:title="我的" />
+</menu>

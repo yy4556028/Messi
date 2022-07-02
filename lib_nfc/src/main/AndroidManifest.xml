@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    package="demo.com.lib_nfc">
+
+    <!--开发nfc的权限-->
+    <uses-permission android:name="android.permission.NFC" />
+    <!--要求当前设备必须要有NFC芯片-->
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <application>
+
+        <activity
+            android:name=".NfcActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
+        </activity>
+    </application>
+</manifest>

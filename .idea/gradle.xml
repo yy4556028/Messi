@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/aidl_audioplayer" />
+            <option value="$PROJECT_DIR$/aidldemo" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lib_baidu" />
+            <option value="$PROJECT_DIR$/lib_base" />
+            <option value="$PROJECT_DIR$/lib_bluetooth" />
+            <option value="$PROJECT_DIR$/lib_chat" />
+            <option value="$PROJECT_DIR$/lib_keyboard" />
+            <option value="$PROJECT_DIR$/lib_leancloud" />
+            <option value="$PROJECT_DIR$/lib_lpr" />
+            <option value="$PROJECT_DIR$/lib_map_amap" />
+            <option value="$PROJECT_DIR$/lib_nfc" />
+            <option value="$PROJECT_DIR$/lib_plugin" />
+            <option value="$PROJECT_DIR$/lib_scan" />
+            <option value="$PROJECT_DIR$/lib_share" />
+            <option value="$PROJECT_DIR$/lib_xunfei" />
+            <option value="$PROJECT_DIR$/openCVLibrary346" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

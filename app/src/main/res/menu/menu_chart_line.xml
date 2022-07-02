@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/actionToggleValues"
+        android:title="切换显示数值">
+    </item>
+    <item
+        android:id="@+id/actionToggleFilled"
+        android:title="切换填充">
+    </item>
+    <item
+        android:id="@+id/actionToggleCircles"
+        android:title="切换圆点">
+    </item>
+    <item
+        android:id="@+id/actionToggleCubic"
+        android:title="切换贝塞尔曲线">
+    </item>
+    <item
+        android:id="@+id/actionToggleStepped"
+        android:title="切换矩形图">
+    </item>
+    <item
+        android:id="@+id/actionToggleHorizontalCubic"
+        android:title="切换横向贝塞尔曲线">
+    </item>
+    <item
+        android:id="@+id/actionToggleHighlight"
+        android:title="切换点击是否高亮">
+    </item>
+    <item
+        android:id="@+id/animateX"
+        android:title="X轴方向绘制">
+    </item>
+        <item
+        android:id="@+id/animateY"
+        android:title="Y轴方向绘制">
+    </item>
+            <item
+        android:id="@+id/animateXY"
+        android:title="XY轴方向绘制">
+    </item>
+    <item
+        android:id="@+id/actionTogglePinch"
+        android:title="切换双指缩放">
+    </item>
+    <item
+        android:id="@+id/actionToggleAutoScaleMinMax"
+        android:title="切换自动缩放 min/max">
+    </item>
+    <item
+        android:id="@+id/actionToggleAdjustXLegend"
+        android:title="AdjustXLegend">
+    </item>
+    <item
+        android:id="@+id/actionSave"
+        android:title="关于">
+    </item>
+</menu>

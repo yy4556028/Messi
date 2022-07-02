@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/vector_close">
+    <target
+        android:name="closePath"
+        android:animation="@animator/anim_vector_close" >
+    </target>
+    <target
+        android:name="closeRotate"
+        android:animation="@animator/anim_rotate" >
+    </target>
+</animated-vector>

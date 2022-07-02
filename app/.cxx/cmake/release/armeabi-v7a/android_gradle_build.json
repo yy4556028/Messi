@@ -1,0 +1,318 @@
+
+{
+	"buildFiles" : [ "C:/Android/Projects/Messi/app/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"IlmImf-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "IlmImf",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libIlmImf.a",
+			"toolchain" : "2113372329"
+		},
+		"libcpufeatures-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libcpufeatures",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libcpufeatures.a",
+			"toolchain" : "2113372329"
+		},
+		"libjasper-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libjasper",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/liblibjasper.a",
+			"toolchain" : "2113372329"
+		},
+		"libjpeg-turbo-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libjpeg-turbo",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/liblibjpeg-turbo.a",
+			"toolchain" : "2113372329"
+		},
+		"libpng-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libpng",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/liblibpng.a",
+			"toolchain" : "2113372329"
+		},
+		"libprotobuf-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libprotobuf",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/liblibprotobuf.a",
+			"toolchain" : "2113372329"
+		},
+		"libtiff-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libtiff",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/liblibtiff.a",
+			"toolchain" : "2113372329"
+		},
+		"libwebp-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "libwebp",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/liblibwebp.a",
+			"toolchain" : "2113372329"
+		},
+		"lpr-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "lpr",
+			"buildCommand" : "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a --target lpr",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/javaWarpper.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/CNNRecognizer.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/FastDeskew.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/FineMapping.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/Pipeline.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/PlateDetection.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/PlateSegmentation.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/Recognizer.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-17/arch-arm  -Dlpr_EXPORTS -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni\\include -I..\\..\\..\\..\\..\\lib_lpr\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -Os -DNDEBUG -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/SegmentationFreeRecognizer.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/app/.cxx/cmake/release/armeabi-v7a"
+				}
+			],
+			"output" : "C:/Android/Projects/Messi/app/build/intermediates/cmake/release/obj/armeabi-v7a/liblpr.so",
+			"toolchain" : "2113372329"
+		},
+		"opencv_calib3d-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_calib3d",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_calib3d.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_core-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_core",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_core.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_dnn-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_dnn",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_dnn.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_features2d-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_features2d",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_features2d.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_flann-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_flann",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_flann.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_highgui-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_highgui",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_highgui.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_imgcodecs-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_imgcodecs",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_imgcodecs.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_imgproc-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_imgproc",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_imgproc.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_java-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_java",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/libs/armeabi-v7a/libopencv_java3.so",
+			"toolchain" : "2113372329"
+		},
+		"opencv_ml-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_ml",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_ml.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_objdetect-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_objdetect",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_objdetect.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_photo-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_photo",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_photo.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_shape-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_shape",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_shape.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_stitching-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_stitching",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_stitching.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_superres-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_superres",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_superres.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_video-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_video",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_video.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_videoio-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_videoio",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_videoio.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_videostab-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "opencv_videostab",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/armeabi-v7a/libopencv_videostab.a",
+			"toolchain" : "2113372329"
+		},
+		"quirc-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "quirc",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libquirc.a",
+			"toolchain" : "2113372329"
+		},
+		"tbb-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "tbb",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libtbb.a",
+			"toolchain" : "2113372329"
+		},
+		"tegra_hal-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "tegra_hal",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/armeabi-v7a/libtegra_hal.a",
+			"toolchain" : "2113372329"
+		}
+	},
+	"toolchains" : 
+	{
+		"2113372329" : 
+		{
+			"cCompilerExecutable" : "E:/Android/Ndk/android-ndk-r14b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "E:/Android/Ndk/android-ndk-r14b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

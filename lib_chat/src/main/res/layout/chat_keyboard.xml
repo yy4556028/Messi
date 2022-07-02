@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <!-- 语音/文字切换-->
+        <ImageView
+            android:id="@+id/chat_keyboard_voice_or_text_btn"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/btn_voice_or_text_voice" />
+
+        <!--语音输入-->
+        <com.yamap.lib_chat.widget.RecordButton
+            android:id="@+id/chat_keyboard_voice_btn"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/chat_keyboard_expand_or_send_lyt"
+            android:layout_toRightOf="@+id/chat_keyboard_voice_or_text_btn"
+            android:background="@drawable/btn_voice"
+            android:textColor="@color/text"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/chat_keyboard_input_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/chat_keyboard_expand_or_send_lyt"
+            android:layout_toRightOf="@+id/chat_keyboard_voice_or_text_btn"
+            android:background="@drawable/input_bg_gray"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <!--输入框-->
+            <com.yamap.lib_chat.keyboard.widget.ChatEditText
+                android:id="@+id/chat_keyboard_input_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/chat_keyboard_emotion_btn"
+                android:background="@null"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="4"
+                android:paddingLeft="8dp"
+                android:textSize="16sp" />
+
+            <!--表情-->
+            <ImageView
+                android:id="@+id/chat_keyboard_emotion_btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/icon_face_normal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/chat_keyboard_expand_or_send_lyt"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <!--apps 功能-->
+            <ImageView
+                android:id="@+id/chat_keyboard_expand_btn"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/btn_expand_bg" />
+
+            <!--发送-->
+            <Button
+                android:id="@+id/chat_keyboard_send_btn"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_send_bg"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/btn_text_send"
+                android:textColor="@color/btn_send_text"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.yamap.lib_chat.keyboard.widget.ExpandLayout
+        android:id="@+id/chat_keyboard_expand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone" />
+</LinearLayout>

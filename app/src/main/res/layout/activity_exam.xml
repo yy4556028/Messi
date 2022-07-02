@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <LinearLayout
+        android:id="@+id/activity_gif_searchLyt"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/activity_exam_etSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_stroke_theme_5"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:padding="8dp"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_normal" />
+
+        <ImageView
+            android:id="@+id/activity_exam_eraseView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:padding="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/erase"
+            android:visibility="invisible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/activity_exam_btnSearch"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="检索"
+            app:cornerRadius="4dp"
+            app:icon="@null"
+            app:iconGravity="start"
+            app:iconPadding="0dp"
+            app:iconSize="0dp"
+            app:rippleColor="@color/red"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_exam_btnSelectImg"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="选择图片"
+        app:cornerRadius="4dp"
+        app:icon="@null"
+        app:iconGravity="start"
+        app:iconPadding="0dp"
+        app:iconSize="0dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="0dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_exam_btnOcr"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="开始Ocr识别"
+        app:cornerRadius="4dp"
+        app:icon="@null"
+        app:iconGravity="start"
+        app:iconPadding="0dp"
+        app:iconSize="0dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="0dp" />
+
+    <TextView
+        android:id="@+id/activity_exam_tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:textColor="@color/base_text_b2"
+        android:textSize="14sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_exam_rvAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

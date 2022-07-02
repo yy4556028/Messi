@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="keyboard_send">Send</string>
+    <string name="keyboard_recording_start">Hold to talk</string>
+    <string name="keyboard_recording_end">Release to cancel</string>
+    <string name="keyboard_recording_cancel">Release to cancel</string>
+    <string name="keyboard_recording_cancel_notice">Slide up to cancel</string>
+
+</resources>

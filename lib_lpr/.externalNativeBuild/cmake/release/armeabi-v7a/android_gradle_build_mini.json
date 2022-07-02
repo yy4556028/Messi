@@ -1,0 +1,161 @@
+{
+  "buildFiles": [
+    "C:\\Android\\Projects\\Messi\\lib_lpr\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "opencv_flann-Release-armeabi-v7a": {
+      "artifactName": "opencv_flann",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_flann.a"
+    },
+    "opencv_ml-Release-armeabi-v7a": {
+      "artifactName": "opencv_ml",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_ml.a"
+    },
+    "libwebp-Release-armeabi-v7a": {
+      "artifactName": "libwebp",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\liblibwebp.a"
+    },
+    "libjpeg-turbo-Release-armeabi-v7a": {
+      "artifactName": "libjpeg-turbo",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\liblibjpeg-turbo.a"
+    },
+    "opencv_photo-Release-armeabi-v7a": {
+      "artifactName": "opencv_photo",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_photo.a"
+    },
+    "opencv_core-Release-armeabi-v7a": {
+      "artifactName": "opencv_core",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_core.a"
+    },
+    "opencv_videostab-Release-armeabi-v7a": {
+      "artifactName": "opencv_videostab",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_videostab.a"
+    },
+    "quirc-Release-armeabi-v7a": {
+      "artifactName": "quirc",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\libquirc.a"
+    },
+    "opencv_java-Release-armeabi-v7a": {
+      "artifactName": "opencv_java",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\libs\\armeabi-v7a\\libopencv_java3.so"
+    },
+    "opencv_features2d-Release-armeabi-v7a": {
+      "artifactName": "opencv_features2d",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_features2d.a"
+    },
+    "opencv_dnn-Release-armeabi-v7a": {
+      "artifactName": "opencv_dnn",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_dnn.a"
+    },
+    "lpr-Release-armeabi-v7a": {
+      "artifactName": "lpr",
+      "buildCommand": "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target lpr",
+      "abi": "armeabi-v7a",
+      "output": "C:\\Android\\Projects\\Messi\\lib_lpr\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\liblpr.so"
+    },
+    "libcpufeatures-Release-armeabi-v7a": {
+      "artifactName": "libcpufeatures",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\libcpufeatures.a"
+    },
+    "IlmImf-Release-armeabi-v7a": {
+      "artifactName": "IlmImf",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\libIlmImf.a"
+    },
+    "libprotobuf-Release-armeabi-v7a": {
+      "artifactName": "libprotobuf",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\liblibprotobuf.a"
+    },
+    "tegra_hal-Release-armeabi-v7a": {
+      "artifactName": "tegra_hal",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\libtegra_hal.a"
+    },
+    "opencv_calib3d-Release-armeabi-v7a": {
+      "artifactName": "opencv_calib3d",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_calib3d.a"
+    },
+    "opencv_stitching-Release-armeabi-v7a": {
+      "artifactName": "opencv_stitching",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_stitching.a"
+    },
+    "opencv_video-Release-armeabi-v7a": {
+      "artifactName": "opencv_video",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_video.a"
+    },
+    "libjasper-Release-armeabi-v7a": {
+      "artifactName": "libjasper",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\liblibjasper.a"
+    },
+    "opencv_videoio-Release-armeabi-v7a": {
+      "artifactName": "opencv_videoio",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_videoio.a"
+    },
+    "tbb-Release-armeabi-v7a": {
+      "artifactName": "tbb",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\libtbb.a"
+    },
+    "opencv_highgui-Release-armeabi-v7a": {
+      "artifactName": "opencv_highgui",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_highgui.a"
+    },
+    "opencv_shape-Release-armeabi-v7a": {
+      "artifactName": "opencv_shape",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_shape.a"
+    },
+    "opencv_imgproc-Release-armeabi-v7a": {
+      "artifactName": "opencv_imgproc",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_imgproc.a"
+    },
+    "libpng-Release-armeabi-v7a": {
+      "artifactName": "libpng",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\liblibpng.a"
+    },
+    "opencv_objdetect-Release-armeabi-v7a": {
+      "artifactName": "opencv_objdetect",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_objdetect.a"
+    },
+    "libtiff-Release-armeabi-v7a": {
+      "artifactName": "libtiff",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\armeabi-v7a\\liblibtiff.a"
+    },
+    "opencv_imgcodecs-Release-armeabi-v7a": {
+      "artifactName": "opencv_imgcodecs",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_imgcodecs.a"
+    },
+    "opencv_superres-Release-armeabi-v7a": {
+      "artifactName": "opencv_superres",
+      "abi": "armeabi-v7a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\armeabi-v7a\\libopencv_superres.a"
+    }
+  }
+}

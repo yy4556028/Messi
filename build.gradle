@@ -1,0 +1,68 @@
+buildscript {
+    ext.kotlin_version = '1.6.20'
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+//        flatDir {
+//            dirs project(':lib_base').file('libs'), 'libs'
+//        }
+        maven {//MobSDK Maven地址
+            url "https://mvn.mob.com/android"
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.mob.sdk:MobSDK:2018.0319.1724"
+//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'//gradle3.5.3可以 7.0.4 报错
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            allowInsecureProtocol = true
+            url "https://jitpack.io"
+        }
+        //这里是 LeanCloud 的包仓库
+        maven {
+            allowInsecureProtocol = true
+            url "http://mvn.leancloud.cn/nexus/content/repositories/public"
+        }
+//        maven {
+//            url "http://114.55.179.101:8081/artifactory/libs-sdk-guoguo"
+//            credentials {
+//                username 'ttkd'
+//                password 'AKCp2V6dFNBAYW5PoMeR9myzAYG8CXYGemmjvFMAcZXB1z5zWyzkRn8p8cwxxKCFx4LsUj62P'
+//            }
+//        }
+        maven {//MobSDK Maven地址
+            url "https://mvn.mob.com/android"
+        }
+    }
+}
+
+subprojects { subproject ->
+    //默认应用所有子项目中
+    apply plugin:'kotlin-android'
+    if (subproject.name == "app") {
+        //do nothing
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    //版本号
+    releaseVersionCode = 1
+    releaseVersionName = '1.0.0'
+}

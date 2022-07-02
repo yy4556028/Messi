@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ImageButton
+        android:id="@+id/activity_avatar_btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop" />
+
+    <com.yuyang.lib_base.ui.view.Mask.MaskImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/chat_right_image_background"
+        app:maskImage="@drawable/logo" />
+
+    <com.yuyang.lib_base.ui.view.Mask.MaskLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        app:maskDrawable="@drawable/oval_red">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/red_dark" />
+    </com.yuyang.lib_base.ui.view.Mask.MaskLinearLayout>
+
+    <com.yuyang.messi.view.GroupAvatarView
+        android:id="@+id/activity_avatar_groupAvatarView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:padding="8dp" />
+</LinearLayout>

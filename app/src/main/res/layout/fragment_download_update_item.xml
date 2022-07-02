@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <ImageView
+        android:id="@+id/fragment_download_update_item_image"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/fragment_download_update_item_action"
+        android:layout_width="60dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/theme_round_corner_stroke_selector"
+        android:gravity="center"
+        android:textColor="@color/green_dark"
+        android:textSize="@dimen/text_size_subtitle" />
+
+    <TextView
+        android:id="@+id/fragment_download_update_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_toLeftOf="@+id/fragment_download_update_item_action"
+        android:layout_toRightOf="@+id/fragment_download_update_item_image"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/textPrimary"
+        android:textSize="@dimen/text_size_subtitle" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_download_update_item_title"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="6dp"
+        android:layout_toLeftOf="@+id/fragment_download_update_item_action"
+        android:layout_toRightOf="@+id/fragment_download_update_item_image">
+
+        <TextView
+            android:id="@+id/fragment_download_update_item_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_normal" />
+    </RelativeLayout>
+</RelativeLayout>

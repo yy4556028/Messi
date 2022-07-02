@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:clipChildren="false">
+
+    <com.yuyang.lib_base.ui.view.BannerViewPager
+        android:id="@+id/fragment_banner_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:clipChildren="false" />
+
+    <com.yuyang.messi.view.Indicator.flyco.indicator.RoundCornerIndicator
+        android:id="@+id/fragment_banner_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:paddingTop="15dp"
+        app:rci_cornerRadius="2dp"
+        app:rci_gap="12dp"
+        app:rci_height="4dp"
+        app:rci_selectColor="@color/colorPrimary"
+        app:rci_unselectColor="@color/theme_alpha"
+        app:rci_width="15dp" />
+</FrameLayout>

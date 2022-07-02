@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:id="@+id/activity_trip_recycler_item_cityLyt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="14dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_location" />
+
+            <TextView
+                android:id="@+id/activity_trip_recycler_item_cityText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:lines="1"
+                android:textColor="@color/base_text_b1"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/time_theme" />
+
+            <TextView
+                android:id="@+id/activity_trip_recycler_item_dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:lines="1"
+                android:textColor="@color/base_text_b1"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_trip_recycler_item_titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_trip_recycler_item_cityLyt"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/base_text_b2"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/activity_trip_recycler_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/base_line" />
+</LinearLayout>

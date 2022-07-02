@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#333333">
+
+        <ImageView
+            android:id="@+id/activity_card_scan_backImage"
+            android:layout_width="58dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:padding="13dp"
+            android:paddingLeft="21dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="拍照"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.otaliastudios.cameraview.CameraView
+            android:id="@+id/activity_camera_crop_cameraView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:keepScreenOn="true"
+            app:cameraGestureScrollHorizontal="exposureCorrection"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/activity_card_scan_rectView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="23dp"
+            android:background="@drawable/rectangle_stroke_white"
+            app:layout_constraintDimensionRatio="856:540"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_card_scan_titleText" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#BF000000"
+            app:layout_constraintBottom_toTopOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#BF000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#BF000000"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#BF000000"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="3dp"
+            android:background="#17FFF6"
+            android:translationX="-3dp"
+            app:layout_constraintBottom_toTopOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="24dp"
+            android:background="#17FFF6"
+            android:translationY="-3dp"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="3dp"
+            android:background="#17FFF6"
+            android:translationX="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintRight_toRightOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="24dp"
+            android:background="#17FFF6"
+            android:translationY="-3dp"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="3dp"
+            android:background="#17FFF6"
+            android:translationX="-3dp"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toBottomOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="24dp"
+            android:background="#17FFF6"
+            android:translationY="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="3dp"
+            android:background="#17FFF6"
+            android:translationX="3dp"
+            app:layout_constraintRight_toRightOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toBottomOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="24dp"
+            android:background="#17FFF6"
+            android:translationY="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:id="@+id/activity_card_scan_headLeftView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintHorizontal_weight="39"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_headView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:id="@+id/activity_card_scan_headView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/idcard_head"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintDimensionRatio="130:166.4"
+            app:layout_constraintHorizontal_weight="19.5"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_headLeftView"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_headRightView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <View
+            android:id="@+id/activity_card_scan_headRightView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintHorizontal_weight="6"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_headView"
+            app:layout_constraintRight_toRightOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:id="@+id/activity_card_scan_emblemLeftView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintHorizontal_weight="26"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_emblemView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <View
+            android:id="@+id/activity_card_scan_emblemView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/idcard_guohui"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintDimensionRatio="68:72"
+            app:layout_constraintHorizontal_weight="68"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_emblemLeftView"
+            app:layout_constraintRight_toLeftOf="@+id/activity_card_scan_emblemRightView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <View
+            android:id="@+id/activity_card_scan_emblemRightView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintHorizontal_weight="236"
+            app:layout_constraintLeft_toRightOf="@+id/activity_card_scan_emblemView"
+            app:layout_constraintRight_toRightOf="@+id/activity_card_scan_rectView"
+            app:layout_constraintTop_toTopOf="@+id/activity_card_scan_rectView" />
+
+        <TextView
+            android:id="@+id/activity_card_scan_titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="请将身份证人像面置于此区域内" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="注意事项：\n1. 避免产生反光、阴影；\n2. 信息已加密，仅用于身份认证；"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_card_scan_rectView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#333333">
+
+        <ImageView
+            android:id="@+id/activity_card_scan_flashImage"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerVertical="true"
+            android:padding="18dp"
+            android:src="@drawable/activity_camera_flash_off"
+            app:tint="@color/white" />
+
+        <View
+            android:id="@+id/activity_card_scan_takePhotoBtn"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/activity_camera_shutter" />
+    </RelativeLayout>
+</LinearLayout>

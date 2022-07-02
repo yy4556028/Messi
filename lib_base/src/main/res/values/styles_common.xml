@@ -1,0 +1,161 @@
+<resources>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    <!--  PopupWindow向上弹出 向下收起的效果 -->
+    <style name="Anim_Pop_Bottom">
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_exit</item>
+    </style>
+
+    <style name="Anim_Window_Left">
+        <!-- PopupWindow左右弹出的效果-->
+        <item name="android:windowEnterAnimation">@anim/anim_left_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_left_exit</item>
+    </style>
+
+    <style name="Anim_Window_Right">
+        <!-- PopupWindow左右弹出的效果-->
+        <item name="android:windowEnterAnimation">@anim/anim_right_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_right_exit</item>
+    </style>
+
+    <style name="Anim_PopWin_Fade">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="LinearLayout_Hrz">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="TextLight">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/base_text_b3</item>
+        <item name="android:textColorHint">@color/base_text_b4</item>
+    </style>
+
+    <style name="TextLight_Big" parent="TextLight">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextLight_Middle" parent="TextLight">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextLight_Small" parent="TextLight">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextDark">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/base_text_b2</item>
+        <item name="android:textColorHint">@color/base_text_b4</item>
+    </style>
+
+    <style name="TextDark_Big" parent="TextDark">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextDark_Middle" parent="TextDark">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextDark_Small" parent="TextDark">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextBlack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/base_text_b1</item>
+        <item name="android:textColorHint">@color/base_text_b4</item>
+    </style>
+
+    <style name="TextBlack_Big" parent="TextBlack">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextBlack_Middle" parent="TextBlack">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextBlack_Small" parent="TextBlack">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextBlack_Tiny" parent="TextBlack">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextBlack_Choose" parent="TextBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:drawableEnd">@drawable/arrow_right</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="TextMust">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">*</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="EditBlack">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textColor">@color/base_text_b1</item>
+        <item name="android:textColorHint">@color/base_text_b4</item>
+        <item name="android:background">@null</item>
+        <item name="android:minLines">1</item>
+    </style>
+
+    <style name="EditBlack_Big" parent="EditBlack">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="EditBlack_Middle" parent="EditBlack">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="List_Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="List_Item_16">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:background">@color/base_line</item>
+    </style>
+
+</resources>

@@ -1,0 +1,1616 @@
+1、传感器入门 
+自从苹果公司在2007年发布第一代iPhone以来，以前看似和手机挨不着边的传感器也逐渐成为手机硬件的重要组成部分。如果读者使用过iPhone、HTC Dream、HTC Magic、HTC Hero以及其他的Android手机，会发现通过将手机横向或纵向放置，屏幕会随着手机位置的不同而改变方向。这种功能就需要通过重力传感器来实现，除了重力传感器，还有很多其他类型的传感器被应用到手机中，例如磁阻传感器就是最重要的一种传感器。虽然手机可以通过GPS来判断方向，但在GPS信号不好或根本没有GPS信号的情况下，GPS就形同虚设。这时通过磁阻传感器就可以很容易判断方向（东、南、西、北）。有了磁阻传感器，也使罗盘（俗称指向针）的电子化成为可能。 
+在Android应用程序中使用传感器要依赖于android.hardware.SensorEventListener接口。通过该接口可以监听传感器的各种事件。SensorEventListener接口的代码如下： 
+Java代码  收藏代码
+package android.hardware;  
+  
+public interface SensorEventListener   
+  
+{  
+  
+    public void onSensorChanged(SensorEvent event);  
+  
+    public void onAccuracyChanged(Sensor sensor, int accuracy);      
+  
+}  
+
+在SensorEventListener接口中定义了两个方法：onSensorChanged和onAccuracyChanged。当传感器的值发生变化时，例如磁阻传感器的方向改变时会调用onSensorChanged方法。当传感器的精度变化时会调用onAccuracyChanged方法。 
+onSensorChanged方法只有一个SensorEvent类型的参数event，其中SensorEvent类有一个values变量非常重要，该变量的类型是float[]。但该变量最多只有3个元素，而且根据传感器的不同，values变量中元素所代表的含义也不同。 
+
+
+在解释values变量中元素的含义之前，先来介绍一下Android的坐标系统是如何定义X、Y、Z轴的。 
+
+X轴的方向是沿着屏幕的水平方向从左向右。如果手机不是正方形的话，较短的边需要水平放置，较长的边需要垂直放置。 
+Y轴的方向是从屏幕的左下角开始沿着屏幕的垂直方向指向屏幕的顶端。 
+将手机平放在桌子上，Z轴的方向是从手机里指向天空。 
+
+下面是values变量的元素在主要的传感器中所代表的含义。 
+
+
+1.1方向传感器 
+
+在方向传感器中values变量的3个值都表示度数，它们的含义如下： 
+
+values[0]：该值表示方位，也就是手机绕着Z轴旋转的角度。0表示北（North）；90表示东（East）；180表示南（South）；270表示西（West）。如果values[0]的值正好是这4个值，并且手机是水平放置，表示手机的正前方就是这4个方向。可以利用这个特性来实现电子罗盘，实例76将详细介绍电子罗盘的实现过程。 
+
+
+values[1]：该值表示倾斜度，或手机翘起的程度。当手机绕着X轴倾斜时该值发生变化。values[1]的取值范围是-180≤values[1] 
+≤180。假设将手机屏幕朝上水平放在桌子上，这时如果桌子是完全水平的，values[1]的值应该是0（由于很少有桌子是绝对水平的，因此，该值很可能不为0，但一般都是-5和5之间的某个值）。这时从手机顶部开始抬起，直到将手机沿X轴旋转180度（屏幕向下水平放在桌面上）。在这个旋转过程中，values[1]会在0到-180之间变化，也就是说，从手机顶部抬起时，values[1]的值会逐渐变小，直到等于-180。如果从手机底部开始抬起，直到将手机沿X轴旋转180度，这时values[1]会在0到180之间变化。也就是values[1]的值会逐渐增大，直到等于180。可以利用values[1]和下面要介绍的values[2]来测量桌子等物体的倾斜度。 
+
+
+values[2]：表示手机沿着Y轴的滚动角度。取值范围是-90≤values[2]≤90。假设将手机屏幕朝上水平放在桌面上，这时如果桌面是平的，values[2]的值应为0。将手机左侧逐渐抬起时，values[2]的值逐渐变小，直到手机垂直于桌面放置，这时values[2]的值是-90。将手机右侧逐渐抬起时，values[2]的值逐渐增大，直到手机垂直于桌面放置，这时values[2]的值是90。在垂直位置时继续向右或向左滚动，values[2]的值会继续在-90至90之间变化。 
+
+1.2加速传感器 
+
+    该传感器的values变量的3个元素值分别表示X、Y、Z轴的加速值。例如，水平放在桌面上的手机从左侧向右侧移动，values[0]为负值；从右向左移动，values[0]为正值。读者可以通过本节的例子来体会加速传感器中的值的变化。要想使用相应的传感器，仅实现SensorEventListener接口是不够的，还需要使用下面的代码来注册相应的传感器。 
+Java代码  收藏代码
+//  获得传感器管理器  
+  
+SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);  
+  
+//  注册方向传感器  
+  
+sm.registerListener(this,  
+  
+sm.getDefaultSensor(Sensor.TYPE_ORIENTATION),  
+  
+SensorManager.SENSOR_DELAY_FASTEST);  
+
+如果想注册其他的传感器，可以改变getDefaultSensor方法的第1个参数值，例如，注册加速传感器可以使用Sensor.TYPE_ACCELEROMETER。在Sensor类中还定义了很多传感器常量，但要根据手机中实际的硬件配置来注册传感器。如果手机中没有相应的传感器硬件，就算注册了相应的传感器也不起任何作用。getDefaultSensor方法的第2个参数表示获得传感器数据的速度。SensorManager.SENSOR_DELAY_ FASTEST表示尽可能快地获得传感器数据。除了该值以外，还可以设置3个获得传感器数据的速度值，这些值如下： 
+
+SensorManager.SENSOR_DELAY_NORMAL：默认的获得传感器数据的速度。 
+SensorManager.SENSOR_DELAY_GAME：如果利用传感器开发游戏，建议使用该值。 
+SensorManager.SENSOR_DELAY_UI：如果使用传感器更新UI中的数据，建议使用该值。 
+
+1.3重力感应器 
+
+加速度传感器的类型常量是Sensor.TYPE_GRAVITY。重力传感器与加速度传感器使用同一套坐标系。values数组中三个元素分别表示了X、Y、Z轴的重力大小。Android SDK定义了一些常量，用于表示星系中行星、卫星和太阳表面的重力。下面就来温习一下天文知识，将来如果在地球以外用Android手机，也许会用得上。 
+Java代码  收藏代码
+public static final float GRAVITY_SUN= 275.0f;  
+  
+public static final float GRAVITY_MERCURY= 3.70f;  
+  
+public static final float GRAVITY_VENUS= 8.87f;  
+  
+public static final float GRAVITY_EARTH= 9.80665f;  
+  
+public static final float GRAVITY_MOON= 1.6f;  
+  
+public static final float GRAVITY_MARS= 3.71f;  
+  
+public static final float GRAVITY_JUPITER= 23.12f;  
+  
+public static final float GRAVITY_SATURN= 8.96f;  
+  
+public static final float GRAVITY_URANUS= 8.69f;  
+  
+public static final float GRAVITY_NEPTUNE= 11.0f;  
+  
+public static final float GRAVITY_PLUTO= 0.6f;  
+  
+public static final float GRAVITY_DEATH_STAR_I= 0.000000353036145f;  
+  
+public static final float GRAVITY_THE_ISLAND= 4.815162342f;  
+
+
+1.4 光线传感器 
+
+光线传感器的类型常量是Sensor.TYPE_LIGHT。values数组只有第一个元素（values[0]）有意义。表示光线的强度。最大的值是120000.0f。Android SDK将光线强度分为不同的等级，每一个等级的最大值由一个常量表示，这些常量都定义在SensorManager类中，代码如下： 
+Java代码  收藏代码
+public static final float LIGHT_SUNLIGHT_MAX =120000.0f;  
+  
+public static final float LIGHT_SUNLIGHT=110000.0f;  
+  
+public static final float LIGHT_SHADE=20000.0f;  
+  
+public static final float LIGHT_OVERCAST= 10000.0f;  
+  
+public static final float LIGHT_SUNRISE= 400.0f;  
+  
+public static final float LIGHT_CLOUDY= 100.0f;  
+  
+public static final float LIGHT_FULLMOON= 0.25f;  
+  
+public static final float LIGHT_NO_MOON= 0.001f;  
+
+上面的八个常量只是临界值。读者在实际使用光线传感器时要根据实际情况确定一个范围。例如，当太阳逐渐升起时，values[0]的值很可能会超过LIGHT_SUNRISE，当values[0]的值逐渐增大时，就会逐渐越过LIGHT_OVERCAST，而达到LIGHT_SHADE，当然，如果天特别好的话，也可能会达到LIGHT_SUNLIGHT，甚至更高。 
+
+1.5陀螺仪传感器 
+   陀螺仪传感器的类型常量是Sensor.TYPE_GYROSCOPE。values数组的三个元素表示的含义如下：values[0]：延X轴旋转的角速度。 
+values[1]：延Y轴旋转的角速度。 
+values[2]：延Z轴旋转的角速度。 
+当手机逆时针旋转时，角速度为正值，顺时针旋转时，角速度为负值。陀螺仪传感器经常被用来计算手机已转动的角度，代码如下：private static final float NS2S = 1.0f / 1000000000.0f; 
+
+Java代码  收藏代码
+private float timestamp;  
+  
+public void onSensorChanged(SensorEvent event)  
+  
+{  
+  
+    if (timestamp != 0)   
+  
+    {  
+  
+    //  event.timesamp表示当前的时间，单位是纳秒（1百万分之一毫秒）  
+  
+              final float dT = (event.timestamp - timestamp) * NS2S;  
+  
+              angle[0] += event.values[0] * dT;  
+  
+              angle[1] += event.values[1] * dT;  
+  
+              angle[2] += event.values[2] * dT;  
+  
+     }  
+  
+     timestamp = event.timestamp;  
+  
+}  
+
+上面代码中通过陀螺仪传感器相邻两次获得数据的时间差（dT）来分别计算在这段时间内手机延X、 Y、Z轴旋转的角度，并将值分别累加到angle数组的不同元素上。 
+
+
+1.6其他传感器 
+其他传感器在前面几节介绍了加速度传感器、重力传感器、光线传感器、陀螺仪传感器以及方向传感器。除了这些传感器外，Android SDK还支持如下的几种传感器。关于这些传感器的使用方法以及与这些传感器相关的常量、方法，读者可以参阅官方文档。 
+
+近程传感器（Sensor.TYPE_PROXIMITY） 
+线性加速度传感器（Sensor.TYPE_LINEAR_ACCELERATION） 
+旋转向量传感器（Sensor.TYPE_ROTATION_VECTOR） 
+磁场传感器（Sensor.TYPE_MAGNETIC_FIELD） 
+压力传感器（Sensor.TYPE_PRESSURE） 
+温度传感器（Sensor.TYPE_TEMPERATURE） 
+
+虽然AndroidSDK定义了十多种传感器，但并不是每一部手机都完全支持这些传感器。例如，Google Nexus S支持其中的9种传感器（不支持压力和温度传感器），而HTC G7只支持其中的5种传感器。如果使用了手机不支持的传感器，一般不会抛出异常，但也无法获得传感器传回的数据。读者在使用传感器时最好先判断当前的手机是否支持所使用的传感器。 
+
+
+2. 测试手机中有哪些传感器（作者：银河使者） 
+我们可以通过如下三步使用传感器。 
+（1）编写一个截获传感器事件的类。该类必须实现android.hardware.SensorEventListener接口。 
+（2）获得传感器管理对象（SensorManager对象）。 
+（3）使用SensorManager.registerListener方法注册指定的传感器。 
+通过上面三步已经搭建了传感器应用程序的框架。而具体的工作需要在SensorEventListener接口的onSensorChanged和onAccuracyChanged方法中完成。SensorEventListener接口的定义如下：packageandroid.hardware; 
+
+Java代码  收藏代码
+public interfaceSensorEventListener   
+  
+{  
+  
+//传感器数据变化时调用  
+  
+public void onSensorChanged(SensorEventevent);  
+  
+//传感器精确度变化时调用  
+  
+public void onAccuracyChanged(Sensorsensor, int accuracy);  
+  
+}  
+
+
+SensorManager对象通过getSystemService方法获得，代码如下：SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE); 
+复制代码通常手机中包含了若干个传感器模块（如方向传感器、光线传感器等），因此，注册传感器需要指定传感器的类型，如下面的代码注册了光线传感器。
+Java代码  收藏代码
+sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT),  
+  
+SensorManager.SENSOR_DELAY_FASTEST);  
+
+registerListener方法有三个参数。第1个参数是实现SensorEventListener接口的对象。第2个参数用于指定传感器的类型。AndroidSDK预先定义了表示各种传感器的常量，这些常量都被放在Sensor类中。例如，上面代码中的Sensor.TYPE_LIGHT。第3个参数表示传感器获得数据的速度。该参数可设置的常量如下： 
+
+SENSOR_DELAY_FASTEST：以最快的速度获得传感器数据。 
+SENSOR_DELAY_GAME：适合于在游戏中获得传感器数据。 
+SENSOR_DELAY_UI：适合于在UI控件中获得传感器数据。 
+SENSOR_DELAY_NORMAL：以一般的速度获得传感器的数据。 
+
+上面四种类型获得传感器数据的速度依次递减。从理论上说，获得传感器数据的速度越快，消耗的系统资源越大。因此建议读者根本实际情况选择适当的速度获得传感器的数据。 
+如果想停止获得传感器数据，可以使用unregisterSensor方法注销传感器事件对象。
+Java代码  收藏代码
+unregisterSensor方法的定义如下：  
+public voidunregisterListener(SensorEventListener listener)  
+  
+public voidunregisterListener(SensorEventListener listener, Sensor sensor)  
+
+unregisterSensor方法有两个重载形式。第一个重载形式用于注销所有的传感器对象。第二个重载形式用于注销指定传感器的事件对象。其中Sensor对象通过SensorManager.getDefaultSensor方法获得。getDefaultSensor方法只有一个int类型的参数，表示传感器的类型。如Sensor.TYPE_LIGHT表示光线传感器。 
+注意：一个传感器对像可以处理多个传感器。也就是说，一个实现SensorEventListener接口的类可以接收多个传感器传回的数据。为了区分不同的传感器，需要使用Sensor.getType方法来获得传感器的类型。getType方法的将在本节的例子中详细介绍。 
+通过SensorManager.getSensorList方法可以获得指定传感器的信息，也可以获得手机支持的所有传感器的信息，代码如下 
+Java代码  收藏代码
+//获得光线传感器  
+  
+List<Sensor>sensors = sensorManager.getSensorList(Sensor.TYPE_LIGHT);  
+  
+//获得手机支持的所有传感器  
+  
+List<Sensor>sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);  
+
+下面给出一个完整的例子来演示如何获得传感器传回的数据。本例从如下4个传感器获得数据，同时输出了测试手机中支持的所有传感器名称。 
+
+加速度传感器（Sensor.TYPE_ACCELEROMETER） 
+磁场传感器（Sensor.TYPE_MAGNETIC_FIELD） 
+光线传感器（Sensor.TYPE_LIGHT） 
+方向传感器（TYPE_ORIENTATION） 
+
+本例需要在真机上运行。由于不同的手机可能支持的传感器不同（有的手机并不支持Android SDK中定义的所有传感器），因此，如果运行程序后，无法显示某个传感器的数据，说明当前的手机并不支持这个传感器。笔者已使用Google Nexus S测试了本例。如果读者使用的也是GoogleNexus S，则会输出如图1类似的信息。 
+
+
+图1 获得传感器传回的数据 
+
+
+
+
+本例的完整代码如下： 
+
+
+Java代码  收藏代码
+package mobile.android. sensor;  
+  
+import java.util.List;  
+import android.app.Activity;  
+import android.hardware.Sensor;  
+import android.hardware.SensorEvent;  
+import android.hardware.SensorEventListener;  
+import android.hardware.SensorManager;  
+import android.os.Bundle;  
+import android.widget.TextView;  
+  
+public class Main extends Activity implements SensorEventListener  
+{  
+    private TextView tvAccelerometer;  
+    private TextView tvMagentic;  
+    private TextView tvLight;  
+    private TextView tvOrientation;  
+    private TextView tvSensors;  
+  
+    @Override  
+    public void onCreate(Bundle savedInstanceState)  
+    {  
+        super.onCreate(savedInstanceState);  
+        setContentView(R.layout.main);  
+        //  获得SensorManager对象  
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);  
+  
+        //  注册加速度传感器  
+        sensorManager.registerListener(this,  
+                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),  
+                SensorManager.SENSOR_DELAY_FASTEST);  
+  
+        //  注册磁场传感器  
+        sensorManager.registerListener(this,  
+                sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),  
+                SensorManager.SENSOR_DELAY_FASTEST);  
+  
+        //  注册光线传感器  
+        sensorManager.registerListener(this,  
+                sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT),  
+                SensorManager.SENSOR_DELAY_FASTEST);  
+  
+        //  注册方向传感器  
+        sensorManager.registerListener(this,  
+                sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),  
+                SensorManager.SENSOR_DELAY_FASTEST);  
+  
+        tvAccelerometer = (TextView) findViewById(R.id.tvAccelerometer);
+        tvMagentic = (TextView) findViewById(R.id.tvMagentic);
+        tvLight = (TextView) findViewById(R.id.tvLight);
+        tvOrientation = (TextView) findViewById(R.id.tvOrientation);
+        tvSensors = (TextView)findViewById(R.id.tvSensors);
+          
+        //  获得当前手机支持的所有传感器  
+        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);  
+        for(Sensor sensor:sensors)  
+        {  
+            //  输出当前传感器的名称  
+            tvSensors.append(sensor.getName() + "\n");  
+        }  
+    }  
+    @Override  
+    public void onSensorChanged(SensorEvent event)  
+    {  
+        //  通过getType方法获得当前传回数据的传感器类型  
+        switch (event.sensor.getType())  
+        {  
+            case Sensor.TYPE_ACCELEROMETER:            //  处理加速度传感器传回的数据  
+                String accelerometer = "加速度\n" + "X：" + event.values[0] + "\n"  
+                        + "Y:" + event.values[1] + "\n" + "Z:" + event.values[2] + "\n";  
+                tvAccelerometer.setText(accelerometer);  
+                break;  
+            case Sensor.TYPE_LIGHT:                    //  处理光线传感器传回的数据  
+                tvLight.setText("亮度：" + event.values[0]);  
+                break;  
+            case Sensor.TYPE_MAGNETIC_FIELD:            //  处理磁场传感器传回的数据  
+                String magentic = "磁场\n" + "X：" + event.values[0] + "\n" + "Y:"  
+                        + event.values[1] + "\n" + "Z:" + event.values[2] + "\n";  
+                tvMagentic.setText(magentic);  
+                break;  
+            case Sensor.TYPE_ORIENTATION:                //  处理方向传感器传回的数据  
+                String orientation = "方向\n" + "X：" + event.values[0] + "\n"  
+                        + "Y:" + event.values[1] + "\n" + "Z:" + event.values[2] + "\n";  
+                tvOrientation.setText(orientation);  
+                break;  
+        }  
+    }  
+    @Override  
+    public void onAccuracyChanged(Sensor sensor, int accuracy)  
+    {  
+    }  
+}  
+
+
+3.1电子罗盘 
+电子罗盘又叫电子指南针。在实现本例之前，先看一下如图1所示的运行效果。 
+
+图1 电子罗盘 
+其中N、S、W和E分别表示北、南、西和东4个方向。 
+本例只使用了onSensorChanged事件方法及values[0]。由于指南针图像上方是北，当手机前方是正北时（values[0]=0），图像不需要旋转。但如果不是正北，就需要将图像按一定角度旋转。假设当前values[0]的值是60，说明方向在东北方向。也就是说，手机顶部由北向东旋转。这时如果图像不旋转，N的方向正好和正北的夹角是60度，需要将图像逆时针（从东向北旋转）旋转60度，N才会指向正北方。因此，可以使用在11.2.3节介绍的旋转补间动画来旋转指南针图像，代码如下： 
+Java代码  收藏代码
+public void onSensorChanged(SensorEvent event)  
+  
+{  
+  
+    if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)  
+  
+    {    
+  
+        float degree = event.values[0];      
+  
+        //  以指南针图像中心为轴逆时针旋转degree度  
+  
+        RotateAnimation ra = new RotateAnimation(currentDegree, -degree,  
+  
+                Animation.RELATIVE_TO_SELF, 0.5f,  
+  
+                Animation.RELATIVE_TO_SELF, 0.5f);  
+  
+        //  在200毫秒之内完成旋转动作  
+  
+        ra.setDuration(200);  
+  
+        //  开始旋转图像  
+  
+        imageView.startAnimation(ra);   
+  
+        //  保存旋转后的度数，currentDegree是一个在类中定义的float类型变量  
+  
+        currentDegree = -degree;  
+  
+}  
+  
+}  
+
+上面的代码中使用了event.values数组中的数据来获得传感器传回的数据。这个values数组非常重要，它的长度为3。但不一定每一个数组元素都有意义。对于不同的传感器，每个数组元素的含义不同。在下面的部分将详细介绍不同传感器中values数组各个元素的含义。 
+注意：虽然使用Sensor.TYPE_ALL可以获得手机支持的所有传感器信息，但不能使用Sensor.TYPE_ALL注册所有的传感器，也就是getDefaultSensor方法的参数值必须是某个传感器的类型常量，而不能是Sensor.TYPE_ALL。 
+
+3.2  计步器 
+
+还可以利用方向传感器做出更有趣的应用，例如利用values[1]或values[2]的变化实现一个计步器。由于人在走路时会上下振动，因此，可以通过判断values[1]或values[2]中值的振荡变化进行计步。基本原理是在onSensorChanged方法中计算两次获得values[1]值的差，并根据差值在一定范围之外开始计数，代码如下： 
+Java代码  收藏代码
+public void onSensorChanged(SensorEvent event)  
+  
+{  
+  
+    if (flag)  
+  
+    {  
+  
+        lastPoint = event.values[1];  
+  
+        flag = false;  
+  
+    }  
+  
+    //  当两个values[1]值之差的绝对值大于8时认为走了一步  
+  
+    if (Math.abs(event.values[1] - lastPoint) > 8)  
+  
+    {  
+  
+        //  保存最后一步时的values[1]的峰值  
+  
+        lastPoint = event.values[1];  
+  
+        //  将当前计数显示在TextView组件中  
+  
+        textView.setText(String.valueOf(++count));  
+  
+    }  
+  
+}  
+
+本例设置3个按钮用于控制计步的状态，这3个按钮可以控制开始计步、重值（将计步数清0）和停止计步。这3个按钮的单击事件代码如下 
+Java代码  收藏代码
+public void onClick(View view)  
+  
+{  
+  
+    String msg = "";  
+  
+    switch (view.getId())  
+  
+    {  
+  
+        //  开始计步  
+  
+        case R.id.btnStart:
+  
+            sm = (SensorManager) getSystemService(SENSOR_SERVICE);  
+  
+            //  注册方向传感器  
+  
+            sm.registerListener(this, sm  
+  
+                    .getDefaultSensor(Sensor.TYPE_ORIENTATION),  
+  
+                    SensorManager.SENSOR_DELAY_FASTEST);  
+  
+            msg = "已经开始计步器.";  
+  
+            break;  
+  
+        //  重置计步器  
+  
+        case R.id.btnReset:
+  
+            count = 0;  
+  
+            msg = "已经重置计步器.";  
+  
+            break;  
+  
+        //  停止计步  
+  
+        case R.id.btnStop:
+  
+            //  注销方向传感器  
+  
+            sm.unregisterListener(this);  
+  
+            count = 0;  
+  
+            msg = "已经停止计步器.";  
+  
+            break;  
+  
+    }  
+  
+    textView.setText(String.valueOf(count));  
+  
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();  
+  
+}  
+
+运行本例后，单击【开始】按钮，将手机放在兜里，再走两步看看 
+
+3.3  一个更复杂的计步器 
+程序运行界面如图4所示， 其中主窗体包括两个部分，上半部分用于显示最近7 天每天走过的步数， 以及今日走过的步数， 通过一个自定义的View 来实现； 下半部分用于摆放3个程序控制按钮。 
+
+图1 计步器主界面 
+在程序运行时自动连接数据库， 读取历史数据并将其可视化地显示到屏幕上。程序运行后会自动启动一个Service 组件， 用于检测手机的加速度状态， 当用户携带手机步行时， 传感器会捕获到这个动作并更新记录已走步数的计数器。如果此时程序正在前台显示， 那么在屏幕中除了刷新走过的步数之外， 还将播放一小段走路的动画。点击“删除数据” 按钮会删除掉数据库中存储的历史数据。点击“停止服务” 按钮会停止后台Service 的执行， 同时 
+状态栏将不再显示计步器的Notification。点击“转为后台” 按钮将关闭程序界面， 但保留后台执行的Service。当用户按住手机屏幕的状态栏往下拖拉时， 会在展开的状态栏中看到本程序的Notification， 如图2 所示。 
+
+图2  手机状态栏中的计步器 
+本应用程序使用了Android 平台内置的SQLite 嵌入式数据库， 数据库中包含一张名为“step_table” 的表， 用来存放历史的已走步数信息， 表1 列出了step_table 表各个字段的情况。 
+
+表1  step_table表的结构 
+开发应用正式功能之前首先要开发对数据库访问的辅助类MySQLiteHelper， 其主要的功能为连接并打开SQLite 数据库，代码如下： 
+Java代码  收藏代码
+package wyf.wpf; //声明所在包  
+  
+import android.content.Context; //引入相关类  
+  
+…//省略部分引入相关类的代码  
+  
+import android.database.sqlite.SQLiteOpenHelper;  
+  
+public class MySQLiteHelper extends SQLiteOpenHelper{  
+  
+public static final String TABLE_NAME = "step_table";  
+  
+public static final String ID = "id";
+  
+public static final String STEP = "step";  
+  
+public static final String UPDATE_DATE = "up_date";  
+  
+public MySQLiteHelper(Context context, String name,  
+  
+CursorFactory factory,int version) {//构造器  
+  
+super(context, name, factory, version);  
+  
+}  
+  
+public void onCreate(SQLiteDatabase db) {  
+  
+db.execSQL ("create table if not exists " +  
+  
+TABLE_NAME + "(" //创建数据库表  
+  
++ID+" integer primary key,"  
+  
++STEP + " integer)");  
+  
+}  
+  
+public void onUpgrade(SQLiteDatabase db, int oldVersion  
+  
+, int newVersion) {}//对onUpgrade 方法的重写  
+  
+}  
+
+在上述代码中创建了一个继承自SQLiteOpenHelper 类的子类， 并重写了其中的onCreate 和onUpgrade 方法。onCreate 方法将在数据库第一次被创建时调用， 本案例在该方法中执行了创建表的代码。onUpgrade 方法在数据库版本发生变化时调用。 
+完成了数据库辅助类的开发后就可以开发WalkingActivity类了， 其是应用程序的用户界面， 主要功能是按照XML 布局文件的内容显示界面并与用户进行交互， 代码如下：
+Java代码  收藏代码
+package wyf.wpf; //声明所在包  
+  
+import java.util.ArrayList; //引入相关类  
+  
+import android.app.Activity;  
+  
+…//省略部分引入相关类的代码   
+  
+import android.view.View.OnClickListener;  
+  
+import android.widget.Button;  
+  
+public class WalkingActivity extends Activity implements  
+  
+OnClickListener{  
+  
+WalkingView wv; //WalkingView 对象引用  
+  
+//数据库名称  
+  
+public static final String DB_NAME = "step.db";  
+  
+MySQLiteHelper mh; //声明数据库辅助类  
+  
+SQLiteDatabase db; //数据库对象  
+  
+Button btnToBackstage; //转入后台按钮  
+  
+Button btnStopService; //停止服务按钮  
+  
+Button btnDeleteData; //删除数据按钮  
+  
+StepUpdateReceiver receiver;  
+  
+//定义一个继承自BroadcastReceiver 的内部类  
+  
+StepUpdateReceiver 来接受传感器的信息  
+  
+public class StepUpdateReceiver extends BroadcastReceiver{  
+  
+public void onReceive(Context context, Intent intent) {  
+  
+Bundle bundle = intent.getExtras();//获得Bundle  
+  
+int steps = bundle.getInt("step");//读取步数  
+  
+wv.stepsToday = steps;  
+  
+wv.isMoving = true;  
+  
+wv.postInvalidate(); //刷新WalkingView  
+  
+}  
+  
+}  
+  
+//重写onCreate 方法，在Activity 被创建时调用  
+  
+public void onCreate(Bundle savedInstanceState) {  
+  
+super.onCreate(savedInstanceState);  
+  
+setContentView(R.layout.main);//设置当前屏幕  
+  
+wv = (WalkingView)  
+  
+findViewById(R.id.walkingView);
+  
+btnToBackstage = (Button)  
+  
+findViewById(R.id.btnDispose);
+  
+btnToBackstage.setOnClickListener(this);  
+  
+btnStopService =  
+  
+(Button)findViewById(R.id.btnStop);
+  
+btnStopService.setOnClickListener(this);  
+  
+btnDeleteData =  
+  
+(Button)findViewById(R.id.btnDeleteData);
+  
+btnDeleteData.setOnClickListener(this);  
+  
+//注册Receiver  
+  
+receiver = new StepUpdateReceiver();  
+  
+IntentFilter filter = new IntentFilter();  
+  
+filter.addAction("wyf.wpf.WalkingActivity");  
+  
+registerReceiver(receiver, filter);  
+  
+//启动注册了传感器监听的Service  
+  
+Intent i = new Intent(this,WalkingService.class);  
+  
+startService(i);  
+  
+mh=new MySQLiteHelper(this,DB_NAME,null,1);  
+  
+requireData(); //向Service 请求今日走过步数  
+  
+}  
+  
+//重写onDestroy 方法  
+  
+protected void onDestroy() {  
+  
+unregisterReceiver(receiver); //注销Receiver  
+  
+super.onDestroy();  
+  
+}  
+  
+//重写OnClickListener 接口的onClick 方法  
+  
+public void onClick(View view) {}  
+  
+//方法：向Service 请求今日走过的步数  
+  
+public void requireData(){}  
+  
+}  
+复制代码上述代码为Walking Activity 类的代码框架， 由WalkingActivity 实现了OnClickListener 接口， 所以需要对接中的onClick 方法进行重写， 重写的onClick 方法代码如下：public void onClick(View view) {}  
+  
+if(view == btnStopService){  
+  
+//停止后台服务  
+  
+Intent intent = new Intent();  
+  
+intent.setAction("wyf.wpf.WalkingService");  
+  
+intent.putExtra("cmd",  
+  
+WalkingService.CMD_STOP);  
+  
+sendBroadcast(intent);  
+  
+}  
+  
+else if(view == btnToBackstage){  
+  
+finish();//转到后台  
+  
+}  
+  
+else if(view == btnDeleteData){  
+  
+//查看历史数据  
+  
+SQLiteDatabase db = (SQLiteDatabase)  
+  
+openOrCreateDatabase(DB_NAME,  
+  
+Context.MODE_PRIVATE, null);  
+  
+db.delete(MySQLiteHelper.TABLE_NAME, null,  
+  
+null);  
+  
+db.close();  
+  
+wv.stepsInWeek = wv.getSQLData("7");  
+  
+wv.postInvalidate();  
+  
+}  
+  
+}  
+
+在WalkingActivity 的onCreate 方法的最后调用了require-Data 方法向Service 发送Intent 请求今日走过的步数， 该方法的代码如下： 
+Java代码  收藏代码
+public void requireData(){  
+  
+Intent intent = new Intent(); //创建Intent  
+  
+intent.setAction("wyf.wpf.WalkingService");  
+  
+intent.putExtra("cmd",  
+  
+WalkingService.CMD_UPDATAE);  
+  
+sendBroadcast(intent); //发出消息广播  
+  
+}  
+
+
+完成了WalkingActivity 类的开发后就需要开发用于显示计步器的历史数据及绘制今日走过的步数及走步时动画的自定义View———WalkingView 了， 其代码框架如下： 
+Java代码  收藏代码
+package wyf.wpf;  
+  
+import java.util.ArrayList;  
+  
+…//省略部分引入相关类的代码  
+  
+import android.view.View;  
+  
+public class WalkingView extends View{  
+  
+ArrayList<String> stepsInWeek=null;//存历史数据  
+  
+int stepsToday=0; //记录今天走的步数  
+  
+int gapY = 8; //屏幕最上面留出的空隙  
+  
+int distY = 10; //每一条的间距  
+  
+int cellHeight = 30; //每一条的高度  
+  
+float STEP_MAX = 1000.0f; //每天最大的步数  
+  
+int maxStepWidth = 280; //最大步数在屏幕中宽度  
+  
+Bitmap [] sprite; //运动小人的图片数组  
+  
+Bitmap [] digit; //数字图片数组  
+  
+Bitmap back_cell; //颜色渐变条  
+  
+boolean isMoving = false;  
+  
+int frameIndex; //记录运动小人的帧索引  
+  
+MySQLiteHelper mh; //操作数据库的辅助类  
+  
+SQLiteDatabase db; //数据库操作对象  
+  
+public WalkingView(Context context, AttributeSet  
+  
+attrs) {  
+  
+super(context, attrs);  
+  
+sprite = new Bitmap[5];  
+  
+digit = new Bitmap[10];  
+  
+//初始化图片  
+  
+Resources res = getResources();  
+  
+sprite[0] = BitmapFactory  
+  
+.decodeResource(res, R.drawable.act_1);  
+  
+…//省略部分Bitmap 的创建代码  
+  
+back_cell = BitmapFactory  
+  
+.decodeResource(res, R.drawable.back_cell);  
+  
+//获取数据库中最近7 天内的数据  
+  
+mh = new MySQLiteHelper  
+  
+(context, WalkingActivity.DB_NAME, null,1);  
+  
+stepsInWeek = getSQLData("7");  
+  
+}  
+  
+protected void onDraw(Canvas canvas) {  
+  
+super.onDraw(canvas);  
+  
+drawPrevious(canvas);//画以前走过的步数  
+  
+drawToday(canvas); //画今天走过的步数  
+  
+}  
+  
+//画今天走的步数  
+  
+private void drawToday(Canvas canvas) {}  
+  
+//画之前走过的步数  
+  
+private void drawPrevious(Canvas canvas) {}  
+  
+//从数据库中获取历史数据  
+  
+public ArrayList<String> getSQLData(String limit){}  
+
+
+上述为WalkingView 类的代码框架， 在WalkingView 类的构造器中将需要用到的图片资源初始化的同时， 调用getSQLData方法获取数据库中的历史数据。WalkingView 类重写了onDraw 方法， 该方法需要调用drawPrevious 和drawToday 方法分别对历史数据和今日走步情况进行绘制。这3 个方法以及在drawToday 方法中调用到的drawDigits 方法的详细代码如下：//画今天走的步数 
+
+Java代码  收藏代码
+private void drawToday(Canvas canvas) {  
+  
+Paint paint = new Paint();  
+  
+paint.setColor(Color.CYAN);  
+  
+float strokewidth = paint.getStrokeWidth();  
+  
+Style s = paint.getStyle();  
+  
+paint.setStyle(Style.STROKE);  
+  
+paint.setStrokeWidth(2.0f);  
+  
+canvas.drawLine(0, 300, 320, 300, paint);  
+  
+paint.setStyle(s);  
+  
+paint.setStrokeWidth(strokewidth);//恢复画笔  
+  
+//把当前步数换算为在屏幕上绘制的条宽度  
+  
+int width = (int)(stepsToday/STEP_MAX*280);  
+  
+canvas.drawBitmap(back_cell, 0, 320, paint);  
+  
+paint.setColor(Color.BLACK);  
+  
+canvas.drawRect(width, 320, 320, 320+cellHeight, paint);  
+  
+//画出遮罩层  
+  
+if(isMoving){ //如果在运动，就切换帧序列  
+  
+canvas.drawBitmap(sprite[(++frameIndex)%5],  
+  
+width+20, 320,paint);  
+  
+isMoving = false;  
+  
+}  
+  
+else{ //如果没在走步，就绘制静止的那张图片  
+  
+canvas.drawBitmap(sprite[4], width+20,  
+  
+320,paint);  
+  
+}  
+  
+drawDigit(canvas,width); //绘制数字  
+  
+}  
+  
+//画之前走过的步数  
+  
+private void drawPrevious(Canvas canvas) {  
+  
+Paint paint = new Paint();  
+  
+for(int i=0;i<stepsInWeek.size();i++){  
+  
+String os = stepsInWeek.get(i);  
+  
+int s = Integer.valueOf(os).intValue();  
+  
+int width = (int) (s/STEP_MAX * maxStep-  
+  
+Width); //求出指定的步数在统计条中占得宽度  
+  
+int tempY = (cellHeight+distY)*i;  
+  
+canvas.drawBitmap(back_cell, 0, (cellHeight+  
+  
+distY)*i, paint); //画出渐变条  
+  
+paint.setColor(Color.BLACK);  
+  
+canvas.drawRect(width, tempY, 320, tempY+cell-  
+  
+Height, paint);  
+  
+paint.setTextAlign(Align.LEFT);  
+  
+paint.setColor(Color.CYAN);  
+  
+paint.setAntiAlias(true);  
+  
+canvas.drawText("走了"  
+  
++stepsInWeek.get(i)+"步", width, tempY+cellHeight/2,  
+  
+paint);  
+  
+}  
+  
+}  
+  
+//从数据库中获取历史数据  
+  
+public ArrayList<String> getSQLData(String limit){  
+  
+//获得SQLiteDatabase 对象  
+  
+db = mh.getReadableDatabase();  
+  
+String [] cols = {MySQLiteHelper.ID,MySQLiteHelper.  
+  
+STEP};  
+  
+Cursor c = db.query (MySQLiteHelper.TABLE_NAME,  
+  
+cols, null, null, null, null, MySQLiteHelper.ID+" DESC",limit);  
+  
+ArrayList<String> al = new ArrayList<String>();  
+  
+for(c.moveToFirst();! (c.isAfterLast());c.moveToNext()){  
+  
+al.add(c.getString(1));  
+  
+}  
+  
+c.close();  
+  
+db.close();  
+  
+return al;  
+  
+}  
+  
+//将数字通过数字图片绘制到屏幕上  
+  
+public void drawDigit(Canvas canvas,int width){  
+  
+String sStep = ""+stepsToday;  
+  
+int l = sStep.length();  
+  
+for(int i=0;i<l;i++){  
+  
+int index = sStep.charAt(i) - '0';  
+  
+canvas.drawBitmap(digit[index],  
+  
+width+20+40+32*i, 320, null);//绘制数字图片  
+  
+}  
+  
+}  
+  
+}  
+
+完成了数据库辅助类及界面部分的开发后就可以开发后台的服务类———WalkingService 了。WalkingService 继承自Service类， 其主要实现的功能包括如下几个方面： 
+（1） 注册或注销传感器监听器。 
+（2） 在手机屏幕状态栏显示Notification。 
+（3） 定时将今日走过的步数写入数据库。 
+（4） 与WalkingActivity 进行通信。 
+下面将围绕这4 个功能对WalkingService 类的代码逐一进 
+行介绍， 其类框架与成员声明的代码如下：package wyf.wpf; 
+
+Java代码  收藏代码
+import java.util.Calendar;  
+  
+import android.app.Notification;  
+  
+…//省略部分引入相关类的代码  
+  
+import android.os.Message;  
+  
+import org.openintents.sensorsimulator.hardware.*;  
+  
+public class WalkingService extends Service{  
+  
+WalkingView wv;  
+  
+//SensorManager mySensorManager;  
+  
+SensorManagerSimulator mySensorManager;  
+  
+WalkingListener wl;  
+  
+int steps=0;  
+  
+boolean isActivityOn = false; //Activity 是否运行  
+  
+boolean isServiceOn = false;  
+  
+NotificationManager nm;//声明NotificationManager  
+  
+long timeInterval = 24*60*60*1000;  
+  
+//Handler 延迟发  
+  
+//送消息的时延  
+  
+final static int CMD_STOP = 0;  
+  
+final static int CMD_UPDATAE = 1;  
+  
+CommandReceiver receiver; //声明BroadcastReceiver  
+  
+Handler myHandler = new Handler(){//定时上传数据  
+  
+public void handleMessage(Message msg) {  
+  
+uploadData();  
+  
+super.handleMessage(msg);  
+  
+}  
+  
+};  
+
+上述代码声明和创建了WalkingService 的成员变量。需要注意的是由于本案例将使用SensorSimulator 进行测试， 所以需要对正常代码进行修改。首先是成员变量mySensorManager 的声明， 代码中注释掉的部分为正常代码， 未被注释的是为了使用SensorSimulator 工具中相关类声明的引用。完成了类框架与成员声明代码的开发后就可以开发此Service的初始化方法onCreate 及其他相关功能方法了， 代码如下： 
+Java代码  收藏代码
+public void onCreate() {  
+  
+super.onCreate();  
+  
+wl = new WalkingListener(this); //创建监听器类  
+  
+//初始化传感器  
+  
+// mySensorManager = (SensorManager)  
+  
+// getSystemService(SENSOR_SERVICE);  
+  
+mySensorManager = SensorManagerSimulator  
+  
+.getSystemService(this, SENSOR_SERVICE);  
+  
+mySensorManager.connectSimulator();  
+  
+//注册监听器  
+  
+mySensorManager.registerListener(wl,  
+  
+SensorManager.SENSOR_ACCELEROMETER,  
+  
+SensorManager.SENSOR_DELAY_UI);  
+  
+nm = (NotificationManager)  
+  
+getSystemService(NOTIFICATION_SERVICE);  
+  
+Calendar c = Calendar.getInstance();  
+  
+long militime = c.getTimeInMillis();  
+  
+//将Calendar 设置为第二天0 时  
+  
+c.set(Calendar.DAY_OF_MONTH,  
+  
+c.get(Calendar.DAY_OF_MONTH)+1);  
+  
+c.set(Calendar.HOUR_OF_DAY, 0);  
+  
+c.set(Calendar.MINUTE, 0);  
+  
+c.set(Calendar.SECOND, 0);  
+  
+long nextDay = c.getTimeInMillis();  
+  
+timeInterval = nextDay - militime;  
+  
+}  
+  
+public void onStart(Intent intent, int startId) {  
+  
+super.onStart(intent, startId);  
+  
+isServiceOn = true;  
+  
+showNotification();//添加Notification  
+  
+receiver = new CommandReceiver();  
+  
+IntentFilter filter1 = new IntentFilter();  
+  
+filter1.addAction("wyf.wpf.WalkingService");  
+  
+registerReceiver(receiver, filter1);  
+  
+//设定Message 并延迟到本日结束发送  
+  
+if(isServiceOn){  
+  
+Message msg =  
+  
+myHandler.obtainMessage();  
+  
+myHandler.sendMessageDelayed(msg,  
+  
+timeInterval);  
+  
+}  
+  
+}  
+  
+//重写onDestroy 方法  
+  
+public void onDestroy() {  
+  
+mySensorManager.unregisterListener(wl);  
+  
+wl = null;  
+  
+mySensorManager = null;  
+  
+nm.cancel(0);  
+  
+unregisterReceiver(receiver);  
+  
+super.onDestroy();  
+  
+}  
+  
+//重写onBind 方法  
+  
+public IBinder onBind(Intent arg0) {return null;}  
+  
+//方法：显示Notification  
+  
+private void showNotification() {}  
+  
+//方法：向数据库中插入今日走过的步数  
+  
+public void uploadData(){}  
+  
+//开发继承自BroadcastReceiver 的子类接收广播消息  
+  
+class CommandReceiver extends BroadcastReceiver{}  
+
+上述代码包括了WalkingService 的几个成员方法， 可以看到在onCreate 方法中， 同样为了使用SensorSimulator 工具测试案例而注释掉了正常代码并将其替换为使用SensorSimulator 的相关代码。同时在onCreate 方法中， 还计算了从Service 被启动时刻到这一天的结束之间的时间间隔， 并将该时间间隔作为Handler对象发送消息的延迟， 这样在本天过完之后， 会及时地向数据库中插入数据。在Service 的onStart 方法中调用了showNotification 方法，该方法将会在手机的状态栏(显示信号强度、电池等状态的区域) 
+显示本程序的Notification， 展开状态栏并点击Notification 后会启动WalkingActivity。showNotification 方法的代码如下 
+Java代码  收藏代码
+//方法：显示Notification  
+  
+private void showNotification() {  
+  
+Intent intent = new Intent(this,WalkingActivity.class);  
+  
+PendingIntent pi = PendingIntent.getActivity(this,  
+  
+0, intent, 0);  
+  
+Notification myNotification = new Notification();  
+  
+myNotification.icon = R.drawable.icon;  
+  
+myNotification.defaults = otification.DEFAULT_ALL;  
+  
+myNotification.setLatestEventInfo(this,  
+  
+"计步器运行中", "点击查看", pi);  
+  
+nm.notify(0,myNotification);  
+  
+}  
+
+本程序使用Handler 来定时发送消息， 收到消息后会调用uploadData 方法将今日走过的步数插入到数据库， 该方法的代码如下：//方法：向数据库中插入今日走过的步数 
+
+Java代码  收藏代码
+public void uploadData(){  
+  
+MySQLiteHelper mh = new MySQLiteHelper  
+  
+(this,WalkingActivity.DB_NAME,null,1);  
+  
+SQLiteDatabase db = mh.getWritableDatabase();  
+  
+ContentValues values = new ContentValues();  
+  
+values.put(MySQLiteHelper.STEP, this.steps);  
+  
+db.insert(MySQLiteHelper.TABLE_NAME,  
+  
+MySQLiteHelper.ID, values);  
+  
+Cursor c = db.query(MySQLiteHelper.TABLE_NAME,  
+  
+null, null, null, null, null, null);  
+  
+c.close();  
+  
+db.close(); //关闭数据库  
+  
+mh.close();  
+  
+if(isServiceOn){//设置24 小时后再发同样的消息  
+  
+Message msg = myHandler.obtainMessage();  
+  
+myHandler.sendMessageDelayed(msg,  
+  
+24*60*60*1000);  
+  
+}  
+  
+}  
+、、 
+WalkingService 和WalingActivity 进行通信是通过注册CommandReceiver 组件来实现的， CommandReceiver 继承自BroadcastReceiver， 负责接收WalingActivity 发来的Intent。 
+CommandReceiver 类的代码如下： 
+Java代码  收藏代码
+//开发继承自BroadcastReceiver 的子类接收广播消息  
+  
+class CommandReceiver extends BroadcastReceiver{  
+  
+public void onReceive(Context context, Intent intent) {  
+  
+int cmd = intent.getIntExtra("cmd", -1);  
+  
+switch(cmd){  
+  
+case WalkingService.CMD_STOP://停止服务  
+  
+stopSelf();  
+  
+break;  
+  
+case WalkingService.CMD_UPDATAE: //传数据  
+  
+isActivityOn = true;  
+  
+Intent i = new Intent();  
+  
+i.setAction("wyf.wpf.WalkingActivity");  
+  
+i.putExtra("step", steps);  
+  
+sendBroadcast(i);  
+  
+break;  
+  
+}  
+  
+}  
+  
+}  
+  
+}  
+
+WalkingService 和WalingActivity 在进行通信时， 被广播的Intent 对象中的action 必 
+须和另一方的IntentFilter 设置的action相同， 并且为了保证action 的惟一性， 一般以应 
+用程序包名后跟一个字符串来定义action。另外在开发了WalkingService 的代码之后， 还 
+需要在AndroidManifest.xml 文件中声明该Service， 否则该Service 对Android系统是不可 
+见的。 
+完成了前面的大部分工作后， 就可以开发传感器监听接口的实现类——— 
+WalkingListener 了。WalkingListener 实现了SensorListener接口， 其主要的功能是监听加速度传感器的变化并进行相应的处理， 代码如下： 
+Java代码  收藏代码
+<pre name="code" class="java">package wyf.wpf;  
+  
+import android.content.Intent; //引入相关包  
+  
+import android.hardware.SensorListener;  
+  
+import android.hardware.SensorManager;  
+  
+public class WalkingListener implements SensorListener  
+  
+{  
+  
+WalkingService father; // WalkingService 引用  
+  
+float [] preCoordinate;  
+  
+double currentTime=0,lastTime=0; //记录时间  
+  
+float WALKING_THRESHOLD = 20;  
+  
+public WalkingListener(WalkingService father){  
+  
+this.father = father;  
+  
+}  
+  
+public void onAccuracyChanged(int arg0, int arg1) {}  
+  
+//传感器发生变化后调用该方法  
+  
+public void onSensorChanged(int sensor, float[] values) {  
+  
+if(sensor ==  
+  
+SensorManager.SENSOR_ACCELEROMETER){  
+  
+analyseData(values);//调用方法分析数据  
+  
+}  
+  
+}  
+  
+//方法：分析参数进行计算  
+  
+public void analyseData(float[] values){  
+  
+//获取当前时间  
+  
+currentTime=System.currentTimeMillis();  
+  
+//每隔200MS 取加速度力和前一个进行比较  
+  
+if(currentTime - lastTime >200){  
+  
+if(preCoordinate == null){//还未存过数据  
+  
+preCoordinate = new float[3];  
+  
+for(int i=0;i<3;i++){  
+  
+preCoordinate = values;  
+  
+}  
+  
+}  
+  
+else{ //记录了原始坐标的话，就进行比较  
+  
+int angle=  
+  
+calculateAngle(values,preCoordinate);  
+  
+if(angle >=  
+  
+WALKING_THRESHOLD){  
+  
+father.steps++; //步数增加  
+  
+updateData(); //更新步数  
+  
+}  
+  
+for(int i=0;i<3;i++){  
+  
+preCoordinate=values;  
+  
+}}  
+  
+lastTime = currentTime;//重新计时  
+  
+}  
+  
+}  
+  
+//方法：计算加速度矢量角度的方法  
+  
+public int calculateAngle(float[] newPoints,float[]  
+  
+oldPoints){}  
+  
+//方法：向Activity 更新步数  
+  
+public void updateData(){}  
+  
+}  
+复制代码WalkingListener 类的代码中， 主要是对SensorListener 接口中的onSensorChanged 方法进行了重写， 在该方法中将读取到的传感器采样值传给analyseData 方法进行分析。在analyseData 方法中， 调用了calculateAngle 方法来计算固定的时间间隔间手机加速度向量方向的夹角。calculateAngle方法的代码如下：//方法：计算两个加速度矢量夹角的方法  
+  
+public int calculateAngle(float[] newPoints,float[] oldPoints){  
+  
+int angle=0;  
+  
+float vectorProduct=0; //向量积  
+  
+float newMold=0; //新向量的模  
+  
+float oldMold=0; //旧向量的模  
+  
+for(int i=0;i<3;i++){  
+  
+vectorProduct +=  
+  
+newPoints*oldPoints;  
+  
+newMold += newPoints*newPoints;  
+  
+oldMold += oldPoints*oldPoints;  
+  
+}  
+  
+newMold = (float)Math.sqrt(newMold);  
+  
+oldMold = (float)Math.sqrt(oldMold);  
+  
+//计算夹角的余弦  
+  
+float cosineAngle=(float)  
+  
+(vectorProduct/(newMold*oldMold));  
+  
+//通过余弦值求角度  
+  
+float fangle = (float)  
+  
+Math.toDegrees(Math.acos(cosineAngle));  
+  
+angle = (int)fangle;  
+  
+return angle; //返回向量的夹角  
+  
+}</pre>  
+
+
+如果calculateAngle 方法返回的加速度向量角度变化超过了程序中设定的阈值， 应用程序将WalkingService 中已走步数计数器加1， 并调用updateData 方法将更新的步数传递给WalkingActivity 显示到界面， 该方法代码如下：public void updateData(){ 
+
+Intent intent = new Intent(); //创建Intent 对象 
+
+intent.setAction("wyf.wpf.WalkingActivity"); 
+
+intent.putExtra("step", father.steps);//添加步数 
+
+father.sendBroadcast(intent); //发出广播 
+
+} 
+复制代码完成了应用程序代码的开发之后， 就可以将应用程序打包安装调试了。在Eclipse 中构建本项目， 完成构建后本应用程序项目文件夹下bin 目录中的JBQ.apk 即为本计步器应用程序的发布apk 包。将此apk 包安装到手机模拟器， 然后启动SensorSimulator桌面端， 如图3 所示。 
+
+图3  测试传感器 
+运行SensorSimulator 桌面端之后， 还需要在模拟器上安装SensorSimulator 的客户端， 根据桌面端显示的IP 地址和端口号进行响应的配置。配置好SensorSimulator 之后， 就可以运行已经安装过的计步器程序。在SensorSimulator 的桌面端可以模拟手机的动作变化从而达到调试传感器应用程序的目的。要特别注意的是， 在调试完成真正发布应用程序前， 需要将WalkingService 类中使用SensorSimulator 的代码注释掉， 将真正使用物理传感器的代码去掉注释。最后再次构建项目， 这样得到的apk 包就是最终真正的发布版了。 
+通过开发计步器应用程序， 读者应该对Android 平台下开发传感器应用的流程有了一定的了解。传感器的特性和Android平台的开放性结合在一起， 使得在移动手机终端上开发各种新奇有趣的传感器应用成为可能， 同时也为开发人员开辟一个新的应用领域。可以预见， 在不久的将来， Android 嵌入式平台下的传感器应用必将大放光彩。 
+
+4在模拟器上模拟重力感应 
+众所周知，Android系统支持重力感应，通过这种技术，可以利用手机的移动、翻转来实现更为有趣的程序。但遗憾的是，在Android模拟器上是无法进行重力感应测试的。既然Android系统支持重力感应，但又在模拟器上无法测试，该怎么办呢？别着急，天无绝人之路，有一些第三方的工具可以帮助我们完成这个工作，本节将介绍一种在模拟器上模拟重力感应的工具（sensorsimulator）。这个工具分为服务端和客户端两部分。服务端是一个在PC上运行的Java Swing GUI程序，客户端是一个手机程序（apk文件），在运行时需要通过客户端程序连接到服务端程序上才可以在模拟器上模拟重力感应。 
+读者可以从下面的地址下载这个工具： 
+http://code.google.com/p/openintents/downloads/list 
+进入下载页面后，下载如图1所示的黑框中的zip文件。 
+
+图1 
+sensorsimulator下载页面 
+将zip文件解压后，运行bin目录中的sensorsimulator.jar文件，会显示如图2所示的界面。界面的左上角是一个模拟手机位置的三维图形，右上角可以通过滑杆来模拟手机的翻转、移动等操作。 
+
+图2 
+sensorsimulator主界面 
+下面来安装客户端程序，先启动Android模拟器，然后使用下面的命令安装bin目录中的SensorSimulatorSettings.apk文件。 
+adb install SensorSimulatorSettings.apk 
+如果安装成功，会在模拟器中看到如图3所示黑框中的图标。运行这个程序，会进入如图4所示的界面。在IP地址中输入如图3所示黑框中的IP（注意，每次启动服务端程序时这个IP可能不一样，应以每次启动服务端程序时的IP为准）。最后进入【Testing】页，单击【Connect】按钮，如果连接成功，会显示如图5所示的效果。 
+                                                  
+图3 安装客户端设置软件                                         图4进行客户端设置 
+下面来测试一下SensorSimulator自带的一个demo，在这个demo中输出了通过模拟重力感应获得的数据。 
+这个demo就在samples目录中，该目录有一个SensorDemo子目录，是一个Eclipse工程目录。读者可以直接使用Eclipse导入这个目录，并运行程序，如果显示的结果如图5所示，说明成功使用SensorSimulator在Android模拟器上模拟了重力感应。 
+                            
+
+5、手机翻转静音 
+与手机来电一样，手机翻转状态（重力感应）也由系统服务提供。重力感应服务（android.hardware.SensorManager对象）可以通过如下代码获得：SensorManager sensorManager =(SensorManager)getSystemService(Context.SENSOR_SERVICE); 
+复制代码本例需要在模拟器上模拟重力感应，因此，在本例中使用SensorSimulator中的一个类（SensorManagerSimulator）来获得重力感应服务，这个类封装了SensorManager对象，并负责与服务端进行通信，监听重力感应事件也需要一个监听器，该监听器需要实现SensorListener接口，并通过该接口的onSensorChanged事件方法获得重力感应数据。本例完整的代码如下：package net.blogjava.mobile; 
+
+
+
+Java代码  收藏代码
+import org.openintents.sensorsimulator.hardware.SensorManagerSimulator;  
+  
+import android.app.Activity;  
+  
+import android.content.Context;  
+  
+import android.hardware.SensorListener;  
+  
+import android.hardware.SensorManager;  
+  
+import android.media.AudioManager;  
+  
+import android.os.Bundle;  
+  
+import android.widget.TextView;  
+  
+  
+  
+public class Main extends Activity implements SensorListener  
+  
+{  
+  
+    private TextView tvSensorState;  
+  
+    private SensorManagerSimulator sensorManager;  
+  
+    @Override  
+  
+    public void onAccuracyChanged(int sensor, int accuracy)  
+  
+    {  
+  
+    }  
+  
+    @Override  
+  
+    public void onSensorChanged(int sensor, float[] values)  
+  
+    {  
+  
+        switch (sensor)  
+  
+        {  
+  
+            case SensorManager.SENSOR_ORIENTATION:  
+  
+                //  获得声音服务  
+  
+                AudioManager audioManager = (AudioManager)   
+  
+                                     getSystemService(Context.AUDIO_SERVICE);  
+  
+                //  在这里规定翻转角度小于-120度时静音，values[2]表示翻转角度，也可以设置其他角度  
+  
+                if (values[2] < -120)  
+  
+                {  
+  
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);  
+  
+                }  
+  
+                else  
+  
+                {  
+  
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);  
+  
+                }  
+  
+                tvSensorState.setText("角度：" + String.valueOf(values[2]));  
+  
+                break;  
+  
+        }  
+  
+    }  
+  
+    @Override  
+  
+    protected void onResume()  
+  
+    {  
+  
+        //  注册重力感应监听事件  
+  
+        sensorManager.registerListener(this, SensorManager.SENSOR_ORIENTATION);  
+  
+        super.onResume();  
+  
+    }  
+  
+    @Override  
+  
+    protected void onStop()  
+  
+    {  
+  
+        //  取消对重力感应的监听   
+  
+        sensorManager.unregisterListener(this);  
+  
+        super.onStop();  
+  
+    }  
+  
+    @Override  
+  
+    public void onCreate(Bundle savedInstanceState)  
+  
+    {  
+  
+        super.onCreate(savedInstanceState);  
+  
+        setContentView(R.layout.main);  
+  
+        //  通过SensorManagerSimulator对象获得重力感应服务  
+  
+        sensorManager = (SensorManagerSimulator) SensorManagerSimulator  
+  
+                .getSystemService(this, Context.SENSOR_SERVICE);  
+  
+        //  连接到服务端程序（必须执行下面的代码）  
+  
+        sensorManager.connectSimulator();  
+  
+    }  
+  
+}  
+
+上面的代码中使用了一个SensorManagerSimulator类，该类在SensorSimulator工具包带的sensorsimulator-lib.jar文件中，可以在lib目录中找到这个jar文件。在使用SensorManagerSimulator类之前，必须在相应的Eclipse工程中引用这个jar文件。 
+现在运行本例，并通过服务端主界面右侧的【Roll】滑动杆移动到指定的角度，例如，-74.0和-142.0，这时设置的角度会显示在屏幕上，如图1和图2所示。 
+
+图1 翻转角度大于-120度  
+                                          
+图2 翻转角度小于-120度 
+读者可以在如图1和图2所示的翻转状态下拨入电话，会发现翻转角度在-74.0度时来电仍然会响铃，而翻转角度在-142.0度时就不再响铃了。 

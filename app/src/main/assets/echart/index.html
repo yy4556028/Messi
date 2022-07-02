@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8"/>
+    <script src="jquery.min.js"></script>
+    <script src="echarts.min.js"></script>
+    <script src='macarons.js'></script>
+</head>
+<body>
+<div id="chart" style="width:300px;height:600px; "></div>
+<script type="text/javascript">
+
+var localColor0;
+var localColor1;
+requestData('http://180.169.16.118:7002/Liems/webservice/getHistDetailChart?orgno=donghai1&indexno=fadianliang&type=day&date=2017-04-18&c=c',
+    '#00ff00',
+    '#ffff00');
+        function requestData(url, color0, color1) {
+        localColor0 = color0;
+        localColor1 = color1;
+			$.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'jsonp',
+                jsonCallback: 'callback'
+            }).success(function (data) {
+				$(".mask").hide();
+				var nameArr0 = [], valueArr0 = [];
+				var nameArr1 = [], valueArr1 = [];
+				for(var i = 0; i < data.outlineChart.length; i++) {
+					nameArr0.push(data.outlineChart[i].Name);
+					valueArr0.push(data.outlineChart[i].Value);
+				}
+				for(var i = 0; i < data.outlineChart.length; i++) {
+					nameArr1.push(data.outlineChart[i].Name);
+					valueArr1.push(data.outlineChart[i].Value);
+				}
+
+				drawChart(nameArr0, valueArr0, nameArr1, valueArr1);
+            }).error(function (e) {
+            });
+        }
+        function drawChart(nameArr0, valueArr0, nameArr1, valueArr1) {
+			var chart = echarts.init(document.getElementById('chart'),'macarons');
+		    chart.showLoading({
+                text : '数据获取中',
+                effect: 'whirling'
+            });
+            var option = {
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+    xAxis:{
+            type : 'value',
+            position : 'top',
+            axisLabel : {
+                formatter: '{value}',
+                textStyle: {
+                    color: localColor0
+                }
+            },
+             axisLine:{
+                lineStyle:{
+                    color:localColor0
+                }
+            },
+             splitLine:{
+                show:false,
+            }
+        },
+  
+    yAxis:{
+            type : 'category',
+            data : nameArr0,
+            axisLabel : {
+                textStyle: {
+                    color: localColor0
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color:localColor0
+                }
+            }
+        },
+    
+    series:[{
+            name:'发电量',
+            type:'bar',
+            stack:'总量',
+            data:valueArr0,
+            itemStyle:{
+                normal:{
+                    color:localColor0
+                }
+            }
+        },
+        {
+            name:'发电量',
+            type:'bar',
+            stack:'总量',
+            data:valueArr1,
+            itemStyle:{
+                normal:{
+                    color:localColor1
+                }
+            }
+        }]
+};
+            chart.setOption(option);
+			chart.hideLoading();
+			chart.on('click', eConsole);
+        }
+		function formatDate(fmt,value) {
+			var o = {
+				"M+": value.getMonth() + 1,
+				"d+": value.getDate(),
+				"h+": value.getHours(),
+				"m+": value.getMinutes(),
+				"s+": value.getSeconds(),
+				"q+": Math.floor((value.getMonth() + 3) / 3),
+				"S": value.getMilliseconds()
+			};
+			if (/(y+)/.test(fmt))
+				fmt = fmt.replace(RegExp.$1, (value.getFullYear() + "").substr(4 - RegExp.$1.length));
+			for (var k in o) {
+				if (new RegExp("(" + k + ")").test(fmt))
+					fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+			}
+			return fmt;
+		}
+
+var ecConfig = require('echarts/config');
+
+function eConsole(param) {
+    alert(param.seriesIndex + ' ' + param.dataIndex);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+C:/Android/Projects/Messi/app/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/lpr.dir
+C:/Android/Projects/Messi/app/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Android/Projects/Messi/app/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir

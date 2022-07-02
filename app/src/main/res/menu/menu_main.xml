@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_menu_home"
+            android:icon="@drawable/home"
+            android:title="主页" />
+
+        <item
+            android:id="@+id/nav_menu_douban"
+            android:icon="@drawable/douban"
+            android:title="豆瓣" />
+
+        <item
+            android:id="@+id/nav_menu_gank"
+            android:icon="@drawable/source"
+            android:title="干货 &#038; 福利" />
+
+        <item
+            android:id="@+id/nav_menu_media"
+            android:icon="@drawable/media"
+            android:title="媒体" />
+
+        <item
+            android:id="@+id/nav_menu_skin"
+            android:icon="@drawable/skin"
+            android:title="皮肤" />
+
+        <item
+            android:id="@+id/nav_menu_category"
+            android:icon="@drawable/category"
+            android:title="分类" />
+        <item
+            android:id="@+id/nav_menu_game"
+            android:icon="@drawable/game"
+            android:title="游戏" />
+        <item
+            android:id="@+id/nav_menu_setting"
+            android:icon="@drawable/setting"
+            android:title="设置" />
+
+        <item android:title="Other">
+            <menu>
+                <item
+                    android:id="@+id/nav_menu_card"
+                    android:icon="@drawable/card"
+                    android:title="卡片" />
+                <item
+                    android:id="@+id/nav_menu_beauty"
+                    android:icon="@drawable/beauty"
+                    android:title="美女" />
+
+                <item
+                    android:id="@+id/nav_menu_weather"
+                    android:icon="@drawable/weather"
+                    android:title="深色模式" />
+
+                <item
+                    android:id="@+id/nav_menu_football"
+                    android:icon="@drawable/football"
+                    android:title="足球" />
+            </menu>
+        </item>
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_menu_other"
+            android:icon="@drawable/other"
+            android:title="其他" />
+    </group>
+</menu>

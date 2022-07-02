@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <EditText
+                android:id="@+id/activity_badge_numEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:id="@+id/activity_badge_setBadgeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set badge" />
+
+            <Button
+                android:id="@+id/activity_badge_removeBadgeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remove badge" />
+
+            <TextView
+                android:id="@+id/tvBadge1"
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BadgeDrawable" />
+
+            <ImageView
+                android:id="@+id/ivBadge"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/icon" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

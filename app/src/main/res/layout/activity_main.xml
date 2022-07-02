@@ -1,0 +1,57 @@
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <include layout="@layout/common_header_layout" />
+
+        <com.yuyang.messi.view.NoScrollViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconTint="@null"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_home_bottom_nav" />
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:fitsSystemWindows="false"
+        android:tag="LEFT"
+        app:headerLayout="@layout/activity_main_nav_header"
+        app:itemBackground="@null"
+        app:itemIconTint="@color/selector_nav_menu_text"
+        app:itemTextColor="@color/selector_nav_menu_text"
+        app:menu="@menu/menu_main" />
+
+    <fragment
+        android:id="@+id/rightFragment"
+        android:name="com.yuyang.messi.kotlinui.main.MainRightFragment"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:tag="RIGHT" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

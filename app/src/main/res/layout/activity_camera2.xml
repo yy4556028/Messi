@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yuyang.messi.widget.AutoFitTextureView
+        android:id="@+id/activity_camera2_texture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/activity_camera2_seekbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center">
+
+            <View
+                android:id="@+id/activity_camera2_zoom_out_related_view"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:background="@color/colorPrimary" />
+
+            <View
+                android:id="@+id/activity_camera2_zoom_in_related_view"
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:background="@color/colorPrimary" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="10dp"
+                android:layout_alignStart="@id/activity_camera2_zoom_in_related_view"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="4dp"
+                android:background="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/activity_camera2_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/activity_camera2_zoom_in_related_view"
+                android:layout_toEndOf="@id/activity_camera2_zoom_out_related_view"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:progressDrawable="@drawable/activity_camera_seekbar_background"
+                android:thumb="@drawable/activity_camera_seekbar_thumb"
+                android:thumbOffset="0dp" />
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/activity_camera2_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary">
+
+        </androidx.viewpager.widget.ViewPager>
+    </LinearLayout>
+
+</RelativeLayout>

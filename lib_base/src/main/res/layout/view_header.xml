@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_header_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    app:contentInsetEnd="0dp"
+    app:contentInsetStart="0dp"
+    app:contentInsetStartWithNavigation="0dp"
+    app:elevation="4dp"
+    app:navigationIcon="@drawable/ic_back"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+    <TextView
+        android:id="@+id/view_header_leftText"
+        style="@style/TextBlack_Big"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/ripple_bg_45"
+        android:gravity="center"
+        android:minWidth="?attr/actionBarSize"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="取消"
+        android:textColor="@color/theme"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/centerContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/view_header_titleText"
+            style="@style/TextBlack_Big"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textSize="18sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rightContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+</com.google.android.material.appbar.MaterialToolbar>

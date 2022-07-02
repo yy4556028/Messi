@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="108dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/activity_audio_notification_expand_imageView"
+        android:layout_width="108dp"
+        android:layout_height="108dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/activity_audio_notification_expand_titleText"
+                    style="@style/TextBlack_Middle"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    tools:text="Title" />
+
+                <TextView
+                    android:id="@+id/activity_audio_notification_expand_subtitleText"
+                    style="@style/TextLight_Small"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    tools:text="Subtitle" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/activity_audio_notification_expand_removeImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:src="@drawable/erase"
+                android:tint="@color/theme" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/activity_audio_notification_expand_prevImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:src="@drawable/activity_audio_play_next_normal"
+                android:tint="@color/theme" />
+
+            <ImageView
+                android:id="@+id/activity_audio_notification_expand_playImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:src="@drawable/activity_audio_play_play_normal"
+                android:tint="@color/theme" />
+
+            <ImageView
+                android:id="@+id/activity_audio_notification_expand_nextImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:src="@drawable/activity_audio_play_next_normal"
+                app:tint="@color/theme" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

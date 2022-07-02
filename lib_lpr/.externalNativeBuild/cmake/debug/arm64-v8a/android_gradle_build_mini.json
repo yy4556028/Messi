@@ -1,0 +1,161 @@
+{
+  "buildFiles": [
+    "C:\\Android\\Projects\\Messi\\lib_lpr\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "opencv_features2d-Debug-arm64-v8a": {
+      "artifactName": "opencv_features2d",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_features2d.a"
+    },
+    "opencv_superres-Debug-arm64-v8a": {
+      "artifactName": "opencv_superres",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_superres.a"
+    },
+    "libjasper-Debug-arm64-v8a": {
+      "artifactName": "libjasper",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\liblibjasper.a"
+    },
+    "opencv_ml-Debug-arm64-v8a": {
+      "artifactName": "opencv_ml",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_ml.a"
+    },
+    "libcpufeatures-Debug-arm64-v8a": {
+      "artifactName": "libcpufeatures",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\libcpufeatures.a"
+    },
+    "libwebp-Debug-arm64-v8a": {
+      "artifactName": "libwebp",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\liblibwebp.a"
+    },
+    "opencv_videoio-Debug-arm64-v8a": {
+      "artifactName": "opencv_videoio",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_videoio.a"
+    },
+    "opencv_calib3d-Debug-arm64-v8a": {
+      "artifactName": "opencv_calib3d",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_calib3d.a"
+    },
+    "opencv_java-Debug-arm64-v8a": {
+      "artifactName": "opencv_java",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\libs\\arm64-v8a\\libopencv_java3.so"
+    },
+    "libjpeg-turbo-Debug-arm64-v8a": {
+      "artifactName": "libjpeg-turbo",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\liblibjpeg-turbo.a"
+    },
+    "opencv_imgcodecs-Debug-arm64-v8a": {
+      "artifactName": "opencv_imgcodecs",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_imgcodecs.a"
+    },
+    "libtiff-Debug-arm64-v8a": {
+      "artifactName": "libtiff",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\liblibtiff.a"
+    },
+    "tbb-Debug-arm64-v8a": {
+      "artifactName": "tbb",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\libtbb.a"
+    },
+    "opencv_highgui-Debug-arm64-v8a": {
+      "artifactName": "opencv_highgui",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_highgui.a"
+    },
+    "opencv_video-Debug-arm64-v8a": {
+      "artifactName": "opencv_video",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_video.a"
+    },
+    "IlmImf-Debug-arm64-v8a": {
+      "artifactName": "IlmImf",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\libIlmImf.a"
+    },
+    "opencv_core-Debug-arm64-v8a": {
+      "artifactName": "opencv_core",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_core.a"
+    },
+    "opencv_imgproc-Debug-arm64-v8a": {
+      "artifactName": "opencv_imgproc",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_imgproc.a"
+    },
+    "opencv_videostab-Debug-arm64-v8a": {
+      "artifactName": "opencv_videostab",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_videostab.a"
+    },
+    "opencv_stitching-Debug-arm64-v8a": {
+      "artifactName": "opencv_stitching",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_stitching.a"
+    },
+    "tegra_hal-Debug-arm64-v8a": {
+      "artifactName": "tegra_hal",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\libtegra_hal.a"
+    },
+    "lpr-Debug-arm64-v8a": {
+      "artifactName": "lpr",
+      "buildCommand": "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target lpr",
+      "abi": "arm64-v8a",
+      "output": "C:\\Android\\Projects\\Messi\\lib_lpr\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\liblpr.so"
+    },
+    "opencv_objdetect-Debug-arm64-v8a": {
+      "artifactName": "opencv_objdetect",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_objdetect.a"
+    },
+    "quirc-Debug-arm64-v8a": {
+      "artifactName": "quirc",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\libquirc.a"
+    },
+    "opencv_dnn-Debug-arm64-v8a": {
+      "artifactName": "opencv_dnn",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_dnn.a"
+    },
+    "opencv_shape-Debug-arm64-v8a": {
+      "artifactName": "opencv_shape",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_shape.a"
+    },
+    "opencv_flann-Debug-arm64-v8a": {
+      "artifactName": "opencv_flann",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_flann.a"
+    },
+    "opencv_photo-Debug-arm64-v8a": {
+      "artifactName": "opencv_photo",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\staticlibs\\arm64-v8a\\libopencv_photo.a"
+    },
+    "libpng-Debug-arm64-v8a": {
+      "artifactName": "libpng",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\liblibpng.a"
+    },
+    "libprotobuf-Debug-arm64-v8a": {
+      "artifactName": "libprotobuf",
+      "abi": "arm64-v8a",
+      "output": "E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\3rdparty\\libs\\arm64-v8a\\liblibprotobuf.a"
+    }
+  }
+}

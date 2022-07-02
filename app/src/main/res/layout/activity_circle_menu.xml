@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fragment_circle_menu_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.yuyang.messi.view.PulsatorLayout
+            android:id="@+id/pulsatorLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/circleMenu"
+            android:layout_alignTop="@+id/circleMenu"
+            android:layout_alignEnd="@+id/circleMenu"
+            android:layout_alignBottom="@+id/circleMenu"
+            app:pulse_color="@color/colorAccent"
+            app:pulse_count="4"
+            app:pulse_duration="7000"
+            app:pulse_repeat="0"
+            app:pulse_startFromScratch="false">
+
+        </com.yuyang.messi.view.PulsatorLayout>
+
+        <com.yuyang.messi.view.CircleMenuLayout
+            android:id="@+id/circleMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@id/id_circle_menu_item_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/fragment_circle_menu_circle_bg"
+                    android:contentDescription="@null" />
+
+                <ImageView
+                    android:layout_width="116dp"
+                    android:layout_height="116dp"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@null" />
+            </RelativeLayout>
+
+        </com.yuyang.messi.view.CircleMenuLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/countSeekBar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:max="9" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/countSeekBar"
+            android:text="count" />
+
+        <TextView
+            android:id="@+id/tvCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/countSeekBar" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/durationSeekBar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:max="100" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/durationSeekBar"
+            android:text="duration" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/durationSeekBar" />
+    </RelativeLayout>
+</LinearLayout>

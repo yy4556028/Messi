@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon_no_data" />
+
+    <TextView
+        android:id="@+id/view_empty_textView"
+        style="@style/TextLight_Big"
+        android:layout_margin="8dp"
+        android:text="暂无数据" />
+
+</LinearLayout>

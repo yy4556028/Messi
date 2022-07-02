@@ -1,0 +1,75 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "C:\\Android\\Projects\\Messi",
+      "sdkFolder": "E:\\Android\\sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "C:\\Android\\Projects\\Messi\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "C:\\Android\\Projects\\Messi\\app",
+      "makeFile": "C:\\Android\\Projects\\Messi\\app\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "C:\\Android\\Projects\\Messi\\.cxx",
+      "cxxFolder": "C:\\Android\\Projects\\Messi\\app\\.cxx",
+      "ndkFolder": "E:\\Android\\Ndk\\android-ndk-r14b",
+      "ndkVersion": "14.1.3816874",
+      "ndkSupportedAbiList": [
+        "ARMEABI",
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64",
+        "MIPS",
+        "MIPS64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI",
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64",
+        "MIPS",
+        "MIPS64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      "-std\u003dgnu++11"
+    ],
+    "variantName": "release",
+    "soFolder": "C:\\Android\\Projects\\Messi\\app\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "C:\\Android\\Projects\\Messi\\app\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 17,
+  "cxxBuildFolder": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a",
+  "jsonFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a",
+  "objFolder": "C:\\Android\\Projects\\Messi\\app\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a",
+  "buildCommandFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "C:\\Android\\Projects\\Messi\\app\\.cxx\\cmake\\release\\armeabi-v7a\\compile_commands.json"
+}

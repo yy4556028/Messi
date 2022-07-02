@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.yuyang.messi.view.GravityShapeableImageView
+        android:id="@+id/gravityCircleImageView"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:scaleType="fitXY"
+        android:padding="1dp"
+        android:src="@drawable/avatar"
+        app:shapeAppearance="@style/CircleStyle"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="YY"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_subtitle" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="yy4556028@gmail.com"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_normal" />
+
+</LinearLayout>

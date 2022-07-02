@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instrumentation(仪表,用来监控)"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="管理着组件Application,Activity，Service等的创建，生命周期调用\n
+                用于管理应用程序和系统（主要与应用程序内的Activity）的交互过程，Instrumentation将在任何应用程序运行前(ActivityThread中)初始化，每个进程只会存在一个Instrumentation对象，且每个Activity都有此对象的引用，可以通过它监测系统与应用程序之间的所有交互，主要是内部交互" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ActivityThread"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="App的真正入口,通过调用main()App开始真正运行，同时开启消息循环队列，虽然不是一个真正的线程,但一般所在的线程被称为UI线程或主线程。ActivityThread就是专门与AMS的进行外部交互" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ApplicationThread"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ActivityThread的内部类,继承IApplicationThread.Stub，是一个IBinder，是ActiivtyThread于ASM通信的桥梁" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ActivityManagerProxy"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AMS远程服务在本地的代理" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ApplicationThreadProxy"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ApplicationThread在远程服务AMS的代理" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ActivityStack"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="负责单个Activity栈的状态和管理" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ActivityStackSupervisor"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="负责所有Activity栈的管理" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ClientLifecycleManager"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="多个客户端生命周期执行请求管理" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/interview_click_launch" />
+
+            <TextView
+                android:id="@+id/tvDetail"
+                style="@style/TextBlack_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="50dp" />
+
+            <TextView
+                style="@style/TextBlack_Big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OnResume流程"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextDark_Middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ResumeActivityItem执行调用AT.handleResumeActivity：\n
+1.performResumeActivity执行Activity的onResume\n
+2.执行WindowManager#addView动作开启视图绘制逻辑\n
+3.创建Activity的ViewRootImpl对象(WindowManagerGlobal.addView中创建)\n
+4.执行ViewRootImpl的setView函数开启UI界面绘制动作\n\n
+
+ViewRootImpl.setView：\n
+1.requestLayout -> scheduleTraversals(绘制起点) -> doTraversal() -> performTraversals -> performMeasure (invalidate 会调用 scheduleTraversals)\n
+2.通过Binder调用访问系统窗口管理服务WMS的addWindow接口，实现添加、注册应用窗口的操作，这一步执行完View就可以显示到屏幕上了\n
+3.创建WindowInputEventReceiver对象，实现应用窗口接收触控事件\n
+4.执行view.assignParent(this)，设置DecorView的mParent为ViewRootImpl\n\n
+
+measure，layout，draw后，用户依然看不见界面内容，还需要经过RenderThread线程的渲染处理，还需要通过Binder调用“上帧”交给surfaceflinger进程中进行合成后送显才能最终显示到屏幕上
+" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

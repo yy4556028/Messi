@@ -1,0 +1,10 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib_base')
+    implementation project(path: ':openCVLibrary346')
+}

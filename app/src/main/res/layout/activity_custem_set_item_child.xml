@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yuyang.messi.view.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/recycler_bg"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        tools:src="@color/theme" />
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/TextBlack_Small"
+        android:layout_below="@+id/ivIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/tvTip"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_above="@+id/ivIcon"
+        android:layout_marginStart="-8dp"
+        android:layout_marginBottom="-20dp"
+        android:layout_toEndOf="@+id/ivIcon"
+        android:background="@drawable/oval_red"
+        android:gravity="center"
+        android:minWidth="18dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        tools:text="99+" />
+
+    <View
+        android:id="@+id/viewEdit"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/custom_add"
+        android:visibility="gone" />
+
+</com.yuyang.messi.view.SquareRelativeLayout>

@@ -1,0 +1,11 @@
+# ninja log v5
+271	10692	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/CNNRecognizer.cpp.o	ec8e22497fa8748f
+384	10773	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/FastDeskew.cpp.o	1e174fbd3836b90b
+352	10943	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/javaWarpper.cpp.o	1f848e62a74519d1
+304	11249	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/Pipeline.cpp.o	7442475119a4865f
+2	11348	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/FineMapping.cpp.o	762b0a72a5d7a1b8
+528	11422	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/PlateSegmentation.cpp.o	708336f124e8ad6d
+10697	19894	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/Recognizer.cpp.o	bae4dae172abb4a6
+10943	20042	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/PlateDetection.cpp.o	64a55099d294512f
+10773	20066	0	CMakeFiles/lpr.dir/C_/Android/Projects/Messi/lib_lpr/src/main/jni/src/SegmentationFreeRecognizer.cpp.o	6985db3e0cac89f2
+20067	22016	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/liblpr.so	39bfc53b1fcd38ce

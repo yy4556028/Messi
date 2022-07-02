@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/recycler_bg"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/activity_contact_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <QuickContactBadge
+            android:id="@+id/activity_contact_item_avatarImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" />
+
+        <TextView
+            android:id="@+id/activity_contact_item_nameText"
+            style="@style/TextBlack_Big"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            tools:text="Name" />
+
+        <ImageView
+            android:id="@+id/activity_contact_item_phoneImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="8dp"
+            android:src="@android:drawable/stat_sys_phone_call_on_hold"
+            android:tint="@color/theme" />
+
+    </LinearLayout>
+
+</LinearLayout>

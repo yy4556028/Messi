@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/activity_about_appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/transparent_50_dark_gray"
+            app:expandedTitleMarginEnd="64dp"
+            app:collapsedTitleGravity="start"
+            app:expandedTitleGravity="end"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="关于">
+            <!--app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"-->
+
+            <ImageView
+                android:id="@+id/activity_about_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="456dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar"
+                android:tag="overScroll"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5" />
+
+            <com.yuyang.lib_base.ui.header.HeaderLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/activity_about_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:behavior_overlapTop="20dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardElevation="8dp"
+            app:contentPadding="16dp">
+
+            <TextView
+                android:id="@+id/activity_about_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:text="此应用是基于MD的支持库实现的，是针对此支持库的一个小Demo，其中的api来源于豆瓣(首页的电影部分由于时间原因还未完成)，开发测试机为魅族，Android版本5.1。
+    \n\n 作者:_SOLID
+    \n\n 简书主页 http://www.jianshu.com/users/6725c8e8194f
+    \n\n GitHub主页 https://github.com/burgessjp
+    \n\n 新浪微博ID:_SOLID(之后的新文章会第一时间分享到新浪微博)" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

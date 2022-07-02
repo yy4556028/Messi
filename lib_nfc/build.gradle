@@ -1,0 +1,10 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib_base')
+    implementation project(':lib_scan')
+}

@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/activity_xunfei_recognizerDialogBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="语音识别(Dialog)" />
+
+                <Button
+                    android:id="@+id/activity_xunfei_synthesizerBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="语音合成" />
+
+                <Button
+                    android:id="@+id/activity_xunfei_synthesizerVoicer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选择发音人" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/activity_xunfei_editText0"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/theme_round_corner_stroke_selector"
+                android:gravity="start"
+                android:padding="8dp"
+                android:textSize="@dimen/text_size_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/activity_xunfei_recognizerBtn"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="语音识别" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="显示标点"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/activity_xunfei_recognizerPunctuationCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/activity_xunfei_editText1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/theme_round_corner_stroke_selector"
+                android:gravity="start"
+                android:padding="8dp"
+                android:textSize="@dimen/text_size_normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/activity_xunfei_editText2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/activity_xunfei_image2"
+                    android:src="@drawable/ic_mine_sure"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

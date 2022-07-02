@@ -1,0 +1,247 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/activity_start_advert_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/activity_start_advert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/activity_start_skip_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/activity_start_skip_circle"
+            android:layout_alignStart="@+id/activity_start_skip_circle"
+            android:layout_alignEnd="@+id/activity_start_skip_circle"
+            android:layout_alignTop="@+id/activity_start_skip_circle"
+            android:gravity="center"
+            android:text="跳过"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_normal" />
+
+        <com.yuyang.messi.view.Progress.CircleProgress
+            android:id="@+id/activity_start_skip_circle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_start_guide_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/activity_start_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.yuyang.messi.view.Indicator.vp_indicator.CirclePageIndicator
+            android:id="@+id/activity_start_indicator0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            app:fillColor="@color/colorPrimary"
+            app:pageColor="@color/white"
+            app:radius="4dp"
+            app:snap="false" />
+        <!--app:strokeColor="@color/green"-->
+        <!--app:strokeWidth="0.5dp" -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.yuyang.messi.view.Indicator.CircleIndicator
+                android:id="@+id/activity_start_indicator1"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1" />
+
+            <com.yuyang.messi.view.Indicator.CircleIndicator
+                android:id="@+id/activity_start_indicator2"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                app:ci_animator="@animator/indicator_animator"
+                app:ci_animator_reverse="@animator/indicator_animator_reverse"
+                app:ci_drawable="@drawable/theme_radius_square"
+                app:ci_height="4dp"
+                app:ci_margin="6dp"
+                app:ci_width="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.RoundCornerIndicator
+                android:id="@+id/activity_start_indicator3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="15dp"
+                app:rci_cornerRadius="5dp"
+                app:rci_gap="12dp"
+                app:rci_height="10dp"
+                app:rci_width="10dp" />
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.RoundCornerIndicator
+                android:id="@+id/activity_start_indicator4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="15dp"
+                app:rci_cornerRadius="0dp"
+                app:rci_gap="12dp"
+                app:rci_height="10dp"
+                app:rci_selectColor="#ffffff"
+                app:rci_strokeColor="#ffffff"
+                app:rci_strokeWidth="1dp"
+                app:rci_unselectColor="#00000000"
+                app:rci_width="10dp" />
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.RoundCornerIndicator
+                android:id="@+id/activity_start_indicator5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="15dp"
+                app:rci_cornerRadius="2dp"
+                app:rci_gap="12dp"
+                app:rci_height="4dp"
+                app:rci_width="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.FlycoPageIndicator
+                android:id="@+id/activity_start_indicator6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                app:fpi_cornerRadius="5dp"
+                app:fpi_gap="12dp"
+                app:fpi_height="10dp"
+                app:fpi_selectColor="#009688"
+                app:fpi_strokeColor="#009688"
+                app:fpi_strokeWidth="1dp"
+                app:fpi_unselectColor="#00000000"
+                app:fpi_width="10dp" />
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.FlycoPageIndicator
+                android:id="@+id/activity_start_indicator7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                app:fpi_cornerRadius="0dp"
+                app:fpi_gap="12dp"
+                app:fpi_height="10dp"
+                app:fpi_selectColor="#FFC107"
+                app:fpi_unselectColor="#88FFC107"
+                app:fpi_width="10dp" />
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.FlycoPageIndicator
+                android:id="@+id/activity_start_indicator8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                app:fpi_cornerRadius="4dp"
+                app:fpi_gap="12dp"
+                app:fpi_height="8dp"
+                app:fpi_selectColor="#03A9F4"
+                app:fpi_strokeColor="#8803A9F4"
+                app:fpi_strokeWidth="1dp"
+                app:fpi_unselectColor="#00000000"
+                app:fpi_width="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.FlycoPageIndicator
+                android:id="@+id/activity_start_indicator9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                app:fpi_cornerRadius="5dp"
+                app:fpi_gap="12dp"
+                app:fpi_height="10dp"
+                app:fpi_isSnap="true"
+                app:fpi_selectColor="#8BC34A"
+                app:fpi_unselectColor="#558BC34A"
+                app:fpi_width="10dp" />
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.FlycoPageIndicator
+                android:id="@+id/activity_start_indicator10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                app:fpi_gap="16dp" />
+
+            <com.yuyang.messi.view.Indicator.flyco.indicator.FlycoPageIndicator
+                android:id="@+id/activity_start_indicator11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="20dp"
+                app:fpi_cornerRadius="2dp"
+                app:fpi_gap="12dp"
+                app:fpi_height="20dp"
+                app:fpi_isSnap="true"
+                app:fpi_selectRes="@mipmap/ic_select"
+                app:fpi_unselectRes="@mipmap/ic_unselect"
+                app:fpi_width="20dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginBottom="48dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/theme_round_corner_stroke_selector"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="立即体验"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_normal"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+</FrameLayout>

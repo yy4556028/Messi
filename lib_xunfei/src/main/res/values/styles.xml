@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- 自定义对话框 -->
+    <style name="XunfeiDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <declare-styleable name="WaveformView">
+        <attr name="waveColor" format="color" />
+    </declare-styleable>
+
+</resources>

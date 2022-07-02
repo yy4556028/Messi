@@ -1,0 +1,15 @@
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositories {
+//
+//    }
+//}
+include ':lib_baidu'
+include ':app', ':lib_chat', ':lib_leancloud', ':lib_keyboard', ':lib_share', ':lib_map_amap', ':lib_xunfei', ':lib_nfc', ':lib_base', ':lib_bluetooth', ':openCVLibrary346', ':lib_lpr'
+include ':aidldemo'
+include ':lib_scan'
+include ':lib_plugin'
+//include ':aidl_audioplayer'
+
+//includeBuild 'versionplugin'
+include ':aidl_audioplayer'

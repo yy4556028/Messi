@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="line">#CFCFCF</color>
+    <color name="press">#d2d2d2</color>
+    <color name="text">#727272</color>
+    <color name="btn_send_text">#FFFFFF</color>
+    <color name="btn_send_bg">#435356</color>
+    <color name="indicator">#CFCFCF</color>
+
+    <color name="btn_select">#888888</color>
+
+    <color name="toolbar_btn_select">#D9D9D9</color>
+    <color name="toolbar_btn_normal">#FFFFFF</color>
+
+    <color name="base_middle_gray">#f3f3f3</color>
+    <color name="base_middle_gray_light">#f8f8f8</color>
+
+    <color name="mask_view_bg">#88000000</color>
+    <color name="transparent_50_dark_gray">#80161616</color>
+</resources>

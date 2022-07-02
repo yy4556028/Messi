@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <com.yuyang.messi.view.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearData"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="清除数据"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_size_normal"
+                app:backgroundTint="@color/white"
+                app:icon="@drawable/arrow_right"
+                app:iconGravity="end"
+                app:iconTint="@color/black"
+                app:rippleColor="@color/theme" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSelectDarkMode"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1px"
+                android:gravity="start|center_vertical"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="选择深色模式"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_size_normal"
+                app:backgroundTint="@color/white"
+                app:icon="@drawable/arrow_right"
+                app:iconGravity="end"
+                app:iconTint="@color/black"
+                app:rippleColor="@color/theme" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnScore"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="start|center_vertical"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="给我评分"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_size_normal"
+                app:backgroundTint="@color/white"
+                app:icon="@drawable/arrow_right"
+                app:iconGravity="end"
+                app:iconTint="@color/black"
+                app:rippleColor="@color/theme" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/lytOpenFloatWindow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1px"
+                android:backgroundTint="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:text="开启悬浮窗"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_normal"
+                    app:rippleColor="@null" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbOpenFloatWindow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="5dp" />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </com.yuyang.messi.view.OverScrollView>
+</LinearLayout>

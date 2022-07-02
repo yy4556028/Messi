@@ -1,0 +1,34 @@
+keytool -list -v -keystore yamap.jks
+
+CoordinatorLayout：
+https://www.imooc.com/article/37633
+https://blog.csdn.net/weixin_44819566/article/details/124385289?spm=1001.2014.3001.5501
+
+约束布局ConstraintLayout
+https://www.jianshu.com/p/17ec9bd6ca8a
+
+RxJava:
+https://www.jianshu.com/p/55c78b0f876e
+
+GreenDao:
+https://www.jianshu.com/p/53083f782ea2
+
+全屏Activity的键盘遮挡输入框，全屏输入框bug，AndroidBug5497Workaround:
+https://blog.csdn.net/passerby_b/article/details/82686662
+
+AndroidStudio 格式化代码位置错乱:    进入 setting - Code Style - xml 选择 set form - Predefined Style -Android
+https://blog.csdn.net/SH_LURENJIA/article/details/100203992
+
+源码在线：
+https://www.androidos.net.cn/sourcecode
+
+实现高速点击的 Android Monkey 自动化工具 fastmonkey：
+https://testerhome.com/topics/11719
+
+『Android安全』-看雪安全论坛：
+https://bbs.pediy.com/forum-161.htm
+
+Android中不规则形状View的布局实现：
+https://www.jianshu.com/p/178c9efcdb44
+
+//查看gradle依赖 （Terminal）：gradlew app:dependencies，command + f 搜索

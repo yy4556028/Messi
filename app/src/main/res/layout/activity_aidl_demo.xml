@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BeanList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BeanList"
+        android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addBeanIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="addBeanIn"
+        android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="in 为定向 tag 的话：服务端将会接收到一个对象的完整数据，但是客户端的那个对象不会因为服务端对传参的修改而发生变动(想象成服务端复制了一份)" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addBeanOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="addBeanOut"
+        android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="out 的话表现为服务端将会接收到那个对象的参数为空的对象，但是在服务端对接收到的空对象有任何修改之后客户端将会同步变动(针对这个方法的生命周期，想象成服务端new了一个，操作完赋值给客户端的对象)" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addBeanInOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="addBeanInOut"
+        android:textAllCaps="false" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="inout 为定向 tag 的情况下，服务端将会接收到客户端传来对象的完整信息，并且客户端将会同步服务端对该对象的任何变动" />
+
+</LinearLayout>

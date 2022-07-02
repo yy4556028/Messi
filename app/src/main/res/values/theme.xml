@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.App.DayNight" parent="Theme.App" />
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/background</item><!--默认每个页面的背景色-->
+        <!--正常状态下字体颜色和icon颜色-->
+        <item name="android:textColorPrimary">@color/theme</item>
+    </style>
+
+    <style name="MyEdgeOverlayTheme">
+
+    </style>
+</resources>

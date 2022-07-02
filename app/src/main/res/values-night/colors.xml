@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/gold_sobrr</color>
+    <color name="colorPrimaryDark">@color/gold</color>
+    <color name="colorAccent">@color/pink_dark</color>
+    <color name="background">@color/black</color>
+    <color name="textPrimary">@color/base_text_white</color>
+    <color name="textSecondary">@color/base_text_white_secondary</color>
+    <color name="textHint">@color/base_text_white_hint</color>
+    <color name="line">@color/base_dividers_white</color>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--biu，一个有趣的EditText-->
+    <declare-styleable name="BiuEditStyle">
+        <attr name="biu_text_color" format="color" />
+        <attr name="biu_text_start_size" format="dimension" />
+        <attr name="biu_text_scale" format="float" />
+        <attr name="biu_duration" format="integer" />
+        <attr name="biu_type" format="enum">
+            <enum name="flyup" value="0" />
+            <enum name="flydown" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/vibing_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <TextureView
+            android:id="@+id/vibing_card_textureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/vibing_card_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearance="@style/CircleStyle"
+            app:strokeColor="@color/purple"
+            app:strokeWidth="2dp" />
+
+        <ImageView
+            android:id="@+id/vibing_card_play_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/activity_audio_play_play_normal"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/vibing_card_loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <com.yuyang.messi.view.GifView
+            android:id="@+id/vibing_card_gif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/transparent" />
+    </RelativeLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/vibing_card_avatar"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:padding="1dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:shapeAppearance="@style/CircleStyle"
+        app:strokeColor="@color/yellow"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/vibing_card_time_left"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@color/textPrimary" />
+
+</merge>

@@ -1,0 +1,12 @@
+package com.yuyang.messi.download;
+
+public enum DownloadStatus {
+    STATUS_NOT_DOWNLOAD,
+    STATUS_CONNECTING,
+    STATUS_CONNECT_ERROR,
+    STATUS_DOWNLOADING,
+    STATUS_PAUSED,
+    STATUS_DOWNLOAD_ERROR,
+    STATUS_COMPLETE,
+    STATUS_INSTALLED
+}

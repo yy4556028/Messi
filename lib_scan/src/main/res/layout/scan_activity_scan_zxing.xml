@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--        app:qrcv_customScanLineDrawable="@drawable/scan_icon_scanline"-->
+    <com.yuyang.lib_scan.scanZxing.MyZXingView
+        android:id="@+id/zxingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:qrcv_animTime="1000"
+        app:qrcv_barCodeTipText="将条码放入框内，即可自动扫描"
+        app:qrcv_barcodeRectHeight="120dp"
+        app:qrcv_borderColor="@android:color/white"
+        app:qrcv_borderSize="1dp"
+        app:qrcv_cornerColor="@color/theme"
+        app:qrcv_cornerDisplayType="center"
+        app:qrcv_cornerLength="20dp"
+        app:qrcv_cornerSize="3dp"
+        app:qrcv_isAutoZoom="true"
+        app:qrcv_isBarcode="false"
+        app:qrcv_isOnlyDecodeScanBoxArea="true"
+        app:qrcv_isScanLineReverse="true"
+        app:qrcv_isShowDefaultGridScanLineDrawable="false"
+        app:qrcv_isShowDefaultScanLineDrawable="true"
+        app:qrcv_isShowLocationPoint="true"
+        app:qrcv_isShowTipBackground="true"
+        app:qrcv_isShowTipTextAsSingleLine="false"
+        app:qrcv_isTipTextBelowRect="false"
+        app:qrcv_maskColor="#33FFFFFF"
+        app:qrcv_qrCodeTipText="将二维码/条码放入框内，即可自动扫描"
+        app:qrcv_rectWidth="200dp"
+        app:qrcv_scanLineColor="@color/theme_dark"
+        app:qrcv_scanLineMargin="0dp"
+        app:qrcv_scanLineSize="0.5dp"
+        app:qrcv_tipTextColor="@android:color/white"
+        app:qrcv_tipTextSize="12sp"
+        app:qrcv_toolbarHeight="56dp"
+        app:qrcv_topOffset="65dp"
+        app:qrcv_verticalBias="-1" />
+
+    <!--    <include layout="@layout/common_header_layout" />-->
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:chipSpacingHorizontal="5dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始预览" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stop_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止预览" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_spot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始识别" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stop_spot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止识别" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_spot_showrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始识别显示扫描框" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stop_spot_hiddenrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂停识别隐藏扫描框" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/show_scan_rect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示扫描框" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/hidden_scan_rect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="隐藏扫描框" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/decode_scan_box_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别扫描框中的码" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/decode_full_screen_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="识别整个屏幕中的码" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_flashlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开闪光灯" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/close_flashlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭闪光灯" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_one_dimension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别一维条码" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_two_dimension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别二维条码" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_qr_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别QRCode" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_code128"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别Code128" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_ean13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别EAN13" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_high_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅识别高频率格式" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="识别所有码" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义识别格式" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/choose_qrcde_from_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="识别图片中的码" />
+    </com.google.android.material.chip.ChipGroup>
+</RelativeLayout>

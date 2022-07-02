@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="#292929"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="32dp">
+
+        <TextureView
+            android:id="@+id/fragment_meipai_recycler_item_textureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/fragment_meipai_recycler_item_coverImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <com.yuyang.messi.view.GravityShapeableImageView
+            android:id="@+id/fragment_meipai_recycler_item_avatarImage"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/avatar"
+            app:shapeAppearance="@style/CircleStyle"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+
+        <TextView
+            android:id="@+id/fragment_meipai_recycler_item_titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black_"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:id="@+id/fragment_meipai_recycler_item_timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="4dp"
+            android:background="@drawable/round_corner_dark_background"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_normal" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/fragment_meipai_recycler_item_viewsText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|left"
+            android:lines="1"
+            android:textColor="@color/base_text_white_hint"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/fragment_meipai_recycler_item_commentText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/base_text_white_hint"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/fragment_meipai_recycler_item_cheerText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:lines="1"
+            android:textColor="@color/base_text_white_hint"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fragment_meipai_recycler_item_praiseImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="20dp"
+        android:alpha="0"
+        android:src="@drawable/icon_card_cheer"
+        tools:alpha="255" />
+
+    <ImageView
+        android:id="@+id/fragment_meipai_recycler_item_passImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        android:alpha="0"
+        android:src="@drawable/icon_card_pass"
+        tools:alpha="255" />
+
+    <ImageView
+        android:id="@+id/fragment_meipai_recycler_item_reportImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_margin="20dp"
+        android:alpha="0"
+        android:src="@drawable/icon_card_report"
+        tools:alpha="255" />
+
+</androidx.cardview.widget.CardView>

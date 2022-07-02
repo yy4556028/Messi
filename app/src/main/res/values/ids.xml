@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--CircleMenuLayout id-->
+    <item type="id" name="id_circle_menu_item_image" />
+    <item type="id" name="id_circle_menu_item_text" />
+    <item type="id" name="id_circle_menu_item_center" />
+
+</resources>

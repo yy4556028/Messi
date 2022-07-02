@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/widget_voice_recording_hint_bg"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:id="@+id/widget_voice_recorder_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/record_dialog_image_left"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/record_dialog_image_left" />
+
+        <ImageView
+            android:id="@+id/record_dialog_image_right"
+            android:layout_width="25dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/record_dialog_image_left"
+            android:scaleType="fitXY"
+            android:src="@drawable/record_animate_0" />
+
+        <TextView
+            android:id="@+id/record_dialog_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/record_dialog_image_left"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:lines="1"
+            android:padding="4dp"
+            android:text="@string/slide_up_to_cancel"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/record_dialog_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/record_dialog_image_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:padding="4dp"
+            android:src="@drawable/record_dialog_image_cancel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners_red_5"
+            android:lines="1"
+            android:padding="4dp"
+            android:text="@string/release_to_cancel"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

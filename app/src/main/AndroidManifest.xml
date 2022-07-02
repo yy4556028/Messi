@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yuyang.messi"
+    tools:ignore="LockedOrientationActivity">
+
+    <!--    https://stackoverflow.com/questions/64553229/get-all-installed-apps-in-android-11-api-30-how-to-get-all-other-apps-instal -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <!--  API29  -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!--  ShortCut 桌面增加图标快捷方式  -->
+    <!-- 添加快捷方式 -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <!-- 移除快捷方式 -->
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <!-- 查询快捷方式 -->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS" />
+
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--  所有文件访问权限  -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 允许程序修改全局音频设置 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.TRANSMIT_IR" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /><!--android 9.0上使用前台服务，需要添加权限-->
+    <uses-permission
+        android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature android:name="android.hardware.Camera.autofocus" />
+    <uses-feature android:name="android.hardware.ConsumerIrManager" />
+
+    <application
+        android:name=".MessiApp"
+        android:allowBackup="true"
+        android:hasFragileUserData="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="false"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:persistent="true"
+        android:requestLegacyExternalStorage="false"
+        android:resizeableActivity="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:requestLegacyExternalStorage">
+
+        <activity
+            android:name=".ui.login.StartActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- http://www.jb51.net/article/43928.htm -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="my.com"
+                    android:scheme="m" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".kotlinui.main.MainActivity"
+            android:configChanges="uiMode"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.beauty.BeautyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.douban.DoubanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.gank.GankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.category.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.circle_menu.CircleMenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.WebViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.suning.DouyaLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.suning.FangyizhanshiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.suning.DouyaWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.football.FootballActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.live.LivePreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.AlbumActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.photo.PhotoGalleryActivity"
+            android:screenOrientation="sensor" />
+        <activity
+            android:name=".ui.common.photo.PhotoShowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.AlbumCropActivity"
+            android:screenOrientation="portrait" />
+        <!--不在近期任务里显示-->
+        <activity
+            android:name=".ui.media.audio.aidl.AudioActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:parentActivityName=".kotlinui.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <activity
+            android:name=".ui.media.audio.aidl.AudioPlayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.VideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.ContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.camera_crop.IdentityVerifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.camera_crop.CameraCropVActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.camera_crop.CameraCropHActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.Camera2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.CameraXActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.qrcode.QRCodeActivity"
+            android:label="二维码"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.SocketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.TouchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.WorkManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.SmsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.category.ProgressActivity"
+            android:label="Progress"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.AdaptScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.BlurActivity"
+            android:label="Blur"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.category.BadgeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".ui.category.CompressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.category.TextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.SpanDemoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screen_share.ScreenShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.FontActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.AvatarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.LuckyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.NetStatusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.category.CoroutinesActivity"
+            android:label="协程"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.main.tools.CustomSetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Translucent" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".ui.category.GpsActivity"
+            android:label="GPS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.chat.ChatActivity"
+            android:label="聊天"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.chart.ChartActivity"
+            android:label="图表"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.KeyboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.chart.LineChartActivity"
+            android:label="线状图"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.chart.EChartActivity"
+            android:label="EChart"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.SensorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.AccelerometerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.GravityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.LinearAccelerometerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.GyroscopeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.LightActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.MagneticFieldActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.OrientationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.RotationVectorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.AmbientActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.PressureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.ProximityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.StepActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.demo.CompassActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.sensor.demo.PedometerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.DrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.FaceLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.suning.ExamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.PathActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.OpenGLActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.PickerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.DownloadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.BottomSheetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.RecyclerViewActivity"
+            android:label="RecyclerView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.SwipeRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.category.scroll.SwipeMenuListViewActivity"
+            android:label="滑动菜单"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.GifActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.AutoGrowListViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.DragGridActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.FolderActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.category.scroll.PinnedHeaderListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.CalendarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.ScrollViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ShakeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.TipActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:taskAffinity=""
+            android:theme="@style/AppTheme.Tip" />
+        <activity
+            android:name=".ui.autoclick.AutoClickActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.interview.InterviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.interview.InterviewLaunchClickActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.study.EnglishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.douban.BookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.douban.MovieActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.FlowDragActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.scroll.StackViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.game.MindCameraActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.DataCleanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.XunfeiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.Camera1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.CardScanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.qrcode.CommonScanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.finance.FinanceHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.AidlDemoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.nestScroll.NestScrollDemoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.fund.FundSetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.fund.FundCalcActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.fund.FundSetEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.finance.StockAnalysisActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.NullActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.category.plugin.PluginHostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.shortcut.ShortcutPinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.shortcut.ShortcutRouterActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Translucent" />
+        <activity
+            android:name=".ui.shortcut.ShortcutLauncherActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <!-- https://blog.csdn.net/f2006116/article/details/89060971 -->
+        <activity-alias
+            android:name=".ui.shortcut.alias.ShortcutLauncherActivity"
+            android:exported="true"
+            android:icon="@drawable/ssdk_oks_classic_alipay"
+            android:label="C罗"
+            android:screenOrientation="portrait"
+            android:targetActivity=".ui.shortcut.ShortcutLauncherActivity"
+            android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- label 这个就是在设置界面显示的label 应该比较好理解了-->
+        <service
+            android:name=".service.AutoClickAccessibilityService"
+            android:exported="true"
+            android:label="AutoClick_Messi"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/auto_click_config" />
+        </service>
+
+        <service android:name=".service.PedometerService" />
+        <service
+            android:name=".service.ScreenRecordService"
+            android:foregroundServiceType="mediaProjection" />
+        <service
+            android:name=".service.AudioPlayMessengerService"
+            android:exported="false"
+            android:isolatedProcess="false"
+            android:priority="999"
+            android:process=":messengerplayer" />
+
+        <service android:name=".service.FloatWindowService" />
+        <service
+            android:name=".service.StepService"
+            android:exported="false"
+            android:priority="1000">
+            <intent-filter>
+                <!-- 系统启动完成后会调用-->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_TIME_TICK" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.AuthenticatorService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <!-- 文件共享的 provider-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+
+        </provider>
+    </application>
+
+</manifest>

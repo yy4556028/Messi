@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/theme</color>
+    <color name="colorPrimaryDark">@color/theme_dark</color>
+    <color name="colorAccent">@color/base_red</color>
+    <color name="background">#F3F4F8</color>
+    <color name="textPrimary">@color/base_text_black</color>
+    <color name="textSecondary">@color/base_text_black_secondary</color>
+    <color name="textHint">@color/base_text_black_hint</color>
+    <color name="line">@color/base_line</color>
+
+</resources>

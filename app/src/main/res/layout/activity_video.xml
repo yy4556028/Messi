@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.yuyang.messi.view.SquareRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <SurfaceView
+                        android:id="@+id/activity_video_surface"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </com.yuyang.messi.view.SquareRelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/activity_video_recycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.yuyang.messi.view.Progress.CircleProgressBar
+            android:id="@+id/activity_video_progress"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:mlpb_arrow_height="5dp"
+            app:mlpb_arrow_width="10dp"
+            app:mlpb_enable_circle_background="false"
+            app:mlpb_progress_stoke_width="5dp"
+            app:mlpb_progress_text_visibility="invisible"
+            app:mlpb_show_arrow="true" />
+    </RelativeLayout>
+</LinearLayout>

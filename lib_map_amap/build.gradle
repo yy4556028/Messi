@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':lib_base')
+    implementation 'com.amap.api:3dmap:8.0.0'//3D地图
+//    implementation 'com.amap.api:map2d:5.2.0'//2D地图
+    implementation 'com.amap.api:location:5.4.0'//定位
+    implementation 'com.amap.api:search:7.9.0'//搜索
+//    implementation 'com.amap.api:search:latest.integration'//搜索
+}

@@ -1,0 +1,288 @@
+plugins {
+    id 'com.android.application'
+    id 'maven-publish'
+//    id 'com.yuyang.gradle.versionPlugin'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+apply from: rootProject.getRootDir().getAbsolutePath() + "/config.gradle"
+
+android {// android 配置了所有android构建过程需要的参数。这里也是Android DSL的入口点
+
+    defaultConfig {
+        applicationId "com.yuyang.messi"
+        versionCode rootProject.releaseVersionCode
+        versionName rootProject.releaseVersionName
+        multiDexEnabled true //如需分包 参考个推 分包配置 http://docs.getui.com/mobile/android/androidstudio/
+//        renderscriptTargetApi 24
+//        renderscriptSupportModeEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        configurations {// https://juejin.im/post/6844903891050430477
+//            compile.exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+            all {
+                resolutionStrategy {
+
+//                    eachDependency {
+//
+//                    }
+
+//                    force 'com.google.code.findbugs:jsr305:3.0.2'
+//                    failOnVersionConflict()
+
+                    dependencySubstitution {//依赖替换
+//                    if (useRemote) {
+//                        substitute module('com.github.qingmei2:rximagepicker:1.0.0') with project(':rximagepicker')
+//                    }
+                    }
+                }
+            }
+        }
+
+        splits {//根据abi配置，单独分发apk分包
+            def arc = "arm64-v8a"
+            //获取系统环境变量，是否为编译32位
+//            boolean compile32 = Boolean.valueOf(System.getenv("COMPILE32"))
+//            if (compile32) {
+//                arc = "armeabi-v7a"
+//            }
+            abi {
+                enable true
+                reset()
+                include arc   //ABI 拆分当中的 include 是和 ndk abiFilters 互斥的操作
+                universalApk false//true时会额外构建一个包含所有ABI类型的apk
+                //'arm64-v8a' 第8代，64位arm 主流 2021.12
+                //'armeabi-v7a' 第7代及以上arm
+                //'armeabi'     第5，6代arm
+                //'x86', 'x86_64' 一般是模拟器
+            }
+        }
+
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags "-std=gnu++11"
+//                // 注意！！！！       注意！！！！！！
+//                //如果是用 Linux 开发的的用户下面这行代码不用动，如果是 Win 用户请把 下面这行代码注释了
+////                arguments "-DANDROID_TOOLCHAIN=gcc", "-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL_FORCE_FEATURES=OFF"
+//            }
+//        }
+    }
+
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
+
+    buildFeatures {
+        viewBinding = true
+//        dataBinding = true
+    }
+
+    signingConfigs {
+        debug {
+            try {
+                storeFile file("yamap.jks")
+                storePassword STORE_PASSWORD
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+            } catch (ignored) {
+                throw new RuntimeException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+        release {
+            try {
+                storeFile file("yamap.jks")
+                storePassword STORE_PASSWORD
+                keyAlias KEY_ALIAS
+                keyPassword KEY_PASSWORD
+            } catch (ignored) {
+                throw new RuntimeException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
+            jniLibs.srcDirs = ['libs']
+            res.srcDirs(
+                    'src/main/res',
+//                    'src/main/res_core',//资源文件分包
+            )
+        }
+    }
+
+    buildTypes {
+//        https://www.jianshu.com/p/98ee75dd49f4
+        debug {
+//            applicationIdSuffix ".debug"
+//            versionNameSuffix "-debug"
+            debuggable true
+            jniDebuggable true
+            zipAlignEnabled true
+            minifyEnabled false
+            shrinkResources false
+//            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+            minifyEnabled true// 是否进行混淆
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        Test {
+            dimension "environment"
+//            applicationId "com.yuyang.messi.test"
+            buildConfigField("String", "HTTPS_HOST", '"https://edssit.cnsuning.com/"')
+
+            boolean compile32 = Boolean.valueOf(System.getenv("COMPILE32"))
+            buildConfigField("boolean", "COMPILE32", "$compile32")
+
+//            resValue "string", "app_name", "Messi_Test"
+        }
+        Product {
+            dimension "environment"
+//            applicationId "com.yuyang.messi"
+            buildConfigField("String", "HTTPS_HOST", '"https://eds.suning.com/"')
+
+            boolean compile32 = Boolean.valueOf(System.getenv("COMPILE32"))
+            buildConfigField("boolean", "COMPILE32", "$compile32")
+
+//            resValue "string", "app_name", "Messi"
+        }
+    }
+
+    //为了解决部分第三方库重复打包了META-INF的问题
+//    packagingOptions{
+//        exclude 'META-INF/LICENSE.txt'
+//        exclude 'META-INF/NOTICE.txt'
+//    }
+
+//    productFlavors.all {
+//        flavor -> flavor.manifestPlaceholders = [ENV: name]
+//    }
+
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        if (names.contains("ignoreBuildType")) {//过滤变体
+            setIgnore(true)
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+//        if (variant.buildType.name != "debug") {//路径改变导致运行无法自动安装
+//            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/APK")
+//        }
+
+        variant.outputs.each { output ->
+            String env = "unknown".toLowerCase()
+            if (variant.name.indexOf("Test") != -1) {
+                env = "Test".toLowerCase()
+            } else if (variant.name.indexOf("Product") != -1) {
+                env = "Product".toLowerCase()
+            }
+
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                output.outputFileName = "Messi_${env}_${variant.buildType.name}_v${variant.versionName}_${getDate()}.apk"
+            }
+        }
+//        variant.outputs.all {
+//            outputFileName = "Messi_${variant.buildType.name}_${getDate()}_v${variant.versionName}.apk"
+//        }
+    }
+}
+
+def static getDate() {
+    def date = new Date()
+    def formattedDate = date.format('MMdd')//HHmm
+    return formattedDate
+}
+
+def implementationDependencies = project.ext.dependencies
+def processors = project.ext.annotationProcessor
+def implementationExcludes = project.ext.implementationExcludes
+
+dependencies {
+    //处理所有的 implementation 依赖
+    implementationDependencies.each { k, v -> implementation v }
+    //处理 annotationProcessor 依赖
+    processors.each { k, v -> annotationProcessor v }
+    //处理所有包含 exclude 的依赖
+//    implementationExcludes.each { entry ->
+//        implementation(entry.key) {
+//            entry.value.each { childEntry ->
+//                exclude(group: cludeEntry)
+//            }
+//        }
+//    }
+
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation project(':lib_base')
+    implementation project(':aidl_audioplayer')
+    implementation project(':lib_chat')
+    implementation project(':lib_keyboard')
+    implementation project(':lib_baidu')
+    implementation project(':lib_share')
+    implementation project(':lib_xunfei')
+    implementation project(':lib_nfc')
+    implementation project(':lib_bluetooth')
+    implementation project(':lib_map_amap')
+    implementation project(':lib_scan')
+    implementation project(':lib_plugin')
+//    implementation project(':lib_lpr')    //debug 初始化LLDB时间太长，隐藏
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.liulishuo.filedownloader:library:1.4.2'
+    implementation 'me.leolin:ShortcutBadger:1.1.16@aar'
+    implementation 'com.yanzhenjie:recyclerview-swipe:1.1.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.kyleduo.switchbutton:library:2.0.0'
+    implementation 'com.liulishuo.magicprogresswidget:library:1.1.1'
+    implementation 'cn.dreamtobe.percentsmoothhandler:library:0.1.1'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.21'
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.2'
+    //https://www.jianshu.com/p/b343fcff51b0/
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+
+    implementation "android.arch.work:work-runtime:1.0.1"
+    implementation 'androidx.metrics:metrics-performance:1.0.0-alpha01'
+    androidTestImplementation "android.arch.work:work-testing:1.0.1"
+    implementation "android.arch.paging:runtime:1.0.1"
+    implementation "android.arch.paging:rxjava2:1.0.1"
+
+    implementation 'com.google.android:flexbox:1.0.0'
+
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+//    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:2.8.1'
+
+    implementation 'com.otaliastudios:cameraview:1.6.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02"
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
+
+    implementation "androidx.camera:camera-core:1.1.0-alpha06"
+    // CameraX Camera2 extensions[可选]拓展库可实现人像、HDR、夜间和美颜、滤镜但依赖于OEM
+    implementation "androidx.camera:camera-camera2:1.1.0-alpha06"
+    // CameraX Lifecycle library[可选]避免手动在生命周期释放和销毁数据
+    implementation "androidx.camera:camera-lifecycle:1.1.0-alpha06"
+    // CameraX View class[可选]最佳实践，最好用里面的PreviewView，它会自行判断用SurfaceView还是TextureView来实现
+    implementation 'androidx.camera:camera-view:1.0.0-alpha26'
+
+    //字节码插桩
+//    debugImplementation 'org.ow2.asm:asm:7.1'
+//    debugImplementation 'org.ow2.asm:asm-commons:7.1'
+}

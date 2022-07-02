@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    package="com.example.lib_map_amap">
+
+    <application>
+
+        <activity
+            android:name=".TripActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="2b320ed750f9418a078f52ee08530b53" /> <!-- 高德定位需要的服务 -->
+
+    </application>
+
+</manifest>

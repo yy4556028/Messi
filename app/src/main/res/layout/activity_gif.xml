@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/common_header_layout" />
+
+    <RelativeLayout
+        android:id="@+id/activity_gif_searchLyt"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/head"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <ImageView
+            android:id="@+id/activity_gif_eraseView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="4dp"
+            android:padding="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/erase"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/activity_gif_searchEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:layout_toStartOf="@id/activity_gif_eraseView"
+            android:background="@color/transparent"
+            android:imeOptions="actionSearch"
+            android:maxLength="30"
+            android:paddingBottom="1dp"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/text_size_normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_gif_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_gif_searchLyt" />
+
+    <RelativeLayout
+        android:id="@+id/activity_gif_dialogLyt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:visibility="invisible">
+
+        <com.yuyang.messi.view.Progress.CircleProgressBar
+            android:id="@+id/activity_gif_dialogProgress"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            app:mlpb_enable_circle_background="false"
+            app:mlpb_progress_color="@color/colorPrimary"
+            app:mlpb_progress_stoke_width="3dp"
+            app:mlpb_progress_text_visibility="invisible" />
+
+        <com.yuyang.messi.view.GifView
+            android:id="@+id/activity_gif_dialogGif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/transparent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_staggered_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible">
+
+        <com.yuyang.messi.view.Progress.CircleProgressBar
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerInParent="true"
+            app:mlpb_enable_circle_background="false"
+            app:mlpb_progress_color="@color/colorPrimary"
+            app:mlpb_progress_stoke_width="3dp"
+            app:mlpb_progress_text_visibility="invisible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

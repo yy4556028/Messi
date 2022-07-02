@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yuyang.aidl_audioplayer">
+
+    <!--  未验证：如果 protectionLevel 不是 signature或signatureOrSystem 声明方要先安装，使用方要后安装-->
+    <permission
+        android:name="com.yuyang.aidl_audioplayer.audioplayer"
+        android:protectionLevel="signature" />
+
+    <application>
+        <service
+            android:name=".AudioPlayService"
+            android:exported="false"
+            android:isolatedProcess="false"
+            android:priority="1000"
+            android:process=":aidlplay" />
+        <receiver android:name=".AudioNotifyClickReceiver" />
+    </application>
+
+</manifest>

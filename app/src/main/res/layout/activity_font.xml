@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 default默认"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 casual非正式"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 cursive手写体"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 monospace等宽字体"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif常规字体"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-black黑体"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-condensed紧缩"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-condensed-light"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-light"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-medium"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-smallcaps"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 sans-serif-thin"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 serif"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="123 ABC abc ,.!，。！ 梅西 serif-monospace"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                android:text="1111"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_stroke_theme_5_selector"
+            android:padding="4dp" />
+
+        <TextView
+            android:layout_width="72dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/rectangle_theme_5_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="发送" />
+
+    </LinearLayout>
+</LinearLayout>

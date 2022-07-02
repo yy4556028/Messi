@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib_base')
+    api 'cn.leancloud:realtime-android:8.1.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+//    api('cn.leancloud.android:avoscloud-sdk:4.7.10')
+    // 推送与即时通讯需要的包
+//    api('cn.leancloud.android:avoscloud-push:4.7.10@aar') { transitive = true }
+}

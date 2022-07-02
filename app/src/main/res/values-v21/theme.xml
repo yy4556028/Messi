@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyEdgeOverlayTheme">
+        <item name="android:colorEdgeEffect">@color/colorAccent</item>
+    </style>
+</resources>

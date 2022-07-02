@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <SearchView
+        android:id="@+id/activity_contacts_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/recycler_bg"
+        android:iconifiedByDefault="false"
+        android:inputType="textFilter"
+        android:queryHint="搜索联系人" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_contacts_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.yuyang.messi.view.QuickAlphabeticBar
+            android:id="@+id/activity_contacts_alphabetBar"
+            android:layout_width="22dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/activity_contacts_fastPositionText"
+            style="@style/TextBlack_Big"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="34dp"
+            android:background="@drawable/oval_theme"
+            android:gravity="center"
+            android:padding="2dp"
+            android:textColor="@color/gray_deep"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</LinearLayout>

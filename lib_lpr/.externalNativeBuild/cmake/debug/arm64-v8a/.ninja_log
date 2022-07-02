@@ -1,0 +1,11 @@
+# ninja log v5
+272	6123	0	CMakeFiles/lpr.dir/src/main/jni/src/Recognizer.cpp.o	9f1f459bde914986
+1	6201	0	CMakeFiles/lpr.dir/src/main/jni/src/FastDeskew.cpp.o	75bd07e7c7f4ac3f
+281	6471	0	CMakeFiles/lpr.dir/src/main/jni/src/CNNRecognizer.cpp.o	9ed8c308a1600f6a
+264	6530	0	CMakeFiles/lpr.dir/src/main/jni/javaWarpper.cpp.o	1f0e1c4906bfb1eb
+291	6549	0	CMakeFiles/lpr.dir/src/main/jni/src/PlateDetection.cpp.o	2249d464ae104aa5
+255	6619	0	CMakeFiles/lpr.dir/src/main/jni/src/Pipeline.cpp.o	fd1fc9a7d38bc03d
+6128	11165	0	CMakeFiles/lpr.dir/src/main/jni/src/PlateSegmentation.cpp.o	a36d10776dfaf375
+6202	11171	0	CMakeFiles/lpr.dir/src/main/jni/src/FineMapping.cpp.o	238252a9eb31748a
+6471	11338	0	CMakeFiles/lpr.dir/src/main/jni/src/SegmentationFreeRecognizer.cpp.o	91371f2d6b9cdca0
+11338	14883	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/liblpr.so	f31578be3aa86ab2

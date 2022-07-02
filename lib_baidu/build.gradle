@@ -1,0 +1,23 @@
+//apply plugin: 'com.android.library'
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-parcelize'
+plugins {
+    id 'com.android.library'
+}
+apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
+
+android {
+
+    defaultConfig {
+
+        def baiduApiKeyStr = "K23VkWstA1xAvrHha5Cci0CE19GcWmWy"
+        manifestPlaceholders = [
+                baiduApiKey: baiduApiKeyStr,
+        ]
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':lib_base')
+}

@@ -1,0 +1,334 @@
+
+{
+	"buildFiles" : [ "C:/Android/Projects/Messi/lib_lpr/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\release\\x86_64 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"IlmImf-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "IlmImf",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libIlmImf.a",
+			"toolchain" : "2113372329"
+		},
+		"ippicv-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "ippicv",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libippicv.a",
+			"toolchain" : "2113372329"
+		},
+		"ippiw-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "ippiw",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libippiw.a",
+			"toolchain" : "2113372329"
+		},
+		"ittnotify-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "ittnotify",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libittnotify.a",
+			"toolchain" : "2113372329"
+		},
+		"libcpufeatures-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libcpufeatures",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libcpufeatures.a",
+			"toolchain" : "2113372329"
+		},
+		"libjasper-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libjasper",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/liblibjasper.a",
+			"toolchain" : "2113372329"
+		},
+		"libjpeg-turbo-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libjpeg-turbo",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/liblibjpeg-turbo.a",
+			"toolchain" : "2113372329"
+		},
+		"libpng-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libpng",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/liblibpng.a",
+			"toolchain" : "2113372329"
+		},
+		"libprotobuf-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libprotobuf",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/liblibprotobuf.a",
+			"toolchain" : "2113372329"
+		},
+		"libtiff-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libtiff",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/liblibtiff.a",
+			"toolchain" : "2113372329"
+		},
+		"libwebp-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "libwebp",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/liblibwebp.a",
+			"toolchain" : "2113372329"
+		},
+		"lpr-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "lpr",
+			"buildCommand" : "E:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Android\\Projects\\Messi\\lib_lpr\\.externalNativeBuild\\cmake\\release\\x86_64 --target lpr",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/javaWarpper.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/CNNRecognizer.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/FastDeskew.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/FineMapping.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/Pipeline.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/PlateDetection.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/PlateSegmentation.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/Recognizer.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=E:/Android/Ndk/android-ndk-r14b/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=E:/Android/Ndk/android-ndk-r14b/platforms/android-21/arch-x86_64  -Dlpr_EXPORTS -I..\\..\\..\\..\\src\\main\\jni\\include -I..\\..\\..\\..\\src\\main\\jni -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include -isystem E:\\Android\\OpenCV\\OpenCV-android-sdk\\sdk\\native\\jni\\include\\opencv -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem E:\\Android\\Ndk\\android-ndk-r14b\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -std=gnu++11 -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "C:/Android/Projects/Messi/lib_lpr/src/main/jni/src/SegmentationFreeRecognizer.cpp",
+					"workingDirectory" : "C:/Android/Projects/Messi/lib_lpr/.externalNativeBuild/cmake/release/x86_64"
+				}
+			],
+			"output" : "C:/Android/Projects/Messi/lib_lpr/build/intermediates/cmake/release/obj/x86_64/liblpr.so",
+			"toolchain" : "2113372329"
+		},
+		"opencv_calib3d-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_calib3d",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_calib3d.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_core-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_core",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_core.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_dnn-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_dnn",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_dnn.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_features2d-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_features2d",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_features2d.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_flann-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_flann",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_flann.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_highgui-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_highgui",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_highgui.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_imgcodecs-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_imgcodecs",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_imgcodecs.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_imgproc-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_imgproc",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_imgproc.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_java-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_java",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/libs/x86_64/libopencv_java3.so",
+			"toolchain" : "2113372329"
+		},
+		"opencv_ml-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_ml",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_ml.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_objdetect-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_objdetect",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_objdetect.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_photo-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_photo",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_photo.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_shape-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_shape",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_shape.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_stitching-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_stitching",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_stitching.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_superres-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_superres",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_superres.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_video-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_video",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_video.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_videoio-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_videoio",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_videoio.a",
+			"toolchain" : "2113372329"
+		},
+		"opencv_videostab-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "opencv_videostab",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/staticlibs/x86_64/libopencv_videostab.a",
+			"toolchain" : "2113372329"
+		},
+		"quirc-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "quirc",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libquirc.a",
+			"toolchain" : "2113372329"
+		},
+		"tbb-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "tbb",
+			"buildType" : "release",
+			"output" : "E:/Android/OpenCV/OpenCV-android-sdk/sdk/native/3rdparty/libs/x86_64/libtbb.a",
+			"toolchain" : "2113372329"
+		}
+	},
+	"toolchains" : 
+	{
+		"2113372329" : 
+		{
+			"cCompilerExecutable" : "E:/Android/Ndk/android-ndk-r14b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "E:/Android/Ndk/android-ndk-r14b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

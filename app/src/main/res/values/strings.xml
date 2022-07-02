@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Messi</string>
+
+    <!--MainActivity-->
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+
+    <!--Download-->
+    <string name="download">下载</string>
+    <string name="download_pending">队列中</string>
+    <string name="download_started">已开始</string>
+    <string name="download_connected">已连接</string>
+    <string name="download_downloading">下载中&#8230;</string>
+    <string name="download_paused">已暂停</string>
+    <string name="download_resume">重新开始</string>
+    <string name="download_cancel">取消</string>
+    <string name="download_complete">完成</string>
+    <string name="download_uninstall">卸载</string>
+    <string name="download_updating">更新中</string>
+    <string name="download_error">错误</string>
+    <string name="download_not_download">未下载</string>
+    <!--action-->
+    <string name="download_open">打开</string>
+    <string name="download_loading">加载中</string>
+    <string name="download_start">开始</string>
+    <string name="download_continue">继续</string>
+    <string name="download_pause">暂停</string>
+    <string name="download_install">安装</string>
+    <string name="download_update">更新</string>
+
+</resources>

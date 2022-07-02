@@ -1,0 +1,100 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@color/background</item><!--默认每个页面的背景色-->
+        <!--<item name="windowNoTitle">true</item>--><!--加该属性，会导致键盘问题-->
+        <!--正常状态下字体颜色和icon颜色-->
+        <!--<item name="android:textColorPrimary">@color/text_black</item>-->
+        <!--<item name="android:windowAnimationStyle">@null</item>-->
+        <!--<item name="android:windowBackground">@color/background</item>-->
+        <!--<item name="android:windowContentTransitions">true</item>-->
+
+        <!--    解决AndroidX 5.0以下手机  CheckBox 和 RadioButton 设置button无效问题   -->
+        <item name="checkboxStyle">@style/NoButtonCheckBox</item>
+        <item name="radioButtonStyle">@style/NoButtonRadioButton</item>
+    </style>
+
+    <style name="AppTheme.FullScreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.Translucent">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item><!-- android8.0透明背景切设置方向的话，报“Only fullscreen opaque activities can request orientation” android9.0恢复 -->
+<!--        <item name="android:windowDisablePreview">true</item>-->
+<!--        https://blog.csdn.net/starry_eve/article/details/82777160 -->
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item><!-- 背景缓存颜色 -->
+<!--        <item name="android:windowDrawsSystemBarBackgrounds">false</item>-->
+    </style>
+
+    <style name="AppTheme.Tip">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowShowWallpaper">true</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!--默认的图标颜色-->
+        <!--<item name="colorControlNormal">@color/red</item>-->
+    </style>
+
+    <!--TabLayout 属性-->
+    <style name="TabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <!--TextInputLayout 属性-->
+    <style name="TextInputLayoutTextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/theme_alpha</item>
+    </style>
+
+    <!-- 自定义对话框 -->
+    <style name="MyDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="ActionSheetDialogStyle" parent="android:Theme.Dialog">
+
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="BottomEnterExit" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_exit</item>
+    </style>
+
+    <style name="NoButtonCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="buttonCompat">@null</item>
+    </style>
+
+    <style name="NoButtonRadioButton" parent="Base.Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="buttonCompat">@null</item>
+    </style>
+
+</resources>

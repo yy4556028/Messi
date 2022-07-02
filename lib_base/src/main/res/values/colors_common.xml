@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent_">#88000000</color>
+
+    <color name="theme_light">@color/base_blue_light</color>
+    <color name="theme">@color/base_blue</color>
+    <color name="theme_dark">@color/base_blue_dark</color>
+    <color name="theme_alpha">#803366CC</color>
+    <color name="theme_ripple">#001177</color>
+
+    <color name="base_text_b1">#333333</color>
+    <color name="base_text_b2">#666666</color>
+    <color name="base_text_b3">#999999</color>
+    <color name="base_text_b4">#BBBBBB</color>
+    <color name="base_line">#CCCCCC</color>
+
+    <!--Google推荐颜色-->
+    <!--黑色：[87% 普通文字] [54% 减淡文字] [26% 禁用状态/提示文字] [12% 分隔线]-->
+    <color name="base_text_black">#DF000000</color><!-- %87 黑 -->
+    <color name="base_text_black_secondary">#8A000000</color><!-- %54 黑 -->
+    <color name="base_text_black_hint">#42000000</color><!-- %26 黑 -->
+    <color name="base_dividers_black">#1F000000</color><!-- %12 黑 -->
+    <!--白色：[100% 普通文字] [70% 减淡文字] [30% 禁用状态/提示文字] [12% 分隔线]-->
+    <color name="base_text_white">#FFFFFF</color><!-- %100 白 -->
+    <color name="base_text_white_secondary">#B3FFFFFF</color><!-- %70 白 -->
+    <color name="base_text_white_hint">#4DFFFFFF</color><!-- %30 白 -->
+    <color name="base_dividers_white">#1FFFFFFF</color><!-- %12 白 -->
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_">#33FFFFFF</color>
+    <color name="gray_bright">#DCDCDC</color><!--亮灰-->
+    <color name="gray_light">#BFBFBF</color><!--浅灰-->
+    <color name="gray_deep">#A9A9A9</color><!--深灰-->
+    <color name="gray">#808080</color><!--灰-->
+    <color name="gray_dark">#404040</color><!--暗灰-->
+    <color name="gray_">#80808080</color><!--半透明灰-->
+    <color name="black">#000000</color>
+    <color name="black_">#88000000</color>
+    <color name="pink_light">#FFB6C1</color><!--浅粉-->
+    <color name="pink">#FFC0CB</color><!--粉红-->
+    <color name="pink_bright">#FF69B4</color><!--亮粉-->
+    <color name="pink_dark">#FF1493</color><!--深粉-->
+    <color name="magenta">#F0F</color><!--紫红-->
+    <color name="red">#FF0000</color>
+    <color name="red_deep">#DC143C</color><!--深红-->
+    <color name="red_dark">#8B0000</color><!--暗红-->
+    <color name="green_light">#00FA9A</color>
+    <color name="green">#0F0</color>
+    <color name="green_dark">#080</color>
+    <color name="blue">#00F</color>
+    <color name="blue_dark">#008</color>
+    <color name="yellow">#FF0</color>
+    <color name="orange">#F80</color>
+    <color name="purple">#800080</color>
+    <color name="cyan">#0FF</color>
+    <color name="gold">#FFD700</color>
+    <color name="gold_sobrr">#FFDEA1</color>
+    <color name="silvery">#E9E9E9</color>
+
+    <!--饱和度高的颜色-->
+    <color name="base_red">#CC0000</color>
+    <color name="base_green">#00CC00</color>
+    <color name="base_green_dark">#006600</color>
+    <color name="base_green_light">#99CC33</color>
+    <color name="base_blue">#3366CC</color>
+    <color name="base_blue_dark">#003399</color>
+    <color name="base_blue_light">#6699FF</color>
+    <color name="base_orange">#FF9900</color>
+    <color name="base_orange_dark">#FF6600</color>
+    <color name="base_orange_light">#FFCC00</color>
+</resources>

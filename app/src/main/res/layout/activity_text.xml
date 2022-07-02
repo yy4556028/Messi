@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <com.yuyang.messi.view.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:showText="false"
+                app:thumbTint="#FFFFFF"
+                app:trackTint="@color/theme"
+                app:useMaterialThemeColors="false" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <com.yuyang.messi.view.shimmer.ShimmerTextView
+                    android:id="@+id/activity_text_shimmer_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/text_size_subtitle" />
+
+                <com.yuyang.messi.view.toggle.ShSwitchView
+                    android:id="@+id/activity_text_switch_view0"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:outerStrokeWidth="4dp"
+                    app:shadowSpace="8dp"
+                    app:tintColor="@color/colorAccent" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <com.yuyang.messi.view.shimmer.ShimmerButton
+                    android:id="@+id/activity_text_shimmer_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="8dp"
+                    android:padding="4dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textSize="@dimen/text_size_subtitle" />
+
+                <com.yuyang.messi.view.toggle.SlideSwitch
+                    android:id="@+id/activity_text_switch_view1"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:themeColor="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:kswBackColor="@color/colorAccent"
+                app:kswThumbColor="@color/colorPrimary"
+                app:kswTintColor="@color/black" />
+
+            <com.yuyang.messi.view.toggle.RevealFollowButton
+                android:id="@+id/activity_text_revealFollowBtn"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="13dp" />
+
+            <com.yuyang.messi.view.toggle.RevealFrameLayout
+                android:id="@+id/activity_text_revealFrameLyt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@mipmap/icon_add" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="哈哈哈"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="嘻嘻嘻"
+                    android:textColor="@color/black" />
+
+            </com.yuyang.messi.view.toggle.RevealFrameLayout>
+
+            <EditText
+                android:id="@+id/activity_text_moneyEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rectangle_stroke_theme_5"
+                android:hint="请输入金额"
+                android:inputType="numberDecimal|numberSigned"
+                android:padding="8dp"
+                android:singleLine="true" />
+
+            <com.yuyang.messi.widget.MentionEditText
+                android:id="@+id/activity_text_mentionEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimary" />
+
+            <com.yuyang.messi.widget.autolinklibrary.AutoLinkTextView
+                android:id="@+id/activity_text_autoLinkTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/activity_text_text0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/text_size_subtitle" />
+
+            <TextView
+                android:id="@+id/activity_text_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/text_size_subtitle" />
+
+            <TextView
+                android:id="@+id/activity_text_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/text_size_subtitle" />
+
+            <TextView
+                android:id="@+id/activity_text_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/text_size_subtitle" />
+
+            <TextView
+                android:id="@+id/activity_text_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="@dimen/text_size_subtitle" />
+
+        </LinearLayout>
+    </com.yuyang.messi.view.OverScrollView>
+</LinearLayout>

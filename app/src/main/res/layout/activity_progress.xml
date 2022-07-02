@@ -1,0 +1,102 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.yuyang.messi.view.Progress.CircleProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:mlpb_enable_circle_background="false"
+                    app:mlpb_progress_color="@color/colorPrimary"
+                    app:mlpb_progress_stoke_width="3dp"
+                    app:mlpb_progress_text_visibility="invisible" />
+
+                <com.yuyang.messi.view.Progress.CircleProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:mlpb_enable_circle_background="false"
+                    app:mlpb_progress_color="@color/colorPrimary"
+                    app:mlpb_progress_stoke_width="3dp"
+                    app:mlpb_progress_text_visibility="visible" />
+
+                <com.yuyang.messi.view.Progress.CircleProgressBar
+                    android:id="@+id/circleProgressBarWithBg"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:mlpb_progress_stoke_width="5dp"
+                    app:mlpb_progress_text_visibility="visible" />
+
+                <com.yuyang.messi.view.Progress.CircleProgressBar
+                    android:id="@+id/circleProgressBarWithArrow"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    app:mlpb_arrow_height="5dp"
+                    app:mlpb_arrow_width="10dp"
+                    app:mlpb_progress_stoke_width="5dp"
+                    app:mlpb_progress_text_visibility="visible"
+                    app:mlpb_show_arrow="true" />
+
+                <com.yuyang.messi.view.Progress.CircleProgressBar
+                    android:id="@+id/circleProgressWithoutBg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:mlpb_arrow_height="5dp"
+                    app:mlpb_arrow_width="10dp"
+                    app:mlpb_enable_circle_background="false"
+                    app:mlpb_progress_stoke_width="5dp"
+                    app:mlpb_progress_text_visibility="invisible"
+                    app:mlpb_show_arrow="true" />
+
+            </LinearLayout>
+
+            <com.liulishuo.magicprogresswidget.MagicProgressCircle
+                android:id="@+id/magicProgressCircle"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                app:mpc_stroke_width="18dp" />
+
+            <com.liulishuo.magicprogresswidget.MagicProgressBar
+                android:id="@+id/magicProgressBarFlat"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                app:mpb_background_color="@color/gray"
+                app:mpb_fill_color="@color/colorPrimary"
+                app:mpb_flat="true"
+                app:mpb_percent="0.5" />
+
+            <com.liulishuo.magicprogresswidget.MagicProgressBar
+                android:id="@+id/magicProgressBarUnFlat"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                app:mpb_background_color="@color/gray"
+                app:mpb_fill_color="@color/red"
+                app:mpb_percent="0.5" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

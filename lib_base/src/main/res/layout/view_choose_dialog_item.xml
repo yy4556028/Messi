@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_choose_dialog_recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/view_choose_dialog_item_imageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="fitXY"
+            android:src="@color/theme" />
+
+        <TextView
+            android:id="@+id/view_choose_dialog_item_textView"
+            style="@style/TextBlack_Big"
+            android:ellipsize="end"
+            android:lines="1" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_choose_dialog_item_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/base_line" />
+
+</LinearLayout>
+

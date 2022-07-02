@@ -1,0 +1,30 @@
+[
+  {
+    "level": "INFO",
+    "message": "android.ndkVersion from module build.gradle is [android-ndk-r14b]"
+  },
+  {
+    "level": "INFO",
+    "message": "android.ndkPath from module build.gradle is not set"
+  },
+  {
+    "level": "INFO",
+    "message": "ndk.dir in local.properties is E:\\Android\\Ndk\\android-ndk-r14b"
+  },
+  {
+    "level": "INFO",
+    "message": "Not considering ANDROID_NDK_HOME because support was removed after deprecation period."
+  },
+  {
+    "level": "INFO",
+    "message": "sdkFolder is E:\\Android\\sdk"
+  },
+  {
+    "level": "INFO",
+    "message": "NDK side-by-side folder from sdkFolder E:\\Android\\sdk\\ndk does not exist"
+  },
+  {
+    "level": "ERROR",
+    "message": "Requested NDK version \u0027android-ndk-r14b\u0027 could not be parsed"
+  }
+]

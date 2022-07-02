@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/fragment_football_tab_score"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/selector_text_theme_black"
+            android:layout_weight="1"
+            android:text="积分榜"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/fragment_football_tab_goal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/selector_text_theme_black"
+            android:layout_weight="1"
+            android:text="射手榜"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/fragment_football_recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
