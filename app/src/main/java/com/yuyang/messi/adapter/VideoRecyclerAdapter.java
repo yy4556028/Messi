@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yuyang.lib_base.utils.ConvertUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.bean.VideoBean;
 import com.yuyang.messi.helper.VideoHelper;
@@ -52,7 +53,7 @@ public class VideoRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
         VideoBean videoBean = videoBeanList.get(position);
 
         holder.imageView.setImageBitmap(videoBean.getBitmap());
-        holder.lengthText.setText(VideoHelper.convertTime((int) videoBean.getLength()));
+        holder.lengthText.setText(ConvertUtil.convertTimeMs(videoBean.getLength()));
     }
 
     @Override

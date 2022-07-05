@@ -16,7 +16,7 @@ import com.yuyang.messi.ui.base.AppBaseActivity;
 public class BottomSheetActivity extends AppBaseActivity {
 
     private NestedScrollView nestedScrollView;
-    private BottomSheetBehavior bottomSheetBehavior;
+    private BottomSheetBehavior<NestedScrollView> bottomSheetBehavior;
 
     @Override
     protected int getLayoutId() {

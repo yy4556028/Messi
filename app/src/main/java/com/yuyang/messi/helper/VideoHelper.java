@@ -24,22 +24,6 @@ import java.util.List;
 
 public class VideoHelper {
 
-    public static String convertTime(int time) {
-
-        if (time <= 0) {
-            return "00:00";
-        }
-
-        int minute = (time / 1000) / 60;
-        int second = (time / 1000) % 60;
-
-        String m = ("00" + minute).substring(("00" + minute).length() - 2);
-
-        String s = ("00" + second).substring(("00" + second).length() - 2);
-
-        return m + ":" + s;
-    }
-
     public static float getVideoRatio(Uri videoUri) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         retriever.setDataSource(MessiApp.getInstance(), videoUri);

@@ -4,10 +4,14 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -74,6 +78,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (!MyStatusBarUtil.setStatusBarDarkTheme(this, true)) {
             MyStatusBarUtil.setStatusBarColor(this, 0x55000000);
         }
+
+//        MaterialColors.isColorLight
+//        WindowManager.LayoutParams.setFitInsetsTypes(WindowInsetsCompat.Type.navigationBars());
+//        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
     }
 
     /**

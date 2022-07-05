@@ -90,11 +90,11 @@ public class AboutActivity extends AppBaseActivity {
             }
         });
 
-        initParallaxValues(); // 自动滑动效果
+        initParallaxValues(); // 滑动效果
 
     }
 
-    // 设置自动滑动的动画效果
+    // 设置滑动的动画效果
     private void initParallaxValues() {
         CollapsingToolbarLayout.LayoutParams petDetailsLp =
                 (CollapsingToolbarLayout.LayoutParams) avatarImageView.getLayoutParams();
