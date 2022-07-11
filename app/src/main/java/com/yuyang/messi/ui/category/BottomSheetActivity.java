@@ -37,7 +37,7 @@ public class BottomSheetActivity extends AppBaseActivity {
 
         nestedScrollView = findViewById(R.id.nested_scroll_view);
         bottomSheetBehavior = BottomSheetBehavior.from(nestedScrollView);
-        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 switch (newState) {

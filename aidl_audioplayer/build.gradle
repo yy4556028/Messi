@@ -6,4 +6,9 @@ apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib_base')
+
+    implementation "com.google.android.exoplayer:exoplayer-core:2.18.0"
+    implementation "com.google.android.exoplayer:exoplayer-ui:2.18.0"
+    implementation "com.google.android.exoplayer:exoplayer-hls:2.18.0"
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.0"
 }
