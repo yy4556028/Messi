@@ -22,6 +22,7 @@ import java.io.File;
 
 /**
  * Created by ruanshimin on 2017/4/20.
+ * https://blog.csdn.net/qq_38436214/article/details/109849438
  */
 
 public class BaiduRecognizeService {

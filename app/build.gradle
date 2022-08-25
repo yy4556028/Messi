@@ -269,8 +269,8 @@ dependencies {
 //    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:2.8.1'
 
     implementation 'com.otaliastudios:cameraview:1.6.1'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02"
     annotationProcessor "androidx.room:room-compiler:2.3.0"
 

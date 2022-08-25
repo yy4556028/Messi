@@ -36,6 +36,7 @@ class CircleMenuActivity : AppBaseActivity() {
             val mItemImgs = intArrayOf(
                 R.drawable.album,
                 R.drawable.music,
+                R.drawable.music,
                 R.drawable.video,
                 R.drawable.contacts,
                 R.drawable.camera,
@@ -45,7 +46,7 @@ class CircleMenuActivity : AppBaseActivity() {
             )
 
             val mItemTexts = arrayOf(
-                "相册", "音频", "视频", "联系人", "扫名片", "相机1", "相机2", "相机X"
+                "相册", "音频", "录音", "视频", "联系人", "扫名片", "相机1", "相机2", "相机X"
             )
 
             removeViews(1, mBinding.circleMenu.childCount - 1)
@@ -56,12 +57,13 @@ class CircleMenuActivity : AppBaseActivity() {
                     when (pos) {
                         0 -> galleryLauncher.launch(AlbumActivity.getLaunchIntent(activity, 7, true, true, true, null))
                         1 -> startActivity(Intent(activity, AudioActivity::class.java))
-                        2 -> startActivity(Intent(activity, VideoActivity::class.java))
-                        3 -> startActivity(Intent(activity, ContactsActivity::class.java))
-                        4 -> startActivity(Intent(activity, CardScanActivity::class.java))
-                        5 -> startActivity(Intent(activity, Camera1Activity::class.java))
-                        6 -> startActivity(Intent(activity, Camera2Activity::class.java))
-                        7 -> startActivity(Intent(activity, CameraXActivity::class.java))
+                        2 -> startActivity(Intent(activity, AudioRecordActivity::class.java))
+                        3 -> startActivity(Intent(activity, VideoActivity::class.java))
+                        4 -> startActivity(Intent(activity, ContactsActivity::class.java))
+                        5 -> startActivity(Intent(activity, CardScanActivity::class.java))
+                        6 -> startActivity(Intent(activity, Camera1Activity::class.java))
+                        7 -> startActivity(Intent(activity, Camera2Activity::class.java))
+                        8 -> startActivity(Intent(activity, CameraXActivity::class.java))
                         else -> ToastUtil.showToast("$pos click")
                     }
                 }
