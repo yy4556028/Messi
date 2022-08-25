@@ -316,7 +316,7 @@ public class InterviewActivity extends AppBaseActivity {
                 new ModuleEntity("SharedPreference MMKV"),
 //                new ModuleEntity("NDK"),
 //                new ModuleEntity("音视频"),
-                new ModuleEntity("应用启动流程", InterviewLaunchClickActivity.class),
+                new ModuleEntity("应用冷启动流程", InterviewLaunchClickActivity.class),
                 new ModuleEntity("Android JVM ART"),
                 new ModuleEntity("搭建框架架构"),
                 new ModuleEntity("SDK开发")
@@ -610,7 +610,7 @@ public class InterviewActivity extends AppBaseActivity {
                         showMyDialog(moduleEntity.getName(),
                                 "体验优化：黑白屏，通过设置主题(背景设置透明或图片)\n\n" +
 
-                                        "Application启动优化：部分sdk延迟初始化，部分延迟到用的时候再初始化，部分sdk只能主线程初始化\n\n" +
+                                        "Application启动优化：可以异步初始化的放到异步线程初始化；必须在主线程但可以延迟初始化的放到idleHandler初始化；部分延迟到用的时候再初始化；其他正常初始化\n\n" +
 
                                         "启动页Activity的优化：布局层级优化，避免I/O操作阻塞主线程"
                                 , "黑白屏", "Application启动优化", "启动页Activity");

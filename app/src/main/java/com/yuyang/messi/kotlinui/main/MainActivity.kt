@@ -41,6 +41,7 @@ import com.yuyang.messi.ui.common.NullActivity
 import com.yuyang.messi.ui.football.FootballActivity
 import com.yuyang.messi.ui.game.MindCameraActivity
 import com.yuyang.messi.ui.home.TestFragment
+import com.yuyang.messi.ui.home.overwork.OverworkFlexFragment
 import com.yuyang.messi.ui.home.overwork.OverworkFragment
 import com.yuyang.messi.ui.main.AboutActivity
 import com.yuyang.messi.ui.setting.SettingActivity
@@ -60,7 +61,7 @@ class MainActivity : AppBaseActivity() {
     private var headerLayout: HeaderLayout? = null
 
     private val fragmentList =
-        listOf<Fragment>(MeipaiFragment(), ToolsFragment(), OverworkFragment(), TestFragment())
+        listOf<Fragment>(MeipaiFragment(), ToolsFragment(), OverworkFlexFragment(), TestFragment())
 
     private var lastBackKeyDownTick: Long = 0
     private val maxDoubleClickDuration: Long = 2000
