@@ -1,5 +1,7 @@
 package com.yuyang.messi.ui.common;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
@@ -20,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
@@ -34,6 +37,7 @@ import android.widget.ProgressBar;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,7 +59,9 @@ import com.yuyang.messi.R;
 import com.yuyang.messi.threadPool.ThreadPool;
 import com.yuyang.messi.utils.DateUtil;
 
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,6 +86,37 @@ public class WebViewFragment extends BaseFragment {
 
     private String url;
 
+    private final ActivityResultLauncher<Intent> fileChooserLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (null == uploadMessage && null == uploadMessageAboveL) return;
+
+            if (uploadMessageAboveL != null) {
+                Uri[] results = null;
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    if (result.getData() != null) {
+                        String dataString = result.getData().getDataString();
+                        ClipData clipData = result.getData().getClipData();
+                        if (clipData != null) {
+                            results = new Uri[clipData.getItemCount()];
+                            for (int i = 0; i < clipData.getItemCount(); i++) {
+                                ClipData.Item item = clipData.getItemAt(i);
+                                results[i] = item.getUri();
+                            }
+                        }
+                        if (dataString != null)
+                            results = new Uri[]{Uri.parse(dataString)};
+                    }
+                }
+                uploadMessageAboveL.onReceiveValue(results);
+                uploadMessageAboveL = null;
+            } else {
+                uploadMessage.onReceiveValue(result.getData() == null || result.getResultCode() != Activity.RESULT_OK ? null : result.getData().getData());
+                uploadMessage = null;
+            }
+        }
+    });
+
     public static WebViewFragment newInstance(String url) {
         WebViewFragment webViewFragment = new WebViewFragment();
         Bundle bundle = new Bundle();
@@ -96,6 +133,7 @@ public class WebViewFragment extends BaseFragment {
     @SuppressLint("JavascriptInterface")
     @Override
     protected void doOnViewCreated() {
+        initCookie(url);
         url = getArguments().getString(URL_KEY);
 
         refreshLayout = $(R.id.fragment_webView_refresh);
@@ -112,10 +150,7 @@ public class WebViewFragment extends BaseFragment {
                 mWebView.loadUrl(url);
             }
         });
-        setCookies(url);
         initWebViewSettings();
-        mWebView.setWebViewClient(new MyWebViewClient());
-        mWebView.setWebChromeClient(new MyWebChromeClient());
 
         /**
          * 禁止长按出现复制
@@ -204,9 +239,6 @@ public class WebViewFragment extends BaseFragment {
             }
         });
 
-        mWebView.addJavascriptInterface(getHtmlObject(), "interfaceName");
-
-
         mWebView.loadUrl(url);
     }
 
@@ -229,13 +261,93 @@ public class WebViewFragment extends BaseFragment {
         super.onDestroy();
         saveCookies();
         if (mWebView != null) {
-            //清楚 webView 缓存
+            //clear webView 缓存
             mWebView.clearCache(true);
+            mWebView.clearHistory();
             mWebView.destroy();
         }
     }
 
+    //https://www.jianshu.com/p/c9a9c4e1756d
+    private void initCookie(String cookiesPath) {
+        final CookieManager cookieManager = CookieManager.getInstance();
+//        CookieManager.setAcceptFileSchemeCookies(true);
+        boolean noCookie = true;
+        boolean needAddCookie = true;
+        if (noCookie) {
+            CookieSyncManager.createInstance(requireContext());
+            cookieManager.removeAllCookie();
+            CookieSyncManager.getInstance().sync();
+        } else if (needAddCookie) {
+            CookieSyncManager.createInstance(requireContext());
+//            String token = AccountPreferenceHelper.getSessionId();
+//            String did = DeviceIdUtil.getPhoneDeviceId(this);
+//            cookieManager.setCookie(getDomainFromUrl(url), "ww_token=" + token);
+//            cookieManager.setCookie(".ticstore.com", "ww_token=" + token);
+//            cookieManager.setCookie(".ticstore.com", "device_id=" + did);
+//            cookieManager.setCookie(".chumenwenwen.com", "ww_token=" + token);
+//            cookieManager.setCookie(".chumenwenwen.com", "device_id=" + did);
+//            cookieManager.setCookie(".ticwear.com", "ww_token=" + token);
+//            cookieManager.setCookie(".ticwear.com", "device_id=" + did);
+//            cookieManager.setCookie(".mobvoi.com", "ww_token=" + token);
+//            cookieManager.setCookie(".mobvoi.com", "device_id=" + did);
+            CookieSyncManager.getInstance().sync();
+        }
+
+        String cookie = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE).getString("cookies", "");// 从SharedPreferences中获取整个Cookie串
+        if (!TextUtils.isEmpty(cookie)) {
+            String[] cookieArray = cookie.split(";");// 多个Cookie是使用分号分隔的
+            for (int i = 0; i < cookieArray.length; i++) {
+                int position = cookieArray[i].indexOf("=");// 在Cookie中键值使用等号分隔
+                String cookieName = cookieArray[i].substring(0, position);// 获取键
+                String cookieValue = cookieArray[i].substring(position + 1);// 获取值
+
+                String value = cookieName + "=" + cookieValue;// 键值对拼接成 value
+                Log.i("cookie", value);
+//                cookieManager.setAcceptCookie(true);
+//                cookieManager.removeSessionCookie();// 移除旧的[可以省略]
+                CookieManager.getInstance().setCookie(getDomain(cookiesPath), value);// 设置 Cookie
+            }
+        }
+    }
+
+    private void saveCookies() {
+        CookieManager cookieManager = CookieManager.getInstance();
+        String cookieStr = cookieManager.getCookie(getDomainFromUrl(url));
+        SharedPreferences preferences = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("cookies", cookieStr);
+        editor.apply();
+    }
+
+    /**
+     * 获取URL的域名
+     */
+    private String getDomain(String url) {
+        url = url.replace("http://", "").replace("https://", "");
+        if (url.contains("/")) {
+            url = url.substring(0, url.indexOf('/'));
+        }
+        return url;
+    }
+
+    private String getDomainFromUrl(String url) {
+        try {
+            String domain = new URL(url).getHost();
+            int index = domain.indexOf('.');
+            if (index != -1) {
+                domain = domain.substring(index, domain.length());
+            }
+            return domain;
+        } catch (MalformedURLException e) {
+        }
+        return "";
+    }
+
     private void initWebViewSettings() {
+        mWebView.setHorizontalScrollBarEnabled(false); // 水平滚动条不显示
+        mWebView.setVerticalScrollBarEnabled(false); // 垂直滚动条不显示
+
         WebSettings webSettings = mWebView.getSettings();
 
         webSettings.setDefaultFontSize(16);
@@ -253,9 +365,9 @@ public class WebViewFragment extends BaseFragment {
         webSettings.setDatabaseEnabled(true);
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//支持缓存
         webSettings.setDomStorageEnabled(true);//开启DOM storage API功能    使用localStorage则必须打开
+        webSettings.setSavePassword(false);
 
         webSettings.setGeolocationEnabled(true);
-        webSettings.setJavaScriptEnabled(true);  //支持js
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
         webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
@@ -300,6 +412,15 @@ public class WebViewFragment extends BaseFragment {
         webSettings.setAllowUniversalAccessFromFileURLs(true);//允许跨域
 
         webSettings.setTextZoom(100);//设置字体默认缩放大小(改变网页字体大小,setTextSize api14被弃用)
+
+        webSettings.setJavaScriptEnabled(true);  //支持js
+        mWebView.addJavascriptInterface(getHtmlObject(), "interfaceName");
+
+        mWebView.clearCache(true);
+        mWebView.clearHistory();
+
+        mWebView.setWebViewClient(new MyWebViewClient());
+        mWebView.setWebChromeClient(new MyWebChromeClient());
     }
 
     /**
@@ -492,8 +613,13 @@ public class WebViewFragment extends BaseFragment {
         public void onCloseWindow(WebView window) {
         }
 
+        // For Android < 3.0
+        public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+            openFileChooser(uploadMsg, "");
+        }
+
         // For 3.0+ Devices (Start)
-        protected void openFileChooser(ValueCallback uploadMsg, String acceptType) {
+        public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
             openFileChooser(uploadMsg, acceptType, null);
         }
 
@@ -503,36 +629,7 @@ public class WebViewFragment extends BaseFragment {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType(acceptType);
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (null == uploadMessage && null == uploadMessageAboveL) return;
-
-                    if (uploadMessageAboveL != null) {
-                        Uri[] results = null;
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            if (result.getData() != null) {
-                                String dataString = result.getData().getDataString();
-                                ClipData clipData = result.getData().getClipData();
-                                if (clipData != null) {
-                                    results = new Uri[clipData.getItemCount()];
-                                    for (int i = 0; i < clipData.getItemCount(); i++) {
-                                        ClipData.Item item = clipData.getItemAt(i);
-                                        results[i] = item.getUri();
-                                    }
-                                }
-                                if (dataString != null)
-                                    results = new Uri[]{Uri.parse(dataString)};
-                            }
-                        }
-                        uploadMessageAboveL.onReceiveValue(results);
-                        uploadMessageAboveL = null;
-                    } else if (uploadMessage != null) {
-                        uploadMessage.onReceiveValue(result.getData() == null || result.getResultCode() != Activity.RESULT_OK ? null : result.getData().getData());
-                        uploadMessage = null;
-                    }
-                }
-            }).launch(Intent.createChooser(intent, "File Browser"));
+            fileChooserLauncher.launch(Intent.createChooser(intent, "File Browser"));
         }
 
         // For Lollipop 5.0+ Devices
@@ -546,36 +643,7 @@ public class WebViewFragment extends BaseFragment {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (null == uploadMessage && null == uploadMessageAboveL) return;
-
-                    if (uploadMessageAboveL != null) {
-                        Uri[] results = null;
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            if (result.getData() != null) {
-                                String dataString = result.getData().getDataString();
-                                ClipData clipData = result.getData().getClipData();
-                                if (clipData != null) {
-                                    results = new Uri[clipData.getItemCount()];
-                                    for (int i = 0; i < clipData.getItemCount(); i++) {
-                                        ClipData.Item item = clipData.getItemAt(i);
-                                        results[i] = item.getUri();
-                                    }
-                                }
-                                if (dataString != null)
-                                    results = new Uri[]{Uri.parse(dataString)};
-                            }
-                        }
-                        uploadMessageAboveL.onReceiveValue(results);
-                        uploadMessageAboveL = null;
-                    } else if (uploadMessage != null) {
-                        uploadMessage.onReceiveValue(result.getData() == null || result.getResultCode() != Activity.RESULT_OK ? null : result.getData().getData());
-                        uploadMessage = null;
-                    }
-                }
-            }).launch(Intent.createChooser(intent, "File Browser"));
+            fileChooserLauncher.launch(Intent.createChooser(intent, "File Browser"));
             return true;
         }
 
@@ -617,48 +685,8 @@ public class WebViewFragment extends BaseFragment {
 //        }
     }
 
-    //https://www.jianshu.com/p/c9a9c4e1756d
-
-    private void setCookies(String cookiesPath) {
-        String cookie = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE).getString("cookies", "");// 从SharedPreferences中获取整个Cookie串
-        if (!TextUtils.isEmpty(cookie)) {
-            String[] cookieArray = cookie.split(";");// 多个Cookie是使用分号分隔的
-            for (int i = 0; i < cookieArray.length; i++) {
-                int position = cookieArray[i].indexOf("=");// 在Cookie中键值使用等号分隔
-                String cookieName = cookieArray[i].substring(0, position);// 获取键
-                String cookieValue = cookieArray[i].substring(position + 1);// 获取值
-
-                String value = cookieName + "=" + cookieValue;// 键值对拼接成 value
-                Log.i("cookie", value);
-//                cookieManager.setAcceptCookie(true);
-//                cookieManager.removeSessionCookie();// 移除旧的[可以省略]
-                CookieManager.getInstance().setCookie(getDomain(cookiesPath), value);// 设置 Cookie
-            }
-        }
-    }
-
-    private void saveCookies() {
-        CookieManager cookieManager = CookieManager.getInstance();
-        String cookieStr = cookieManager.getCookie(getDomain(url));
-        SharedPreferences preferences = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("cookies", cookieStr);
-        editor.commit();
-    }
-
-    /**
-     * 获取URL的域名
-     */
-    private String getDomain(String url) {
-        url = url.replace("http://", "").replace("https://", "");
-        if (url.contains("/")) {
-            url = url.substring(0, url.indexOf('/'));
-        }
-        return url;
-    }
-
     private boolean shouldOverrideUrlLoadingImpl(WebView view, String url) {
-        if (view.isPrivateBrowsingEnabled()) {
+        if (view.isPrivateBrowsingEnabled()) {//获取是否在此WebView中启用隐私浏览
             return false;
         }
         String SCHEME_WTAI = "wtai://wp/";
@@ -709,7 +737,7 @@ public class WebViewFragment extends BaseFragment {
             return false;
         }
 
-//        view.loadUrl(url);
+        view.loadUrl(url);
         return false;
     }
 }
