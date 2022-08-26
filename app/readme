@@ -32,3 +32,5 @@ Android中不规则形状View的布局实现：
 https://www.jianshu.com/p/178c9efcdb44
 
 //查看gradle依赖 （Terminal）：gradlew app:dependencies，command + f 搜索
+
+git 问题 https://blog.csdn.net/m0_51269961/article/details/123709195

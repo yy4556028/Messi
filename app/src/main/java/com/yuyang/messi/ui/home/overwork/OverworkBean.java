@@ -2,27 +2,27 @@ package com.yuyang.messi.ui.home.overwork;
 
 public class OverworkBean {
 
-    private String onTime;
-    private String offTime;
+    private Long onTimeMills;
+    private Long offTimeMills;
 
     private String date;
     private int week;
     private boolean calcFlag;//true参与计算平均下班时间
 
-    public String getOnTime() {
-        return onTime;
+    public Long getOnTimeMills() {
+        return onTimeMills;
     }
 
-    public void setOnTime(String onTime) {
-        this.onTime = onTime;
+    public void setOnTimeMills(Long onTimeMills) {
+        this.onTimeMills = onTimeMills;
     }
 
-    public String getOffTime() {
-        return offTime;
+    public Long getOffTimeMills() {
+        return offTimeMills;
     }
 
-    public void setOffTime(String offTime) {
-        this.offTime = offTime;
+    public void setOffTimeMills(Long offTimeMills) {
+        this.offTimeMills = offTimeMills;
     }
 
     public String getDate() {

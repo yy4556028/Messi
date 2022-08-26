@@ -33,20 +33,21 @@ public class InterviewLaunchClickActivity extends AppBaseActivity {
     private void initView() {
         HeaderLayout headerLayout = findViewById(R.id.headerLayout);
         headerLayout.showLeftBackButton();
-        headerLayout.showTitle("点击桌面图标");
+        headerLayout.showTitle("应用冷启动流程");
 
         findViewById(R.id.imageView).setOnClickListener(v -> {
             PhotoShowActivity.launchActivity(this, R.mipmap.interview_click_launch, v);
         });
 
         TextView tvDetail = findViewById(R.id.tvDetail);
-        tvDetail.append(StringDealUtil.highlightKeyword(Color.RED,
+        tvDetail.append(StringDealUtil.highlightKeyword(Color.RED, "一.Launcher 进程通知 AMS 启动新进程\n", "一.Launcher 进程通知 AMS 启动新进程\n"));
+        tvDetail.append(
                 "1.Activity.startActivityForResult\n" +
                         "2.Instrumentation.execStartActivity{ 调用AMS代理的startActivity }\n" +
                         "3.AMS.startActivity(通过 AMS 本地代理跨进程调用SystemServer进程的AMS.startActivity)\n" +
-                        "主进程逻辑结束\n\n",
-                "调用SystemServer进程的AMS.startActivity"));
+                        "主进程逻辑结束\n\n");
 
+        tvDetail.append(StringDealUtil.highlightKeyword(Color.RED, "二.通知Launcher 执行 onPause(),Launcher 执行完onPause() 通知 AMS\n", "二.通知Launcher 执行 onPause(),Launcher 执行完onPause() 通知 AMS\n"));
         tvDetail.append(StringDealUtil.highlightKeyword(Color.BLUE,
                 "1.AMS：startActivity -> startActivityAsUser -> getActivityStartController().obtainStarter().set(...建造者模式).execute() 调用 ActivityStarter.execute\n" +
                         "2.ActivityStarter：execute -> executeRequest -> startActivityUnchecked(不同版本)\n" +
@@ -67,6 +68,7 @@ public class InterviewLaunchClickActivity extends AppBaseActivity {
                         "进程存在结束\n\n",
                 "进程存在："));
 
+        tvDetail.append(StringDealUtil.highlightKeyword(Color.RED, "三.AMS 请求 zygote 进程 fork 应用进程. 新进程中 创建 AT 并调用main(). AMS 回调各种生命周期方法\n", "三.AMS 请求 zygote 进程 fork 应用进程. 新进程中 创建 AT 并调用main(). AMS 回调各种生命周期方法\n"));
         tvDetail.append(StringDealUtil.highlightKeyword(Color.RED,
                 "进程不存在：\n" +
                         "1.AMS.startProcessLocked{AMS通知zygote进程fork应用进程，然后分配内存空间等(socket)，创建新进程的时候，AMS 会保存一个 ProcessRecord 信息:uid + process名}\n" +
@@ -81,6 +83,11 @@ public class InterviewLaunchClickActivity extends AppBaseActivity {
 
                 "进程不存在", "AMS通知zygote进程fork应用进程，然后分配内存空间等", "反射创建 ActivityThread 并调用其 main 入口方法", "创建并启动主线程的loop消息循环", "创建ActivityThread并调用attach",
                 "通知AMS已经启动,AMS保存AppThread代理以控制应用进程", "调用bindApplication", "AT Handler处理消息调用 handleBindApplication", "继续执行启动应用Activity的操作", "makeApplication函数创建应用的Application", "执行应用Application#onCreate",
-                "ActivityStackSupervisor.realStartActivityLocked", "handleLaunchActivity", "通过反射创建Activity", "执行Activity的attach动作与window关联"));
+                "ActivityStackSupervisor.realStartActivityLocked", "handleLaunchActivity", "通过反射创建Activity", "执行Activity的attach动作与window关联\n\n"));
+
+        tvDetail.append("Activity.onAttach(){ 构建PhoneWindow }\n");
+        tvDetail.append("Activity.onCreate(){ setContentView()委托给PhoneWindow，在其中创建 DecorView，根据主题解析系统预定义文件作为 DecorView 的子View，xml中有一个id为content的容器 作为setContentView的父View }\n");
+        tvDetail.append("Activity.onResume(){ DecorView 先被设为invisible，然后被添加到窗口，其间会构建 ViewRootImpl，它是 app 和 WMS 双向通信的纽带，ViewRootImpl.requestLayout()会被调用 以出发View树绘制 }\n");
+        tvDetail.append("经过垂直同步，监听到渲染回调，执行渲染。DecorView被渲染完成，就被设为 visible，界面显示\n");
     }
 }

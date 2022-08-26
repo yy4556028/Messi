@@ -177,6 +177,9 @@
             android:name=".ui.media.VideoActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.media.AudioRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.media.ContactsActivity"
             android:screenOrientation="portrait" />
         <activity

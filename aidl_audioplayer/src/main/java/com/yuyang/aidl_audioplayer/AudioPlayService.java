@@ -283,7 +283,7 @@ public class AudioPlayService extends Service {
         String mode = "广播启动";
         if ("广播启动".equals(mode)) {
             Intent broadcastIntent = new Intent(this, AudioNotifyClickReceiver.class);
-            return PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         } else if ("创建返回栈".equals(mode)) {//https://www.jianshu.com/p/678e2322fd41
             Class audioClass = null;
             try {
@@ -298,14 +298,14 @@ public class AudioPlayService extends Service {
             stackBuilder.addParentStack(audioClass);
             //添加Intent到栈顶
             stackBuilder.addNextIntent(new Intent(this, audioClass));
-            return stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            return stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
             //android:parentActivityName=".ui.main.MainActivity"，关闭页面进入MainActivity
         } else {
             return PendingIntent.getActivity(
                     this,
                     0,
                     getPackageManager().getLaunchIntentForPackage("com.yuyang.messi"),
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         }
     }
 
@@ -320,16 +320,16 @@ public class AudioPlayService extends Service {
         if (isPlaying()) {
             normalRemoteView.setImageViewBitmap(R.id.activity_audio_notification_normal_playImage, BitmapFactory.decodeResource(getResources(), R.drawable.activity_audio_play_pause_normal));
             normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_normal_playImage,
-                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         } else {
             normalRemoteView.setImageViewBitmap(R.id.activity_audio_notification_normal_playImage, BitmapFactory.decodeResource(getResources(), R.drawable.activity_audio_play_play_normal));
             normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_normal_playImage,
-                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         }
         normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_normal_nextImage,
-                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_normal_removeImage,
-                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOVE), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOVE), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
 
         expandRemoteView.setImageViewBitmap(R.id.activity_audio_notification_expand_imageView, BitmapFactory.decodeFile(currentAudioBean.getImage()));
         expandRemoteView.setTextViewText(R.id.activity_audio_notification_expand_titleText, currentAudioBean.getTitle());
@@ -337,16 +337,16 @@ public class AudioPlayService extends Service {
         if (isPlaying()) {
             normalRemoteView.setImageViewBitmap(R.id.activity_audio_notification_expand_playImage, BitmapFactory.decodeResource(getResources(), R.drawable.activity_audio_play_pause_normal));
             normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_expand_playImage,
-                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         } else {
             normalRemoteView.setImageViewBitmap(R.id.activity_audio_notification_expand_playImage, BitmapFactory.decodeResource(getResources(), R.drawable.activity_audio_play_play_normal));
             normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_expand_playImage,
-                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT));
+                    PendingIntent.getBroadcast(this, 0, new Intent(ACTION_PLAY), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         }
         normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_expand_nextImage,
-                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
         normalRemoteView.setOnClickPendingIntent(R.id.activity_audio_notification_expand_removeImage,
-                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOVE), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOVE), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
 
         notification.contentView = normalRemoteView;
         notification.bigContentView = expandRemoteView;

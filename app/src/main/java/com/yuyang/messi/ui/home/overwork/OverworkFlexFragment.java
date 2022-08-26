@@ -45,6 +45,7 @@ import com.yuyang.lib_base.utils.StorageUtil;
 import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.MessiApp;
 import com.yuyang.messi.R;
+import com.yuyang.messi.utils.CalendarUtil;
 import com.yuyang.messi.utils.DateUtil;
 import com.yuyang.messi.utils.FontUtil;
 import com.yuyang.messi.utils.SharedPreferencesUtil;
@@ -54,6 +55,7 @@ import com.yuyang.messi.view.scroll.month_view.Day;
 import com.yuyang.messi.view.scroll.month_view.MonthView;
 import com.yuyang.messi.widget.ChartMarkerView;
 
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,19 +66,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
-public class OverworkFragment extends BaseFragment {
+public class OverworkFlexFragment extends BaseFragment {
 
-    private final String KEY_SP_COLOR = OverworkFragment.class.getSimpleName() + "_key_color";
-    private final String KEY_TARGET_OFF = OverworkFragment.class.getSimpleName() + "_key_target_off";
-    private final String saveFilePath = StorageUtil.getExternalFile("/Overwork/data.txt").getAbsolutePath();
-    private final String saveFilePath_public = StorageUtil.getPublicPath("/Overwork/data.txt");
+    private final String KEY_SP_COLOR = OverworkFlexFragment.class.getSimpleName() + "_key_color";
+    private final String KEY_TARGET_OFF = OverworkFlexFragment.class.getSimpleName() + "_key_target_off";
+    private final String saveFilePath = StorageUtil.getExternalFile("/Overwork/data_flex.txt").getAbsolutePath();
+    private final String saveFilePath_public = StorageUtil.getPublicPath("/Overwork/data_flex.txt");
 
-    private static final String ON_TIME = "09:00";
+    private static final String ON_TIME_MIN = "08:30";
+    private static final String ON_TIME_MAX = "10:00";
+    private static final long WORK_TIME_MINUTE = TimeUnit.HOURS.toMinutes(9);//最少上班时长
     private static final String OFF_TIME_NORMAL = "18:00";
-    private static final String OFF_TIME_OVERWORK = "19:00";
-    private static final String OFF_TIME_REST = "22:00";
-    private static final String DEFAULT_TARGET_OFF_TIME = "20:30";
+    private static final String DEFAULT_TARGET_WORK_TIME = "10:00";//目标平均工作时长 9小时 (不包含午休)
 
     private static final int DEFAULT_COLOR_NORMAL = ContextCompat.getColor(MessiApp.getInstance(), R.color.textSecondary);
     private static final int DEFAULT_COLOR_PROBLEM = ContextCompat.getColor(MessiApp.getInstance(), R.color.red);
@@ -114,7 +117,7 @@ public class OverworkFragment extends BaseFragment {
 
     private HashMap<String, List<OverworkBean>> beanMap;
 
-    private String targetOffTime;
+    private String targetWorkTime;
     private int color_normal;
     private int color_problem;
     private int color_off_level1;
@@ -136,7 +139,7 @@ public class OverworkFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_overwork;
+        return R.layout.fragment_overwork_flex;
     }
 
     @Override
@@ -188,22 +191,22 @@ public class OverworkFragment extends BaseFragment {
             color_off_level3 = colorList.get(4);
             color_off_level4 = colorList.get(5);
         }
-        targetOffTime = SharedPreferencesUtil.getString(KEY_TARGET_OFF, DEFAULT_TARGET_OFF_TIME);
+        targetWorkTime = SharedPreferencesUtil.getString(KEY_TARGET_OFF, DEFAULT_TARGET_WORK_TIME);
     }
 
     private void initViews() {
-        normalImage = getView().findViewById(R.id.fragment_overwork_normalView);
-        normalText = getView().findViewById(R.id.fragment_overwork_normalText);
-        problemImage = getView().findViewById(R.id.fragment_overwork_problemView);
-        problemText = getView().findViewById(R.id.fragment_overwork_problemText);
-        overworkLevel1Image = getView().findViewById(R.id.fragment_overwork_overworkLevel1Image);
-        overworkLevel1Text = getView().findViewById(R.id.fragment_overwork_overworkLevel1Text);
-        overworkLevel2Image = getView().findViewById(R.id.fragment_overwork_overworkLevel2Image);
-        overworkLevel2Text = getView().findViewById(R.id.fragment_overwork_overworkLevel2Text);
-        overworkLevel3Image = getView().findViewById(R.id.fragment_overwork_overworkLevel3Image);
-        overworkLevel3Text = getView().findViewById(R.id.fragment_overwork_overworkLevel3Text);
-        overworkLevel4Image = getView().findViewById(R.id.fragment_overwork_overworkLevel4Image);
-        overworkLevel4Text = getView().findViewById(R.id.fragment_overwork_overworkLevel4Text);
+        normalImage = rootView.findViewById(R.id.fragment_overwork_normalView);
+        normalText = rootView.findViewById(R.id.fragment_overwork_normalText);
+        problemImage = rootView.findViewById(R.id.fragment_overwork_problemView);
+        problemText = rootView.findViewById(R.id.fragment_overwork_problemText);
+        overworkLevel1Image = rootView.findViewById(R.id.fragment_overwork_overworkLevel1Image);
+        overworkLevel1Text = rootView.findViewById(R.id.fragment_overwork_overworkLevel1Text);
+        overworkLevel2Image = rootView.findViewById(R.id.fragment_overwork_overworkLevel2Image);
+        overworkLevel2Text = rootView.findViewById(R.id.fragment_overwork_overworkLevel2Text);
+        overworkLevel3Image = rootView.findViewById(R.id.fragment_overwork_overworkLevel3Image);
+        overworkLevel3Text = rootView.findViewById(R.id.fragment_overwork_overworkLevel3Text);
+        overworkLevel4Image = rootView.findViewById(R.id.fragment_overwork_overworkLevel4Image);
+        overworkLevel4Text = rootView.findViewById(R.id.fragment_overwork_overworkLevel4Text);
 
         normalImage.setImageDrawable(new ColorDrawable(color_normal));
         problemImage.setImageDrawable(new ColorDrawable(color_problem));
@@ -212,8 +215,8 @@ public class OverworkFragment extends BaseFragment {
         overworkLevel3Image.setImageDrawable(new ColorDrawable(color_off_level3));
         overworkLevel4Image.setImageDrawable(new ColorDrawable(color_off_level4));
 
-        monthView = getView().findViewById(R.id.fragment_overwork_monthView);
-        lineChart = getView().findViewById(R.id.fragment_overwork_chart);
+        monthView = rootView.findViewById(R.id.fragment_overwork_monthView);
+        lineChart = rootView.findViewById(R.id.fragment_overwork_chart);
         initChart();
 
         monthView.setOnItemViewListener(new MonthView.OnItemViewListener<OverworkBean>() {
@@ -241,9 +244,9 @@ public class OverworkFragment extends BaseFragment {
                     }
 
                     if (day.getBean().isCalcFlag()) {
-                        dayText.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                        dayText.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
                     } else {
-                        dayText.setTextColor(ContextCompat.getColor(getContext(), R.color.textSecondary));
+                        dayText.setTextColor(ContextCompat.getColor(requireContext(), R.color.textSecondary));
                     }
 
                     if (day.getBean() == null) {
@@ -254,9 +257,8 @@ public class OverworkFragment extends BaseFragment {
                             onTimeText.setText(null);
                         } else {
 
-                            Day<OverworkBean> preDay = pos == 0 ? null : monthView.getDayList().get(pos - 1);
                             onTimeText.setText(hourMinuteSdf.format(new Date(day.getBean().getOnTimeMills())));
-                            onTimeText.setTextColor(getOnTimeColor(day.getBean(), preDay == null ? null : preDay.getBean()));
+                            onTimeText.setTextColor(getOnTimeColor(day.getBean()));
                         }
                         if (day.getBean().getOffTimeMills() == null) {
                             offTimeText.setText(null);
@@ -268,7 +270,7 @@ public class OverworkFragment extends BaseFragment {
                 } else {
                     view.setBackground(null);
                     dayText.setTypeface(null, Typeface.NORMAL);
-                    dayText.setTextColor(ContextCompat.getColor(getContext(), R.color.textSecondary));
+                    dayText.setTextColor(ContextCompat.getColor(requireContext(), R.color.textSecondary));
                     onTimeText.setText(null);
                     offTimeText.setText(null);
                 }
@@ -297,27 +299,17 @@ public class OverworkFragment extends BaseFragment {
                                 public void onItemClick(int index, PopBean popBean) {
                                     switch (popBean.getName()) {
                                         case "设置上班时间": {
-                                            final long onTime;
+                                            String onTimeStr;
                                             if (day.getBean().getOnTimeMills() == null) {
-                                                if (TextUtils.equals(day.getBean().getDate(), ymdSdf.format(Calendar.getInstance().getTime()))) {
-                                                    onTime = Calendar.getInstance().getTimeInMillis();
+                                                if (CalendarUtil.isSameDay(day.getCalendar().getTimeInMillis(), Calendar.getInstance().getTimeInMillis())) {
+                                                    onTimeStr = dateTimeSdf.format(Calendar.getInstance().getTime());
                                                 } else {
-                                                    Date date = null;
-                                                    try {
-                                                        date = dateTimeSdf.parse(day.getBean().getDate() + " " + ON_TIME);
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                    if (date != null) {
-                                                        onTime = date.getTime();
-                                                    } else {
-                                                        onTime = new Date().getTime();
-                                                    }
+                                                    onTimeStr = day.getBean().getDate() + " " + ON_TIME_MIN;
                                                 }
                                             } else {
-                                                onTime = day.getBean().getOnTimeMills();
+                                                onTimeStr = dateTimeSdf.format(new Date(day.getBean().getOnTimeMills()));
                                             }
-                                            DatePickerView.pickDateTime(getActivity(), null, dateTimeSdf, dateTimeSdf.format(new Date(onTime)), new DatePickerView.OnPickListener() {
+                                            DatePickerView.pickDateTime(getActivity(), null, dateTimeSdf, onTimeStr, new DatePickerView.OnPickListener() {
                                                 @Override
                                                 public void onPick(Calendar calendar) {
                                                     day.getBean().setOnTimeMills(calendar.getTimeInMillis());
@@ -329,27 +321,17 @@ public class OverworkFragment extends BaseFragment {
                                             break;
                                         }
                                         case "设置下班时间": {
-                                            final long offTime;
+                                            String offTimeStr;
                                             if (day.getBean().getOffTimeMills() == null) {
-                                                if (TextUtils.equals(day.getBean().getDate(), ymdSdf.format(Calendar.getInstance().getTime()))) {
-                                                    offTime = Calendar.getInstance().getTimeInMillis();
+                                                if (CalendarUtil.isSameDay(day.getCalendar().getTimeInMillis(), Calendar.getInstance().getTimeInMillis())) {
+                                                    offTimeStr = dateTimeSdf.format(Calendar.getInstance().getTime());
                                                 } else {
-                                                    Date date = null;
-                                                    try {
-                                                        date = dateTimeSdf.parse(day.getBean().getDate() + " " + OFF_TIME_NORMAL);
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                    if (date != null) {
-                                                        offTime = date.getTime();
-                                                    } else {
-                                                        offTime = new Date().getTime();
-                                                    }
+                                                    offTimeStr = day.getBean().getDate() + " " + OFF_TIME_NORMAL;
                                                 }
                                             } else {
-                                                offTime = day.getBean().getOffTimeMills();
+                                                offTimeStr = dateTimeSdf.format(new Date(day.getBean().getOffTimeMills()));
                                             }
-                                            DatePickerView.pickDateTime(getActivity(), null, dateTimeSdf, dateTimeSdf.format(new Date(offTime)), new DatePickerView.OnPickListener() {
+                                            DatePickerView.pickDateTime(getActivity(), null, dateTimeSdf, offTimeStr, new DatePickerView.OnPickListener() {
                                                 @Override
                                                 public void onPick(Calendar calendar) {
                                                     day.getBean().setOffTimeMills(calendar.getTimeInMillis());
@@ -389,32 +371,32 @@ public class OverworkFragment extends BaseFragment {
             }
         });
 
-        selectDateText = getView().findViewById(R.id.fragment_overwork_selectDateText);
-        infoText = getView().findViewById(R.id.fragment_overwork_infoText);
+        selectDateText = rootView.findViewById(R.id.fragment_overwork_selectDateText);
+        infoText = rootView.findViewById(R.id.fragment_overwork_infoText);
         infoText.setTypeface(FontUtil.getBoldTypeFace());
-        setTargetOffText = getView().findViewById(R.id.fragment_overwork_setTargetOffText);
-        setTargetOffText.setText(String.format("下班指标：%s", targetOffTime));
+        setTargetOffText = rootView.findViewById(R.id.fragment_overwork_setTargetOffText);
+        setTargetOffText.setText(String.format("工时指标：%s", targetWorkTime));
     }
 
     private void initEvents() {
         setTargetOffText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerView.pickTime(getActivity(), null, targetOffTime, hourMinuteSdf, new DatePickerView.OnPickListener() {
+                DatePickerView.pickTime(getActivity(), null, targetWorkTime, hourMinuteSdf, new DatePickerView.OnPickListener() {
                     @Override
                     public void onPick(Calendar calendar) {
-                        targetOffTime = hourMinuteSdf.format(calendar.getTime());
-                        setTargetOffText.setText(String.format("下班指标：%s", targetOffTime));
-                        SharedPreferencesUtil.setString(KEY_TARGET_OFF, targetOffTime);
+                        targetWorkTime = hourMinuteSdf.format(calendar.getTime());
+                        setTargetOffText.setText(String.format("工时指标：%s", targetWorkTime));
+                        SharedPreferencesUtil.setString(KEY_TARGET_OFF, targetWorkTime);
                         calcInfo();
                     }
                 });
             }
         });
-        getView().findViewById(R.id.fragment_overwork_resetColorText).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.fragment_overwork_resetColorText).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
+                new AlertDialog.Builder(requireContext())
                         .setMessage("确认重置颜色吗？")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
@@ -439,7 +421,7 @@ public class OverworkFragment extends BaseFragment {
                         .show();
             }
         });
-        getView().findViewById(R.id.fragment_overwork_clearMonthText).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.fragment_overwork_clearMonthText).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(getActivity())
@@ -457,14 +439,14 @@ public class OverworkFragment extends BaseFragment {
                         .show();
             }
         });
-        getView().findViewById(R.id.fragment_overwork_tvBackup).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.fragment_overwork_tvBackup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new Handler().post(new Runnable() {
                     @Override
                     public void run() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
-                            boolean isSuccess = FileUtil.writeFileV29(StorageUtil.getPublicPath("/Overwork/data_backup.txt"), new Gson().toJson(beanMap));
+                            boolean isSuccess = FileUtil.writeFileV29(StorageUtil.getPublicPath("/Overwork/data_flex_backup.txt"), new Gson().toJson(beanMap));
                             if (isSuccess) {
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
@@ -623,7 +605,7 @@ public class OverworkFragment extends BaseFragment {
             }
         });
 
-        getView().findViewById(R.id.fragment_overwork_prevMonthView).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.fragment_overwork_prevMonthView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 monthView.currentMonthCalendar.add(Calendar.MONTH, -1);
@@ -632,7 +614,7 @@ public class OverworkFragment extends BaseFragment {
                 calcInfo();
             }
         });
-        getView().findViewById(R.id.fragment_overwork_nextMonthView).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.fragment_overwork_nextMonthView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 monthView.currentMonthCalendar.add(Calendar.MONTH, 1);
@@ -703,50 +685,32 @@ public class OverworkFragment extends BaseFragment {
     }
 
     private void calcInfo() {
-        Date normalOffDate = null;//正常下班时间
-        Date overworkOffDate = null;//加班开始计算时间
-        Date restDate = null;//补休开始计算时间
-        Date offDate = null;//实际下班时间
-        int count = 0;
-        long totalOfftime = 0;
-        long totalOverwork = 0;
-
-        int fridayCount = 0;
-        int notFridayCount = 0;
-        String todayStr = ymdSdf.format(Calendar.getInstance().getTime());
+        int count = 0;//有数据的天数
+        int remainFridayCount = 0;//剩余周五天数
+        int remainNotFridayCount = 0;//剩余非周五天数
+        long totalWorkTimeMills = 0;//总工作时长
 
         for (Day<OverworkBean> overworkBeanDay : monthView.getDayList()) {
             if (overworkBeanDay.getBean() == null) continue;
-            OverworkBean overworkBean = overworkBeanDay.getBean();
-            Long offTime = overworkBean.getOffTimeMills();
 
-            if (offTime == null) {
+            OverworkBean overworkBean = overworkBeanDay.getBean();
+            Long onTimeMills = overworkBean.getOnTimeMills();
+            Long offTimeMills = overworkBean.getOffTimeMills();
+
+            if (onTimeMills == null || offTimeMills == null) {
                 if (overworkBean.isCalcFlag()) {
                     if (overworkBean.getWeek() == Calendar.FRIDAY) {
-                        fridayCount++;
+                        remainFridayCount++;
                     } else {
-                        notFridayCount++;
+                        remainNotFridayCount++;
                     }
                 }
                 continue;
             }
 
-            try {
-                normalOffDate = dateTimeSdf.parse(overworkBean.getDate() + " " + OFF_TIME_NORMAL);
-                overworkOffDate = dateTimeSdf.parse(overworkBean.getDate() + " " + OFF_TIME_OVERWORK);
-                restDate = dateTimeSdf.parse(overworkBean.getDate() + " " + OFF_TIME_REST);
-                offDate = new Date(offTime);
-            } catch (ParseException e) {
-                e.printStackTrace();
-                continue;
-            }
-
             if (overworkBean.isCalcFlag()) {
                 count++;
-                totalOfftime += offDate.getTime() - normalOffDate.getTime();
-                if (offDate.getTime() > overworkOffDate.getTime()) {
-                    totalOverwork += offDate.getTime() - overworkOffDate.getTime();
-                }
+                totalWorkTimeMills += (offTimeMills - onTimeMills);
             }
         }
         if (count == 0) {
@@ -754,159 +718,58 @@ public class OverworkFragment extends BaseFragment {
             return;
         }
 
-        normalOffDate.setTime(normalOffDate.getTime() + totalOfftime / count);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(totalWorkTimeMills / count);
+        float hourFraction = minutes / 60f;
+        long hour = TimeUnit.MINUTES.toHours(minutes);
+        minutes = minutes - TimeUnit.HOURS.toMinutes(hour);
 
         StringBuilder retStr = new StringBuilder();
-
-        totalOverwork = totalOverwork / 1000;
-        long hour = totalOverwork / 3600;
-        if (hour > 0) {
-            retStr.append(hour + "小时");
-            totalOverwork = totalOverwork % 3600;
+        retStr.append(hour).append("小时");
+        if (minutes > 0) {
+            retStr.append(minutes).append("分钟");
         }
+        retStr.append(String.format("(%s小时)", new DecimalFormat("0.#").format(hourFraction)));
 
-        long minute = totalOverwork / 60;
-        if (minute > 0) {
-            retStr.append(minute + "分钟");
-        }
-
-        long targetTimesPerDay = 0;
-        Date targetDate = null;
-        Date normalDate = null;
+        long targetMinutesPerDay = 0;
         try {
-            targetDate = dateTimeSdf.parse(todayStr + " " + targetOffTime);
-            normalDate = dateTimeSdf.parse(todayStr + " " + OFF_TIME_NORMAL);
-            targetTimesPerDay = targetDate.getTime() - normalDate.getTime();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(hourMinuteSdf.parse(targetWorkTime));
+            targetMinutesPerDay = TimeUnit.HOURS.toMinutes(calendar.get(Calendar.HOUR_OF_DAY)) + calendar.get(Calendar.MINUTE);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (notFridayCount == 0) {
-            infoText.setText(String.format("当月平均下班时间：%s\r\n当月总加班时长：%s",
-                    hourMinuteSdf.format(normalOffDate),
-                    retStr.toString()
-            ));
+        if (remainNotFridayCount == 0) {
+            infoText.setText(String.format("当月平均工作时长：%s", retStr));
         } else {
-            long expectTimesPerDay = (targetTimesPerDay * (count + fridayCount + notFridayCount) - totalOfftime) / notFridayCount;
-            normalDate.setTime(normalDate.getTime() + expectTimesPerDay);
+            long expectMinutesPerDay = (targetMinutesPerDay * (count + remainFridayCount + remainNotFridayCount) - TimeUnit.MILLISECONDS.toMinutes(totalWorkTimeMills) - WORK_TIME_MINUTE * remainFridayCount) / remainNotFridayCount;
 
-            infoText.setText(String.format("当月平均下班时间：%s\r\n当月总加班时长：%s\r\n本月剩余工作日(除周五 )预期下班时间：%s",
-                    hourMinuteSdf.format(normalOffDate),
-                    retStr,
-                    hourMinuteSdf.format(normalDate)
-            ));
+            if (expectMinutesPerDay <= WORK_TIME_MINUTE) {
+                infoText.setText(String.format("当月平均工作时长：%s\r\n本月时间已达标", retStr));
+            } else {
+                long remainHour = TimeUnit.MINUTES.toHours(expectMinutesPerDay);
+                float remainHourFraction = expectMinutesPerDay / 60f;
+                long remainMinute = expectMinutesPerDay - TimeUnit.HOURS.toMinutes(remainHour);
+                StringBuilder remainStr = new StringBuilder();
+                remainStr.append(remainHour).append("小时");
+                if (remainMinute > 0) {
+                    remainStr.append(remainMinute).append("分钟");
+                }
+                remainStr.append(String.format("(%s小时)", new DecimalFormat("0.#").format(remainHourFraction)));
+
+                infoText.setText(String.format("当月平均工作时长：%s\r\n本月剩余工作日(除周五)预期工作时长：%s",
+                        retStr,
+                        remainStr
+                ));
+            }
         }
         setChartData(monthView.getDayList());
     }
 
-    private Drawable getDrawableByTime(OverworkBean bean) {
-        int onTimeColor = getOnTimeColor(bean, null);
-        int offTimeColor = getOffTimeColor(bean);
-
-        if (bean.getOnTimeMills() != null && bean.getOffTimeMills() != null) {
-            GradientDrawable allDrawable = new GradientDrawable();
-            allDrawable.setShape(GradientDrawable.OVAL);
-//        allDrawable.setStroke(10, Color.RED);//设置宽度为10px的红色描边
-            allDrawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);//设置线性渐变，除此之外还有：GradientDrawable.SWEEP_GRADIENT（扫描式渐变），GradientDrawable.RADIAL_GRADIENT（圆形渐变）
-            allDrawable.setColors(new int[]{onTimeColor, offTimeColor});//增加渐变效果需要使用setColors方法来设置颜色（中间可以增加多个颜色值）
-            return allDrawable;
-        } else if (bean.getOnTimeMills() != null && bean.getOffTimeMills() == null) {
-
-            ArcShape onArcShape = new ArcShape(180, 180);
-            ShapeDrawable onTimeDrawable = new ShapeDrawable(onArcShape);
-            onTimeDrawable.getPaint().setStyle(Paint.Style.FILL);
-            onTimeDrawable.getPaint().setColor(onTimeColor);
-            return onTimeDrawable;
-        } else if (bean.getOnTimeMills() == null && bean.getOffTimeMills() != null) {
-            ArcShape offArcShape = new ArcShape(0, 180);
-            ShapeDrawable offTimeDrawable = new ShapeDrawable(offArcShape);
-            offTimeDrawable.getPaint().setStyle(Paint.Style.FILL);
-            offTimeDrawable.getPaint().setColor(offTimeColor);
-            return offTimeDrawable;
-        } else {
-            return null;
-        }
-    }
-
-    private Drawable getOnTimeDrawable(OverworkBean bean) {
-        if (bean.getOffTimeMills() == null) return null;
-
-        int outRadius = PixelUtils.dp2px(2);
-        float[] outRadii = {outRadius, outRadius, outRadius, outRadius, outRadius, outRadius, outRadius, outRadius};
-        RoundRectShape roundRectShape = new RoundRectShape(outRadii, null, null);
-        ShapeDrawable shapeDrawable = new ShapeDrawable(roundRectShape);
-        shapeDrawable.getPaint().setStyle(Paint.Style.FILL);
-
-//        if ((bean.getDate() + " " + ON_TIME).compareTo(bean.getOnTime()) <= 0) {
-//            shapeDrawable.getPaint().setColor(color_problem);
-//        } else {
-//            shapeDrawable.getPaint().setColor(color_normal);
-//        }
-        return shapeDrawable;
-    }
-
-    private Drawable getOffTimeDrawable(OverworkBean bean) {
-        if (bean.getOffTimeMills() == null) return null;
-
-        ArcShape offArcShape = new ArcShape(0, 180);
-        ShapeDrawable offTimeDrawable = new ShapeDrawable(offArcShape);
-        offTimeDrawable.getPaint().setStyle(Paint.Style.FILL);
-
-        Date startOverworkDate = null;
-        Date offTimeDate = null;
-        try {
-            startOverworkDate = dateTimeSdf.parse(bean.getDate() + " " + OFF_TIME_OVERWORK);
-            offTimeDate = new Date(bean.getOffTimeMills());
-        } catch (Exception e) {
-            e.printStackTrace();
-            offTimeDrawable.getPaint().setColor(color_normal);
-        }
-
-        long hour = DateUtil.calculateDifferentHour(startOverworkDate, offTimeDate);
-        if (startOverworkDate.getTime() > offTimeDate.getTime()) {
-            offTimeDrawable.getPaint().setColor(color_normal);
-        } else if (hour < 3) { //7点后
-            offTimeDrawable.getPaint().setColor(ContextCompat.getColor(getContext(), R.color.theme_light));
-        } else if (hour < 6) { //10点后
-            offTimeDrawable.getPaint().setColor(ContextCompat.getColor(getContext(), R.color.theme));
-        } else if (hour < 11) {   //1点后
-            offTimeDrawable.getPaint().setColor(ContextCompat.getColor(getContext(), R.color.theme_dark));
-        } else {
-            offTimeDrawable.getPaint().setColor(ContextCompat.getColor(getContext(), R.color.theme_ripple));
-        }
-
-        return offTimeDrawable;
-    }
-
-    private int getOnTimeColor(OverworkBean todayBean, OverworkBean preDayBean) {
+    private int getOnTimeColor(OverworkBean todayBean) {
         if (todayBean.getOnTimeMills() == null) return 0;
 
-        String onTime = ON_TIME;
-        if (preDayBean != null && preDayBean.getOffTimeMills() != null) {
-            Date normalOverworkDate = null;
-            Date offTimeDate = null;
-            try {
-                normalOverworkDate = dateTimeSdf.parse(preDayBean.getDate() + " " + OFF_TIME_NORMAL);
-                offTimeDate = new Date(preDayBean.getOffTimeMills());
-            } catch (Exception e) {
-                e.printStackTrace();
-                return color_normal;
-            }
-            long hour = (offTimeDate.getTime() - normalOverworkDate.getTime()) / (1000 * 60 * 60);
-            if (hour >= 12) {//第二天06:00下班 第二天自动调休
-                return color_normal;
-            } else if (hour >= 7) {
-                onTime = "13:30";
-            } else if (hour >= 6) {
-                onTime = "11:00";
-            } else if (hour >= 5) {
-                onTime = "10:00";
-            } else if (hour >= 4) {
-                onTime = "09:30";
-            }
-        }
-
-        if ((todayBean.getDate() + " " + onTime).compareTo(dateTimeSdf.format(new Date(todayBean.getOnTimeMills()))) <= 0) {
+        if ((todayBean.getDate() + " " + ON_TIME_MAX).compareTo(dateTimeSdf.format(new Date(todayBean.getOnTimeMills()))) <= 0) {
             return color_problem;
         } else {
             return color_normal;
@@ -916,29 +779,19 @@ public class OverworkFragment extends BaseFragment {
     private int getOffTimeColor(OverworkBean bean) {
         if (bean.getOffTimeMills() == null) return 0;
 
-        Date normalOverworkDate = null;
-        Date startOverworkDate = null;
-        Date offTimeDate = null;
-        try {
-            normalOverworkDate = dateTimeSdf.parse(bean.getDate() + " " + OFF_TIME_NORMAL);
-            startOverworkDate = dateTimeSdf.parse(bean.getDate() + " " + OFF_TIME_OVERWORK);
-            offTimeDate = new Date(bean.getOffTimeMills());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return color_normal;
-        }
+        long workMills = bean.getOffTimeMills() - bean.getOnTimeMills();
 
-        long hour = (offTimeDate.getTime() - startOverworkDate.getTime()) / (1000 * 60 * 60);
+        long overworkTimeMills = workMills - TimeUnit.MINUTES.toMillis(WORK_TIME_MINUTE);//加班时长
 
-        if (offTimeDate.getTime() < normalOverworkDate.getTime()) {
+        if (overworkTimeMills < 0) {
             return color_problem;
-        } else if (offTimeDate.getTime() < startOverworkDate.getTime()) {
+        } else if (overworkTimeMills <= TimeUnit.HOURS.toMillis(1)) {
             return color_normal;
-        } else if (hour < 3) { //7点后
+        } else if (overworkTimeMills <= TimeUnit.HOURS.toMillis(2)) {
             return color_off_level1;
-        } else if (hour < 6) { //10点后
+        } else if (overworkTimeMills <= TimeUnit.HOURS.toMillis(3)) {
             return color_off_level2;
-        } else if (hour < 11) {   //1点后
+        } else if (overworkTimeMills <= TimeUnit.HOURS.toMillis(4)) {
             return color_off_level3;
         } else {
             return color_off_level4;

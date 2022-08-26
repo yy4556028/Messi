@@ -58,4 +58,14 @@ public class CalendarUtil {
         cal2.set(Calendar.MILLISECOND, 0);
         return (int)((cal2.getTimeInMillis() - cal1.getTimeInMillis())/(1000 * 3600 * 24));
     }
+
+    public static boolean isSameDay(long time1, long time2) {
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(time1);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(time2);
+        return (calendar1.get(Calendar.DAY_OF_YEAR) == calendar2.get(Calendar.DAY_OF_YEAR))
+                && (calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR));
+    }
 }
