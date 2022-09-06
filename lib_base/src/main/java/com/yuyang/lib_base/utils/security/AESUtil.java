@@ -21,11 +21,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.SecureRandom;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -135,7 +132,39 @@ public class AESUtil {
         //解密data
         byte[] cipherByte = cipher.doFinal(data);
         return new String(cipherByte, StandardCharsets.UTF_8);
+    }
 
+    public static String encrypt(String text, String keyStr, String ivString) throws Exception {
+        byte[] keyData = keyStr.getBytes(StandardCharsets.UTF_8);
+        // 恢复密钥
+        SecretKey secretKey = new SecretKeySpec(keyData, "AES");
+        IvParameterSpec ivParameterSpec =
+                new IvParameterSpec(ivString.getBytes(StandardCharsets.UTF_8));
+        // 指定加密的算法、工作模式和填充方式
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+        // 加密data
+        byte[] cipherByte = cipher.doFinal(text.getBytes(StandardCharsets.UTF_8));
+        // 同样对加密后数据进行 base64 编码
+        String base64 = Base64.encodeToString(cipherByte, Base64.NO_WRAP);
+        // 进行url编码 去掉= ? &
+        //        return URLEncoder.encode(base64, String.valueOf(StandardCharsets.UTF_8));
+        return base64;
+    }
+
+    public static String decryptAes(String content, String key, String ivStr) throws Exception {
+        // URL解码
+        //        content = URLDecoder.decode(content, String.valueOf(StandardCharsets.UTF_8));
+        // base64 解码
+        byte[] encryptedBytes = Base64.decode(content, Base64.NO_WRAP);
+        byte[] enCodeFormat = key.getBytes(StandardCharsets.UTF_8);
+        SecretKeySpec secretKey = new SecretKeySpec(enCodeFormat, "AES");
+        byte[] initParam = ivStr.getBytes(StandardCharsets.UTF_8);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(initParam);
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
+        byte[] result = cipher.doFinal(encryptedBytes);
+        return new String(result, StandardCharsets.UTF_8);
     }
 
     public static void main(String[] args) {

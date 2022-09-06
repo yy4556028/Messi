@@ -26,8 +26,8 @@ public class NotificationUtil {
 
     private static final int FLAG = Notification.FLAG_INSISTENT;
     private static final String channelId = "messi_notify";//过长会引发震动，我也很无奈
-    private static int notifyID = 1;
-    private static int foregroundNotifyID = 0555;
+    private static final int notifyID = 1;
+    private static final int foregroundNotifyID = 0555;
 
     private static NotificationManager notificationManager;
     private static NotificationManagerCompat mNotificationManager;
@@ -158,10 +158,11 @@ public class NotificationUtil {
                                 ringtone.stop();
                             }
                         } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 };
-                ctlThread.run();
+                ctlThread.start();
             }
         }
 

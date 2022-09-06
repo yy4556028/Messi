@@ -241,7 +241,7 @@ dependencies {
     implementation project(':lib_plugin')
 //    implementation project(':lib_lpr')    //debug 初始化LLDB时间太长，隐藏
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation 'com.liulishuo.filedownloader:library:1.4.2'
+    implementation 'com.liulishuo.filedownloader:library:1.7.6'
     implementation 'me.leolin:ShortcutBadger:1.1.16@aar'
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.2'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
@@ -256,7 +256,7 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
 
     implementation "android.arch.work:work-runtime:1.0.1"
-    implementation 'androidx.metrics:metrics-performance:1.0.0-alpha01'
+    implementation 'androidx.metrics:metrics-performance:1.0.0-alpha03'
     androidTestImplementation "android.arch.work:work-testing:1.0.1"
     implementation "android.arch.paging:runtime:1.0.1"
     implementation "android.arch.paging:rxjava2:1.0.1"
@@ -269,18 +269,14 @@ dependencies {
 //    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:2.8.1'
 
     implementation 'com.otaliastudios:cameraview:1.6.1'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02"
-    annotationProcessor "androidx.room:room-compiler:2.3.0"
 
-    implementation "androidx.camera:camera-core:1.1.0-alpha06"
+    implementation "androidx.camera:camera-core:1.1.0"
     // CameraX Camera2 extensions[可选]拓展库可实现人像、HDR、夜间和美颜、滤镜但依赖于OEM
-    implementation "androidx.camera:camera-camera2:1.1.0-alpha06"
+    implementation "androidx.camera:camera-camera2:1.1.0"
     // CameraX Lifecycle library[可选]避免手动在生命周期释放和销毁数据
-    implementation "androidx.camera:camera-lifecycle:1.1.0-alpha06"
+    implementation "androidx.camera:camera-lifecycle:1.1.0"
     // CameraX View class[可选]最佳实践，最好用里面的PreviewView，它会自行判断用SurfaceView还是TextureView来实现
-    implementation 'androidx.camera:camera-view:1.0.0-alpha26'
+    implementation 'androidx.camera:camera-view:1.1.0'
     implementation 'com.google.guava:guava:27.0.1-android'
 
     //字节码插桩

@@ -10,7 +10,11 @@ public class ConvertUtil {
     return format.format(number);
   }
 
-  public static String convertTimeStandard(long timeSecond) {
+  public static String convertTimeMs(long timeMs) {
+    return convertTimeSecond(timeMs / 1000);
+  }
+
+  public static String convertTimeSecond(long timeSecond) {
 
     if (timeSecond <= 0) {
       return "00:00";
@@ -25,8 +29,7 @@ public class ConvertUtil {
     }
 
     if (hour > 0) {
-      return String.format(
-          "%s:%s:%s", format.format(hour), format.format(minute), format.format(second));
+      return String.format("%s:%s:%s", format.format(hour), format.format(minute), format.format(second));
     } else {
       return String.format("%s:%s", format.format(minute), format.format(second));
     }
@@ -48,7 +51,7 @@ public class ConvertUtil {
 
     if (hour > 0) {
       return String.format(
-          "%s小时%s分钟%s秒", format.format(hour), format.format(minute), format.format(second));
+              "%s小时%s分钟%s秒", format.format(hour), format.format(minute), format.format(second));
     } else {
       return String.format("%s分钟:%s秒", format.format(minute), format.format(second));
     }

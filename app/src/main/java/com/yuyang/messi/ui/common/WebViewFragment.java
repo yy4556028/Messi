@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
+import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -133,8 +134,8 @@ public class WebViewFragment extends BaseFragment {
     @SuppressLint("JavascriptInterface")
     @Override
     protected void doOnViewCreated() {
-        initCookie(url);
         url = getArguments().getString(URL_KEY);
+        initCookie(url);
 
         refreshLayout = $(R.id.fragment_webView_refresh);
         mWebView = $(R.id.fragment_webView_webView);
@@ -432,10 +433,12 @@ public class WebViewFragment extends BaseFragment {
     private Object getHtmlObject() {
         Object insertObj = new Object() {
 
+            @JavascriptInterface
             public String HtmlcallJava() {//
                 return "Html call Java";
             }
 
+            @JavascriptInterface
             public void HtmlcallJava2(final String game, final String id) {//
 //                if (!TextUtils.isEmpty(game) && game.equals("game")) {
 //                    Intent intent = new Intent(getActivity(), GameDetailActivity.class);
@@ -444,6 +447,7 @@ public class WebViewFragment extends BaseFragment {
 //                }
             }
 
+            @JavascriptInterface
             public void JavacallHtml() {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -454,6 +458,7 @@ public class WebViewFragment extends BaseFragment {
                 });
             }
 
+            @JavascriptInterface
             public void JavacallHtml2() {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
