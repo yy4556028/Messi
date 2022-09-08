@@ -12,7 +12,7 @@ import com.yuyang.messi.MessiApp;
 import com.yuyang.messi.db.download.FileDownloadDBHelper;
 import com.yuyang.messi.event.DownloadConnectedEvent;
 import com.yuyang.lib_base.utils.StorageUtil;
-import com.yuyang.messi.threadPool.ThreadPool;
+import com.yuyang.lib_base.threadPool.ThreadPool;
 
 import org.greenrobot.eventbus.EventBus;
 

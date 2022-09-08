@@ -11,7 +11,7 @@ import com.yuyang.lib_base.ui.view.CommonDialog;
 import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.room.database.ModuleDatabase;
 import com.yuyang.messi.room.entity.ModuleEntity;
-import com.yuyang.messi.ui.common.WebViewActivity;
+import com.yuyang.lib_base.browser.BrowserActivity;
 import com.yuyang.messi.ui.suning.DouyaLoginActivity;
 import com.yuyang.messi.ui.suning.DouyaWebActivity;
 import com.yuyang.messi.utils.SharedPreferencesUtil;
@@ -58,7 +58,7 @@ public class ModuleTool {
             return;
         }
         if (!TextUtils.isEmpty(moduleEntity.getNetUrl())) {
-            WebViewActivity.launchActivity(context, null, moduleEntity.getNetUrl());
+            BrowserActivity.launchActivity(context, null, moduleEntity.getNetUrl());
             return;
         }
         if (!TextUtils.isEmpty(moduleEntity.getName())) {

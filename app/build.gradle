@@ -279,6 +279,11 @@ dependencies {
     implementation 'androidx.camera:camera-view:1.1.0'
     implementation 'com.google.guava:guava:27.0.1-android'
 
+    implementation "androidx.room:room-runtime:2.4.3"
+// For Kotlin use kapt instead of annotationProcessor (注意这个注释)
+    annotationProcessor "androidx.room:room-compiler:2.4.3"
+//    kapt "androidx.room:room-compiler:$room_version"
+
     //字节码插桩
 //    debugImplementation 'org.ow2.asm:asm:7.1'
 //    debugImplementation 'org.ow2.asm:asm-commons:7.1'

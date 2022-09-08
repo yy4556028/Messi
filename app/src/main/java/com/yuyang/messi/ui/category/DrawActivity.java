@@ -20,7 +20,7 @@ import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.adapter.DrawColorGridAdapter;
 import com.yuyang.messi.ui.base.AppBaseActivity;
-import com.yuyang.messi.utils.DateUtil;
+import com.yuyang.lib_base.utils.DateUtil;
 import com.yuyang.messi.view.DrawView;
 
 import java.util.ArrayList;

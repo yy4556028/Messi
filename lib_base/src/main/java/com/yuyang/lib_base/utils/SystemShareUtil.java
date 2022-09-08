@@ -1,10 +1,10 @@
-package com.yuyang.messi.utils;
+package com.yuyang.lib_base.utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.yuyang.messi.R;
+import com.yuyang.lib_base.R;
 
 import java.util.ArrayList;
 

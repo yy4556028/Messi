@@ -25,7 +25,7 @@ import androidx.core.app.NotificationCompat;
 import com.yuyang.messi.R;
 import com.yuyang.messi.bean.StepBean;
 import com.yuyang.messi.db.step.StepDao;
-import com.yuyang.messi.threadPool.ThreadPool;
+import com.yuyang.lib_base.threadPool.ThreadPool;
 import com.yuyang.messi.ui.category.sensor.accelerometer.StepCount;
 import com.yuyang.messi.ui.category.sensor.accelerometer.StepValuePassListener;
 import com.yuyang.messi.ui.login.StartActivity;

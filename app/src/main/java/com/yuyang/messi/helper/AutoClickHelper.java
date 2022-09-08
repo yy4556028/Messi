@@ -1,6 +1,6 @@
 package com.yuyang.messi.helper;
 
-import com.yuyang.messi.threadPool.ThreadPool;
+import com.yuyang.lib_base.threadPool.ThreadPool;
 
 public class AutoClickHelper {
 

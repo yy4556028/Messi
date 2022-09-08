@@ -1,6 +1,4 @@
-package com.yuyang.messi.ui.common;
-
-import static android.app.Activity.RESULT_OK;
+package com.yuyang.lib_base.browser;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -48,17 +45,18 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.yuyang.lib_base.R;
 import com.yuyang.lib_base.helper.SelectImageUtil;
 import com.yuyang.lib_base.myglide.GlideApp;
+import com.yuyang.lib_base.ui.base.BaseActivity;
 import com.yuyang.lib_base.ui.base.BaseFragment;
 import com.yuyang.lib_base.ui.view.CommonDialog;
 import com.yuyang.lib_base.utils.FileUtil;
 import com.yuyang.lib_base.utils.StorageUtil;
 import com.yuyang.lib_base.utils.SystemBarUtil;
 import com.yuyang.lib_base.utils.ToastUtil;
-import com.yuyang.messi.R;
-import com.yuyang.messi.threadPool.ThreadPool;
-import com.yuyang.messi.utils.DateUtil;
+import com.yuyang.lib_base.threadPool.ThreadPool;
+import com.yuyang.lib_base.utils.DateUtil;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -70,12 +68,12 @@ import java.util.regex.Pattern;
 /**
  * http://blog.csdn.net/zhangxin09/article/details/8750586
  */
-public class WebViewFragment extends BaseFragment {
+public class BrowserFragment extends BaseFragment {
 
     private static final String URL_KEY = "url";
 
     private SwipeRefreshLayout refreshLayout;
-    protected WebView mWebView;
+    public WebView mWebView;
     private ProgressBar mProgressBar;
 
     private int mOriginalOrientation;
@@ -118,12 +116,12 @@ public class WebViewFragment extends BaseFragment {
         }
     });
 
-    public static WebViewFragment newInstance(String url) {
-        WebViewFragment webViewFragment = new WebViewFragment();
+    public static BrowserFragment newInstance(String url) {
+        BrowserFragment browserFragment = new BrowserFragment();
         Bundle bundle = new Bundle();
         bundle.putString(URL_KEY, url);
-        webViewFragment.setArguments(bundle);
-        return webViewFragment;
+        browserFragment.setArguments(bundle);
+        return browserFragment;
     }
 
     @Override
@@ -134,16 +132,16 @@ public class WebViewFragment extends BaseFragment {
     @SuppressLint("JavascriptInterface")
     @Override
     protected void doOnViewCreated() {
-        url = getArguments().getString(URL_KEY);
-        initCookie(url);
+        url = getArguments() != null ? getArguments().getString(URL_KEY) : null;
+        WebkitCookieUtil.initCookie(requireContext(), url);
 
         refreshLayout = $(R.id.fragment_webView_refresh);
         mWebView = $(R.id.fragment_webView_webView);
         mProgressBar = $(R.id.fragment_webView_progressbar);
 
         refreshLayout.setEnabled(true);
-        refreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-        refreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(getContext(), R.color.white));
+        refreshLayout.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.theme));
+        refreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(requireContext(), R.color.white));
         refreshLayout.setDistanceToTriggerSync(200);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -177,7 +175,7 @@ public class WebViewFragment extends BaseFragment {
                     case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE: // 带有链接的图片类型
                     case WebView.HitTestResult.IMAGE_TYPE: // 处理长按图片的菜单项
                         // 弹出保存图片的对话框
-                        CommonDialog commonDialog = new CommonDialog(getActivity());
+                        CommonDialog commonDialog = new CommonDialog(requireActivity());
                         commonDialog.show();
                         commonDialog.setTitle("保存图片");
                         commonDialog.setSubtitle("是否保存图片到相册？\n(与展示图片不同)");
@@ -190,7 +188,7 @@ public class WebViewFragment extends BaseFragment {
                                 ThreadPool.getInstance().execute(new Runnable() {
                                     @Override
                                     public void run() {
-                                        GlideApp.with(getActivity())
+                                        GlideApp.with(requireActivity())
                                                 .asBitmap()
                                                 .diskCacheStrategy(DiskCacheStrategy.NONE) //不缓存到SD卡
                                                 .skipMemoryCache(true)
@@ -260,95 +258,18 @@ public class WebViewFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        saveCookies();
+        WebkitCookieUtil.saveCookie(url);
         if (mWebView != null) {
             //clear webView 缓存
             mWebView.clearCache(true);
             mWebView.clearHistory();
+            mWebView.removeAllViews();
             mWebView.destroy();
         }
     }
 
-    //https://www.jianshu.com/p/c9a9c4e1756d
-    private void initCookie(String cookiesPath) {
-        final CookieManager cookieManager = CookieManager.getInstance();
-//        CookieManager.setAcceptFileSchemeCookies(true);
-        boolean noCookie = true;
-        boolean needAddCookie = true;
-        if (noCookie) {
-            CookieSyncManager.createInstance(requireContext());
-            cookieManager.removeAllCookie();
-            CookieSyncManager.getInstance().sync();
-        } else if (needAddCookie) {
-            CookieSyncManager.createInstance(requireContext());
-//            String token = AccountPreferenceHelper.getSessionId();
-//            String did = DeviceIdUtil.getPhoneDeviceId(this);
-//            cookieManager.setCookie(getDomainFromUrl(url), "ww_token=" + token);
-//            cookieManager.setCookie(".ticstore.com", "ww_token=" + token);
-//            cookieManager.setCookie(".ticstore.com", "device_id=" + did);
-//            cookieManager.setCookie(".chumenwenwen.com", "ww_token=" + token);
-//            cookieManager.setCookie(".chumenwenwen.com", "device_id=" + did);
-//            cookieManager.setCookie(".ticwear.com", "ww_token=" + token);
-//            cookieManager.setCookie(".ticwear.com", "device_id=" + did);
-//            cookieManager.setCookie(".mobvoi.com", "ww_token=" + token);
-//            cookieManager.setCookie(".mobvoi.com", "device_id=" + did);
-            CookieSyncManager.getInstance().sync();
-        }
-
-        String cookie = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE).getString("cookies", "");// 从SharedPreferences中获取整个Cookie串
-        if (!TextUtils.isEmpty(cookie)) {
-            String[] cookieArray = cookie.split(";");// 多个Cookie是使用分号分隔的
-            for (int i = 0; i < cookieArray.length; i++) {
-                int position = cookieArray[i].indexOf("=");// 在Cookie中键值使用等号分隔
-                String cookieName = cookieArray[i].substring(0, position);// 获取键
-                String cookieValue = cookieArray[i].substring(position + 1);// 获取值
-
-                String value = cookieName + "=" + cookieValue;// 键值对拼接成 value
-                Log.i("cookie", value);
-//                cookieManager.setAcceptCookie(true);
-//                cookieManager.removeSessionCookie();// 移除旧的[可以省略]
-                CookieManager.getInstance().setCookie(getDomain(cookiesPath), value);// 设置 Cookie
-            }
-        }
-    }
-
-    private void saveCookies() {
-        CookieManager cookieManager = CookieManager.getInstance();
-        String cookieStr = cookieManager.getCookie(getDomainFromUrl(url));
-        SharedPreferences preferences = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("cookies", cookieStr);
-        editor.apply();
-    }
-
-    /**
-     * 获取URL的域名
-     */
-    private String getDomain(String url) {
-        url = url.replace("http://", "").replace("https://", "");
-        if (url.contains("/")) {
-            url = url.substring(0, url.indexOf('/'));
-        }
-        return url;
-    }
-
-    private String getDomainFromUrl(String url) {
-        try {
-            String domain = new URL(url).getHost();
-            int index = domain.indexOf('.');
-            if (index != -1) {
-                domain = domain.substring(index, domain.length());
-            }
-            return domain;
-        } catch (MalformedURLException e) {
-        }
-        return "";
-    }
-
+    @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
     private void initWebViewSettings() {
-        mWebView.setHorizontalScrollBarEnabled(false); // 水平滚动条不显示
-        mWebView.setVerticalScrollBarEnabled(false); // 垂直滚动条不显示
-
         WebSettings webSettings = mWebView.getSettings();
 
         webSettings.setDefaultFontSize(16);
@@ -368,7 +289,7 @@ public class WebViewFragment extends BaseFragment {
         webSettings.setDomStorageEnabled(true);//开启DOM storage API功能    使用localStorage则必须打开
         webSettings.setSavePassword(false);
 
-        webSettings.setGeolocationEnabled(true);
+        webSettings.setGeolocationEnabled(true);// 允许访问地址
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
         webSettings.setLoadsImagesAutomatically(true);  //支持自动加载图片
@@ -376,25 +297,29 @@ public class WebViewFragment extends BaseFragment {
         webSettings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
 
-        webSettings.setSupportZoom(true);  //支持缩放，默认为true。是下面那个的前提。
-        webSettings.setBuiltInZoomControls(true); // 设置支持缩放
+        webSettings.setSupportZoom(false);  //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setBuiltInZoomControls(false); // 设置支持缩放
         //若上面是false，则该WebView不可缩放，这个不管设置什么都不能缩放。
 
         webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
         webSettings.setSupportMultipleWindows(false);
 
         webSettings.setAllowFileAccess(true);  //设置可以访问文件
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            webSettings.setAllowFileAccessFromFileURLs(true);  //设置可以访问文件
-        }
+        webSettings.setAllowFileAccessFromFileURLs(true);  //设置可以访问文件
+        webSettings.setAllowUniversalAccessFromFileURLs(true);//允许跨域
         // webview从5.0开始默认不允许混合模式,https中不能加载http资源,需要设置开启
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
+//        webSettings.setMixedContentMode(webSettings.getMixedContentMode());
+        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
         //支持获取手势焦点，输入用户名、密码或其他
         mWebView.requestFocusFromTouch();
-        mWebView.setVerticalScrollBarEnabled(true);
+        mWebView.setVerticalScrollBarEnabled(false); // 垂直滚动条不显示
+        mWebView.setVerticalScrollbarOverlay(false);
+        mWebView.setHorizontalScrollBarEnabled(false); // 水平滚动条不显示
+        mWebView.setHorizontalScrollbarOverlay(false);
+        mWebView.setFocusable(true);
+//        mWebView.setDrawingCacheEnabled(true);
+        mWebView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         mWebView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 //            mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//不设置unify时期会有白屏bug，设置了视频会黑屏
@@ -409,8 +334,6 @@ public class WebViewFragment extends BaseFragment {
 
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); //支持内容重新布局
         webSettings.supportMultipleWindows();  //多窗口
-
-        webSettings.setAllowUniversalAccessFromFileURLs(true);//允许跨域
 
         webSettings.setTextZoom(100);//设置字体默认缩放大小(改变网页字体大小,setTextSize api14被弃用)
 
@@ -449,7 +372,7 @@ public class WebViewFragment extends BaseFragment {
 
             @JavascriptInterface
             public void JavacallHtml() {
-                getActivity().runOnUiThread(new Runnable() {
+                requireActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mWebView.loadUrl("javascript: showFromHtml()");
@@ -460,7 +383,7 @@ public class WebViewFragment extends BaseFragment {
 
             @JavascriptInterface
             public void JavacallHtml2() {
-                getActivity().runOnUiThread(new Runnable() {
+                requireActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mWebView.loadUrl("javascript: showFromHtml2('IT-homer blog')");
@@ -486,7 +409,7 @@ public class WebViewFragment extends BaseFragment {
     //WebViewClient就是帮助WebView处理各种通知、请求事件的。
     private class MyWebViewClient extends WebViewClient {
         /**
-         * 在点击请求的是链接是才会调用，
+         * 在点击请求的是链接时才会调用，
          * 重写此方法返回true表明点击网页里面的链接还是在当前的webview里跳转，
          * 不跳到浏览器那边。
          * 这个函数我们可以做很多操作，比如我们读取到某些特殊的URL，于是就可以不打开地址，
@@ -500,13 +423,13 @@ public class WebViewFragment extends BaseFragment {
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed();//webview处理https请求
+//            handler.cancel();
         }
 
         // 此回调是拦截点击要跳转的url链接，并对请求的url链接做修改（添加删除字段）
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             return super.shouldInterceptRequest(view, request);
-
         }
 
 //        shouldOverrideUrlLoading(WebView view, String url)  最常用的，比如上面的。
@@ -552,6 +475,8 @@ public class WebViewFragment extends BaseFragment {
             if (newProgress == 100) {
                 mProgressBar.setVisibility(View.GONE);
                 refreshLayout.setRefreshing(false);
+                //注入js代码测量webView高度
+                mWebView.loadUrl("javascript:App.resize(document.body.getBoundingClientRect().height)");
             } else {
                 mProgressBar.setVisibility(View.VISIBLE);
             }
@@ -588,7 +513,7 @@ public class WebViewFragment extends BaseFragment {
             }
 
             SystemBarUtil.fullScreen_immersive(getActivity(), true, false, true, false, true);
-            ((WebViewActivity) getActivity()).setStatusBar();
+            ((BaseActivity) getActivity()).setStatusBar();
             FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
             decor.removeView(mCustomView);
             mCustomView = null;
@@ -642,7 +567,6 @@ public class WebViewFragment extends BaseFragment {
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
             if (uploadMessageAboveL != null) {
                 uploadMessageAboveL.onReceiveValue(null);
-                uploadMessageAboveL = null;
             }
             uploadMessageAboveL = filePathCallback;
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -661,7 +585,8 @@ public class WebViewFragment extends BaseFragment {
 //                ((WebViewActivity) getActivity()).headerLayout.setTitle(title);
 //            }
         }
-//
+
+        //
 //        @Override
 //        public void onReceivedIcon(WebView view, Bitmap icon) {
 //            //

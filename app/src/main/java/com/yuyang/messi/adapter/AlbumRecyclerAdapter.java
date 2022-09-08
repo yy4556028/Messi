@@ -20,7 +20,7 @@ import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.bean.ImageBean;
 import com.yuyang.messi.bean.PhotoDirectory;
-import com.yuyang.messi.utils.DateUtil;
+import com.yuyang.lib_base.utils.DateUtil;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.helper.AutoClickHelper;
-import com.yuyang.messi.threadPool.ThreadPool;
+import com.yuyang.lib_base.threadPool.ThreadPool;
 import com.yuyang.messi.ui.base.AppBaseActivity;
 
 import java.util.Random;

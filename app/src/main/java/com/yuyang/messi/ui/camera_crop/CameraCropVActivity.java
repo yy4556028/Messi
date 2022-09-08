@@ -25,7 +25,7 @@ import com.otaliastudios.cameraview.Flash;
 import com.otaliastudios.cameraview.SizeSelector;
 import com.otaliastudios.cameraview.SizeSelectors;
 import com.yuyang.messi.R;
-import com.yuyang.messi.threadPool.ThreadPool;
+import com.yuyang.lib_base.threadPool.ThreadPool;
 import com.yuyang.messi.ui.base.AppBaseActivity;
 import com.yuyang.messi.utils.CameraViewUtil;
 

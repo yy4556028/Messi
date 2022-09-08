@@ -33,11 +33,6 @@ dependencies {
     api "androidx.activity:activity-ktx:1.5.1"
     api "androidx.fragment:fragment-ktx:1.5.2"
 
-    api "androidx.room:room-runtime:2.4.3"
-// For Kotlin use kapt instead of annotationProcessor (注意这个注释)
-    annotationProcessor "androidx.room:room-compiler:2.4.3"
-//    kapt "androidx.room:room-compiler:$room_version"
-
     api 'com.tencent:mmkv:1.2.12'
 
     // Preferences DataStore

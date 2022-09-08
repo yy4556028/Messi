@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yuyang.lib_base.myglide.GlideApp
 import com.yuyang.messi.R
 import com.yuyang.messi.bean.GankBean
-import com.yuyang.messi.ui.common.WebViewActivity
+import com.yuyang.lib_base.browser.BrowserActivity
 import java.util.*
 
 class GankChildRecyclerAdapter(private val context: Context) : RecyclerView.Adapter<GankChildRecyclerAdapter.MyHolder>() {
@@ -92,7 +92,7 @@ class GankChildRecyclerAdapter(private val context: Context) : RecyclerView.Adap
                 val images = ArrayList<String>()
                 images.add(url)
                 if (!url.endsWith(".jpg")) {
-                    WebViewActivity.launchActivity(context, list[adapterPosition].desc, url)
+                    BrowserActivity.launchActivity(context, list[adapterPosition].desc, url)
                 } else {
 //                    Intent intent = new Intent(context, ViewPicActivity.class);
 //                    intent.putStringArrayListExtra(ViewPicActivity.IMG_URLS, images);

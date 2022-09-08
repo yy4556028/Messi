@@ -13,3 +13,4 @@ include ':lib_plugin'
 
 //includeBuild 'versionplugin'
 include ':aidl_audioplayer'
+include ':lib_pay'

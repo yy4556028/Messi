@@ -1,4 +1,4 @@
-package com.yuyang.messi.threadPool;
+package com.yuyang.lib_base.threadPool;
 
 public class PriorityRunnable implements Runnable, Comparable<PriorityRunnable> {
 
