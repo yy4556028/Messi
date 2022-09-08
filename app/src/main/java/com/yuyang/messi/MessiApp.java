@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
 import android.view.WindowManager;
 
@@ -59,20 +60,6 @@ import okhttp3.OkHttpClient;
  */
 public class MessiApp extends BaseApp {
 
-    static {
-        //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
-
-            layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
-            return new MaterialHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
-        });
-        //设置全局的Footer构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
-            //指定为经典Footer，默认是 BallPulseFooter
-            return new ClassicsFooter(context).setDrawableSize(20);
-        });
-    }
-
     public static final String TAG = MessiApp.class.getSimpleName();
 
     public static MessiApp getInstance() {
@@ -92,29 +79,11 @@ public class MessiApp extends BaseApp {
 
         CrashHandler.getInstance().init(this);
 
-        // just for open the log in this demo project.
-        FileDownloadLog.NEED_LOG = false;
-
-        /**
-         * just for cache Application's Context, and ':filedownloader' progress will NOT be launched
-         * by below code, so please do not worry about performance.
-         * @see FileDownloader#init(Context)
-         */
-        FileDownloader.init(getApplicationContext(), new DownloadMgrInitialParams.InitCustomMaker()
-                .connectionCreator(new FileDownloadUrlConnection
-                        .Creator(new FileDownloadUrlConnection.Configuration()
-                        .connectTimeout(15_000) // set connection timeout.
-                        .readTimeout(15_000) // set read timeout.
-                        .proxy(Proxy.NO_PROXY) // set proxy
-                )));
-
         initOkHttpUtil();
-        initBaidu();
 
         String rootDir = MMKV.initialize(this);
         LogUtil.i("MMKV", "rootDir = " + rootDir);
 //        ShareSDK.initSDK(this);
-        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5915edbb");//讯飞语音初始化
 
         initNightMode();
 
@@ -131,6 +100,55 @@ public class MessiApp extends BaseApp {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }'
+    }
+
+    /** 可以放在异步初始化的 */
+    private void initAsync() {
+        AsyncHandler.getInstance()
+                .post(
+                        () -> {
+
+                            // just for open the log in this demo project.
+                            FileDownloadLog.NEED_LOG = false;
+                            /**
+                             * just for cache Application's Context, and ':filedownloader' progress will NOT be launched
+                             * by below code, so please do not worry about performance.
+                             * @see FileDownloader#init(Context)
+                             */
+                            FileDownloader.init(getApplicationContext(), new DownloadMgrInitialParams.InitCustomMaker()
+                                    .connectionCreator(new FileDownloadUrlConnection
+                                            .Creator(new FileDownloadUrlConnection.Configuration()
+                                            .connectTimeout(15_000) // set connection timeout.
+                                            .readTimeout(15_000) // set read timeout.
+                                            .proxy(Proxy.NO_PROXY) // set proxy
+                                    )));
+
+                            initBaidu();
+                            SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5915edbb");//讯飞语音初始化
+                        });
+    }
+
+    private void initInIdleHandler(boolean hasAgreedPrivacy) {
+        Looper.myQueue()
+                .addIdleHandler(
+                        () -> {
+                            LogUtil.i(TAG, "init in idle handler！start");
+
+                            //设置全局的Header构建器
+                            SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+
+                                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
+                                return new MaterialHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
+                            });
+                            //设置全局的Footer构建器
+                            SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
+                                //指定为经典Footer，默认是 BallPulseFooter
+                                return new ClassicsFooter(context).setDrawableSize(20);
+                            });
+
+                            LogUtil.i(TAG, "init in idle handler！end");
+                            return false;
+                        });
     }
 
     /**
