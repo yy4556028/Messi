@@ -191,7 +191,7 @@
             android:name=".ui.media.Camera2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.media.CameraXActivity"
+            android:name=".ui.media.camerax.CameraXActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.qrcode.QRCodeActivity"

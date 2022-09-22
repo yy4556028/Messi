@@ -13,6 +13,7 @@ import com.yuyang.messi.databinding.ActivityCircleMenuBinding
 import com.yuyang.messi.ui.base.AppBaseActivity
 import com.yuyang.messi.ui.media.*
 import com.yuyang.messi.ui.media.audio.aidl.AudioActivity
+import com.yuyang.messi.ui.media.camerax.CameraXActivity
 import com.yuyang.messi.utils.NotificationUtil
 import com.yuyang.messi.view.CircleMenuLayout
 import java.util.*

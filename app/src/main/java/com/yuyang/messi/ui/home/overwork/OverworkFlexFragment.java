@@ -770,6 +770,8 @@ public class OverworkFlexFragment extends BaseFragment {
     private int getOffTimeColor(OverworkBean bean) {
         if (bean.getOffTimeMills() == null) return 0;
 
+        if (bean.getOnTimeMills() == null) return color_normal;
+
         long workMills = bean.getOffTimeMills() - bean.getOnTimeMills();
 
         long overworkTimeMills = workMills - TimeUnit.MINUTES.toMillis(WORK_TIME_MINUTE);//加班时长

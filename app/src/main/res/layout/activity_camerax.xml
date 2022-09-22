@@ -1,98 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/transparent"
-        android:gravity="center_vertical">
+    <ImageView
+        android:id="@+id/ivFlash"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/activity_camera_flash_off"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/activity_camera_flash"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/activity_camera_flash_auto" />
-
-        <ImageView
-            android:id="@+id/activity_camera_switch"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/activity_camera_switch" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/activity_camera_seekbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_gravity="center">
-
-        <View
-            android:id="@+id/activity_camera_zoom_out_view"
-            android:layout_width="10dp"
-            android:layout_height="2dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
-            android:background="@color/white" />
-
-        <View
-            android:id="@+id/activity_camera_zoom_in_view"
-            android:layout_width="10dp"
-            android:layout_height="2dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
-            android:background="@color/white" />
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="10dp"
-            android:layout_alignStart="@id/activity_camera_zoom_in_view"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="4dp"
-            android:background="@color/white" />
-
-        <androidx.appcompat.widget.AppCompatSeekBar
-            android:id="@+id/activity_camera_seekbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/activity_camera_zoom_in_view"
-            android:layout_toEndOf="@id/activity_camera_zoom_out_view"
-            android:maxHeight="3dp"
-            android:minHeight="3dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:progressDrawable="@drawable/activity_camera_seekbar_background"
-            android:thumb="@drawable/activity_camera_seekbar_thumb"
-            android:thumbOffset="0dp" />
-
-    </RelativeLayout>
-
-    <com.yuyang.messi.view.Progress.RoundProgressBar
-        android:id="@+id/activity_camera_shutter"
+    <TextView
+        android:id="@+id/tvCapture"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="100dp"
-        app:centreColor="@color/transparent"
-        app:midRoundColor="@color/yellow"
-        app:midRoundWidth="3dp"
-        app:outRoundColor="@color/white"
-        app:outRoundWidth="5dp"
-        app:roundProgressColor="@color/red" />
+        android:background="@drawable/oval_white"
+        android:gravity="center"
+        android:text="拍照"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/ivSwitch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/activity_camera_switch"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCapture"
+        app:layout_constraintEnd_toStartOf="@+id/tvCapture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvCapture" />
+
+    <ImageView
+        android:id="@+id/tvSwitchCaptureMode"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/video"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCapture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvCapture"
+        app:layout_constraintTop_toTopOf="@+id/tvCapture" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
