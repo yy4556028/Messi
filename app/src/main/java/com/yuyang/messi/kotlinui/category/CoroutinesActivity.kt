@@ -1,11 +1,14 @@
 package com.yuyang.messi.kotlinui.category
 
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenResumed
 import com.yuyang.lib_base.ui.header.HeaderLayout
 import com.yuyang.lib_base.utils.ToastUtil
 import com.yuyang.messi.R
 import com.yuyang.messi.ui.base.AppBaseActivity
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.asFlow
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -19,7 +22,7 @@ import kotlin.coroutines.CoroutineContext
  *
  * 三种方式创建协程：
  * runBlocking{}线程阻塞的，适用于单元测试，一般业务开发不会使用这种
- * GlobalScope.launch{}，不会阻塞线程，不推荐生命周期同application，不能取消,容易内存泄漏
+ * GlobalScope.launch{}，不会阻塞线程，不推荐 生命周期同application，不能取消,容易内存泄漏
  * CoroutineScope(Dispatchers.IO).launch {}
  */
 class CoroutinesActivity : AppBaseActivity() {
@@ -36,6 +39,19 @@ class CoroutinesActivity : AppBaseActivity() {
         Thread.currentThread().name
         testCoroutines()
         testSequence()
+
+
+        lifecycleScope.launch{
+            (1..10).asFlow()
+                .collect {
+                        num->
+                }
+            whenResumed {  }
+        }
+        MainScope().launch {  }
+//        viewModelScope.launch{
+//
+//        }
     }
 }
 

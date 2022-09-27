@@ -214,6 +214,9 @@
             android:label="Progress"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".kotlinui.category.UnLockActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.category.AdaptScreenActivity"
             android:screenOrientation="portrait" />
         <activity

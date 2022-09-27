@@ -103,7 +103,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         if (CommonConstant.environment == AppEnvironment.Development) {
             Activity activity = CommonUtil.getCurrentActivity();
             if (activity != null) {
-                showCrashDialog(activity, ex);
+//                showCrashDialog(activity, ex);
                 return true;
             }
         }
