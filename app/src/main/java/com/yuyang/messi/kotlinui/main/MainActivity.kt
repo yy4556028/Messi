@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
+import com.google.android.material.navigation.NavigationBarView
 import com.liulishuo.filedownloader.FileDownloader
 import com.yuyang.lib_baidu.utils.BaiduLocationUtil
 import com.yuyang.lib_baidu.utils.BaiduLocationUtil.OnLocationListener
@@ -27,7 +28,6 @@ import com.yuyang.lib_share.ShareSDKUtil
 import com.yuyang.messi.MessiApp
 import com.yuyang.messi.R
 import com.yuyang.messi.databinding.ActivityMainBinding
-import com.yuyang.messi.event.DayNightEvent
 import com.yuyang.messi.kotlinui.beauty.BeautyActivity
 import com.yuyang.messi.kotlinui.category.CategoryActivity
 import com.yuyang.messi.kotlinui.circle_menu.CircleMenuActivity
@@ -42,15 +42,11 @@ import com.yuyang.messi.ui.football.FootballActivity
 import com.yuyang.messi.ui.game.MindCameraActivity
 import com.yuyang.messi.ui.home.TestFragment
 import com.yuyang.messi.ui.home.overwork.OverworkFlexFragment
-import com.yuyang.messi.ui.home.overwork.OverworkFragment
 import com.yuyang.messi.ui.main.AboutActivity
 import com.yuyang.messi.ui.setting.SettingActivity
 import com.yuyang.messi.utils.SnackBarUtil
 import com.yuyang.messi.view.GravityViewUtil
 import com.yuyang.messi.widget.watermark.WaterMarkManager
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
 
 
@@ -71,7 +67,7 @@ class MainActivity : AppBaseActivity() {
             val deniedAskList: MutableList<String> = arrayListOf()
             val deniedNoAskList: MutableList<String> = arrayListOf()
             for ((key, value) in result) {
-                if (!value!!) {
+                if (!value) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(activity, key)) {
                         deniedAskList.add(key)
                     } else {
@@ -112,7 +108,6 @@ class MainActivity : AppBaseActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             )
         )
-        EventBus.getDefault().register(this)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -134,7 +129,6 @@ class MainActivity : AppBaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        EventBus.getDefault().unregister(this)
         BaiduLocationUtil.getInstance().stopLocation()
     }
 
@@ -184,7 +178,10 @@ class MainActivity : AppBaseActivity() {
             })
         }
         mBinding.navigationView.apply {
-            GravityViewUtil.addGravityMonitor(activity, getHeaderView(0).findViewById(R.id.gravityCircleImageView))
+            GravityViewUtil.addGravityMonitor(
+                activity,
+                getHeaderView(0).findViewById(R.id.gravityCircleImageView)
+            )
 //            val avatar: GravityShapeableImageView =
 //                getHeaderView(0).findViewById(R.id.gravityCircleImageView)
 //            avatar.setOnClickListener { avatar.toggle() }
@@ -241,26 +238,27 @@ class MainActivity : AppBaseActivity() {
             adapter = MyPagerAdapter(supportFragmentManager, null, fragmentList)
         }
         mBinding.bottomNavView.apply {
-            
-            getOrCreateBadge(R.id.nav_menu_home).apply { 
+
+            getOrCreateBadge(R.id.nav_menu_home).apply {
                 backgroundColor = Color.RED
                 badgeTextColor = Color.WHITE
                 number = 99999
                 maxCharacterCount = 3
                 removeBadge(R.id.nav_menu_home)
             }
-            
-            setOnNavigationItemSelectedListener { menuItem ->
+
+            setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { menuItem ->
                 headerLayout?.showTitle(menuItem.title.toString())
                 when (menuItem.itemId) {
                     R.id.nav_menu_home -> mBinding.viewPager.setCurrentItem(0, false)
                     R.id.nav_menu_tools -> mBinding.viewPager.setCurrentItem(1, false)
                     R.id.nav_menu_work -> mBinding.viewPager.setCurrentItem(2, false)
                     R.id.nav_menu_profile -> mBinding.viewPager.setCurrentItem(3, false)
-                    else -> return@setOnNavigationItemSelectedListener false
+                    else -> return@OnItemSelectedListener false
                 }
-                return@setOnNavigationItemSelectedListener true
+                return@OnItemSelectedListener true
             }
+            )
             itemIconTintList = null
 //            menu.getItem(0).icon = null
 
@@ -308,10 +306,5 @@ class MainActivity : AppBaseActivity() {
             return true
         }
         return false
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = false)
-    fun onEvent(event: DayNightEvent?) {
-        recreate()
     }
 }

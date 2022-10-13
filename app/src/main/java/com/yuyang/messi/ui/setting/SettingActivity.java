@@ -24,12 +24,9 @@ import com.yuyang.lib_base.utils.LiveDataBus;
 import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.MessiApp;
 import com.yuyang.messi.R;
-import com.yuyang.messi.event.DayNightEvent;
 import com.yuyang.messi.service.FloatWindowService;
 import com.yuyang.messi.ui.base.AppBaseActivity;
 import com.yuyang.messi.utils.SharedPreferencesUtil;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -136,16 +133,6 @@ public class SettingActivity extends AppBaseActivity {
                                     SharedPreferencesUtil.setNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
                                     break;
                             }
-                            finish();
-                            overridePendingTransition(R.anim.fade_in, R.anim.none);
-                            startActivity(new Intent(getActivity(), SettingActivity.class));
-                            EventBus.getDefault().post(new DayNightEvent());
-//                                recreate();
-//                                if (getDarkModeStatus()) {
-//                                    setTheme(R.style.Theme_App_Dark);
-//                                } else {
-//                                    setTheme(R.style.Theme_App);
-//                                }
                         }
                     }, true);
         });
