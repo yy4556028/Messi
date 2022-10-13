@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.6.21'
     repositories {
         google()
         jcenter()
@@ -15,6 +15,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.mob.sdk:MobSDK:2018.0319.1724"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40.1'
 //        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'//gradle3.5.3可以 7.0.4 报错
 
         // NOTE: Do not place your application dependencies here; they belong

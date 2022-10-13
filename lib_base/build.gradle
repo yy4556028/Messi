@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
 
@@ -31,7 +33,7 @@ dependencies {
 //    api 'androidx.draganddrop:draganddrop:1.0.0-alpha02'//MinSdk24 Android 7.0
 
     api "androidx.core:core-ktx:1.8.0"
-    annotationProcessor 'androidx.annotation:annotation:1.4.0'
+    kapt 'androidx.annotation:annotation:1.4.0'
 
     api "androidx.activity:activity-ktx:1.5.1"
     api "androidx.fragment:fragment-ktx:1.5.2"
@@ -43,6 +45,10 @@ dependencies {
     // Proto DataStore
     api "androidx.datastore:datastore-core:1.0.0"
     api "com.google.protobuf:protobuf-java:3.19.2"
+
+    // hilt
+    api "com.google.dagger:hilt-android:2.41"
+    kapt "com.google.dagger:hilt-android-compiler:2.41"
 
     //cookie 库
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
@@ -60,7 +66,7 @@ dependencies {
     api('com.github.bumptech.glide:glide:4.13.0') {
         exclude group: "com.android.support"
     }
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+    kapt 'com.github.bumptech.glide:compiler:4.13.0'
 
     //CnPeng 2018/9/26 下午8:38 这两行是为了解决 https://github.com/bumptech/glide/issues/3185 ——Glide 中的注解还没有完全兼容androidx
 //    api 'com.android.support:support-annotations:28.0.0'

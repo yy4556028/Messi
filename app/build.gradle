@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'maven-publish'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 //    id 'com.yuyang.gradle.versionPlugin'
 }
 apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
@@ -282,8 +284,12 @@ dependencies {
 
     implementation "androidx.room:room-runtime:2.4.3"
 // For Kotlin use kapt instead of annotationProcessor (注意这个注释)
-    annotationProcessor "androidx.room:room-compiler:2.4.3"
-//    kapt "androidx.room:room-compiler:$room_version"
+//    annotationProcessor "androidx.room:room-compiler:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+
+    // hilt
+    implementation "com.google.dagger:hilt-android:2.41"
+    kapt "com.google.dagger:hilt-android-compiler:2.41"
 
     //字节码插桩
 //    debugImplementation 'org.ow2.asm:asm:7.1'

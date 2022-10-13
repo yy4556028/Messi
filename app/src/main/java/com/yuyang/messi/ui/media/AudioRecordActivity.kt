@@ -16,15 +16,19 @@ import com.yuyang.messi.R
 import com.yuyang.messi.databinding.ActivityAudioRecordBinding
 import com.yuyang.messi.ui.base.AppBaseActivity
 import com.yuyang.messi.ui.media.adapter.AudioRecordAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AudioRecordActivity : AppBaseActivity() {
 
     private lateinit var binding: ActivityAudioRecordBinding
 
-    private val mAudioRecorderHelper = AudioRecorderHelper()
+    private val mAudioRecorderHelper: AudioRecorderHelper = AudioRecorderHelper()
 
-    private var mAdapter: AudioRecordAdapter? = null
+    @Inject
+    lateinit var mAdapter: AudioRecordAdapter
 
     private val permissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
@@ -62,7 +66,7 @@ class AudioRecordActivity : AppBaseActivity() {
             )
         )
 
-        FileUtil.deleteDir(File(AudioRecorderHelper.FILE_DIR) , false)
+        FileUtil.deleteDir(File(AudioRecorderHelper.FILE_DIR), false)
     }
 
     override fun onDestroy() {
@@ -98,13 +102,13 @@ class AudioRecordActivity : AppBaseActivity() {
             binding.endRecord.isEnabled = false
             mAudioRecorderHelper.stopRecording()
 
-            mAdapter?.data = mAudioRecorderHelper.wavList
+            mAdapter.setData(mAudioRecorderHelper.wavList)
         }
 
-        mAudioRecorderHelper.setRecorderListener(object:AudioRecorderHelper.RecorderListener{
+        mAudioRecorderHelper.setRecorderListener(object : AudioRecorderHelper.RecorderListener {
             override fun onGenerateWav(wavFilePath: String?) {
-                runOnUiThread{
-                    mAdapter?.data = mAudioRecorderHelper.wavList
+                runOnUiThread {
+                    mAdapter.setData(mAudioRecorderHelper.wavList)
                 }
             }
 
@@ -117,16 +121,15 @@ class AudioRecordActivity : AppBaseActivity() {
 
         binding.recyclerView.let {
             it.layoutManager = LinearLayoutManager(this)
-            mAdapter = AudioRecordAdapter(null)
-            mAdapter?.setMyClickListener(object : AudioRecordAdapter.MyClickListener {
+            mAdapter.setMyClickListener(object : AudioRecordAdapter.MyClickListener {
                 override fun onItemPlay(index: Int) {
                     MediaPlayerController.getInstance()
-                        .setPath(mAdapter?.data?.get(index))
+                        .setPath(mAdapter.getData()?.get(index))
                     MediaPlayerController.getInstance().mediaPlayer.start()
                 }
 
                 override fun onItemDetect(index: Int) {
-                    detectSnore(mAdapter?.data?.get(index))
+                    detectSnore(mAdapter.getData()?.get(index))
                 }
 
             })

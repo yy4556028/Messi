@@ -50,6 +50,7 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import dagger.hilt.android.HiltAndroidApp;
 import dalvik.system.BaseDexClassLoader;
 import dalvik.system.DexClassLoader;
 import dalvik.system.PathClassLoader;
@@ -58,6 +59,7 @@ import okhttp3.OkHttpClient;
 /**
  * https://blankj.com/
  */
+@HiltAndroidApp
 public class MessiApp extends BaseApp {
 
     public static final String TAG = MessiApp.class.getSimpleName();

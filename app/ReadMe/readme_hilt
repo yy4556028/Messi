@@ -1,0 +1,47 @@
+https://blog.csdn.net/guolin_blog/article/details/109787732
+Jetpack新成员，一篇文章带你玩转Hilt和依赖注入
+关键词：hilt 郭霖
+
+配置1.根目录的build.gradle.buildscript.dependencies 配置
+    classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40.1'
+
+配置2.app/build.gradle中 配置
+    apply plugin: 'kotlin-kapt'
+    apply plugin: 'dagger.hilt.android.plugin'
+
+    dependencies {
+        implementation "com.google.dagger:hilt-android:2.40.1"
+        kapt "com.google.dagger:hilt-android-compiler:2.40.1"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+      }
+
+配置3. 自定义Application 增加 @HiltAndroidApp 注解
+
+用法：
+步骤1：增加入口点 @AndroidEntryPoint (Activity Fragment View Service BroadcastReceiver)
+步骤2：为希望注入的字段声明 @Inject 注解，同时在被注入字段的构造函数方法声明 @Inject 注解。
+        如果构造函数有参数，参数也要支持被 Hilt 依赖注入
+
+        如果被注入字段是一个接口：
+        1.新建一个类(可以抽象类)，类名随意例如 EngineModule 声明 @Module(表示这一个用于提供依赖注入实例的模块) 和 @InstallIn
+        2.定义一个函数(可抽象)，函数名随意，返回值必须是 接口名 表示用于给Engine类型的接口提供实例，参数就是继承接口的实例，最后函数加上@Bind
+
+        如果Module 提供多个函数返回都是接口名：
+        为每个函数分别定义注解
+                    @Qualifier
+                    @Retention(AnnotationRetention.BINARY) ：表示该注解在编译之后会得到保留，但是无法通过反射去访问这个注解
+                    annotation class BindGasEngine
+
+                    @Qualifier
+                    @Retention(AnnotationRetention.BINARY) ：表示该注解在编译之后会得到保留，但是无法通过反射去访问这个注解
+                    annotation class BindElectricEngine
+
+        把定义好的注解 分别声明在 EngineModule 中的函数上 和 为 接口 进行依赖注入的地方
+
+
+
+
