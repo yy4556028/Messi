@@ -297,10 +297,10 @@ public class CameraXActivity extends AppBaseActivity {
         //将生命周期,选择摄像头,预览,绑定到相机
         if (isVideoMode) {
             mCamera = mCameraProvider.bindToLifecycle(getActivity(), cameraSelector,
-                    mPreview, mVideoCapture, mImageAnalyzer);
+                    mPreview, mVideoCapture);
         } else {
             mCamera = mCameraProvider.bindToLifecycle(getActivity(), cameraSelector,
-                    mPreview, mImageCapture);
+                    mPreview, mImageCapture, mImageAnalyzer);
         }
 
         //  camera.getCameraInfo()

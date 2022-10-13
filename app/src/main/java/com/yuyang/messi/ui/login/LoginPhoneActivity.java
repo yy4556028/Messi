@@ -108,7 +108,10 @@ public class LoginPhoneActivity extends AppBaseActivity {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            permissionsLauncher.launch(new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS});
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_PHONE_STATE,
+                    android.Manifest.permission.READ_SMS,
+                    Manifest.permission.READ_PHONE_NUMBERS});
         }
 
         try {

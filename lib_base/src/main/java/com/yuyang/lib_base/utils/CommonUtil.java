@@ -30,6 +30,8 @@ import android.view.WindowMetrics;
 import android.widget.AbsListView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresPermission;
+
 import com.yuyang.lib_base.BaseApp;
 import com.yuyang.lib_base.R;
 
@@ -167,6 +169,11 @@ public class CommonUtil {
         return isRunning;
     }
 
+    @RequiresPermission(anyOf = {
+            android.Manifest.permission.READ_PHONE_STATE,
+            android.Manifest.permission.READ_SMS,
+            android.Manifest.permission.READ_PHONE_NUMBERS
+    })
     public static String getPhoneNumber() {
         TelephonyManager tm = (TelephonyManager) BaseApp.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
         String phoneId = tm.getLine1Number();

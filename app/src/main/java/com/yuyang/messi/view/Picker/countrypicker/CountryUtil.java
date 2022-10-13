@@ -1,15 +1,23 @@
 package com.yuyang.messi.view.Picker.countrypicker;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
+
+import com.yuyang.lib_base.BaseApp;
+import com.yuyang.lib_base.utils.LogUtil;
 import com.yuyang.messi.MessiApp;
 import com.yuyang.messi.R;
 
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -79,7 +87,7 @@ public class CountryUtil {
                 }
 
                 // Sort the all countries list based on country name
-                Collections.sort(allCountriesList, new Comparator<Country>(){
+                Collections.sort(allCountriesList, new Comparator<Country>() {
                     @Override
                     public int compare(Country lhs, Country rhs) {
                         return lhs.getName().compareTo(rhs.getName());
@@ -134,24 +142,71 @@ public class CountryUtil {
             throws java.io.IOException {
         String base64 = context.getResources().getString(R.string.countries);
         byte[] data = Base64.decode(base64, Base64.DEFAULT);
-        return new String(data, "UTF-8");
+        return new String(data, StandardCharsets.UTF_8);
+    }
+
+    public static String getLanguage() {
+        LocaleListCompat locales = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
+        //        Locale locale = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0);
+//        Locale locale = Resources.getSystem().getConfiguration().locale;
+        Locale currLocal = locales.get(0);
+        if (currLocal == null) {
+            return null;
+        }
+        if ("zh".equalsIgnoreCase(currLocal.getLanguage())
+                && !"CN".equalsIgnoreCase(currLocal.getCountry())
+        ) {
+            return "zh-TW";
+        } else {
+            return currLocal.getLanguage();
+        }
+    }
+
+    public static String getCountry() {
+        Locale locale = LocaleListCompat.getDefault().get(0);
+//        Locale locale = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0);
+//        Locale locale = Resources.getSystem().getConfiguration().locale;
+        String localeCountry;
+        if (locale != null) {
+            localeCountry = locale.getCountry();
+            if (!TextUtils.isEmpty(localeCountry)) {
+                LogUtil.d("CountryUtil", "get country from locale list, country = " + localeCountry);
+                return localeCountry;
+            }
+        }
+        TelephonyManager tm = (TelephonyManager) BaseApp.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
+        if (tm != null) {
+            localeCountry = tm.getNetworkCountryIso();
+            if (!TextUtils.isEmpty(localeCountry)) {
+                LogUtil.d("CountryUtil", "get country from network country iso, country = " + localeCountry);
+                return localeCountry.toUpperCase();
+            }
+        }
+        localeCountry = Locale.getDefault().getCountry();
+        if (TextUtils.isEmpty(Locale.getDefault().getCountry())) {
+            LogUtil.d("CountryUtil", "get country all is null, country = " + localeCountry);
+        } else {
+            LogUtil.d("CountryUtil", "get country from locale country, country = " + localeCountry);
+        }
+        return localeCountry;
     }
 
     public static String getCurrentCountryCode() {
         TelephonyManager manager = (TelephonyManager) MessiApp.getInstance().getSystemService(Context.TELEPHONY_SERVICE);
         String ISOCode = manager.getSimCountryIso().toUpperCase();
-        if (ISOCode == null || ISOCode.equals("")) {
+        if (TextUtils.isEmpty(ISOCode)) {
             ISOCode = manager.getNetworkCountryIso().toUpperCase();
         }
-        if (ISOCode == null || ISOCode.equals("")) {
+        if (TextUtils.isEmpty(ISOCode)) {
             ISOCode = Locale.getDefault().getCountry();
         }
         return ISOCode;
     }
-    public static String addCountryCodeForPhoneNumeber(String phoneNumber){
-        if(phoneNumber.startsWith("+")){
+
+    public static String addCountryCodeForPhoneNumber(String phoneNumber) {
+        if (phoneNumber.startsWith("+")) {
             return phoneNumber;
-        }else{
+        } else {
             String currentCountryCode = getCurrentCountryCode();
             if (currentCountryCode == null || currentCountryCode.equals("")) {
                 // defaut to be US, but should not have gone to this step
@@ -163,9 +218,10 @@ public class CountryUtil {
         }
 
     }
-    public static void addCountryCodeForPhoneNumbers(String phoneNumbers[]){
+
+    public static void addCountryCodeForPhoneNumbers(String phoneNumbers[]) {
         for (int i = 0; i < phoneNumbers.length; i++) {
-            phoneNumbers[i] = addCountryCodeForPhoneNumeber(phoneNumbers[i]);
+            phoneNumbers[i] = addCountryCodeForPhoneNumber(phoneNumbers[i]);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.lib_bluetooth;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -12,6 +13,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
@@ -20,6 +25,7 @@ import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.lib_base.ui.header.HeaderRightBean;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 //                https://github.com/AltBeacon/android-beacon-library
 //                https://github.com/Jasonchenlijian/FastBle
@@ -35,21 +41,51 @@ public class BluetoothActivity extends BaseActivity {
 
     private boolean isBlueToothOpen;//记录进入页面时蓝牙是否开启，如未开启，退出页面时将蓝牙关闭
 
+    private final ActivityResultLauncher<String[]> permissionsLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                List<String> deniedAskList = new ArrayList<>();
+                List<String> deniedNoAskList = new ArrayList<>();
+                for (Map.Entry<String, Boolean> stringBooleanEntry : result.entrySet()) {
+                    if (!stringBooleanEntry.getValue()) {
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), stringBooleanEntry.getKey())) {
+                            deniedAskList.add(stringBooleanEntry.getKey());
+                        } else {
+                            deniedNoAskList.add(stringBooleanEntry.getKey());
+                        }
+                    }
+                }
+
+                if (deniedAskList.size() == 0 && deniedNoAskList.size() == 0) {//全通过
+
+                    initView();
+                    initReceiver();
+
+                    mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                    if (!mBluetoothAdapter.isEnabled()) {
+                        isBlueToothOpen = false;
+                        mBluetoothAdapter.enable();
+                    } else {
+                        isBlueToothOpen = true;
+                        startScanText.performClick();
+                    }
+
+                } else if (deniedNoAskList.size() > 0) {
+                    finish();
+                } else {
+                    finish();
+                }
+            });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
-        initView();
-        initReceiver();
 
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (!mBluetoothAdapter.isEnabled()) {
-            isBlueToothOpen = false;
-            mBluetoothAdapter.enable();
-        } else {
-            isBlueToothOpen = true;
-            startScanText.performClick();
-        }
+        permissionsLauncher.launch(new String[]{
+                Manifest.permission.BLUETOOTH,
+                Manifest.permission.BLUETOOTH_ADMIN,
+                Manifest.permission.BLUETOOTH_CONNECT,
+                Manifest.permission.BLUETOOTH_SCAN});
     }
 
     @Override
@@ -61,7 +97,7 @@ public class BluetoothActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (mBluetoothAdapter.isDiscovering()) {
+        if (mBluetoothAdapter != null && mBluetoothAdapter.isDiscovering()) {
             mBluetoothAdapter.cancelDiscovery();
         }
     }
@@ -140,6 +176,7 @@ public class BluetoothActivity extends BaseActivity {
     }
 
     private void initBoundDevices() {
+        if (mRecyclerAdapter == null) return;
         mRecyclerAdapter.bondBeanList.clear();
         mRecyclerAdapter.bondBeanList.addAll(mBluetoothAdapter.getBondedDevices());
         mRecyclerAdapter.notifyDataSetChanged();

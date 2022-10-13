@@ -88,6 +88,8 @@ public class MessiApp extends BaseApp {
 //        ShareSDK.initSDK(this);
 
         initNightMode();
+        initAsync();
+        initInIdleHandler(true);
 
 //        DynamicColors.applyToActivitiesIfAvailable(this);
 
