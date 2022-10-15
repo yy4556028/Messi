@@ -21,7 +21,7 @@ public class XunfeiRecognizerUtil {
     // 语音听写对象
     private static SpeechRecognizer recognizer;
 
-    private static StringBuilder sentenceBuilder = new StringBuilder();
+    private static final StringBuilder sentenceBuilder = new StringBuilder();
 
     public static void bind(final TextView textView, View touchView) {
         touchView.setOnClickListener(new View.OnClickListener() {

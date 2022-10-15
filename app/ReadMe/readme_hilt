@@ -42,6 +42,11 @@ Jetpack新成员，一篇文章带你玩转Hilt和依赖注入
 
         把定义好的注解 分别声明在 EngineModule 中的函数上 和 为 接口 进行依赖注入的地方
 
+第三方类的依赖注入：
+    1：定义 XXXModule类 声明 @Module 和 @InstallIn
+    2：定义返回三方实例的函数 并声明 @Provides
 
 
+InstallIn说明：
+Scope说明：
 

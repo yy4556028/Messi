@@ -53,7 +53,7 @@ public class RecyclerViewActivity extends AppBaseActivity {
         headerLayout.showLeftBackButton();
         headerLayout.showTitle("列表");
 
-        recyclerView = findViewById(R.id.activity_recyclerView_recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter = new RecyclerViewAdapter(getActivity()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

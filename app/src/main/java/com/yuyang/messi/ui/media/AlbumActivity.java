@@ -142,7 +142,7 @@ public class AlbumActivity extends AppBaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(SELECTED_PHOTOS, recyclerAdapter.getSelectedImageBeans());
+                intent.putParcelableArrayListExtra(SELECTED_PHOTOS, recyclerAdapter.getSelectedImageBeans());
                 setResult(RESULT_OK, intent);
                 finish();
             }

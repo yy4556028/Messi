@@ -1,0 +1,11 @@
+Run窗口或者Build窗口日志出现乱码：
+    1）首先，找到Android Studio的安装位置，并分别找到bin文件夹下studio.exe.vmoptions和 studio64.exe.vmoptions两个文件
+    2）然后，用记事本分别打开studio.exe.vmoptions和 studio64.exe.vmoptions两个文件，在最下面增加下面一行代码，保存即可。
+    3）最后，关闭重新启动Android Studio，完成。
+    -Dfile.encoding=UTF-8
+
+Logcat窗口打印出来的日志出现乱码
+    1）首先，打开Android Studio，然后在菜单栏找到 Help ——> Edit Custom VM Options选项
+    2）点击后，如果没有此文件，提示下面的窗口，直接点击创建
+    3）在打开的文件窗口中，增加下面一行代码，保存即可。
+    4）最后，关闭重新启动Android Studio

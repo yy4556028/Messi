@@ -1,9 +1,14 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib_base')
+    // hilt
+    implementation "com.google.dagger:hilt-android:2.41"
+    kapt "com.google.dagger:hilt-android-compiler:2.41"
 }

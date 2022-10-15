@@ -346,6 +346,12 @@
             android:name=".ui.suning.ExamActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".kotlinui.category.IngredientsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.category.IngredientsResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.category.PathActivity"
             android:screenOrientation="portrait" />
         <activity
