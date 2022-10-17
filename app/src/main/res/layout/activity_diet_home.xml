@@ -13,18 +13,18 @@
         android:padding="8dp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btIngredients"
+            android:id="@+id/btnIngredients"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:text="配料表"
             android:textStyle="bold"
             app:backgroundTint="@color/theme"
-            app:layout_constraintEnd_toStartOf="@+id/btRecommendedVegetables"
+            app:layout_constraintEnd_toStartOf="@+id/btnRecommendedVegetables"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btRecommendedVegetables"
+            android:id="@+id/btnRecommendedVegetables"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
@@ -32,9 +32,54 @@
             android:textStyle="bold"
             app:backgroundTint="@color/base_green_dark"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btIngredients"
+            app:layout_constraintStart_toEndOf="@+id/btnIngredients"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStarch"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:text="淀粉分类用法"
+            android:textStyle="bold"
+            app:backgroundTint="@color/base_orange_dark"
+            app:layout_constraintEnd_toStartOf="@+id/btnSoySauce"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnIngredients" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSoySauce"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:text="酱油"
+            android:textStyle="bold"
+            app:backgroundTint="@color/base_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnStarch"
+            app:layout_constraintTop_toBottomOf="@+id/btnIngredients" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRoast"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:text="烤肉腌制"
+            android:textStyle="bold"
+            app:backgroundTint="@color/base_blue_dark"
+            app:layout_constraintEnd_toStartOf="@+id/btnWss"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnStarch" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWss"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:text="维生素"
+            android:textStyle="bold"
+            app:backgroundTint="@color/pink_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnRoast"
+            app:layout_constraintTop_toBottomOf="@+id/btnStarch" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
