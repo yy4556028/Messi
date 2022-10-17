@@ -1,4 +1,4 @@
-package com.yuyang.messi.kotlinui.category.bean
+package com.yuyang.messi.kotlinui.diet.bean
 
 import android.graphics.Color
 import androidx.annotation.ColorInt

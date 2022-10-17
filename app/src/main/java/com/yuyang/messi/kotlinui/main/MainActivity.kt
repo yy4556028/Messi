@@ -31,6 +31,7 @@ import com.yuyang.messi.databinding.ActivityMainBinding
 import com.yuyang.messi.kotlinui.beauty.BeautyActivity
 import com.yuyang.messi.kotlinui.category.CategoryActivity
 import com.yuyang.messi.kotlinui.circle_menu.CircleMenuActivity
+import com.yuyang.messi.kotlinui.diet.DietHomeActivity
 import com.yuyang.messi.kotlinui.douban.DoubanActivity
 import com.yuyang.messi.kotlinui.gank.GankActivity
 import com.yuyang.messi.kotlinui.main.tools.ToolsFragment
@@ -190,14 +191,17 @@ class MainActivity : AppBaseActivity() {
                     R.id.nav_menu_douban -> {
                         startActivity(Intent(activity, DoubanActivity::class.java))
                     }
-                    R.id.nav_menu_category -> {
-                        startActivity(Intent(activity, CategoryActivity::class.java))
-                    }
                     R.id.nav_menu_gank -> {
                         startActivity(Intent(activity, GankActivity::class.java))
                     }
                     R.id.nav_menu_media -> {
                         startActivity(Intent(activity, CircleMenuActivity::class.java))
+                    }
+                    R.id.nav_menu_diet -> {
+                        startActivity(Intent(activity, DietHomeActivity::class.java))
+                    }
+                    R.id.nav_menu_category -> {
+                        startActivity(Intent(activity, CategoryActivity::class.java))
                     }
                     R.id.nav_menu_game -> {
                         startActivity(Intent(activity, MindCameraActivity::class.java))

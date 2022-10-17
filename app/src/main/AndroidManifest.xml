@@ -346,10 +346,13 @@
             android:name=".ui.suning.ExamActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".kotlinui.category.IngredientsActivity"
+            android:name=".kotlinui.diet.DietHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".kotlinui.category.IngredientsResultActivity"
+            android:name=".kotlinui.diet.IngredientsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.diet.IngredientsResultActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.category.PathActivity"

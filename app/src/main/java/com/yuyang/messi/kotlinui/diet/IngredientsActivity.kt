@@ -1,4 +1,4 @@
-package com.yuyang.messi.kotlinui.category
+package com.yuyang.messi.kotlinui.diet
 
 import android.os.Bundle
 import androidx.activity.result.ActivityResultCallback

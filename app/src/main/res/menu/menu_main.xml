@@ -24,9 +24,9 @@
             android:title="媒体" />
 
         <item
-            android:id="@+id/nav_menu_skin"
-            android:icon="@drawable/skin"
-            android:title="皮肤" />
+            android:id="@+id/nav_menu_diet"
+            android:icon="@drawable/ic_diet"
+            android:title="饮食" />
 
         <item
             android:id="@+id/nav_menu_category"
