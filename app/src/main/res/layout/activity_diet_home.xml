@@ -19,16 +19,16 @@
             android:text="配料表"
             android:textStyle="bold"
             app:backgroundTint="@color/theme"
-            app:layout_constraintEnd_toStartOf="@+id/btnRecommendedVegetables"
+            app:layout_constraintEnd_toStartOf="@+id/btnRecommendedFoods"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRecommendedVegetables"
+            android:id="@+id/btnRecommendedFoods"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
-            android:text="推荐蔬菜"
+            android:text="推荐食物"
             android:textStyle="bold"
             app:backgroundTint="@color/base_green_dark"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +80,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnRoast"
             app:layout_constraintTop_toBottomOf="@+id/btnStarch" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGB"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:text="执行标准"
+            android:textStyle="bold"
+            app:backgroundTint="@color/purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRoast" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
