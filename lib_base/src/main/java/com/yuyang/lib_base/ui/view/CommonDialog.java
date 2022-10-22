@@ -32,7 +32,7 @@ public class CommonDialog extends Dialog {
     private View customView;
 
     public CommonDialog(@NonNull Context context) {
-        super(context);
+        super(context, R.style.CustomDialog);
     }
 
     @Override

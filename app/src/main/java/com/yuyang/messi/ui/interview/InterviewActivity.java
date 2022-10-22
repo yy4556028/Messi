@@ -1023,7 +1023,13 @@ public class InterviewActivity extends AppBaseActivity {
                                         "方向不一致:根据滑动方向判断\n" +
                                         "方向一致:根据业务逻辑判断\n\n" +
 
-                                        "View 扩大点击区域：设置View.setTouchDelegate,TouchDelegate(Rect, View)"
+                                        "View 扩大点击区域：\n" +
+                                        "场景1：父控件区域足够大\n" +
+                                        "ViewGroupUtils.getDescendantRect(parent, child, Rect())\n"+
+                                        "rect.inset(-500, -500)\n"+
+                                        "child.setTouchDelegate(TouchDelegate(rect, child))\n"+
+                                        "场景2：父控件区域很小->场景1 parent改为root\n"+
+                                        "场景3：同时有多个Button想扩大点击区域\n"
                         );
                         break;
                     }
