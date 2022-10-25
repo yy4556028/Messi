@@ -39,13 +39,13 @@ class ProgressActivity : AppBaseActivity() {
         mBinding.circleProgressWithoutBg.setColorSchemeResources(android.R.color.holo_red_light)
         mBinding.magicProgressCircle.setSmoothPercent(1f, 3000)
 
-        mBinding.magicProgressBarFlat.setSmoothPercent(1f, 5000)
+        mBinding.magicProgressBarFlat.setSmoothPercent(0.04f, 5000)
         mBinding.magicProgressBarFlat.setOnClickListener(View.OnClickListener {
             mBinding.magicProgressBarFlat.percent = 0f
             mBinding.magicProgressBarFlat.setSmoothPercent(1f, 2000)
         })
 
-        mBinding.magicProgressBarUnFlat.setSmoothPercent(1f, 5000)
+        mBinding.magicProgressBarUnFlat.setSmoothPercent(0.04f, 5000)
         mBinding.magicProgressBarUnFlat.setOnClickListener(View.OnClickListener {
             mBinding.magicProgressBarUnFlat.percent = 0f
             mBinding.magicProgressBarUnFlat.setSmoothPercent(1f, 2000)

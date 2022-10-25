@@ -97,6 +97,28 @@
                 app:mpb_background_color="@color/gray"
                 app:mpb_fill_color="@color/red"
                 app:mpb_percent="0.5" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:max="100"
+                android:progress="1"
+                android:progressDrawable="@drawable/progress_round_corner" />
+
+            <ProgressBar
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:max="100"
+                android:progress="1"
+                android:progressDrawable="@drawable/progress_round_corner" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

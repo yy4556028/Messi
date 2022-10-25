@@ -84,7 +84,8 @@
                 android:layout_marginTop="1px"
                 android:backgroundTint="@color/white"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:strokeWidth="0dp">
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.MaterialComponents.Button.TextButton"
