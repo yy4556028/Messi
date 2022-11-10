@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- M3 的黑色主题定义 -->
+    <style name="Theme.M3" parent="Theme.Base">
+        <!-- Primary brand color.主要品牌颜色 -->
+        <item name="colorPrimary">@color/base_blue</item>
+        <item name="colorPrimaryDark">@color/base_blue_dark</item>
+        <!-- 您的主要品牌颜色的较浅/较暗变体，在主题中很少使用 -->
+        <item name="colorPrimaryVariant">@color/base_blue_dark</item>
+        <!-- 与命名颜色形成对比的颜色.通常为白色或半透明的黑色 -->
+        <item name="colorOnPrimary">@android:color/black</item>
+        <item name="colorPrimaryInverse">@android:color/white</item>
+
+        <!-- Secondary brand color.次要品牌色彩 通常是主要品牌色彩的明亮补充 -->
+        <item name="colorSecondary">@color/base_green</item>
+        <item name="colorSecondaryVariant">@color/base_green_dark</item>
+        <!-- 与命名颜色形成对比的颜色.通常为白色或半透明的黑色 -->
+        <item name="colorOnSecondary">@android:color/black</item>
+
+        <item name="colorControlHighlight">#305e83e1</item>
+        <item name="colorError">@color/base_red</item>
+
+        <item name="colorSurface">#2d2d2d</item>
+        <item name="colorSurfaceVariant">#49454f</item>
+        <item name="colorOnSurface">@android:color/white</item>
+        <item name="colorOnSurfaceVariant">#7FFFFFFF</item>
+
+        <item name="android:textColorPrimary">@color/base_text_white</item>
+        <item name="android:textColorSecondary">@color/base_text_white_secondary</item>
+        <item name="android:textColorTertiary">@color/base_text_white_hint</item>
+
+        <item name="android:textColorLink">@color/base_blue_light</item>
+        <!-- Activity的默认背景颜色 -->
+        <item name="android:colorBackground">#ff111111</item>
+        <item name="android:windowBackground">?android:attr/colorBackground</item>
+
+        <item name="android:listDivider">@color/base_dividers_white</item>
+
+        <item name="actionBarTheme">@style/Widget.Material3.ActionBar.Solid</item>
+        <item name="materialDividerStyle">@style/View.Divider</item>
+        <item name="materialCardViewStyle">@style/View.CardView.Elevated</item>
+        <item name="tabStyle">@style/View.TabLayout</item>
+    </style>
+
+</resources>

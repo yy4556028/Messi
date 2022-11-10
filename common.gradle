@@ -2,13 +2,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 
 android {
-    compileSdk 32//IDE的编译版本，本质上改变不了我们程序的运行
+    compileSdk 33//IDE的编译版本，本质上改变不了我们程序的运行
 
     defaultConfig {
         minSdk 21//app能够运行的最小版本
         //minSdkVersion <targetSdkVersion<= compileSdkVersion
         //不随意更改targetSdkVersion，更改targetSdkVersion必须做好兼容
-        targetSdk 32//30
+        targetSdk 33//30
 
         consumerProguardFiles 'consumer-rules.pro'
     }

@@ -281,7 +281,7 @@ public class BrowserFragment extends BaseFragment {
         webSettings.setAllowContentAccess(true);
 
         // HTML5 API flags
-        webSettings.setAppCacheEnabled(true);
+//        webSettings.setAppCacheEnabled(true);
         //        String appCacheDir = App.getAppContext().getDir("cache", Context.MODE_PRIVATE).getPath();
         //        webSettings.setAppCachePath(appCacheDir);// /data/data/com.example.zk.android/app_cache
         webSettings.setDatabaseEnabled(true);

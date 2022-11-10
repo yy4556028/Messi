@@ -66,13 +66,13 @@ public class DouyaWebActivity extends AppBaseActivity {
         // 启用localStorage 和 essionStorage
         webSettings.setDomStorageEnabled(true);
         // 开启应用程序缓存
-        webSettings.setAppCacheEnabled(true);
+//        webSettings.setAppCacheEnabled(true);
         String appCacheDir = this.getApplicationContext()
             .getDir("cache", Context.MODE_PRIVATE).getPath();
-        webSettings.setAppCachePath(appCacheDir);// /data/data/com.example.zk.android/app_cache
+//        webSettings.setAppCachePath(appCacheDir);// /data/data/com.example.zk.android/app_cache
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        webSettings.setAppCacheMaxSize(1024 * 1024 * 5);// 设置缓冲大小，我设的是10M
+//        webSettings.setAppCacheMaxSize(1024 * 1024 * 5);// 设置缓冲大小，我设的是10M
 
         // 缩放开关
         webView.getSettings().setSupportZoom(true);

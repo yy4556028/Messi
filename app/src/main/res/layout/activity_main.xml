@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@color/background"
         android:orientation="vertical">
 
         <include layout="@layout/common_header_layout" />
@@ -24,7 +23,7 @@
             android:id="@+id/bottomNavView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            app:itemBackground="@color/white"
             app:itemHorizontalTranslationEnabled="false"
             app:itemIconTint="@null"
             app:labelVisibilityMode="labeled"
@@ -34,17 +33,20 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
+        style="@style/NavigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white"
         android:fitsSystemWindows="false"
         android:tag="LEFT"
+        app:dividerInsetEnd="0dp"
+        app:dividerInsetStart="0dp"
+        app:drawerLayoutCornerSize="0dp"
         app:headerLayout="@layout/activity_main_nav_header"
-        app:itemBackground="@null"
         app:itemIconTint="@color/selector_nav_menu_text"
         app:itemTextColor="@color/selector_nav_menu_text"
-        app:menu="@menu/menu_main" />
+        app:menu="@menu/menu_main"
+        app:subheaderColor="@color/theme" />
 
     <fragment
         android:id="@+id/rightFragment"

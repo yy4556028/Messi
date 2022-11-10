@@ -55,7 +55,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:padding="8dp"
                 android:src="@drawable/erase"
-                android:tint="@color/theme" />
+                app:tint="@color/theme" />
         </LinearLayout>
 
         <TextView

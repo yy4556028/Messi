@@ -97,4 +97,8 @@
         <item name="buttonCompat">@null</item>
     </style>
 
+    <style name="NavigationView" >
+<!--        无效-->
+        <item name="android:listDivider">@android:color/holo_red_dark</item>
+    </style>
 </resources>

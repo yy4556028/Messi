@@ -79,7 +79,7 @@
         android:requestLegacyExternalStorage="false"
         android:resizeableActivity="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.M3"
         android:usesCleartextTraffic="true"
         tools:replace="android:requestLegacyExternalStorage">
 
@@ -87,7 +87,7 @@
             android:name=".ui.login.StartActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Translucent">
+            android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

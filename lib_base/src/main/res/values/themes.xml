@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Theme.Transparent  这个主题的名字在 Companion SDK 中有定义并且在 SDK中有使用 -->
+    <style name="Theme.Transparent" parent="Theme.M3">
+        <!-- https://blog.csdn.net/starry_eve/article/details/82777160 -->
+        <!-- android8.0透明背景切设置方向的话，报“Only fullscreen opaque activities can request orientation” android9.0恢复 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item><!-- 背景缓存颜色 -->
+    </style>
+
+    <style name="Theme.Base" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 状态栏和 Toolbar 的颜色一样 -->
+        <item name="android:statusBarColor">?colorSurface</item>
+        <!--  在Android 8.0上测试下这个设置 -->
+        <item name="android:navigationBarColor">?colorOnSurface</item>
+        <item name="android:breakStrategy">simple</item>
+    </style>
+
+    <!-- M3 的主题定义 -->
+    <style name="Theme.M3" parent="Theme.Base">
+        <!-- Primary brand color.主要品牌颜色 -->
+        <item name="colorPrimary">@color/base_blue</item>
+        <item name="colorPrimaryDark">@color/base_blue_dark</item>
+        <!-- 您的主要品牌颜色的较浅/较暗变体，在主题中很少使用 -->
+        <item name="colorPrimaryVariant">@color/base_blue_dark</item>
+        <!-- 与命名颜色形成对比的颜色.通常为白色或半透明的黑色 -->
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimaryInverse">@android:color/black</item>
+
+        <!-- Secondary brand color.次要品牌色彩 通常是主要品牌色彩的明亮补充 -->
+        <item name="colorSecondary">@color/base_green</item>
+        <item name="colorSecondaryVariant">@color/base_green_dark</item>
+        <!-- 与命名颜色形成对比的颜色.通常为白色或半透明的黑色 -->
+        <item name="colorOnSecondary">@android:color/black</item>
+
+        <!-- 用于控制高光的颜色 -->
+        <item name="colorControlHighlight">#305e83e1</item>
+        <item name="colorError">@color/base_red</item>
+
+        <!-- 卡片、Toolbar 、BottomSheet 、TimePicker 、Tab 等控件的背景色 -->
+        <item name="colorSurface">@android:color/white</item>
+        <item name="colorSurfaceVariant">#7FFFFFFF</item>
+        <item name="colorOnSurface">#333333</item>
+        <!-- Dialog message text color -->
+        <item name="colorOnSurfaceVariant">#222222</item>
+
+        <item name="android:textColorPrimary">@color/base_text_b1</item>
+        <item name="android:textColorSecondary">@color/base_text_b2</item>
+        <item name="android:textColorTertiary">@color/base_text_b3</item>
+
+        <item name="android:textColorLink">@color/base_blue_light</item>
+        <!-- Activity的默认背景颜色  -->
+        <item name="android:colorBackground">#fff3f4f8</item>
+        <item name="android:windowBackground">?android:attr/colorBackground</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+
+        <item name="android:listDivider">@color/base_dividers_black</item>
+
+        <item name="actionBarTheme">@style/Widget.Material3.ActionBar.Solid</item>
+        <item name="materialDividerStyle">@style/View.Divider</item>
+        <item name="materialCardViewStyle">@style/View.CardView.Elevated</item>
+        <item name="tabStyle">@style/View.TabLayout</item>
+        <item name="snackbarButtonStyle">@style/Widget.App.SnackbarButton</item>
+    </style>
+
+    <style name="View.Divider" parent="Widget.Material3.MaterialDivider">
+        <item name="dividerColor">@color/base_dividers_black</item>
+    </style>
+
+    <style name="View.CardView.Elevated" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@android:color/white</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="View.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIconTint">@color/tablayout_icon_color_selector</item>
+        <item name="tabTextColor">?android:attr/textColorPrimary</item>
+        <item name="tabSelectedTextColor">?android:attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.App.SnackbarButton" parent="Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textColor">?android:textColorLink</item>
+    </style>
+
+    <style name="materialTabLayoutStyle">
+
+    </style>
+
+    <style name="Theme.M3.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Dialog" parent="Theme.M3.NoActionBar">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    <style name="LightTheme" parent="Theme.M3.NoActionBar" />
+
+    <style name="Theme.M3.AppBarOverlay" parent="ThemeOverlay.Material3.Dark.ActionBar" />
+
+    <style name="Theme.M3.PopupOverlay" parent="ThemeOverlay.Material3.Light" />
+
+
+</resources>
