@@ -118,7 +118,7 @@ public class CalendarActivity extends AppBaseActivity {
                 ToastUtil.showToast(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(day.getCalendar().getTime()));
             }
         });
-        monthPager.setOnMCPListener(new MonthPager.OnMCPListener() {
+        monthPager.setOnMCPListener(new MonthPager.DefaultOnMCPListener() {
             @Override
             public void onMonthShow(Calendar calendar) {
                 monthCalendarPagerShowText.setText(sdfYM.format(calendar.getTime()));

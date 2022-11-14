@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.yuyang.lib_base.BaseApp
 import com.yuyang.lib_base.utils.LogUtil
-import com.yuyang.lib_payment.R
 
 class ThirdPartyPayUtil(private val lifecycleOwner: LifecycleOwner) {
 
@@ -27,7 +25,7 @@ class ThirdPartyPayUtil(private val lifecycleOwner: LifecycleOwner) {
     }
 
     companion object {
-        private val TAG = ThirdPartyPayUtil::class.java.simpleName
+        private const val TAG = "ThirdPartyPayUtil"
         private const val WXPAY_OK = 0
         private const val WXPAY_CANCEL = -2
         private const val ALIPAY_OK = "9000"

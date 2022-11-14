@@ -15,6 +15,7 @@ import com.yuyang.messi.ui.common.photo.PhotoShowActivity;
 
 /**
  * https://www.jianshu.com/p/37370c1d17fc
+ * https://blog.csdn.net/chuyouyinghe/article/details/127783236
  */
 public class InterviewLaunchClickActivity extends AppBaseActivity {
 

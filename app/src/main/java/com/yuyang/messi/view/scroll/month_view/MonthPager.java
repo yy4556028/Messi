@@ -151,6 +151,20 @@ public class MonthPager<T> extends ViewPager {
         void onDestroyItem(Calendar calendar);
     }
 
+    public interface DefaultOnMCPListener extends OnMCPListener {
+        @Override
+        default void onMonthShow(Calendar calendar) {
+        }
+
+        @Override
+        default void onInstantiateItem(Calendar calendar) {
+        }
+
+        @Override
+        default void onDestroyItem(Calendar calendar) {
+        }
+    }
+
     private OnMCPListener onMCPListener;
 
     public void setOnMCPListener(OnMCPListener onMCPListener) {

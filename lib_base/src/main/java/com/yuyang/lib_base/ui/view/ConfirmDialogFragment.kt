@@ -41,7 +41,7 @@ class ConfirmDialogFragment : AppCompatDialogFragment() {
     }
 
     companion object {
-        private val TAG = ConfirmDialogFragment::class.java.simpleName
+        private const val TAG = "ConfirmDialogFragment"
         private const val KEY_TITLE = "key_title"
         private const val KEY_SUBTITLE = "key_subtitle"
 

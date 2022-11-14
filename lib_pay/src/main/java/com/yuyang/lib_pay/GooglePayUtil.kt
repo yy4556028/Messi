@@ -10,7 +10,7 @@ import com.yuyang.lib_base.utils.LogUtil
 class GooglePayUtil(private val lifecycleOwner: LifecycleOwner) {
 
     companion object {
-        private val TAG = GooglePayUtil::class.java.simpleName
+        private const val TAG = "GooglePayUtil"
     }
 
     private val billingClient: BillingClient

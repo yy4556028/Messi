@@ -104,7 +104,7 @@
     <style name="TextBlack_Choose" parent="TextBlack">
         <item name="android:textSize">16sp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:drawableEnd">@drawable/arrow_right</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow_right</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:gravity">end</item>
     </style>
