@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
-        <com.yuyang.messi.view.GravityShapeableImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/fragment_meipai_recycler_item_avatarImage"
             android:layout_width="52dp"
             android:layout_height="52dp"

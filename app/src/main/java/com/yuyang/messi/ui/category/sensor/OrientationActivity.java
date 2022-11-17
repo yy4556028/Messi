@@ -40,9 +40,9 @@ import com.yuyang.lib_base.utils.ToastUtil;
  * 在垂直位置时继续向右或向左滚动，values[2]的值会继续在-90至90之间变化。
  *
  * @author Windows
- *         <p/>
- *         以上为通过 TYPE_ORIENTATION 过得的 value
- *         google 已不推荐使用，本 demo 方法为最新
+ * <p/>
+ * 以上为通过 TYPE_ORIENTATION 过得的 value
+ * google 已不推荐使用，本 demo 方法为最新
  * @author yuyang
  */
 
@@ -51,15 +51,8 @@ public class OrientationActivity extends AppBaseActivity implements SensorEventL
     private SensorManager mSensorManager;
     private Sensor aSensor;
     private Sensor mSensor;
-    private Sensor oSensor;
 
-    float[] accelerometerValues = new float[3];
-    float[] magneticFieldValues = new float[3];
-    float[] values = new float[3];
-    float[] r = new float[9];
-
-    private TextView textView0;
-    private TextView textView1;
+    private TextView textView;
 
     @Override
     protected int getLayoutId() {
@@ -77,31 +70,26 @@ public class OrientationActivity extends AppBaseActivity implements SensorEventL
         headerLayout.showLeftBackButton();
         headerLayout.showTitle("方向传感器");
 
-        textView0 = findViewById(R.id.activity_sensor_normal_text0);
-        textView1 = findViewById(R.id.activity_sensor_normal_text1);
+        textView = findViewById(R.id.activity_sensor_normal_text0);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         aSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        oSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
     }
 
     @Override
     protected void onResume() {
-
-        if (aSensor != null && mSensor != null && oSensor != null) {
+        super.onResume();
+        if (aSensor != null && mSensor != null) {
 
             mSensorManager.registerListener(this, aSensor, SensorManager.SENSOR_DELAY_GAME);
             mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_GAME);
-            mSensorManager.registerListener(this, oSensor, SensorManager.SENSOR_DELAY_GAME);
         } else {
             ToastUtil.showToast("此设备没有加速度传感器或磁力传感器或方向传感器");
         }
-        super.onResume();
     }
 
     protected void onPause() {
-
         super.onPause();
         mSensorManager.unregisterListener(this);
     }
@@ -109,33 +97,31 @@ public class OrientationActivity extends AppBaseActivity implements SensorEventL
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+    float[] mGravity;
+    float[] mGeomagnetic;
+
     public void onSensorChanged(SensorEvent event) {
-
-        if (event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
-            float[] values = event.values;
-            textView1.setText("X："+values[0]+"\nY："+values[1]+"\nZ："+values[2]);
-            return;
-        }
-
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            accelerometerValues = event.values;
+            mGravity = event.values;
         }
 
         if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-            magneticFieldValues = event.values;
+            mGeomagnetic = event.values;
         }
 
-        // 调用 getRotationMatrix 获取变换矩阵R[]
-        SensorManager.getRotationMatrix(r, null, accelerometerValues, magneticFieldValues);
-        SensorManager.getOrientation(r, values);
+        if (mGravity != null && mGeomagnetic != null) {
+            float[] R = new float[9];
+            float[] I = new float[9];
+            boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
 
-        float[] degree = new float[3];
-
-        degree[0] = (float) Math.toDegrees(values[0]);
-        degree[1] = (float) Math.toDegrees(values[1]);
-        degree[2] = (float) Math.toDegrees(values[2]);
-
-        textView0.setText("X："+degree[0]+"\nY："+degree[1]+"\nZ："+degree[2]);
+            if (success) {
+                float[] orientation = new float[3];
+                SensorManager.getOrientation(R, orientation);
+                // orientation contains: azimut, pitch and roll 方位角、俯仰和滚转
+                textView.setText("X：" + Math.toDegrees(orientation[0]) + " 方向角东南西北"+
+                        "\nY：" + Math.toDegrees(orientation[1]) + " 俯仰" +
+                        "\nZ：" + Math.toDegrees(orientation[2]) + " 滚转");
+            }
+        }
     }
-
 }

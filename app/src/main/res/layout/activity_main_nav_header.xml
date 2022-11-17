@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <com.yuyang.messi.view.GravityShapeableImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/gravityCircleImageView"
         android:layout_width="110dp"
         android:layout_height="110dp"

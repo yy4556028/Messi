@@ -183,9 +183,6 @@ class MainActivity : AppBaseActivity() {
                 activity,
                 getHeaderView(0).findViewById(R.id.gravityCircleImageView)
             )
-//            val avatar: GravityShapeableImageView =
-//                getHeaderView(0).findViewById(R.id.gravityCircleImageView)
-//            avatar.setOnClickListener { avatar.toggle() }
             setNavigationItemSelectedListener { item: MenuItem ->
                 when (item.itemId) {
                     R.id.nav_menu_douban -> {

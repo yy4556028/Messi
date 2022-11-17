@@ -6,4 +6,5 @@
     <item type="id" name="id_circle_menu_item_text" />
     <item type="id" name="id_circle_menu_item_center" />
 
+    <item type="id" name="id_gravityviewutil_animator" />
 </resources>

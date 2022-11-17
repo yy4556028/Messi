@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yuyang.lib_base.myglide.GlideApp;
@@ -20,6 +21,7 @@ import com.yuyang.lib_base.utils.CommonUtil;
 import com.yuyang.lib_base.utils.PixelUtils;
 import com.yuyang.messi.R;
 import com.yuyang.messi.bean.meipai.MeipaiBean;
+import com.yuyang.messi.view.GravityViewUtil;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -136,6 +138,12 @@ public class MeipaiRecyclerAdapter extends RecyclerView.Adapter<MeipaiRecyclerAd
                     }
                 }
             });
+
+            if (context instanceof LifecycleOwner) {
+                GravityViewUtil.addGravityMonitor(
+                        (LifecycleOwner) context,
+                        avatarImage);
+            }
         }
     }
 
