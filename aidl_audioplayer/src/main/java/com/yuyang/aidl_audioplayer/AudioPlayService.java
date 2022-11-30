@@ -44,6 +44,7 @@ import java.util.concurrent.Executors;
 
 /**
  * 音乐播放服务
+ * https://www.jianshu.com/p/bc2f779a5400
  */
 public class AudioPlayService extends Service {
 
