@@ -24,6 +24,9 @@ import com.yuyang.lib_base.BaseApp;
 
 import java.lang.reflect.Method;
 
+/**
+ * https://juejin.cn/post/7150453629021847566
+ */
 public final class KeyboardTool {
 
     private static final String TAG = KeyboardTool.class.getSimpleName();

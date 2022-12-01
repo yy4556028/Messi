@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * https://github.com/StomHong/CustomizeKeyboard
  */
-public class KeyboardUtil {
+public class ChatKeyboardUtil {
 
     private Context mContext;
     private int widthPixels;
@@ -70,7 +70,7 @@ public class KeyboardUtil {
     private ScrollView sv_main;
     private View root_view;
     private int scrollTo = 0;
-    private KeyboardUtil mKeyboardUtil;
+    private ChatKeyboardUtil mKeyboardUtil;
     private TextView keyboard_tips_tv;
     private static final float TIPS_MARGIN_W = 0.0407f;
     private View inflaterView;
@@ -81,7 +81,7 @@ public class KeyboardUtil {
      * @param ctx
      * @param rootView rootView 需要是LinearLayout,以适应键盘
      */
-    public KeyboardUtil(Context ctx, LinearLayout rootView, ScrollView scrollView) {
+    public ChatKeyboardUtil(Context ctx, LinearLayout rootView, ScrollView scrollView) {
         this.mContext = ctx;
         this.mActivity = (Activity) mContext;
         widthPixels = mContext.getResources().getDisplayMetrics().widthPixels;
@@ -95,7 +95,7 @@ public class KeyboardUtil {
      *
      * @param view 是弹框的inflaterView
      */
-    public KeyboardUtil(View view, Context ctx, LinearLayout root_View, ScrollView scrollView) {
+    public ChatKeyboardUtil(View view, Context ctx, LinearLayout root_View, ScrollView scrollView) {
         this(ctx, root_View, scrollView);
         this.inflaterView = view;
     }
@@ -337,7 +337,7 @@ public class KeyboardUtil {
 
         @Override
         public void onRelease(int primaryCode) {
-            if (inputType != KeyboardUtil.INPUTTYPE_NUM_ABC
+            if (inputType != ChatKeyboardUtil.INPUTTYPE_NUM_ABC
                     && (primaryCode == Keyboard.KEYCODE_SHIFT)) {
                 keyboardView.setPreviewEnabled(true);
             }
@@ -345,12 +345,12 @@ public class KeyboardUtil {
 
         @Override
         public void onPress(int primaryCode) {
-            if (inputType == KeyboardUtil.INPUTTYPE_NUM_ABC ||
-                    inputType == KeyboardUtil.INPUTTYPE_NUM ||
-                    inputType == KeyboardUtil.INPUTTYPE_NUM_POINT ||
-                    inputType == KeyboardUtil.INPUTTYPE_NUM_FINISH ||
-                    inputType == KeyboardUtil.INPUTTYPE_NUM_NEXT ||
-                    inputType == KeyboardUtil.INPUTTYPE_NUM_X) {
+            if (inputType == ChatKeyboardUtil.INPUTTYPE_NUM_ABC ||
+                    inputType == ChatKeyboardUtil.INPUTTYPE_NUM ||
+                    inputType == ChatKeyboardUtil.INPUTTYPE_NUM_POINT ||
+                    inputType == ChatKeyboardUtil.INPUTTYPE_NUM_FINISH ||
+                    inputType == ChatKeyboardUtil.INPUTTYPE_NUM_NEXT ||
+                    inputType == ChatKeyboardUtil.INPUTTYPE_NUM_X) {
                 keyboardView.setPreviewEnabled(false);
                 return;
             }

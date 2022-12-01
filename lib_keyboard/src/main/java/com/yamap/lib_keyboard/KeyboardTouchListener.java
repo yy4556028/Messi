@@ -8,11 +8,11 @@ import android.widget.EditText;
  * Created by xuanweijian on 2016/3/31.
  */
 public class KeyboardTouchListener implements View.OnTouchListener {
-    private KeyboardUtil keyboardUtil;
+    private ChatKeyboardUtil keyboardUtil;
     private int keyboardType = 1;
     private int scrollTo = -1;
 
-    public KeyboardTouchListener(KeyboardUtil util,int keyboardType,int scrollTo){
+    public KeyboardTouchListener(ChatKeyboardUtil util, int keyboardType, int scrollTo){
         this.keyboardUtil = util;
         this.keyboardType = keyboardType;
         this.scrollTo = scrollTo;

@@ -35,17 +35,17 @@ public class PpKeyBoardView extends KeyboardView {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        mKeyBoard = KeyboardUtil.getKeyBoardType();
+        mKeyBoard = ChatKeyboardUtil.getKeyBoardType();
         List<Key> keys = mKeyBoard.getKeys();
 
         for (Key key : keys) {
             // 数字键盘的处理
-            if (mKeyBoard.equals(KeyboardUtil.numKeyboard)) {
+            if (mKeyBoard.equals(ChatKeyboardUtil.numKeyboard)) {
                 initRightType(key);
                 drawNumSpecialKey(key, canvas);
-            } else if (mKeyBoard.equals(KeyboardUtil.abcKeyboard)) {
+            } else if (mKeyBoard.equals(ChatKeyboardUtil.abcKeyboard)) {
                 drawABCSpecialKey(key, canvas);
-            } else if (mKeyBoard.equals(KeyboardUtil.symbolKeyboard)) {
+            } else if (mKeyBoard.equals(ChatKeyboardUtil.symbolKeyboard)) {
                 drawSymbolSpecialKey(key, canvas);
             }
         }
@@ -152,7 +152,7 @@ public class PpKeyBoardView extends KeyboardView {
         paint.setAntiAlias(true);
         // paint.setTypeface(Typeface.DEFAULT_BOLD);
         paint.setColor(Color.BLACK);
-        if (mKeyBoard.equals(KeyboardUtil.numKeyboard)) {
+        if (mKeyBoard.equals(ChatKeyboardUtil.numKeyboard)) {
             if (key.label != null) {
                 paint.getTextBounds(key.label.toString(), 0, key.label.toString()
                         .length(), bounds);
@@ -169,7 +169,7 @@ public class PpKeyBoardView extends KeyboardView {
                         * key.height));
                 key.icon.draw(canvas);
             }
-        } else if (mKeyBoard.equals(KeyboardUtil.abcKeyboard)) {
+        } else if (mKeyBoard.equals(ChatKeyboardUtil.abcKeyboard)) {
             if (key.label != null) {
                 paint.setColor(mContext.getResources().getColor(R.color.color_3c3c3c));
                 paint.getTextBounds(key.label.toString(), 0, key.label.toString()
@@ -177,7 +177,7 @@ public class PpKeyBoardView extends KeyboardView {
                 canvas.drawText(key.label.toString(), key.x + (key.width / 2),
                         (key.y + key.height / 2) + bounds.height() / 2, paint);
             }
-        } else if (mKeyBoard.equals(KeyboardUtil.symbolKeyboard)) {
+        } else if (mKeyBoard.equals(ChatKeyboardUtil.symbolKeyboard)) {
             paint.setColor(mContext.getResources().getColor(R.color.color_3c3c3c));
             paint.getTextBounds(key.label.toString(), 0, key.label.toString()
                     .length(), bounds);

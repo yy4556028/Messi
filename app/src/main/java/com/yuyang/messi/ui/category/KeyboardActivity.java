@@ -9,7 +9,7 @@ import android.widget.ScrollView;
 import androidx.annotation.Nullable;
 
 import com.yamap.lib_keyboard.KeyboardTouchListener;
-import com.yamap.lib_keyboard.KeyboardUtil;
+import com.yamap.lib_keyboard.ChatKeyboardUtil;
 import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.messi.R;
 import com.yuyang.messi.ui.base.AppBaseActivity;
@@ -21,7 +21,7 @@ public class KeyboardActivity extends AppBaseActivity {
     private EditText normalEdit;
     private EditText specialEdit;
 
-    private KeyboardUtil keyboardUtil;
+    private ChatKeyboardUtil keyboardUtil;
 
     @Override
     protected int getLayoutId() {
@@ -64,16 +64,16 @@ public class KeyboardActivity extends AppBaseActivity {
     }
 
     private void initMoveKeyBoard() {
-        keyboardUtil = new KeyboardUtil(this, rootView, scrollView);
+        keyboardUtil = new ChatKeyboardUtil(this, rootView, scrollView);
         keyboardUtil.setOtherEditText(normalEdit);
         // monitor the KeyBarod state
         keyboardUtil.setKeyBoardStateChangeListener(new KeyBoardStateListener());
         // monitor the finish or next Key
         keyboardUtil.setInputOverListener(new inputOverListener());
-        specialEdit.setOnTouchListener(new KeyboardTouchListener(keyboardUtil, KeyboardUtil.INPUTTYPE_ABC, -1));
+        specialEdit.setOnTouchListener(new KeyboardTouchListener(keyboardUtil, ChatKeyboardUtil.INPUTTYPE_ABC, -1));
     }
 
-    private static class KeyBoardStateListener implements KeyboardUtil.KeyBoardStateChangeListener {
+    private static class KeyBoardStateListener implements ChatKeyboardUtil.KeyBoardStateChangeListener {
 
         @Override
         public void KeyBoardStateChange(int state, EditText editText) {
@@ -82,7 +82,7 @@ public class KeyboardActivity extends AppBaseActivity {
         }
     }
 
-    private static class inputOverListener implements KeyboardUtil.InputFinishListener {
+    private static class inputOverListener implements ChatKeyboardUtil.InputFinishListener {
 
         @Override
         public void inputHasOver(int onclickType, EditText editText) {
