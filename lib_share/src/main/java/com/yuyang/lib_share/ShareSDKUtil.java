@@ -39,13 +39,13 @@ public class ShareSDKUtil {
                 //微博分享链接和图文
                 if ("SinaWeibo".equals(platform.getName())) {
                     shareParams.setText("玩美夏日，护肤也要肆意玩酷！" + "www.mob.com");
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                 }
                 //微信好友分享网页
                 if ("Wechat".equals(platform.getName())) {
                     shareParams.setTitle("标题");
                     shareParams.setText("我是共用的参数，这几个平台都有text参数要求，提取出来啦");
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                     shareParams.setUrl("http://sharesdk.cn");
                     shareParams.setShareType(Platform.SHARE_WEBPAGE);
                     Log.d("ShareSDK", shareParams.toMap().toString());
@@ -56,7 +56,7 @@ public class ShareSDKUtil {
                     shareParams.setText("我是共用的参数，这几个平台都有text参数要求，提取出来啦");
             /*Bitmap imageData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
             paramsToShare.setImageData(imageData);*/
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                     shareParams.setShareType(Platform.SHARE_IMAGE);
                     Log.d("ShareSDK", shareParams.toMap().toString());
                 }
@@ -65,14 +65,14 @@ public class ShareSDKUtil {
                     shareParams.setTitle("标题");
                     shareParams.setTitleUrl("http://sharesdk.cn");
                     shareParams.setText("我是共用的参数，这几个平台都有text参数要求，提取出来啦");
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                     Log.d("ShareSDK", shareParams.toMap().toString());
                 }
                 //支付宝好友分享网页
                 if ("Alipay".equals(platform.getName())) {
                     shareParams.setTitle("标题");
                     shareParams.setText("我是共用的参数，这几个平台都有text参数要求，提取出来啦");
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                     shareParams.setUrl("http://sharesdk.cn");
                     shareParams.setShareType(Platform.SHARE_WEBPAGE);
                     Log.d("ShareSDK", shareParams.toMap().toString());
@@ -80,7 +80,7 @@ public class ShareSDKUtil {
                 //Facebook以卡片形式分享链接
                 if ("Facebook".equals(platform.getName())) {
                     //          paramsToShare.setText("我是共用的参数，这几个平台都有text参数要求，提取出来啦");
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                     shareParams.setUrl("http://www.mob.com");
                     shareParams.setShareType(Platform.SHARE_WEBPAGE);
                     shareParams.setQuote("我是共用的参数");
@@ -89,12 +89,12 @@ public class ShareSDKUtil {
                 //Twitter分享链接
                 if ("Twitter".equals(platform.getName())) {
                     shareParams.setText("我是共用的参数，这几个平台都有text参数要求，提取出来啦");
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                     shareParams.setUrl("http://sharesdk.cn");
                 }
                 //WhatsApp分享图片
                 if ("WhatsApp".equals(platform.getName())) {
-                    shareParams.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+                    shareParams.setImageUrl("imnageurl");
                 }
                 //短信分享文本
                 if ("ShortMessage".equals(platform.getName())) {
