@@ -1,9 +1,44 @@
-//dependencyResolutionManagement {
-//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-//    repositories {
-//
-//    }
-//}
+pluginManagement {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+//        flatDir {
+//            dirs project(':lib_base').file('libs'), 'libs'
+//        }
+        maven {//MobSDK Maven地址
+            url "https://mvn.mob.com/android"
+        }
+    }
+}
+dependencyResolutionManagement {
+    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            allowInsecureProtocol = true
+            url "https://jitpack.io"
+        }
+        //这里是 LeanCloud 的包仓库
+        maven {
+            allowInsecureProtocol = true
+            url "http://mvn.leancloud.cn/nexus/content/repositories/public"
+        }
+//        maven {
+//            url "http://114.55.179.101:8081/artifactory/libs-sdk-guoguo"
+//            credentials {
+//                username 'ttkd'
+//                password 'AKCp2V6dFNBAYW5PoMeR9myzAYG8CXYGemmjvFMAcZXB1z5zWyzkRn8p8cwxxKCFx4LsUj62P'
+//            }
+//        }
+        maven {//MobSDK Maven地址
+            url "https://mvn.mob.com/android"
+        }
+    }
+}
 include ':lib_baidu'
 include ':app', ':lib_chat', ':lib_leancloud', ':lib_keyboard', ':lib_share', ':lib_map_amap', ':lib_xunfei', ':lib_nfc', ':lib_base', ':lib_bluetooth', ':openCVLibrary346', ':lib_lpr'
 include ':aidldemo'

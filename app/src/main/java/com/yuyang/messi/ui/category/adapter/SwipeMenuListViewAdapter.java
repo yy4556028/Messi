@@ -1,6 +1,7 @@
 package com.yuyang.messi.ui.category.adapter;
 
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,11 +67,16 @@ public class SwipeMenuListViewAdapter extends BaseAdapter {
 
         holder.image.setImageDrawable(item.loadIcon(BaseApp.getInstance().getPackageManager()));
         holder.name.setText(item.loadLabel(BaseApp.getInstance().getPackageManager()));
-        holder.version.setText(String.format("包名：%s", AppInfoUtil.getAppVersionName(item.packageName)));
+        holder.version.setText(String.format("版本：%s", AppInfoUtil.getAppVersionName(item.packageName)));
         holder.packageName.setText(item.packageName);
 
         Signature signature = AppInfoUtil.getAppSignature(item.packageName);
         holder.textView1.setText(String.format("签名信息:%s", MD5Util.md5(signature.toByteArray())));
+        try {
+            holder.textView2.setText(String.format("TargetSdk:%s", BaseApp.getInstance().getPackageManager().getPackageInfo(item.packageName, 0).applicationInfo.targetSdkVersion));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         return convertView;
     }
 

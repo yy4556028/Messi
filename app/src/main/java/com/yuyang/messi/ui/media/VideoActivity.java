@@ -8,8 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.RelativeLayout;
-
+import android.widget.FrameLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -126,7 +125,7 @@ public class VideoActivity extends AppBaseActivity {
     }
 
     private void setSurfaceLocation(int width, int height) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) surfaceView.getLayoutParams();
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) surfaceView.getLayoutParams();
         if (width >= height) {
             params.width = CommonUtil.getScreenWidth();
             params.height = CommonUtil.getScreenWidth() * height / width;

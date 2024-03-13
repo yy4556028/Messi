@@ -11,6 +11,46 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 
+    <style name="FullScreenDialog_TransStatusBar" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--    这2个属性对于常规dialog，一般必须设置，确保实际显示效果和layout文件中定义一样    -->
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--    状态栏透明    -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--    下面2个属性 设置状态栏颜色,不需要自定义的可以不设置    -->
+        <!--        <item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--     导航栏透明   -->
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <!--        <item name="android:windowContentOverlay">@null</item>-->
+        <!--        <item name="android:background">@android:color/transparent</item>-->
+        <!--        <item name="android:windowFrame">@null</item>-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="FullScreenDialog_NoStatusBar" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--    这2个属性对于常规dialog，一般必须设置，确保实际显示效果和layout文件中定义一样    -->
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!--    隐藏状态栏内容及高度 适用于SDK19(4.4)及以上    -->
+        <item name="android:windowFullscreen">true</item>
+        <!--    对于>=28的版本，需要指定该属性，否则对于异形屏的手机，无法让布局铺满异形区域    -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <!--        <item name="android:windowContentOverlay">@null</item>-->
+        <!--        <item name="android:background">@android:color/transparent</item>-->
+        <!--        <item name="android:windowFrame">@null</item>-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
     <!--  PopupWindow向上弹出 向下收起的效果 -->
     <style name="Anim_Pop_Bottom">
         <item name="android:windowEnterAnimation">@anim/anim_bottom_enter</item>

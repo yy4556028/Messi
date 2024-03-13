@@ -7,7 +7,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="11" />
+        <option name="gradleJvm" value="zulu-11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/lib_lpr" />
             <option value="$PROJECT_DIR$/lib_map_amap" />
             <option value="$PROJECT_DIR$/lib_nfc" />
+            <option value="$PROJECT_DIR$/lib_pay" />
             <option value="$PROJECT_DIR$/lib_plugin" />
             <option value="$PROJECT_DIR$/lib_scan" />
             <option value="$PROJECT_DIR$/lib_share" />
@@ -30,7 +31,6 @@
             <option value="$PROJECT_DIR$/openCVLibrary346" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

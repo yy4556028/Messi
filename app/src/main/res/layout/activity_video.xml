@@ -19,16 +19,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.yuyang.messi.view.SquareRelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
-                    <SurfaceView
-                        android:id="@+id/activity_video_surface"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                </com.yuyang.messi.view.SquareRelativeLayout>
+                        <SurfaceView
+                            android:id="@+id/activity_video_surface"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/activity_video_recycleView"

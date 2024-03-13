@@ -260,11 +260,15 @@ public class BrowserFragment extends BaseFragment {
         super.onDestroy();
         WebkitCookieUtil.saveCookie(url);
         if (mWebView != null) {
+            mWebView.stopLoading();
+            mWebView.clearHistory();
             //clear webView 缓存
             mWebView.clearCache(true);
-            mWebView.clearHistory();
+            mWebView.onPause();
+            mWebView.loadUrl("about:blank");
             mWebView.removeAllViews();
             mWebView.destroy();
+            mWebView = null;
         }
     }
 

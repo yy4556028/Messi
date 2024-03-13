@@ -15,6 +15,7 @@ import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
 import com.yuyang.lib_base.utils.LogUtil;
 
 import org.jetbrains.annotations.NotNull;
@@ -38,6 +39,8 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         registerAppLifeCycle();
+        // 注意APP合规性，若最终用户未同意隐私政策则不要调用
+        DeviceIdentifier.register(this);
     }
 
     @Override

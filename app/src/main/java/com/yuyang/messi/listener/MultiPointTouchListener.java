@@ -2,6 +2,7 @@ package com.yuyang.messi.listener;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -17,25 +18,27 @@ import android.widget.ImageView;
  * @version 1.0
  */
 
+enum TouchMode {
+    NONE,
+    SINGLE,
+    MULTI,
+}
+
 public class MultiPointTouchListener implements OnTouchListener {
 
+    private final String TAG = MultiPointTouchListener.class.getSimpleName();
+
     // These matrices will be used to move and zoom image
-    private Matrix matrix = new Matrix();
-    private Matrix savedMatrix = new Matrix();
+    private final Matrix matrix = new Matrix();
+    private final Matrix savedMatrix = new Matrix();
 
     // We can be in one of these 3 states
-    private static final int NONE = 0;
-    private static final int SINGLE = 1;
-    static final int MULTI = 2;
-    private int mode = NONE;
+    private TouchMode mode = TouchMode.NONE;
 
     // Remember some things for translate zoom rotate
     // single translate
-    private PointF start = new PointF();
+    private final PointF centerPoint = new PointF();
     // multi translate
-    private PointF oldMid = new PointF();
-    private PointF newMid = new PointF();
-    // multi zoom
     private float oldDist = 0f;
     private float newDist = 0f;
     // multi rotate
@@ -48,92 +51,78 @@ public class MultiPointTouchListener implements OnTouchListener {
 
     private float translateX;
     private float translateY;
-
     private float scaleRate;
 
     // 保存手指按下前的旋转角度
     private float savedDegree = 0f;
     private float rotateDegree = 0f;
 
-    //暂时不用 for 边界控制
-//    private int viewWidth;
-//    private int viewHeight;
-//
-//    public void setViewSize(int viewWidth, int viewHeight) {
-//        this.viewWidth = viewWidth;
-//        this.viewHeight = viewHeight;
-//    }
-
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
         ImageView view = (ImageView) v;
+        int pointerCount = event.getPointerCount();
 
         // Log.e("view_width",
         // view.getImageMatrix()..toString()+"*"+v.getWidth());
         // Dump touch event to log
-        dumpEvent(event);
+//        dumpEvent(event);
 
         // Handle touch events here...
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+        switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
-
                 matrix.set(view.getImageMatrix());
                 savedMatrix.set(matrix);
-                start.set(event.getX(), event.getY());
+                centerPoint.set(event.getX(), event.getY());
                 // Log.d(TAG, "mode=DRAG");
-                mode = SINGLE;
+                mode = TouchMode.SINGLE;
 
                 // Log.d(TAG, "mode=NONE");
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
-                oldDist = (float) spacing(event);
+                oldDist = (float) getDistance(event);
                 // Log.d(TAG, "oldDist=" + oldDist);
-                if (oldDist > 10f) {
                     savedMatrix.set(matrix);
-                    midPoint(oldMid, event);
+                    getMidPoint(centerPoint, event);
                     oldDegree = gerDegree(new PointF(event.getX(0), event.getY(0)),
                             new PointF(event.getX(1), event.getY(1)));
-                    mode = MULTI;
+                    mode = TouchMode.MULTI;
                     // Log.d(TAG, "mode=ZOOM");
-                }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
                 savedDegree = rotateDegree;
-                mode = NONE;
+                mode = TouchMode.NONE;
                 // Log.e("view.getWidth", view.getWidth() + "");
                 // Log.e("view.getHeight", view.getHeight() + "");
 
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (mode == SINGLE && canTranslate) {
+                if (mode == TouchMode.SINGLE && canTranslate) {
                     // ...
 
                     matrix.set(savedMatrix);
-                    matrix.postTranslate(event.getX() - start.x
-                            , event.getY() - start.y);
-                } else if (mode == MULTI) {
+                    matrix.postTranslate(event.getX() - centerPoint.x, event.getY() - centerPoint.y);
+                } else if (mode == TouchMode.MULTI) {
 
-                    newDist = (float) spacing(event);
-                    midPoint(newMid, event);
+                    newDist = (float) getDistance(event);
+                    PointF newCenterPoint = new PointF();
+                    getMidPoint(newCenterPoint, event);
                     newDegree = gerDegree(new PointF(event.getX(0), event.getY(0)),
                             new PointF(event.getX(1), event.getY(1)));
 
                     // Log.d(TAG, "newDist=" + newDist);
-                    if (newDist > 10f) {
                         matrix.set(savedMatrix);
                         float scale = newDist / oldDist;
 
                         if (canTranslate)
-                            matrix.postTranslate(newMid.x - oldMid.x, newMid.y - oldMid.y);
+                            matrix.postTranslate(newCenterPoint.x - centerPoint.x, newCenterPoint.y - centerPoint.y);
 
                         if (canScale)
-                            matrix.postScale(scale, scale, oldMid.x, oldMid.y);
+                            matrix.postScale(scale, scale, centerPoint.x, centerPoint.y);
 
                         if (canRotate)
-                            matrix.postRotate(newDegree - oldDegree, newMid.x, newMid.y);
-                    }
+                            matrix.postRotate(newDegree - oldDegree, newCenterPoint.x, newCenterPoint.y);
                 }
                 float[] values = new float[9];
                 matrix.getValues(values);
@@ -144,7 +133,7 @@ public class MultiPointTouchListener implements OnTouchListener {
                 // 宽度缩放倍数
                 scaleRate = values[Matrix.MSCALE_X];
                 // 同Y轴间角度
-                if (mode == MULTI) {
+                if (mode == TouchMode.MULTI) {
                     // 按下前的图片角度 + （手指松开的角度 - 手指按下的角度）
                     rotateDegree = savedDegree + newDegree - oldDegree;
 
@@ -191,7 +180,7 @@ public class MultiPointTouchListener implements OnTouchListener {
     }
 
     // 计算2点间的距离
-    private double spacing(MotionEvent event) {
+    private double getDistance(MotionEvent event) {
         float x = event.getX(0) - event.getX(1);
         float y = event.getY(0) - event.getY(1);
         return Math.sqrt(x * x + y * y);
@@ -203,7 +192,7 @@ public class MultiPointTouchListener implements OnTouchListener {
      * @param point
      * @param event
      */
-    private void midPoint(PointF point, MotionEvent event) {
+    private void getMidPoint(PointF point, MotionEvent event) {
         float x = event.getX(0) + event.getX(1);
         float y = event.getY(0) + event.getY(1);
         point.set(x / 2, y / 2);
@@ -217,6 +206,9 @@ public class MultiPointTouchListener implements OnTouchListener {
      * @return
      */
     private float gerDegree(PointF p1, PointF p2) {
+//        float x = p2.x - p1.x;
+//        float y = p2.y - p1.y;
+//        return (float)(Math.atan2(y,x)*180/Math.PI);
         float tran_x = p2.x - p1.x;
         float tran_y = p2.y - p1.y;
         float degree = 0f;
@@ -248,8 +240,6 @@ public class MultiPointTouchListener implements OnTouchListener {
     public interface ImageChangeListener {
         public void onImageChange(float transX, float transY, float scale, float rotate);
     }
-
-    ;
 
     private ImageChangeListener imageChangeListener;
 

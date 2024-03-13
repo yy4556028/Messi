@@ -7,6 +7,8 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
 import com.yuyang.lib_base.BaseApp;
 
 import java.util.UUID;
@@ -60,4 +62,11 @@ public class DeviceUtil {
         return Resources.getSystem().getConfiguration().locale.getLanguage();
     }
 
+    public static String getOAID() {
+        String oaid = "";
+        if (DeviceID.supportedOAID(BaseApp.getInstance())) {
+            oaid = DeviceIdentifier.getOAID(BaseApp.getInstance());
+        }
+        return oaid;
+    }
 }
