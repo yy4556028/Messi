@@ -1,22 +1,14 @@
 buildscript {
-    ext.kotlin_version = '1.6.21'
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.mob.sdk:MobSDK:2018.0319.1724"
-//        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.41'
-//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'//gradle3.5.3可以 7.0.4 报错
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 plugins{
-//    id 'com.android.application' version '8.0.1' apply false
-//    id 'com.android.library' version '8.0.1' apply false
-//    id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
-    id 'com.google.dagger.hilt.android' version '2.41' apply false
+    id 'com.android.application' version '8.3.0' apply false
+    id 'com.android.library' version '8.3.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
+    id 'com.google.dagger.hilt.android' version '2.48' apply false
 }
 
 subprojects { subproject ->

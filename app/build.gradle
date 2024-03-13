@@ -9,7 +9,7 @@ apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
 apply from: rootProject.getRootDir().getAbsolutePath() + "/config.gradle"
 
 android {// android 配置了所有android构建过程需要的参数。这里也是Android DSL的入口点
-
+    namespace 'com.yuyang.messi'
     defaultConfig {
         applicationId "com.yuyang.messi"
         versionCode rootProject.releaseVersionCode
@@ -179,7 +179,6 @@ android {// android 配置了所有android构建过程需要的参数。这里�
             setIgnore(true)
         }
     }
-    namespace 'com.yuyang.messi'
 
     android.applicationVariants.all { variant ->
 //        if (variant.buildType.name != "debug") {//路径改变导致运行无法自动安装
@@ -289,8 +288,8 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.3"
 
     // hilt
-    implementation "com.google.dagger:hilt-android:2.41"
-    kapt "com.google.dagger:hilt-android-compiler:2.41"
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-android-compiler:2.48"
 
     //字节码插桩
 //    debugImplementation 'org.ow2.asm:asm:7.1'

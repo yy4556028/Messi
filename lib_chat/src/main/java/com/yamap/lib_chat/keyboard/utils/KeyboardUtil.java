@@ -89,6 +89,7 @@ public class KeyboardUtil {
      * 开启软键盘
      * @deprecated
      */
+    @Deprecated
     public static void openSoftKeyboard(EditText et) {
         if (et != null) {
             et.setFocusable(true);
@@ -103,6 +104,7 @@ public class KeyboardUtil {
      * 关闭软键盘
      * @deprecated
      */
+    @Deprecated
     public static void closeSoftKeyboard(Context context) {
         if (!(context instanceof Activity) || ((Activity) context).getCurrentFocus() == null) {
             return;
@@ -122,6 +124,7 @@ public class KeyboardUtil {
      * 当使用全屏主题的时候,XhsEmoticonsKeyBoard屏蔽了焦点.关闭软键盘时,直接指定 closeSoftKeyboard(EditView)
      * @deprecated
      */
+    @Deprecated
     public static void closeSoftKeyboard(View view) {
         if (view == null || view.getWindowToken() == null) {
             return;

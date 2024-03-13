@@ -27,6 +27,7 @@ import static com.yamap.lib_chat.data.MessageBean.MessageType.UNKNOWN;
 /**
  * @deprecated
  */
+@Deprecated
 public class ChatListAdapter extends BaseAdapter {
 
     private final int VIEW_TYPE_COUNT = 8;

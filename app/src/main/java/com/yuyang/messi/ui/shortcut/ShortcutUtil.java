@@ -79,6 +79,7 @@ public class ShortcutUtil {
      * 添加快捷方式
      * @deprecated
      */
+    @Deprecated
     public static void addShortcut1(String title, int iconRes, Class launcherClass, String shortcutId) {
         Context context = MessiApp.getInstance();
 

@@ -18,7 +18,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * @deprecated
+ * 老的适配工具
  */
 public final class ScreenUtil_old {
 

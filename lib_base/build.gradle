@@ -47,8 +47,8 @@ dependencies {
     api "com.google.protobuf:protobuf-java:3.19.2"
 
     // hilt
-    api "com.google.dagger:hilt-android:2.41"
-    kapt "com.google.dagger:hilt-android-compiler:2.41"
+    api "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-android-compiler:2.48"
 
     //cookie 库
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
@@ -72,7 +72,7 @@ dependencies {
 //    api 'com.android.support:support-annotations:28.0.0'
 //    annotationProcessor "com.android.support:support-annotations:28.0.0"
     api 'com.alibaba:fastjson:1.2.48'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+//    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"//协程
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3'//协程
     api 'com.jcodecraeer:xrecyclerview:1.2.7'

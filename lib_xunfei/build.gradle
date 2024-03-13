@@ -9,8 +9,8 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib_base')
     // hilt
-    implementation "com.google.dagger:hilt-android:2.41"
-    kapt "com.google.dagger:hilt-android-compiler:2.41"
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-android-compiler:2.48"
 }
 
 android {
