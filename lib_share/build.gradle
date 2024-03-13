@@ -46,3 +46,7 @@ MobSDK {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
 }
+
+android {
+    namespace 'com.yuyang.lib_share'
+}

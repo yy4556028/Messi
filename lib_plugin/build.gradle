@@ -7,3 +7,7 @@ dependencies {
 
     implementation project(':lib_base')
 }
+
+android {
+    namespace 'com.yuyang.lib_plugin'
+}

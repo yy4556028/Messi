@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yuyang.messi"
     tools:ignore="LockedOrientationActivity">
 
     <!--    https://stackoverflow.com/questions/64553229/get-all-installed-apps-in-android-11-api-30-how-to-get-all-other-apps-instal -->

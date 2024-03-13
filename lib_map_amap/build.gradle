@@ -12,3 +12,7 @@ dependencies {
     implementation 'com.amap.api:search:7.9.0'//搜索
 //    implementation 'com.amap.api:search:latest.integration'//搜索
 }
+
+android {
+    namespace 'com.example.lib_map_amap'
+}

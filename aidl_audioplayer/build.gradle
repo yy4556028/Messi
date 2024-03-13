@@ -12,3 +12,7 @@ dependencies {
     implementation "com.google.android.exoplayer:exoplayer-hls:2.18.0"
     implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.0"
 }
+
+android {
+    namespace 'com.yuyang.aidl_audioplayer'
+}

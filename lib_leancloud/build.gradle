@@ -12,3 +12,7 @@ dependencies {
     // 推送与即时通讯需要的包
 //    api('cn.leancloud.android:avoscloud-push:4.7.10@aar') { transitive = true }
 }
+
+android {
+    namespace 'yy.com.lib_leancloud'
+}

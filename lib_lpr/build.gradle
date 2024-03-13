@@ -8,3 +8,7 @@ dependencies {
     implementation project(':lib_base')
     implementation project(path: ':openCVLibrary346')
 }
+
+android {
+    namespace 'com.example.lpr'
+}

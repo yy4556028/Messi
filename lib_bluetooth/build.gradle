@@ -7,3 +7,7 @@ apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
 dependencies {
     implementation project(':lib_base')
 }
+
+android {
+    namespace 'com.example.lib_bluetooth'
+}

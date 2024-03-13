@@ -32,6 +32,7 @@ android {
             exclude "lib/x86_64/liblocSDK8a.so"
         }
     }
+    namespace 'com.yuyang.lib_baidu'
 }
 
 dependencies {

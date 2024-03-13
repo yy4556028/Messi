@@ -92,3 +92,7 @@ dependencies {
 //    api (name: 'stickyheadersrecyclerview', ext: 'aar')
     //    api 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
 }
+
+android {
+    namespace 'com.yuyang.lib_base'
+}

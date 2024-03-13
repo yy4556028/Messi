@@ -11,3 +11,7 @@ dependencies {
 
     api("com.android.billingclient:billing-ktx:$billing_version")
 }
+
+android {
+    namespace 'com.yuyang.lib_pay'
+}

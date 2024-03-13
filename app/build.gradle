@@ -179,6 +179,7 @@ android {// android 配置了所有android构建过程需要的参数。这里�
             setIgnore(true)
         }
     }
+    namespace 'com.yuyang.messi'
 
     android.applicationVariants.all { variant ->
 //        if (variant.buildType.name != "debug") {//路径改变导致运行无法自动安装

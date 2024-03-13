@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yuyang.aidl_audioplayer">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--  未验证：如果 protectionLevel 不是 signature或signatureOrSystem 声明方要先安装，使用方要后安装-->
     <permission

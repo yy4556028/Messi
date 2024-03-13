@@ -8,3 +8,7 @@ dependencies {
     implementation project(':lib_base')
     implementation project(':lib_scan')
 }
+
+android {
+    namespace 'demo.com.lib_nfc'
+}
