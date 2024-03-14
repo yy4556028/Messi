@@ -282,10 +282,10 @@ dependencies {
     implementation 'androidx.camera:camera-view:1.1.0'
     implementation 'com.google.guava:guava:27.0.1-android'
 
-    implementation "androidx.room:room-runtime:2.4.3"
+    implementation "androidx.room:room-runtime:2.6.1"
 // For Kotlin use kapt instead of annotationProcessor (注意这个注释)
 //    annotationProcessor "androidx.room:room-compiler:2.4.3"
-    kapt "androidx.room:room-compiler:2.4.3"
+    kapt "androidx.room:room-compiler:2.6.1"
 
     // hilt
     implementation "com.google.dagger:hilt-android:2.48"

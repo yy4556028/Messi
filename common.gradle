@@ -1,5 +1,6 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
+//apply plugin: 'com.google.devtools.ksp'
 
 android {
     compileSdk 34//IDE的编译版本，本质上改变不了我们程序的运行

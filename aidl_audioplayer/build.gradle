@@ -7,10 +7,11 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib_base')
 
-    implementation "com.google.android.exoplayer:exoplayer-core:2.18.0"
-    implementation "com.google.android.exoplayer:exoplayer-ui:2.18.0"
-    implementation "com.google.android.exoplayer:exoplayer-hls:2.18.0"
-    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.0"
+    def exo_version = '2.19.1'
+    implementation "com.google.android.exoplayer:exoplayer-core:$exo_version"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exo_version"
+    implementation "com.google.android.exoplayer:exoplayer-hls:$exo_version"
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:$exo_version"
 }
 
 android {
