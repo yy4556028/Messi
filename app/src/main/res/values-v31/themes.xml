@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+        <!--        启动画面的背景，默认使用 windowBackground-->
+        <item name="windowSplashScreenBackground">#000000</item>
+        <!--        指定 icon，支持静态 drawable 或动画 vector drawable-->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="android:windowSplashScreenBrandingImage">@mipmap/ic_launcher</item>
+        <!--        动画 icon 时长，上限 1000 ms-->
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <!--        启动画面退出后 Activity 的主题-->
+        <item name="postSplashScreenTheme">@style/AppTheme.FullScreen</item>
+    </style>
+</resources>

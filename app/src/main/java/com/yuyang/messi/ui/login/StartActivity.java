@@ -95,7 +95,7 @@ public class StartActivity extends AppBaseActivity {
                     }
                 }
 
-                if (deniedAskList.size() == 0 && deniedNoAskList.size() == 0) {//全通过
+                if (deniedAskList.isEmpty() && deniedNoAskList.isEmpty()) {//全通过
                     if (getIntent().getParcelableExtra(KEY_LAUNCH_INTENT) != null) {
                         startActivities(new Intent[]{
                                 new Intent(getActivity(), MainActivity.class),
@@ -105,7 +105,7 @@ public class StartActivity extends AppBaseActivity {
                     }
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
-                } else if (deniedNoAskList.size() > 0) {
+                } else if (!deniedNoAskList.isEmpty()) {
                     showMissingPermissionDialog();
                 } else {
                     checkPermissionAndJump();
@@ -280,10 +280,18 @@ public class StartActivity extends AppBaseActivity {
                 externalStorageManagerLauncher.launch(intent);
                 return;
             }
+        } else {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE});
         }
-        permissionsLauncher.launch(new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE});
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_AUDIO,
+                    Manifest.permission.READ_MEDIA_VIDEO});
+        }
     }
 
     private void showMissingPermissionDialog() {
