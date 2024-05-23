@@ -85,7 +85,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3"
         android:usesCleartextTraffic="true"
-        tools:replace="android:requestLegacyExternalStorage">
+        tools:replace="android:requestLegacyExternalStorage,android:name">
 
         <activity
             android:name=".ui.login.SplashActivity"
@@ -224,6 +224,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".kotlinui.category.UnLockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlinui.category.BiometricActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.category.AdaptScreenActivity"

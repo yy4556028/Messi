@@ -22,6 +22,9 @@ dependencyResolutionManagement {
             allowInsecureProtocol = true
             url "https://jitpack.io"
         }
+        maven {//MobSDK Maven地址
+            url "https://mvn.mob.com/android"
+        }
         //这里是 LeanCloud 的包仓库
         maven {
             allowInsecureProtocol = true
@@ -34,9 +37,6 @@ dependencyResolutionManagement {
 //                password 'AKCp2V6dFNBAYW5PoMeR9myzAYG8CXYGemmjvFMAcZXB1z5zWyzkRn8p8cwxxKCFx4LsUj62P'
 //            }
 //        }
-        maven {//MobSDK Maven地址
-            url "https://mvn.mob.com/android"
-        }
     }
 }
 include ':lib_baidu'
