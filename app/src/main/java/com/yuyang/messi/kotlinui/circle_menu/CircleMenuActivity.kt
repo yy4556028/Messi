@@ -70,7 +70,7 @@ class CircleMenuActivity : AppBaseActivity() {
                 }
 
                 override fun itemCenterClick(view: View) {
-                    NotificationUtil.showNotification(activity, VideoActivity::class.java, "heheda", false)
+                    NotificationUtil.showNotification(activity, VideoExoActivity::class.java, "Exo", false)
                     ToastUtil.showToast("Center Click")
                 }
             })

@@ -48,7 +48,7 @@ public class VideoActivity extends AppBaseActivity {
             @Override
             public void onResultCallback(List<VideoBean> beanList) {
                 progressBar.setVisibility(View.INVISIBLE);
-                if (beanList == null || beanList.size() == 0) {
+                if (beanList == null || beanList.isEmpty()) {
                     new AlertDialog.Builder(getActivity())
                             .setTitle("Video No Found")
                             .setMessage("Video No Found")

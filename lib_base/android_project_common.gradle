@@ -78,7 +78,6 @@ ext {
             'gms'               : "12.0.1",
             'wearableSupport'   : "2.5.0",
             'tile'              : "0.6",
-            'exoplayer'         : "2.10.6",
 
             // infrastructure
             'butterknife'       : "10.2.1",
@@ -299,7 +298,6 @@ ext {
                     'firebase'         : "com.google.firebase:firebase-messaging:${versions.gms}",
                     'firebaseCrash'    : "com.google.firebase:firebase-crash:${versions.gms}",
                     'tile'             : "com.google.android.clockwork:tiles:${versions.tile}",
-                    'exoplayer'        : "com.google.android.exoplayer:exoplayer:${versions.exoplayer}",
                     'autoService'      : "com.google.auto.service:auto-service:1.0",
 
                     'playServiceWearableOem': "com.google.android.gms:play-services-wearable:${versions.gms}"

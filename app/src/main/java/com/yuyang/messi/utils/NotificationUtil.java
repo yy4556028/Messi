@@ -14,8 +14,10 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
 import com.yuyang.messi.MessiApp;
 import com.yuyang.messi.R;
 
@@ -49,9 +51,9 @@ public class NotificationUtil {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                channelId,
-                "Messi",
-                NotificationManager.IMPORTANCE_DEFAULT);
+                    channelId,
+                    "Messi",
+                    NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription("MessiDescription");
             channel.enableLights(true);
             channel.setLightColor(Color.RED);
@@ -68,31 +70,34 @@ public class NotificationUtil {
         }
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)// ticker icon 24 * 24
-            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.logo))// 通知图标 默认是应用图标
-            .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
-            .setTicker("ticker")// 状态栏提示
-            .setContentTitle(context.getString(R.string.app_name))// 通知 title
-            .setContentText("ContentText")// 通知内容
-            .setLights(Color.argb(255, 218, 165, 32), 400, 2000)
-            .setProgress(100, 50, false)
-            .setAutoCancel(true)
-            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setCategory(
-                // CATEGORY_ALARM(alarms or timers), REMINDER(user requested reminder),EVENT,MESSAGE,CALL,EMAIL,SOCIAL,RECOMMENDATION(TV?)
-                /**
-                 *  NotificationCompat.CATEGORY_ALARM : alarms or timers
-                 *  NotificationCompat.CATEGORY_REMINDER : user requested reminder
-                 *  NotificationCompat.CATEGORY_MESSAGE
-                 *  NotificationCompat.CATEGORY_...
-                 */
-                NotificationCompat.CATEGORY_ALARM
-            )
-            .setOnlyAlertOnce(true);//同id的notification, 声音、振动、ticker 仅第一次
+                .setSmallIcon(R.mipmap.ic_launcher)// ticker icon 24 * 24
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.logo))// 通知图标 默认是应用图标
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                .setTicker("ticker")// 状态栏提示
+                .setContentTitle(context.getString(R.string.app_name))// 通知 title
+                .setContentText("ContentText")// 通知内容
+                .setLights(Color.argb(255, 218, 165, 32), 400, 2000)
+                .setProgress(100, 50, false)
+                .setAutoCancel(true)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCategory(
+                        // CATEGORY_ALARM(alarms or timers), REMINDER(user requested reminder),EVENT,MESSAGE,CALL,EMAIL,SOCIAL,RECOMMENDATION(TV?)
+                        /**
+                         *  NotificationCompat.CATEGORY_ALARM : alarms or timers
+                         *  NotificationCompat.CATEGORY_REMINDER : user requested reminder
+                         *  NotificationCompat.CATEGORY_MESSAGE
+                         *  NotificationCompat.CATEGORY_...
+                         */
+                        NotificationCompat.CATEGORY_ALARM
+                )
+                .setOnlyAlertOnce(true);//同id的notification, 声音、振动、ticker 仅第一次
 
         if (activityClass != null) {
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, new Intent(context, activityClass), PendingIntent.FLAG_ONE_SHOT);
+            PendingIntent contentIntent = PendingIntent.getActivity(
+                    context,
+                    0, new Intent(context, activityClass),
+                    PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
             mBuilder.setContentIntent(contentIntent);
         }
 
