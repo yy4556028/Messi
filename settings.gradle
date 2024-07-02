@@ -9,6 +9,10 @@ pluginManagement {
         maven {//MobSDK Maven地址
             url "https://mvn.mob.com/android"
         }
+        maven {
+            allowInsecureProtocol = true
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
     }
 }
 dependencyResolutionManagement {
@@ -29,6 +33,10 @@ dependencyResolutionManagement {
         maven {
             allowInsecureProtocol = true
             url "http://mvn.leancloud.cn/nexus/content/repositories/public"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
         }
 //        maven {
 //            url "http://114.55.179.101:8081/artifactory/libs-sdk-guoguo"

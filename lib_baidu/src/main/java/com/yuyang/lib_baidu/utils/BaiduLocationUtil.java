@@ -129,7 +129,13 @@ public class BaiduLocationUtil {
             return;
         }
 
-        mLocationClient = new LocationClient(BaseApp.getInstance());
+        try {
+            mLocationClient = new LocationClient(BaseApp.getInstance());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
         mLocationClient.registerLocationListener(locationListener);
 
         option = new LocationClientOption();
@@ -183,10 +189,10 @@ public class BaiduLocationUtil {
         void onLocation(BDLocation bdLocation, LocationClient mLocationClient);
     }
 
-    private class MyObserver implements LifecycleObserver{
+    private class MyObserver implements LifecycleObserver {
 
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        public void onDestroy(){
+        public void onDestroy() {
 
         }
     }

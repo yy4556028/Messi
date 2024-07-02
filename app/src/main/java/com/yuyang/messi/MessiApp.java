@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
@@ -200,6 +201,8 @@ public class MessiApp extends BaseApp {
     private void initBaidu() {
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
         //注意该方法要再setContentView方法之前实现
+        SDKInitializer.setAgreePrivacy(getApplicationContext(), true);
+        LocationClient.setAgreePrivacy(true);
         SDKInitializer.initialize(getApplicationContext());
     }
 

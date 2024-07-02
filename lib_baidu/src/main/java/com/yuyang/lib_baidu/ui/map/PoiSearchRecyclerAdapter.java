@@ -63,8 +63,8 @@ public class PoiSearchRecyclerAdapter extends RecyclerView.Adapter<PoiSearchRecy
 
         public MyHolder(View itemView) {
             super(itemView);
-            nameText = (TextView) itemView.findViewById(R.id.activity_baidu_poi_search_recycler_item_name);
-            addressText = (TextView) itemView.findViewById(R.id.activity_baidu_poi_search_recycler_item_address);
+            nameText = itemView.findViewById(R.id.activity_baidu_poi_search_recycler_item_name);
+            addressText = itemView.findViewById(R.id.activity_baidu_poi_search_recycler_item_address);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

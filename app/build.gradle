@@ -252,8 +252,6 @@ dependencies {
     implementation 'cn.dreamtobe.percentsmoothhandler:library:0.1.1'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.21'
 
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.2'
     //https://www.jianshu.com/p/b343fcff51b0/
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
 

@@ -1,0 +1,46 @@
+# Project-wide Gradle settings.
+
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+# Default value: -Xmx3g -XX:MaxPermSize=512m
+
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+android.enableJetifier=true
+android.useAndroidX=true
+#并行编译 并行执行 Gradle 的 tasks
+org.gradle.parallel=true
+#配置大内存
+org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+#守护进程   通过开启守护进程，下一次构建的时候，将会连接这个守护进程进行构建，而不是重新fork一个gradle构建进程
+org.gradle.daemon=true
+#开启缓存
+#android.enableBuildCache=true
+#开启孵化模式
+#org.gradle.configureondemand=true
+
+#configuration cache 当没有构建配置发生变化的时候，比如构建脚本，Gradle会直接跳过配置阶段
+#org.gradle.unsafe.configuration-cache=true
+#org.gradle.unsafe.configuration-cache-prooblems=warn
+#https://developer.android.com/build/releases/past-releases/agp-8-0-0-release-notes?hl=zh-cn#default-changes
+android.defaults.buildfeatures.buildconfig=true
+android.defaults.buildfeatures.aidl=true
+android.enableBuildConfigAsBytecode=true
+android.nonTransitiveRClass=false
+android.nonFinalResIds=false
+
+MobSDK.spEdition=IZNAO
+
+STORE_PASSWORD = yamashita521
+KEY_PASSWORD = yamashita521
+KEY_ALIAS = yamap
+SHA1 = 8A:24:66:0E:2D:B8:0F:F0:4E:F1:4F:3A:FA:E9:BA:78:2B:73:B6:1D
+SHA256 = C3:66:4C:DD:CE:7C:4A:85:AD:C8:35:F0:D1:0F:F7:19:73:A2:21:E6:86:75:1C:76:98:18:BB:AF:FC:05:1C:1D

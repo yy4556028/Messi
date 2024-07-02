@@ -11,8 +11,10 @@ import android.widget.EditText;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
@@ -31,7 +33,10 @@ import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
 import com.baidu.mapapi.search.poi.PoiResult;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yuyang.lib_baidu.R;
 import com.yuyang.lib_baidu.utils.BaiduLocationUtil;
 import com.yuyang.lib_baidu.utils.PoiSearchUtil;
@@ -51,7 +56,8 @@ public class BaiduPoiSearchActivity extends BaseActivity {
 
     private EditText editText;
     private Button searchBtn;
-    private XRecyclerView recyclerView;
+    private SmartRefreshLayout smartRefreshLayout;
+    private RecyclerView recyclerView;
 
     private PoiSearchRecyclerAdapter recyclerAdapter;
 
@@ -87,7 +93,7 @@ public class BaiduPoiSearchActivity extends BaseActivity {
                                         pageNum);
                             }
                         });
-                        BaiduLocationUtil.getInstance().startLocation(1000);
+                        BaiduLocationUtil.getInstance().startLocation(0);
                     } else if (deniedNoAskList.size() > 0) {
                         finish();
                     } else {
@@ -132,10 +138,44 @@ public class BaiduPoiSearchActivity extends BaseActivity {
         mapView = findViewById(R.id.activity_baidu_poi_search_mapView);
         editText = findViewById(R.id.activity_baidu_poi_search_edit);
         searchBtn = findViewById(R.id.activity_baidu_poi_search_search);
-        recyclerView = findViewById(R.id.activity_baidu_poi_search_recyclerView);
+        smartRefreshLayout = findViewById(R.id.smartRefreshLayout);
+        smartRefreshLayout.setEnableRefresh(false);
+        smartRefreshLayout.setEnableLoadMore(true);
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageNum = 0;
+                if (isSearchInCity) {
+                    PoiSearchUtil.getInstance().searchNearby(
+                            new LatLng(BaiduLocationUtil.getInstance().getBdLocation().getLatitude(), BaiduLocationUtil.getInstance().getBdLocation().getLongitude()),
+                            keyword,
+                            1000,
+                            pageNum);
+                } else {
+                    PoiSearchUtil.getInstance().searchInCity(
+                            BaiduLocationUtil.getInstance().getBdLocation().getCity(), keyword, pageNum);
+                }
+            }
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                pageNum++;
+                if (isSearchInCity) {
+                    PoiSearchUtil.getInstance().searchNearby(
+                            new LatLng(BaiduLocationUtil.getInstance().getBdLocation().getLatitude(), BaiduLocationUtil.getInstance().getBdLocation().getLongitude()),
+                            keyword,
+                            1000,
+                            pageNum);
+                } else {
+                    PoiSearchUtil.getInstance().searchInCity(
+                            BaiduLocationUtil.getInstance().getBdLocation().getCity(), keyword, pageNum);
+                }
+            }
+        });
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setPullRefreshEnabled(false);
-        recyclerView.setLoadingMoreEnabled(true);
         recyclerView.setAdapter(recyclerAdapter = new PoiSearchRecyclerAdapter(this));
         baiduMap = mapView.getMap();
     }
@@ -151,42 +191,10 @@ public class BaiduPoiSearchActivity extends BaseActivity {
                         BaiduLocationUtil.getInstance().getBdLocation().getCity(), keyword, pageNum);
             }
         });
-        recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                pageNum = 0;
-                if (isSearchInCity) {
-                    PoiSearchUtil.getInstance().searchNearby(
-                            new LatLng(BaiduLocationUtil.getInstance().getBdLocation().getLatitude(), BaiduLocationUtil.getInstance().getBdLocation().getLongitude()),
-                            keyword,
-                            1000,
-                            pageNum);
-                } else {
-                    PoiSearchUtil.getInstance().searchInCity(
-                            BaiduLocationUtil.getInstance().getBdLocation().getCity(), keyword, pageNum);
-                }
-            }
-
-            @Override
-            public void onLoadMore() {
-                pageNum++;
-                if (isSearchInCity) {
-                    PoiSearchUtil.getInstance().searchNearby(
-                            new LatLng(BaiduLocationUtil.getInstance().getBdLocation().getLatitude(), BaiduLocationUtil.getInstance().getBdLocation().getLongitude()),
-                            keyword,
-                            1000,
-                            pageNum);
-                } else {
-                    PoiSearchUtil.getInstance().searchInCity(
-                            BaiduLocationUtil.getInstance().getBdLocation().getCity(), keyword, pageNum);
-                }
-            }
-        });
         recyclerAdapter.setOnItemClickListener(new PoiSearchRecyclerAdapter.OnItemClickListener() {
 
             @Override
             public void onItemClick(int position) {
-                position--;
                 PoiInfo poiInfo = recyclerAdapter.beanList.get(position);
                 updateLocation(poiInfo.location, poiInfo.name);
             }
@@ -201,9 +209,9 @@ public class BaiduPoiSearchActivity extends BaseActivity {
                 int totalPoiNum = poiResult.getTotalPoiNum();
                 int currentPageNum = poiResult.getCurrentPageNum();
 
-                recyclerView.refreshComplete();
-                recyclerView.loadMoreComplete();
-                recyclerView.setLoadingMoreEnabled(currentPageNum + 1 < totalPageNum);
+                smartRefreshLayout.finishRefresh();
+                smartRefreshLayout.finishLoadMore();
+                smartRefreshLayout.setEnableLoadMore(currentPageNum + 1 < totalPageNum);
                 if (pageNum == 0) {
                     recyclerAdapter.beanList.clear();
                 }
