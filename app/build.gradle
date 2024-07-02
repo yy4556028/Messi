@@ -293,6 +293,8 @@ dependencies {
 
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
 
+    implementation("androidx.biometric:biometric:1.1.0")
+
     //字节码插桩
 //    debugImplementation 'org.ow2.asm:asm:7.1'
 //    debugImplementation 'org.ow2.asm:asm-commons:7.1'

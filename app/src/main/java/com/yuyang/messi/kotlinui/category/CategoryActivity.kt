@@ -168,6 +168,7 @@ class CategoryActivity : AppBaseActivity() {
             ModuleEntity("插件化Demo", PluginHostActivity::class.java),
 //            ModuleEntity("虚拟定位", FaceLocationActivity::class.java),
             ModuleEntity("UnLock", UnLockActivity::class.java),
+            ModuleEntity("指纹", BiometricActivity::class.java),
 
         )
         try {
