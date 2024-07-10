@@ -11,21 +11,19 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
-import androidx.media3.common.C;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.Player;
 import androidx.media3.common.util.UnstableApi;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.rtmp.RtmpDataSource;
 import androidx.media3.exoplayer.DefaultLoadControl;
 import androidx.media3.exoplayer.DefaultRenderersFactory;
 import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.exoplayer.mediacodec.MediaCodecInfo;
-import androidx.media3.exoplayer.mediacodec.MediaCodecSelector;
-import androidx.media3.exoplayer.mediacodec.MediaCodecUtil;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
 import androidx.media3.exoplayer.source.MediaSource;
+import androidx.media3.exoplayer.source.ProgressiveMediaSource;
 import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
-import androidx.media3.exoplayer.upstream.DefaultAllocator;
 import androidx.media3.exoplayer.upstream.DefaultBandwidthMeter;
 import androidx.media3.extractor.Extractor;
 import androidx.media3.extractor.ExtractorsFactory;
@@ -44,10 +42,11 @@ import com.yuyang.messi.databinding.ActivityVideoExoBinding;
 import com.yuyang.messi.helper.VideoHelper;
 import com.yuyang.messi.ui.base.AppBaseActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VideoExoActivity extends AppBaseActivity {
+
+    public static final String TAG = "VideoExoActivity";
 
     private ActivityVideoExoBinding binding;
 
@@ -161,10 +160,11 @@ public class VideoExoActivity extends AppBaseActivity {
 //        renderersFactory.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON);
 
         DefaultLoadControl loadControl = new DefaultLoadControl.Builder()
-                .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
-                .setBufferDurationsMs(360000, 600000, 2500, 500)
-                .setTargetBufferBytes(C.LENGTH_UNSET)
-                .setPrioritizeTimeOverSizeThresholds(true)
+//                .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
+                .setBackBuffer(1500, true)
+                .setBufferDurationsMs(500, 600, 500, 500)
+//                .setTargetBufferBytes(C.LENGTH_UNSET)
+//                .setPrioritizeTimeOverSizeThresholds(true)
                 .build();
         ExtractorsFactory extractorsFactory = new ExtractorsFactory() {
             @NonNull
@@ -215,6 +215,38 @@ public class VideoExoActivity extends AppBaseActivity {
         mExoPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
         mExoPlayer.clearMediaItems();
         mExoPlayer.addMediaItem(MediaItem.fromUri(videoUri));
+        mExoPlayer.setPlayWhenReady(true);
+        mExoPlayer.prepare();
+    }
+
+    @OptIn(markerClass = UnstableApi.class)
+    private void playLocalByteString() {
+        Log.d(TAG, "playLocalByteString");
+        DataSource.Factory dataSourceFactory = new DataSource.Factory() {
+            @NonNull
+            @Override
+            public DataSource createDataSource() {
+//                AvatarDataSource(true)
+                return null;
+            }
+        };
+        MediaItem mediaItem = MediaItem.fromUri("");
+        ProgressiveMediaSource.Factory factory = new ProgressiveMediaSource.Factory(dataSourceFactory);
+        ProgressiveMediaSource videoSource = factory.createMediaSource(mediaItem);
+        mExoPlayer.setMediaSource(videoSource);
+
+        mExoPlayer.setPlayWhenReady(true);
+        mExoPlayer.prepare();
+    }
+
+    @OptIn(markerClass = UnstableApi.class)
+    private void playRtmp(String rtmpUrl) {
+        Log.d(TAG, "playRtmp");
+        mExoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
+        mExoPlayer.clearMediaItems();
+        ProgressiveMediaSource videoSource = new ProgressiveMediaSource.Factory(new RtmpDataSource.Factory())
+                .createMediaSource(MediaItem.fromUri(Uri.parse(rtmpUrl)));
+        mExoPlayer.setMediaSource(videoSource);
         mExoPlayer.setPlayWhenReady(true);
         mExoPlayer.prepare();
     }
