@@ -4,25 +4,14 @@ import android.Manifest;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
-import android.os.Environment;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.RequiresPermission;
 
-import com.yuyang.lib_base.BaseApp;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import org.jetbrains.annotations.NotNull;
 
 public class AudioRecorderHelper {
 
@@ -31,26 +20,9 @@ public class AudioRecorderHelper {
     private AudioRecord audioRecord = null;
     private int recordBufSize = 0;
 
-    private Thread recordingAudioThread;// 录音的工作线程
-    private boolean isRecording = false;// mark if is recording
-
-    private static final long TIME_INTERVAL = TimeUnit.SECONDS.toMillis(5);// 超过5秒音量不超过阈值 写入文件结束
-    private static final long TIME_MAX = TimeUnit.SECONDS.toMillis(60);// 最长不超过60s
-    private static final long MIN_VOLUME = 50;// 超过50分贝记录
-
-    public static final String FILE_DIR = BaseApp.getInstance().getExternalFilesDir(Environment.DIRECTORY_MUSIC).getAbsolutePath();
-
-    //录音文件
-    public final List<String> wavList = new ArrayList<>();
-
-    private File currentWriteFile;
-
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault());
-
-    private long currentStartMills;
-    private long preHighVolumeMills;
-
-    private PcmUtil ptwUtil;
+    private Handler workerHandler;
+    private HandlerThread workerThread;
+    private boolean isRecording = false;
 
     /**
      * @param sampleRateInHz 官方文档说44100 为目前所有设备兼容，但是如果用模拟器测试的话会有问题，如果部分手机有问题，替换为16000 或 8000
@@ -64,13 +36,13 @@ public class AudioRecorderHelper {
                         channelConfig,
                         audioFormat);
         if (recordBufSize != AudioRecord.ERROR_BAD_VALUE) {
-            audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
+            audioRecord = new AudioRecord(
+                    MediaRecorder.AudioSource.MIC,
+//                    MediaRecorder.AudioSource.VOICE_COMMUNICATION,// 降噪去回声
                     sampleRateInHz,
                     channelConfig,
                     audioFormat,
                     recordBufSize);
-
-            ptwUtil = new PcmUtil(sampleRateInHz, channelConfig, audioFormat);
         }
     }
 
@@ -86,18 +58,13 @@ public class AudioRecorderHelper {
         isRecording = true;
         audioRecord.startRecording();
 
-        recordingAudioThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                dealRecordData();
-            }
-        });
-        recordingAudioThread.start();
+        workerThread = new HandlerThread(TAG);
+        workerThread.start();
+        Looper workerLooper = workerThread.getLooper();
+        workerHandler = new Handler(workerLooper);
+        workerHandler.post(this::readAudioData);
     }
 
-    /**
-     * 完成录音
-     */
     public void stopRecording() {
         try {
             this.isRecording = false;
@@ -105,174 +72,31 @@ public class AudioRecorderHelper {
                 this.audioRecord.stop();
                 this.audioRecord.release();
                 this.audioRecord = null;
-                this.recordingAudioThread.interrupt();
-                this.recordingAudioThread = null;
+                workerThread.quit();
             }
         } catch (Exception e) {
             Log.w(TAG, e.getLocalizedMessage());
         }
     }
 
-    private void dealRecordData() {
+    private void readAudioData() {
         byte[] byteData = new byte[recordBufSize];
-        FileOutputStream fos = null;
-        while (isRecording && !recordingAudioThread.isInterrupted()) {
+        while (isRecording) {
             int readSize = audioRecord.read(byteData, 0, recordBufSize);
-
-
-            double volume = getVolume(readSize, byteData);
-            Log.d(TAG, "Volume -> " + volume);
-//            byteData = amplifyPCMData(byteData, readSize, 16, 1);
-//            volume = getVolume(readSize, byteData);
-
-            if (listener != null) {
-                listener.onVolume(volume);
-            }
-
-            if (System.currentTimeMillis() - currentStartMills > TIME_MAX && fos != null && currentWriteFile != null) {
-                try {
-                    // 关闭数据流
-                    fos.close();
-                    fos = null;
-                    convertPcm2Wav();
-                    currentWriteFile = null;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (volume >= MIN_VOLUME) {
-                preHighVolumeMills = System.currentTimeMillis();
-
-                if (currentWriteFile == null) {
-                    currentWriteFile = generateFile();
-                    try {
-                        fos = new FileOutputStream(currentWriteFile);
-                        currentStartMills = System.currentTimeMillis();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                        currentWriteFile = null;
-                        Log.d(TAG, "File not found");
-                    }
-                }
-            } else {
-                if (fos != null && System.currentTimeMillis() - preHighVolumeMills > TIME_INTERVAL) {
-                    try {
-                        // 关闭数据流
-                        fos.close();
-                        fos = null;
-                        convertPcm2Wav();
-                        currentWriteFile = null;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            if (fos != null && AudioRecord.ERROR_INVALID_OPERATION != readSize) {
-                try {
-                    fos.write(byteData);
-//                    Log.i(TAG, "写录音数据->" + readSize);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if (mListener != null) {
+                mListener.onReadByteData(readSize, byteData);
             }
         }
-
-        if (fos != null) {
-            try {
-                // 关闭数据流
-                fos.close();
-                fos = null;
-                convertPcm2Wav();
-                currentWriteFile = null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private File generateFile() {
-        File toBeWriteFile = new File(FILE_DIR, dateFormat.format(new Date()) + ".pcm");
-        if (toBeWriteFile.exists()) {
-            toBeWriteFile.delete();
-        }
-
-        try {
-            toBeWriteFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Log.d(TAG, "Generate pcm file " + toBeWriteFile);
-        return toBeWriteFile;
-    }
-
-    private void convertPcm2Wav() {
-        String pcmPath = currentWriteFile.getAbsolutePath();
-        String wavPath = pcmPath.substring(0, pcmPath.lastIndexOf(".")) + ".wav";
-        ptwUtil.pcmToWav(
-                pcmPath,
-                wavPath,
-                true);
-        wavList.add(wavPath);
-        Log.d(TAG, "Generate wav file " + wavPath);
-        if (listener != null) {
-            listener.onGenerateWav(wavPath);
-        }
-    }
-
-    private short[] bytesToShort(byte[] bytes) {
-        if (bytes == null) {
-            return null;
-        } else {
-            short[] shorts = new short[bytes.length / 2];
-            ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(shorts);
-            return shorts;
-        }
-    }
-
-    private static short[] toShortArray(byte[] src) {
-
-        int count = src.length >> 1;
-        short[] dest = new short[count];
-        for (int i = 0; i < count; i++) {
-            dest[i] = (short) (src[i * 2] << 8 | src[2 * i + 1] & 0xff);
-        }
-        return dest;
-    }
-
-    private static byte[] toByteArray(short[] src) {
-
-        int count = src.length;
-        byte[] dest = new byte[count << 1];
-        for (int i = 0; i < count; i++) {
-            dest[i * 2] = (byte) (src[i] >> 8);
-            dest[i * 2 + 1] = (byte) (src[i] >> 0);
-        }
-        return dest;
-    }
-
-    private double getVolume(int readSize, byte[] byteData) {
-        long v = 0L;
-        short[] shortBuffer = bytesToShort(byteData);
-        for (short i : shortBuffer) {
-            v += i * i;
-        }
-        double mean = v / (double) readSize;
-        double volume = 10 * Math.log10(mean);
-        return volume;
     }
 
     public interface RecorderListener {
-        void onGenerateWav(String wavFilePath);
-
-        void onVolume(double volume);
+        void onReadByteData(int readSize, @NotNull byte[] byteData);
     }
 
-    private RecorderListener listener;
+    private RecorderListener mListener;
 
     public void setRecorderListener(RecorderListener listener) {
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     ////////////////////////////////////////////

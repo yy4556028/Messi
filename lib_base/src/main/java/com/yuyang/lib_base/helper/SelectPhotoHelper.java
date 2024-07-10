@@ -9,11 +9,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import androidx.activity.ComponentActivity;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.FileProvider;
 
@@ -33,6 +35,9 @@ public class SelectPhotoHelper {
     private final ActivityResultLauncher<Intent> photoResultLauncher;
     private final ActivityResultLauncher<Intent> galleryResultLauncher;
     private final ActivityResultLauncher<Intent> cropResultLauncher;
+
+    private final ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    private final ActivityResultLauncher<PickVisualMediaRequest> pickMultipleMedia;
 
     public SelectPhotoHelper(ComponentActivity activity) {
         photoResultLauncher = activity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -129,6 +134,33 @@ public class SelectPhotoHelper {
                 }
             }
         });
+
+        pickMedia = activity.registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+            // Callback is invoked after the user selects a media item or closes the
+            // photo picker.
+            if (uri != null) {
+                String photoPath = SelectImageUtil.getPath(activity, uri);
+                if (mCropPhoto) {
+                    cropPhoto(uri);
+                } else {
+                    if (onResultListener != null) {
+                        onResultListener.onPhotoResult(getBitmapFromUri(uri), uri, photoPath);
+                    }
+                }
+            } else {
+                Log.d("SelectPhotoHelper", "No media selected");
+            }
+        });
+
+        pickMultipleMedia = activity.registerForActivityResult(new ActivityResultContracts.PickMultipleVisualMedia(9), uris -> {
+            // Callback is invoked after the user selects media items or closes the
+            // photo picker.
+            if (!uris.isEmpty()) {
+                Log.d("PhotoPicker", "Number of items selected: " + uris.size());
+            } else {
+                Log.d("PhotoPicker", "No media selected");
+            }
+        });
     }
 
     public void takePhoto(File outputFile, boolean cropPhoto) {
@@ -173,10 +205,32 @@ public class SelectPhotoHelper {
 //        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);   //打开后可选择是图库获取还是图片获取
 //        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
 //        Intent galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT); //直接打开的是图片
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK);  //直接打开的就是图库
-        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false);//单选
-        galleryIntent.setType("image/*");
-        galleryResultLauncher.launch(galleryIntent);
+//        Intent galleryIntent = new Intent(Intent.ACTION_PICK);  //直接打开的就是图库
+//        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false);//单选
+//        galleryIntent.setType("image/*");
+//        galleryResultLauncher.launch(galleryIntent);
+
+        // Launch the photo picker and let the user choose images and videos.
+//        pickMedia.launch(new PickVisualMediaRequest.Builder()
+//                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageAndVideo.INSTANCE)
+//                .build());
+
+        // Launch the photo picker and let the user choose only images.
+        pickMedia.launch(new PickVisualMediaRequest.Builder()
+                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                .build());
+
+        // Launch the photo picker and let the user choose only videos.
+//        pickMedia.launch(new PickVisualMediaRequest.Builder()
+//                .setMediaType(ActivityResultContracts.PickVisualMedia.VideoOnly.INSTANCE)
+//                .build());
+
+        // Launch the photo picker and let the user choose only images/videos of a
+        // specific MIME type, such as GIFs.
+//        String mimeType = "image/gif";
+//        pickMedia.launch(new PickVisualMediaRequest.Builder()
+//                .setMediaType(new ActivityResultContracts.PickVisualMedia.SingleMimeType(mimeType))
+//                .build());
     }
 
     public void setOnResultListener(OnResultListener onResultListener) {

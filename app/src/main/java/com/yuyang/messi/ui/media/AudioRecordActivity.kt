@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yuyang.lib_base.ui.header.HeaderLayout
 import com.yuyang.lib_base.utils.FileUtil
 import com.yuyang.lib_base.utils.ToastUtil
+import com.yuyang.lib_base.utils.media.AudioDealer
 import com.yuyang.lib_base.utils.media.AudioRecorderHelper
 import com.yuyang.lib_base.utils.media.MediaPlayerController
 import com.yuyang.messi.R
@@ -18,6 +19,7 @@ import com.yuyang.messi.ui.base.AppBaseActivity
 import com.yuyang.messi.ui.media.adapter.AudioRecordAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+import java.io.FilenameFilter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -26,6 +28,7 @@ class AudioRecordActivity : AppBaseActivity() {
     private lateinit var binding: ActivityAudioRecordBinding
 
     private val mAudioRecorderHelper: AudioRecorderHelper = AudioRecorderHelper()
+    private var mAudioDealer = AudioDealer()
 
     @Inject
     lateinit var mAdapter: AudioRecordAdapter
@@ -66,7 +69,7 @@ class AudioRecordActivity : AppBaseActivity() {
             )
         )
 
-        FileUtil.deleteDir(File(AudioRecorderHelper.FILE_DIR), false)
+        FileUtil.deleteDir(File(AudioDealer.AUDIO_DIR), false)
     }
 
     override fun onDestroy() {
@@ -91,6 +94,11 @@ class AudioRecordActivity : AppBaseActivity() {
                 R.id.rbSample_8000 -> sample = 8000
             }
 
+            mAudioDealer.startDeal(
+                sample,
+                AudioFormat.CHANNEL_IN_MONO,
+                AudioFormat.ENCODING_PCM_16BIT,
+            )
             mAudioRecorderHelper.startRecordAudio(
                 sample,
                 AudioFormat.CHANNEL_IN_MONO,
@@ -100,21 +108,25 @@ class AudioRecordActivity : AppBaseActivity() {
         binding.endRecord.setOnClickListener {
             binding.startRecord.isEnabled = true
             binding.endRecord.isEnabled = false
+
+            mAudioDealer.endDeal()
             mAudioRecorderHelper.stopRecording()
 
-            mAdapter.setData(mAudioRecorderHelper.wavList)
+            val fileDir = File(AudioDealer.AUDIO_DIR)
+            val wavList = fileDir.listFiles(object : FilenameFilter {
+                override fun accept(dir: File?, name: String?): Boolean {
+                    return name != null && name.endsWith("wav")
+                }
+            })?.map { it.absolutePath }
+            mAdapter.setData(wavList)
         }
 
         mAudioRecorderHelper.setRecorderListener(object : AudioRecorderHelper.RecorderListener {
-            override fun onGenerateWav(wavFilePath: String?) {
+            override fun onReadByteData(readSize: Int, byteData: ByteArray) {
+                mAudioDealer.dealData(readSize, byteData)
+                val volume = AudioDealer.getVolume(readSize, byteData).toInt()
                 runOnUiThread {
-                    mAdapter.setData(mAudioRecorderHelper.wavList)
-                }
-            }
-
-            override fun onVolume(volume: Double) {
-                runOnUiThread {
-                    binding.tvVolume.text = volume.toInt().toString()
+                    binding.tvVolume.text = "音量" + volume.toString()
                 }
             }
         })
@@ -129,15 +141,10 @@ class AudioRecordActivity : AppBaseActivity() {
                 }
 
                 override fun onItemDetect(index: Int) {
-                    detectSnore(mAdapter.getData()?.get(index))
                 }
 
             })
             it.adapter = mAdapter
         }
-    }
-
-    private fun detectSnore(path: String?) {
-        ToastUtil.showToast("未实现")
     }
 }
