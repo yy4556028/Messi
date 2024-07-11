@@ -90,10 +90,10 @@
         tools:replace="android:requestLegacyExternalStorage,android:name">
 
         <activity
-            android:name=".ui.login.SplashActivity"
+            android:name=".ui.login.StartActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.App.SplashScreen">
+            android:theme="@style/Theme.App.Starting" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -111,11 +111,6 @@
                     android:scheme="m" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.login.StartActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".kotlinui.main.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|locale|layoutDirection|keyboard"

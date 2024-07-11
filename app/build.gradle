@@ -289,7 +289,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.48"
     kapt "com.google.dagger:hilt-android-compiler:2.48"
 
-    implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
 
     implementation("androidx.biometric:biometric:1.1.0")
 
