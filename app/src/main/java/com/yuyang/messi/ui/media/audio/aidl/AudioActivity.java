@@ -1,11 +1,13 @@
 package com.yuyang.messi.ui.media.audio.aidl;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -13,6 +15,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,13 +30,17 @@ import com.yuyang.lib_base.myglide.GlideApp;
 import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.lib_base.utils.CommonUtil;
 import com.yuyang.lib_base.utils.LogUtil;
+import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.adapter.AudioRecyclerAdapter;
 import com.yuyang.messi.helper.AudioHelper;
 import com.yuyang.messi.ui.base.AppBaseActivity;
+import com.yuyang.messi.utils.PermissionUtil;
 import com.yuyang.messi.view.AlwaysMarqueeTextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class AudioActivity extends AppBaseActivity {
 
@@ -128,6 +137,37 @@ public class AudioActivity extends AppBaseActivity {
         }
     };
 
+    private ActivityResultLauncher<String[]> permissionsLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                        List<String> deniedAskList = new ArrayList<>();
+                        List<String> deniedNoAskList = new ArrayList<>();
+                        for (Map.Entry<String, Boolean> stringBooleanEntry : result.entrySet()) {
+                            if (!stringBooleanEntry.getValue()) {
+                                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), stringBooleanEntry.getKey())) {
+                                    deniedAskList.add(stringBooleanEntry.getKey());
+                                } else {
+                                    deniedNoAskList.add(stringBooleanEntry.getKey());
+                                }
+                            }
+                        }
+                        if (deniedAskList.isEmpty() && deniedNoAskList.isEmpty()) { //全通过
+                            Bundle audioStoreArgs = new Bundle();
+                            audioStoreArgs.putInt(AudioHelper.ARG_DURATION, 1500);
+                            AudioHelper.loadAudio(getActivity(), audioStoreArgs, new AudioHelper.AudioResultCallback() {
+                                @Override
+                                public void onResultCallback(ArrayList<AudioBean> beanList) {
+                                    recyclerAdapter.setData(beanList);
+                                }
+                            });
+                        } else if (!deniedNoAskList.isEmpty()) {
+                            PermissionUtil.showMissingPermissionDialog(this);
+                        } else {
+                            ToastUtil.showToast("您拒绝了部分权限");
+                            finish();
+                        }
+                    }
+            );
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_audio;
@@ -142,16 +182,24 @@ public class AudioActivity extends AppBaseActivity {
 
         initViews();
         initEvents();
-
-        Bundle audioStoreArgs = new Bundle();
-        audioStoreArgs.putInt(AudioHelper.ARG_DURATION, 1500);
-        AudioHelper.loadAudio(getActivity(), audioStoreArgs, new AudioHelper.AudioResultCallback() {
-            @Override
-            public void onResultCallback(ArrayList<AudioBean> beanList) {
-                recyclerAdapter.setData(beanList);
-            }
-        });
         registerMyReceiver();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_MEDIA_AUDIO,
+                    Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED});
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_MEDIA_AUDIO});
+
+        } else {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE});
+        }
     }
 
     @Override

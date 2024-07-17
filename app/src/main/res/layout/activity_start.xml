@@ -16,7 +16,6 @@
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/activity_start_skip_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/activity_start_skip_circle"

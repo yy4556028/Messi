@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ImageDecoder;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -45,6 +46,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class BitmapUtil {
+
+    public static Bitmap loadBitmapFromUri(Uri uri) {
+        try {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1) {
+                // on newer versions of Android, use the new decodeBitmap method
+                ImageDecoder.Source source = ImageDecoder.createSource(BaseApp.getInstance().getContentResolver(), uri);
+                return ImageDecoder.decodeBitmap(source);
+            } else {
+                // support older versions of Android by using getBitmap
+                return MediaStore.Images.Media.getBitmap(BaseApp.getInstance().getContentResolver(), uri);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * 通知系统 以便在相册显示

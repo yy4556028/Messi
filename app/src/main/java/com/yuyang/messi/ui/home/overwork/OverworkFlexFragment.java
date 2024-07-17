@@ -48,6 +48,7 @@ import com.yuyang.messi.view.scroll.month_view.Day;
 import com.yuyang.messi.view.scroll.month_view.MonthView;
 import com.yuyang.messi.widget.ChartMarkerView;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -145,12 +146,13 @@ public class OverworkFlexFragment extends BaseFragment {
     }
 
     private void loadSaveData() {
-        String data;
+        String data = null;
         // 如果AndroidQ 且 非兼容模式
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
 //            data = FileUtil.readFileV29(saveFilePath_public);
 //        } else {
-        data = FileUtil.readFile(saveFilePath);
+        if (new File(saveFilePath).exists())
+            data = FileUtil.readFile(saveFilePath);
 //        }
 
         if (!TextUtils.isEmpty(data)) {

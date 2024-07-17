@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pickPhotoSysNew"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="选择照片(系统)(SDK>=30)"
+                app:cornerRadius="22.5dp"
+                app:icon="@null"
+                app:iconGravity="start"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pickPhotoCustom"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="选择照片(自定义)"
+                app:cornerRadius="22.5dp"
+                app:icon="@null"
+                app:iconGravity="start"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/actionPick"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Action Pick"
+                app:cornerRadius="22.5dp"
+                app:icon="@null"
+                app:iconGravity="start"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/openDocument"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Open Document"
+                app:cornerRadius="22.5dp"
+                app:icon="@null"
+                app:iconGravity="start"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getContent"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Get Content"
+                app:cornerRadius="22.5dp"
+                app:icon="@null"
+                app:iconGravity="start"
+                app:iconPadding="0dp"
+                app:iconSize="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

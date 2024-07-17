@@ -16,6 +16,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
+import com.yuyang.lib_base.BaseApp;
 import com.yuyang.messi.MessiApp;
 import com.yuyang.messi.bean.VideoBean;
 
@@ -91,39 +92,41 @@ public class VideoHelper {
         public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
             if (cursor == null) return;
 
-            List<VideoBean> beanList = new ArrayList<>();
+            new Thread(() -> {
+                List<VideoBean> beanList = new ArrayList<>();
 
-            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-            VideoBean videoBean;
-            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                VideoBean videoBean;
+                for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
 
-                String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
-                long videoId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
-                Uri uri = Uri.withAppendedPath(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, String.valueOf(videoId));
+                    String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+                    long videoId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
+                    Uri uri = Uri.withAppendedPath(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, String.valueOf(videoId));
 
-                retriever.setDataSource(MessiApp.getInstance(), uri);
-                Bitmap bm = retriever.getFrameAtTime();
-                if (bm == null) continue;
+                    retriever.setDataSource(MessiApp.getInstance(), uri);
+                    Bitmap bm = retriever.getFrameAtTime();
+                    if (bm == null) continue;
 
-                int width = bm.getWidth();
-                int height = bm.getHeight();
+                    int width = bm.getWidth();
+                    int height = bm.getHeight();
 
-                videoBean = new VideoBean();
-                videoBean.setVideoId(videoId);
-                videoBean.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE)));
-                videoBean.setDisplayName(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME)));
-                videoBean.setPath(path);
-                videoBean.setLength(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
-                videoBean.setBitmap(bm);
-                videoBean.setWidth(width);
-                videoBean.setHeight(height);
-                videoBean.setSize(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
-                beanList.add(videoBean);
-            }
+                    videoBean = new VideoBean();
+                    videoBean.setVideoId(videoId);
+                    videoBean.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE)));
+                    videoBean.setDisplayName(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME)));
+                    videoBean.setPath(path);
+                    videoBean.setLength(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
+                    videoBean.setBitmap(bm);
+                    videoBean.setWidth(width);
+                    videoBean.setHeight(height);
+                    videoBean.setSize(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
+                    beanList.add(videoBean);
+                }
 
-            if (resultCallback != null) {
-                resultCallback.onResultCallback(beanList);
-            }
+                if (resultCallback != null) {
+                    BaseApp.getInstance().currentActivity.get().runOnUiThread(() -> resultCallback.onResultCallback(beanList));
+                }
+            }).start();
         }
 
         @Override
@@ -149,5 +152,17 @@ public class VideoHelper {
             }
         }
     }
+
+//    public static List<VideoBean> get() {
+//        Cursor cursor = BaseApp.getInstance().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Video.Media.DEFAULT_SORT_ORDER);
+//        if (cursor != null) {
+//            while (cursor.moveToNext()) {
+//                val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
+//                val uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
+//                println("image uri is $uri")
+//            }
+//            cursor.close()
+//        }
+//    }
 
 }

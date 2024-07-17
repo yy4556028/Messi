@@ -18,7 +18,7 @@ import com.yuyang.lib_base.BaseApp;
 
 public class ToastUtil {
 
-    private static final Handler handler = new Handler(Looper.getMainLooper());
+    private static final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private static ShapeDrawable bgShapeDrawable;
 
@@ -27,7 +27,7 @@ public class ToastUtil {
     }
 
     public static void showToast(CharSequence msg, @DrawableRes int resId) {
-        handler.post(new Runnable() {
+        mainHandler.post(new Runnable() {
             @Override
             public void run() {
                 Toast toast = Toast.makeText(BaseApp.getInstance(), msg, Toast.LENGTH_SHORT);

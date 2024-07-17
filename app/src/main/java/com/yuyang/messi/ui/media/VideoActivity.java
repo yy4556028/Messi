@@ -1,14 +1,19 @@
 package com.yuyang.messi.ui.media;
 
+import android.Manifest;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,9 +25,12 @@ import com.yuyang.messi.bean.VideoBean;
 import com.yuyang.messi.helper.VideoHelper;
 import com.yuyang.messi.ui.base.AppBaseActivity;
 import com.yuyang.lib_base.utils.CommonUtil;
+import com.yuyang.messi.utils.PermissionUtil;
 import com.yuyang.messi.view.Progress.CircleProgressBar;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class VideoActivity extends AppBaseActivity {
 
@@ -32,6 +40,49 @@ public class VideoActivity extends AppBaseActivity {
     private CircleProgressBar progressBar;
     private VideoRecyclerAdapter adapter;
     private MediaPlayer mediaPlayer = new MediaPlayer();
+
+    private final ActivityResultLauncher<String[]> permissionsLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                        List<String> deniedAskList = new ArrayList<>();
+                        List<String> deniedNoAskList = new ArrayList<>();
+                        for (Map.Entry<String, Boolean> stringBooleanEntry : result.entrySet()) {
+                            if (!stringBooleanEntry.getValue()) {
+                                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), stringBooleanEntry.getKey())) {
+                                    deniedAskList.add(stringBooleanEntry.getKey());
+                                } else {
+                                    deniedNoAskList.add(stringBooleanEntry.getKey());
+                                }
+                            }
+                        }
+                        if (deniedAskList.isEmpty() && deniedNoAskList.isEmpty()) { //全通过
+                            progressBar.setVisibility(View.VISIBLE);
+                            VideoHelper.loadVideo(getActivity(), null, 0, 0, new VideoHelper.VideoResultCallback() {
+                                @Override
+                                public void onResultCallback(List<VideoBean> beanList) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    if (beanList == null || beanList.isEmpty()) {
+                                        new AlertDialog.Builder(getActivity())
+                                                .setTitle("Video No Found")
+                                                .setMessage("Video No Found")
+                                                .setCancelable(false)
+                                                .setPositiveButton("确定", (dialog, which) -> finish())
+                                                .create()
+                                                .show();
+                                    } else {
+                                        adapter.setData(beanList);
+                                        setSurfaceLocation(adapter.videoBeanList.get(0).getWidth(), adapter.videoBeanList.get(0).getHeight());
+                                        play((adapter.videoBeanList.get(0)).getVideoUri());
+                                    }
+                                }
+                            });
+                        } else if (!deniedNoAskList.isEmpty()) {
+                            PermissionUtil.showMissingPermissionDialog(this);
+                        } else {
+                            ToastUtil.showToast("您拒绝了部分权限");
+                            finish();
+                        }
+                    }
+            );
 
     @Override
     protected int getLayoutId() {
@@ -43,31 +94,23 @@ public class VideoActivity extends AppBaseActivity {
         super.onCreate(savedInstanceState);
         initViews();
         initEvents();
-        progressBar.setVisibility(View.VISIBLE);
-        VideoHelper.loadVideo(getActivity(), null, 0, 0, new VideoHelper.VideoResultCallback() {
-            @Override
-            public void onResultCallback(List<VideoBean> beanList) {
-                progressBar.setVisibility(View.INVISIBLE);
-                if (beanList == null || beanList.isEmpty()) {
-                    new AlertDialog.Builder(getActivity())
-                            .setTitle("Video No Found")
-                            .setMessage("Video No Found")
-                            .setCancelable(false)
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                }
-                            })
-                            .create()
-                            .show();
-                } else {
-                    adapter.setData(beanList);
-                    setSurfaceLocation(adapter.videoBeanList.get(0).getWidth(), adapter.videoBeanList.get(0).getHeight());
-                    play((adapter.videoBeanList.get(0)).getVideoUri());
-                }
-            }
-        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED});
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_MEDIA_VIDEO});
+
+        } else {
+            permissionsLauncher.launch(new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE});
+        }
     }
 
     @Override

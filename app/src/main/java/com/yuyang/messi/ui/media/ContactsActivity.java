@@ -205,6 +205,13 @@ public class ContactsActivity extends AppBaseActivity {
         ContactHelper.loadContact(getActivity(), new ContactHelper.ContactResultCallback() {
             @Override
             public void onResultCallback(List<ContactBean> contactBeanList) {
+                List<ContactBean> filterBeanList = new ArrayList<>();
+                for (ContactBean contactBean : contactBeanList) {
+                    if (!TextUtils.isEmpty(contactBean.getSortKey())) {
+                        filterBeanList.add(contactBean);
+                    }
+                }
+                contactBeanList = filterBeanList;
 
                 Set<String> sectionSet = new HashSet<>();
 

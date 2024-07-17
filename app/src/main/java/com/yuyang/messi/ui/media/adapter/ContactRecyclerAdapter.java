@@ -211,7 +211,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
      **/
     @Override
     public int getSectionForPosition(int position) {
-        return beanList.get(position - headerCount).getSortKey().charAt(0);
+        return beanList.get(position - headerCount).getSortKey().toUpperCase().charAt(0);
     }
 
     /****************** 以下方法为有关吸顶效果的部分 **************/

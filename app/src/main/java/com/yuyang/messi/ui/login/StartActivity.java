@@ -1,6 +1,5 @@
 package com.yuyang.messi.ui.login;
 
-import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -8,15 +7,11 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.viewpager.widget.PagerAdapter;
@@ -54,9 +45,6 @@ import com.yuyang.messi.view.Progress.CircleProgress;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class StartActivity extends AppBaseActivity {
 
@@ -64,7 +52,6 @@ public class StartActivity extends AppBaseActivity {
 
     private RelativeLayout advertLyt;
     private ImageView advertImageView;
-    private TextView skipText;
     private CircleProgress circleProgress;
 
     private LinearLayout guideLyt;
@@ -76,42 +63,6 @@ public class StartActivity extends AppBaseActivity {
     private final int[] colorIds = {R.color.red, R.color.yellow, R.color.blue};
 
     private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
-
-    private final ActivityResultLauncher<Intent> externalStorageManagerLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                checkPermissionAndJump();
-            });
-
-    private final ActivityResultLauncher<String[]> permissionsLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
-                List<String> deniedAskList = new ArrayList<>();
-                List<String> deniedNoAskList = new ArrayList<>();
-                for (Map.Entry<String, Boolean> stringBooleanEntry : result.entrySet()) {
-                    if (!stringBooleanEntry.getValue()) {
-                        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), stringBooleanEntry.getKey())) {
-                            deniedAskList.add(stringBooleanEntry.getKey());
-                        } else {
-                            deniedNoAskList.add(stringBooleanEntry.getKey());
-                        }
-                    }
-                }
-
-                if (deniedAskList.isEmpty() && deniedNoAskList.isEmpty()) {//全通过
-                    if (getIntent().getParcelableExtra(KEY_LAUNCH_INTENT) != null) {
-                        startActivities(new Intent[]{
-                                new Intent(getActivity(), MainActivity.class),
-                                getIntent().getParcelableExtra(KEY_LAUNCH_INTENT)});
-                    } else {
-                        startActivity(new Intent(getActivity(), MainActivity.class));
-                    }
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    finish();
-                } else if (!deniedNoAskList.isEmpty()) {
-                    showMissingPermissionDialog();
-                } else {
-                    checkPermissionAndJump();
-                }
-            });
 
     @Override
     protected int getLayoutId() {
@@ -127,12 +78,8 @@ public class StartActivity extends AppBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
-        try {
 //            adb shell am start -W -n com.yuyang.messi/com.yuyang.messi.ui.login.StartActivity
-            reportFullyDrawn();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        reportFullyDrawn();
 
 //        MediaScannerConnection.scanFile(App.getAppContext(), new String[]{PathConstant.DIR_ROOT}, new String[]{"application/octet-stream"}, null);
         initView();
@@ -149,22 +96,22 @@ public class StartActivity extends AppBaseActivity {
             showAdvertImage();
             circleProgress.setValue(100, new int[]{Color.RED, Color.BLUE}, 4000, new Animator.AnimatorListener() {
                 @Override
-                public void onAnimationStart(Animator animation) {
+                public void onAnimationStart(@NonNull Animator animation) {
 
                 }
 
                 @Override
-                public void onAnimationEnd(Animator animation) {
-                    checkPermissionAndJump();
+                public void onAnimationEnd(@NonNull Animator animation) {
+                    goMain();
                 }
 
                 @Override
-                public void onAnimationCancel(Animator animation) {
+                public void onAnimationCancel(@NonNull Animator animation) {
 
                 }
 
                 @Override
-                public void onAnimationRepeat(Animator animation) {
+                public void onAnimationRepeat(@NonNull Animator animation) {
 
                 }
             });
@@ -182,16 +129,15 @@ public class StartActivity extends AppBaseActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         //第一帧显示出来后，用户能接触到的第一个回调
-        if (hasFocus) {
+//        if (hasFocus) {
 //            TraceCompat.endSection();
-            //Debug.stopMethodTracing();
-        }
+        //Debug.stopMethodTracing();
+//        }
     }
 
     private void initView() {
         advertLyt = findViewById(R.id.activity_start_advert_lyt);
         advertImageView = findViewById(R.id.activity_start_advert);
-        skipText = findViewById(R.id.activity_start_skip_text);
         circleProgress = findViewById(R.id.activity_start_skip_circle);
 
         guideLyt = findViewById(R.id.activity_start_guide_lyt);
@@ -259,7 +205,7 @@ public class StartActivity extends AppBaseActivity {
             @Override
             public void onClick(View v) {
                 circleProgress.stop();
-                checkPermissionAndJump();
+                goMain();
             }
         });
 
@@ -267,56 +213,22 @@ public class StartActivity extends AppBaseActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferencesUtil.setFirstStart();
-                checkPermissionAndJump();
+                goMain();
             }
         });
     }
 
     @SuppressLint("CheckResult")
-    private void checkPermissionAndJump() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // 先判断有没有权限
-            if (!Environment.isExternalStorageManager()) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                intent.setData(Uri.parse("package:" + getPackageName()));
-                externalStorageManagerLauncher.launch(intent);
-                return;
-            }
+    private void goMain() {
+        if (getIntent().getParcelableExtra(KEY_LAUNCH_INTENT) != null) {
+            startActivities(new Intent[]{
+                    new Intent(getActivity(), MainActivity.class),
+                    getIntent().getParcelableExtra(KEY_LAUNCH_INTENT)});
         } else {
-            permissionsLauncher.launch(new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE});
+            startActivity(new Intent(getActivity(), MainActivity.class));
         }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            permissionsLauncher.launch(new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES,
-                    Manifest.permission.READ_MEDIA_AUDIO,
-                    Manifest.permission.READ_MEDIA_VIDEO});
-        }
-    }
-
-    private void showMissingPermissionDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("提示")
-                .setMessage("当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。")
-                .setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                        System.exit(0);
-                    }
-                })
-                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        intent.setData(Uri.parse("package:" + getPackageName()));
-                        startActivity(intent);
-                    }
-                })
-                .setCancelable(false)
-                .show();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
     }
 
     private void showAdvertImage() {
@@ -330,22 +242,20 @@ public class StartActivity extends AppBaseActivity {
                 ObjectAnimator.ofFloat(advertImageView, "scaleX", 0.8f, 1),
                 ObjectAnimator.ofFloat(advertImageView, "scaleY", 0.8f, 1));
         animatorSet.setDuration(3000);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            advertImageView.setClipToOutline(true);
-            ((ObjectAnimator) animatorSet.getChildAnimations().get(0)).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    Float aFloat = (Float) valueAnimator.getAnimatedValue();
+        advertImageView.setClipToOutline(true);
+        ((ObjectAnimator) animatorSet.getChildAnimations().get(0)).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+                Float aFloat = (Float) valueAnimator.getAnimatedValue();
 
-                    advertImageView.setOutlineProvider(new ViewOutlineProvider() {
-                        @Override
-                        public void getOutline(View view, Outline outline) {
-                            outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), PixelUtils.dp2px((1 - aFloat) * 200));
-                        }
-                    });
-                }
-            });
-        }
+                advertImageView.setOutlineProvider(new ViewOutlineProvider() {
+                    @Override
+                    public void getOutline(View view, Outline outline) {
+                        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), PixelUtils.dp2px((1 - aFloat) * 200));
+                    }
+                });
+            }
+        });
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -391,7 +301,7 @@ public class StartActivity extends AppBaseActivity {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
     }

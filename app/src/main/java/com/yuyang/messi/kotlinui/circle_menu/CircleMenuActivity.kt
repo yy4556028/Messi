@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import com.yuyang.lib_base.utils.ToastUtil
 import com.yuyang.messi.R
 import com.yuyang.messi.databinding.ActivityCircleMenuBinding
@@ -21,12 +19,6 @@ import java.util.*
 class CircleMenuActivity : AppBaseActivity() {
 
     private lateinit var mBinding: ActivityCircleMenuBinding
-
-    private val galleryLauncher = registerForActivityResult(StartActivityForResult(), ActivityResultCallback { result ->
-        if (RESULT_OK != result.resultCode) return@ActivityResultCallback
-        val selectImages: ArrayList<String>? = result.data?.getStringArrayListExtra(AlbumActivity.SELECTED_PHOTOS)
-        ToastUtil.showToast(selectImages?.size.toString() + "")
-    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +39,15 @@ class CircleMenuActivity : AppBaseActivity() {
             )
 
             val mItemTexts = arrayOf(
-                "相册", "音频", "录音", "视频", "联系人", "扫名片", "相机1", "相机2", "相机X"
+                "选择Media",
+                "音频",
+                "录音",
+                "视频",
+                "联系人",
+                "扫名片",
+                "相机1",
+                "相机2",
+                "相机X"
             )
 
             removeViews(1, mBinding.circleMenu.childCount - 1)
@@ -56,7 +56,7 @@ class CircleMenuActivity : AppBaseActivity() {
             setOnMenuItemClickListener(object : CircleMenuLayout.OnMenuItemClickListener {
                 override fun itemClick(view: View, pos: Int) {
                     when (pos) {
-                        0 -> galleryLauncher.launch(AlbumActivity.getLaunchIntent(activity, 7, true, true, true, null))
+                        0 -> startActivity(Intent(activity, MediaPickerActivity::class.java))
                         1 -> startActivity(Intent(activity, AudioActivity::class.java))
                         2 -> startActivity(Intent(activity, AudioRecordActivity::class.java))
                         3 -> startActivity(Intent(activity, VideoActivity::class.java))
@@ -70,7 +70,12 @@ class CircleMenuActivity : AppBaseActivity() {
                 }
 
                 override fun itemCenterClick(view: View) {
-                    NotificationUtil.showNotification(activity, VideoExoActivity::class.java, "Exo", false)
+                    NotificationUtil.showNotification(
+                        activity,
+                        VideoExoActivity::class.java,
+                        "Exo",
+                        false
+                    )
                     ToastUtil.showToast("Center Click")
                 }
             })
@@ -97,7 +102,8 @@ class CircleMenuActivity : AppBaseActivity() {
             setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                     mBinding.pulsatorLayout.duration = progress * 100
-                    mBinding.tvDuration.text = String.format(Locale.CHINESE, "%.1f", progress * 0.1f)
+                    mBinding.tvDuration.text =
+                        String.format(Locale.CHINESE, "%.1f", progress * 0.1f)
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar) {}

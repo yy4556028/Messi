@@ -12,6 +12,7 @@ import com.yuyang.lib_base.R;
 import java.io.File;
 
 /**
+ * https://developer.android.google.cn/training/data-storage?hl=zh-cn
  * 迁移：https://www.jianshu.com/p/af9903069ebe
  * Android Q 要来了，给你一份很"全面"的适配指南：https://blog.csdn.net/
  * https://blog.csdn.net/c6E5UlI1N/article/details/120540157plokmju88/article/details/103354372

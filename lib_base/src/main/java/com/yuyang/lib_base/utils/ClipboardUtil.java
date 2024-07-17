@@ -1,9 +1,11 @@
 package com.yuyang.lib_base.utils;
 
 import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
+import android.os.PersistableBundle;
 
 import androidx.annotation.RequiresApi;
 
@@ -28,10 +30,30 @@ public class ClipboardUtil {
      * @param text
      */
     public static void setText(CharSequence text) {
+        setText(text, false);
+    }
+
+    /**
+     * 为剪切板设置内容
+     * 添加此标志可阻止敏感内容出现在内容预览中
+     * https://developer.android.google.cn/about/versions/13/behavior-changes-all?hl=zh-cn#copy-sensitive-content
+     *
+     * @param isSensitive
+     */
+    public static void setText(CharSequence text, boolean isSensitive) {
         instance();
         // Creates a new text crop to put on the clipboard
         // 创建一个剪贴数据集，包含一个普通文本数据条目（需要复制的数据）
         ClipData clip = ClipData.newPlainText(null, text);
+        if (isSensitive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            PersistableBundle persistableBundle = new PersistableBundle();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                persistableBundle.putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true);
+            } else {
+                persistableBundle.putBoolean("android.content.extra.IS_SENSITIVE", true);
+            }
+            clip.getDescription().setExtras(persistableBundle);
+        }
 
         // Set the clipboard's primary crop.
         // 把数据集设置（复制）到剪贴板
