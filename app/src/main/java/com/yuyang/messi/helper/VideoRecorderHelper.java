@@ -158,7 +158,6 @@ public class VideoRecorderHelper {
      *
      * @param mVideoSize
      */
-    @SuppressLint("NewApi")
     public void initRecorder3(Activity activity, Size mVideoSize, Integer facing) {
 
         initOutputFile();

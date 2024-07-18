@@ -77,7 +77,12 @@ public class BioMetricUtil {
                     @Override
                     public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                         super.onAuthenticationError(errorCode, errString);
-                        ToastUtil.showToast("Authentication error: $errString");
+                        if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                            // 如果您在提示对话框中添加了取消按钮
+                            ToastUtil.showToast("您取消了");
+                        } else {
+                            ToastUtil.showToast("Authentication error: $errString");
+                        }
                     }
 
                     @Override
@@ -99,7 +104,9 @@ public class BioMetricUtil {
                 .setTitle("Biometric Title")
                 .setSubtitle("Biometric Subtitle")
                 .setDescription("Description")
-                .setNegativeButtonText("Use account password")
+                .setNegativeButtonText("使用密码登录")
+                .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                .setConfirmationRequired(false)
                 .build());
     }
 

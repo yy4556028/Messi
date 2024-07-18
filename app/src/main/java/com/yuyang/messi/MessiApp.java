@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.view.WindowManager;
 
@@ -32,6 +33,7 @@ import com.yuyang.lib_base.net.common.SSLParams;
 import com.yuyang.lib_base.utils.LogUtil;
 import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.crash.CrashHandler;
+import com.yuyang.messi.kotlinui.main.MainActivity;
 import com.yuyang.messi.learn.DexHelper;
 import com.yuyang.messi.net.okhttp.OkHttpUtil;
 import com.yuyang.messi.net.okhttp.log.LoggerInterceptor;
@@ -78,6 +80,28 @@ public class MessiApp extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (BuildConfig.DEBUG) {
+            // 开启Thread策略模式
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectNetwork()// 监测主线程使用网络IO
+                    .detectCustomSlowCalls()// 监测自定义运行缓慢函数
+                    .detectDiskReads()// 监测在UI线程读磁盘操作
+                    .detectDiskWrites()// 监测在UI线程写磁盘操作
+                    .penaltyLog()// 写入日志
+                    .penaltyDialog()// 监测到上述情况时弹出对话框
+                    .build());
+            // 开启VM策略模式
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()// 监测SQLite数据库对象泄漏
+                    .detectLeakedClosableObjects()// 监测有没有关闭IO对象
+                    .setClassInstanceLimit(MainActivity.class, 1)// 限制MainActivity实例数
+                    .detectActivityLeaks()// 监测Activity对象泄漏
+                    .detectFileUriExposure()// 监测FileUriExposure漏洞
+                    .penaltyLog()// 写入日志
+                    .penaltyDeath()// 监测到上述情况时崩溃
+                    .build());
+        }
+
 //        BlockCanary.install(this, new BlockCanaryContext()).start();
 
         CrashHandler.getInstance().init(this);
@@ -107,7 +131,9 @@ public class MessiApp extends BaseApp {
 //        }'
     }
 
-    /** 可以放在异步初始化的 */
+    /**
+     * 可以放在异步初始化的
+     */
     private void initAsync() {
         AsyncHandler.getInstance()
                 .post(

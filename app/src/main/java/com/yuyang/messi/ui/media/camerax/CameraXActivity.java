@@ -63,6 +63,7 @@ import java.util.concurrent.TimeUnit;
 
 //https://juejin.cn/post/6951017751457005576
 //https://github.com/android/camera-samples/tree/main/CameraXBasic
+//https://developer.android.google.cn/media/camera/camerax/architecture?hl=el
 @SuppressLint("RestrictedApi")
 public class CameraXActivity extends AppBaseActivity {
 

@@ -14,6 +14,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
+import com.yuyang.lib_base.BaseApp
 import com.yuyang.lib_base.bean.PopBean
 import com.yuyang.lib_base.helper.SelectImageUtil
 import com.yuyang.lib_base.ui.view.picker.BottomChooseDialog
@@ -155,7 +156,7 @@ class MediaPickerActivity : AppBaseActivity() {
         with(binding) {
             //无需请求任何权限
             pickPhotoSysNew.setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(BaseApp.getInstance())) {
                     BottomChooseDialog.showSingle(
                         activity,
                         "请选择",
@@ -205,7 +206,7 @@ class MediaPickerActivity : AppBaseActivity() {
                         }
                     }
                 } else {
-                    ToastUtil.showToast("仅支持Android 11及以上(>=30)")
+                    ToastUtil.showToast("不支持")
                 }
             }
 
