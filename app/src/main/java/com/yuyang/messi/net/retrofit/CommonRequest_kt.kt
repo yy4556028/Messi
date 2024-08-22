@@ -7,9 +7,6 @@ import com.yuyang.messi.bean.douban.DoubanMovieBean
 import com.yuyang.messi.bean.douban.DoubanResponse
 import com.yuyang.messi.kotlinui.beauty.BeautyBean
 import com.yuyang.messi.net.retrofit.data.ResponseData
-import com.yuyang.messi.ui.finance.FinanceHomeActivity
-import com.yuyang.messi.ui.finance.bean.FinanceBaseBean
-import com.yuyang.messi.ui.finance.bean.FinanceData
 import io.reactivex.Observable
 import java.util.*
 
@@ -57,10 +54,6 @@ class CommonRequest_kt {
 
     suspend fun doubanMovie(movieId: String?): Observable<DoubanMovieBean> {
         return mCommonService!!.doubanMovie(movieId, "0b2bdeda43b5688921839c8ecb20399b")
-    }
-
-    suspend fun loadStockInfo(gid: String?, type: String?): Observable<FinanceBaseBean<FinanceData>> {
-        return mCommonService!!.loadStockInfo(gid, type, FinanceHomeActivity.APP_KEY)
     }
 
     companion object {

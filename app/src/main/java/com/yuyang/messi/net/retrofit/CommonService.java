@@ -5,8 +5,6 @@ import com.yuyang.messi.bean.douban.DoubanMovieBean;
 import com.yuyang.messi.bean.douban.DoubanResponse;
 import com.yuyang.messi.kotlinui.beauty.BeautyBean;
 import com.yuyang.messi.net.retrofit.data.ResponseData;
-import com.yuyang.messi.ui.finance.bean.FinanceBaseBean;
-import com.yuyang.messi.ui.finance.bean.FinanceData;
 
 import java.util.List;
 import java.util.Map;
@@ -154,7 +152,4 @@ public interface CommonService {
 
     @GET("http://api.douban.com/v2/movie/subject/{movieId}")
     Observable<DoubanMovieBean> doubanMovie(@Path("movieId") String movieId, @Query("apikey") String apikey);
-
-    @GET("http://web.juhe.cn:8080/finance/stock/hs")
-    Observable<FinanceBaseBean<FinanceData>> loadStockInfo(@Query("gid") String movieId, @Query("type") String type, @Query("key") String appkey);
 }

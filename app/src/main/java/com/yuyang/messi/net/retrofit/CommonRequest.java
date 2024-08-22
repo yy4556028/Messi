@@ -7,9 +7,6 @@ import com.yuyang.messi.bean.douban.DoubanMovieBean;
 import com.yuyang.messi.bean.douban.DoubanResponse;
 import com.yuyang.messi.kotlinui.beauty.BeautyBean;
 import com.yuyang.messi.net.retrofit.data.ResponseData;
-import com.yuyang.messi.ui.finance.FinanceHomeActivity;
-import com.yuyang.messi.ui.finance.bean.FinanceBaseBean;
-import com.yuyang.messi.ui.finance.bean.FinanceData;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,9 +50,5 @@ public class CommonRequest {
 
     public Observable<DoubanMovieBean> doubanMovie(String movieId) {
         return mCommonService.doubanMovie(movieId, "0b2bdeda43b5688921839c8ecb20399b");
-    }
-
-    public Observable<FinanceBaseBean<FinanceData>> loadStockInfo(String gid, String type) {
-        return mCommonService.loadStockInfo(gid, type, FinanceHomeActivity.APP_KEY);
     }
 }

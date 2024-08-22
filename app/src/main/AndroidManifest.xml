@@ -484,25 +484,10 @@
             android:name=".ui.qrcode.CommonScanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.finance.FinanceHomeActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.category.AidlDemoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.category.nestScroll.NestScrollDemoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".kotlinui.fund.FundSetActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".kotlinui.fund.FundCalcActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".kotlinui.fund.FundSetEditActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.finance.StockAnalysisActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.common.NullActivity"

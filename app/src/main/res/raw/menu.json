@@ -5,12 +5,12 @@
       {
         "name": "Finance",
         "icon": "danjuan",
-        "clazz": "com.yuyang.messi.ui.finance.FinanceHomeActivity"
+        "clazz": null
       },
       {
         "name": "基金组合",
         "icon": "danjuan",
-        "clazz": "com.yuyang.messi.kotlinui.fund.FundSetActivity"
+        "clazz": null
       }
     ]
   },
