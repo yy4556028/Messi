@@ -230,6 +230,9 @@
             android:name=".ui.category.TouchActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.category.TouchNewActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.category.WorkManagerActivity"
             android:screenOrientation="portrait" />
         <activity

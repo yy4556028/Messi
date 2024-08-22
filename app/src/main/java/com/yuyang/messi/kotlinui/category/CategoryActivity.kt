@@ -133,6 +133,7 @@ class CategoryActivity : AppBaseActivity() {
             ModuleEntity("GPS", GpsActivity::class.java),
             ModuleEntity("登录", LoginActivity::class.java),
             ModuleEntity("TouchDemo", TouchActivity::class.java),
+            ModuleEntity("TouchNewDemo", TouchNewActivity::class.java),
             ModuleEntity("百度Poi检索", BaiduPoiSearchActivity::class.java),
             ModuleEntity("涂鸦", DrawActivity::class.java),
             ModuleEntity("Path", PathActivity::class.java),
