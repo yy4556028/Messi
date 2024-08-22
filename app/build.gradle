@@ -185,7 +185,7 @@ android {// android 配置了所有android构建过程需要的参数。这里�
 //            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/APK")
 //        }
 
-        variant.outputs.each { output ->
+        variant.outputs.all { output ->
             String env = "unknown".toLowerCase()
             if (variant.name.indexOf("Test") != -1) {
                 env = "Test".toLowerCase()
@@ -206,7 +206,7 @@ android {// android 配置了所有android构建过程需要的参数。这里�
 
 def static getDate() {
     def date = new Date()
-    def formattedDate = date.format('MMdd')//HHmm
+    def formattedDate = date.format('yyyyMMdd')//HHmm
     return formattedDate
 }
 

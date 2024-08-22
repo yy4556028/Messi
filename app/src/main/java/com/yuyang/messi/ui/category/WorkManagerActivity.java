@@ -6,11 +6,15 @@ import android.view.View;
 
 import androidx.lifecycle.Observer;
 import androidx.work.Constraints;
+import androidx.work.Data;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.OutOfQuotaPolicy;
+import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import com.yuyang.lib_base.BaseApp;
 import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.messi.R;
@@ -49,8 +53,8 @@ public class WorkManagerActivity extends AppBaseActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    List<WorkInfo> workInfoList = WorkManager.getInstance().getWorkInfosByTag(WORK_TAG).get();
-                    if (workInfoList == null || workInfoList.size() == 0) {
+                    List<WorkInfo> workInfoList = WorkManager.getInstance(BaseApp.getInstance()).getWorkInfosByTag(WORK_TAG).get();
+                    if (workInfoList == null || workInfoList.isEmpty()) {
                         ToastUtil.showToast("No Work");
                     } else {
                         switch (workInfoList.get(0).getState()) {
@@ -87,22 +91,34 @@ public class WorkManagerActivity extends AppBaseActivity {
     private void createWork() {
         Constraints constraints = new Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)//网络连接设置
-                .setRequiresBatteryNotLow(false)//是否为低电量时运行 默认false
-                .setRequiresCharging(false)//是否要插入设备（接入电源），默认false
+                .setRequiresBatteryNotLow(false)//如果设置为 true，那么当设备处于“电量不足模式”时，工作不会运行。默认false
+                .setRequiresCharging(false)//如果设置为 true，那么工作只能在设备充电时运行。默认false
                 .setRequiresDeviceIdle(false)//设备是否为空闲，默认false
-                .setRequiresStorageNotLow(false)//设备可用存储是否不低于临界阈值
+                .setRequiresStorageNotLow(false)//如果设置为 true，那么当用户设备上的存储空间不足时，工作不会运行。
                 .build();
 
-//        PeriodicWorkRequest   循环任务
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(TestWork.class, 15, TimeUnit.MINUTES)
+                .setConstraints(constraints)
+                .setInitialDelay(1, TimeUnit.MINUTES)
+                .addTag(WORK_TAG)
+                .build();
         OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(TestWork.class)
+                .setInputData(new Data.Builder().putString("key", "value").build())
+                // 加急 配额不被丢弃 。加急任务 不能setInitialDelay延迟
+//                .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                 .setConstraints(constraints)
                 .setInitialDelay(1, TimeUnit.MINUTES)
                 .addTag(WORK_TAG)
                 .build();
 
-        WorkManager.getInstance().enqueue(oneTimeWorkRequest);
+        //将 WorkRequest 提交给系统
+        WorkManager
+                .getInstance(BaseApp.getInstance())
+                .enqueue(oneTimeWorkRequest);
 
-        WorkManager.getInstance().getWorkInfoByIdLiveData(oneTimeWorkRequest.getId())
+        WorkManager
+                .getInstance(BaseApp.getInstance())
+                .getWorkInfoByIdLiveData(oneTimeWorkRequest.getId())
                 .observe(this, new Observer<WorkInfo>() {
                     @Override
                     public void onChanged(WorkInfo workInfo) {
@@ -113,16 +129,16 @@ public class WorkManagerActivity extends AppBaseActivity {
                     }
                 });
 
-//        WorkManager.getInstance()
+//        WorkManager.getInstance(BaseApp.getInstance())
 //                .beginWith(workA)
 //                .then(workB)
 //                .then(workC)
 //                .enqueue();
 
-//        val configA_B = WorkManager.getInstance().beginWith(workRequest)
+//        val configA_B = WorkManager.getInstance(BaseApp.getInstance()).beginWith(workRequest)
 //                .then(workRequestB)
 //
-//        val configC_D = WorkManager.getInstance().beginWith(workRequestC)
+//        val configC_D = WorkManager.getInstance(BaseApp.getInstance()).beginWith(workRequestC)
 //                .then(workRequestD)
 //
 //        WorkContinuation.combine(configA_B,configC_D)

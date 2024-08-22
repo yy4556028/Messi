@@ -6,7 +6,7 @@ apply from: rootProject.getRootDir().getAbsolutePath() + "/common.gradle"
 dependencies {
     implementation project(':lib_base')
 
-    api 'com.google.zxing:core:3.3.3'
+    api 'com.google.zxing:core:3.5.3'
 
     implementation 'com.mylhyl:zxingscanner:2.1.1'
 

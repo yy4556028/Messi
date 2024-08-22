@@ -230,12 +230,6 @@ ext {
                     'rxjava2'   : "androidx.paging:paging-rxjava2:${versions.paging}",
                     'rxjava2Ktx': "androidx.paging:paging-rxjava2-ktx:${versions.paging}",
             ],
-            'work'               : [
-                    "runtime"   : "androidx.work:work-runtime:${versions.work}",
-                    "runtimeKtx": "androidx.work:work-runtime-ktx:${versions.work}",
-                    "rxjava2"   : "androidx.work:work-rxjava2:${versions.work}",
-                    "test"      : "androidx.work:work-testing:${versions.work}",
-            ],
             'wear'               : [
                     "wear"              : "androidx.wear:wear:${versions.wear}",
                     "tiles"             : "androidx.wear.tiles:tiles:${versions.tiles}",
