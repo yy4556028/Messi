@@ -17,7 +17,7 @@ import android.view.WindowManager;
 import android.view.WindowMetrics;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
@@ -33,17 +33,13 @@ public final class SystemBarUtil {
     }
 
     public static void showSystemBar(Activity activity, @WindowInsetsCompat.Type.InsetsType int showType) {
-        WindowInsetsControllerCompat controller = ViewCompat.getWindowInsetsController(activity.getWindow().getDecorView());
-        if (controller != null) {
-            controller.show(showType);
-        }
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(activity.getWindow(), activity.getWindow().getDecorView());
+        controller.show(showType);
     }
 
     public static void hideSystemBar(Activity activity, @WindowInsetsCompat.Type.InsetsType int hideType) {
-        WindowInsetsControllerCompat controller = ViewCompat.getWindowInsetsController(activity.getWindow().getDecorView());
-        if (controller != null) {
-            controller.hide(hideType);
-        }
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(activity.getWindow(), activity.getWindow().getDecorView());
+        controller.hide(hideType);
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -94,13 +90,11 @@ public final class SystemBarUtil {
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
-        WindowInsetsControllerCompat controller = ViewCompat.getWindowInsetsController(activity.getWindow().getDecorView());
-        if (controller != null) {
-            if (showBarsBySwipe) {
-                controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
-            } else {
-                controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_TOUCH);
-            }
+        WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(activity.getWindow(), activity.getWindow().getDecorView());
+        if (showBarsBySwipe) {
+            controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        } else {
+            controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_DEFAULT);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {//适配挖孔屏
