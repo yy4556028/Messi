@@ -24,6 +24,7 @@
                     android:layout_height="wrap_content">
 
                     <FrameLayout
+                        android:id="@+id/container"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         app:layout_constraintDimensionRatio="1:1"
@@ -58,6 +59,7 @@
             app:mlpb_arrow_height="5dp"
             app:mlpb_arrow_width="10dp"
             app:mlpb_enable_circle_background="false"
+            app:mlpb_progress_color="@color/red"
             app:mlpb_progress_stoke_width="5dp"
             app:mlpb_progress_text_visibility="invisible"
             app:mlpb_show_arrow="true" />

@@ -41,12 +41,13 @@ import com.yuyang.messi.bean.VideoBean;
 import com.yuyang.messi.databinding.ActivityVideoExoBinding;
 import com.yuyang.messi.helper.VideoHelper;
 import com.yuyang.messi.ui.base.AppBaseActivity;
+import com.yuyang.messi.ui.gl_surface.MyGlSurfaceFragment;
 
 import java.util.List;
 
 public class VideoExoActivity extends AppBaseActivity {
 
-    public static final String TAG = "VideoExoActivity";
+    public static final String TAG = VideoExoActivity.class.getSimpleName();
 
     private ActivityVideoExoBinding binding;
 
@@ -63,6 +64,7 @@ public class VideoExoActivity extends AppBaseActivity {
         initViews();
         initEvents();
         initPlayer();
+        initGLSurface();
         binding.circleProgressBar.setVisibility(View.VISIBLE);
         VideoHelper.loadVideo(getActivity(), null, 0, 0, new VideoHelper.VideoResultCallback() {
             @Override
@@ -186,18 +188,26 @@ public class VideoExoActivity extends AppBaseActivity {
 
         binding.exoPlayerView.setShutterBackgroundColor(Color.WHITE);
         mExoPlayer = new ExoPlayer.Builder(this)
-                .setTrackSelector(trackSelector)
-                .setBandwidthMeter(DefaultBandwidthMeter.getSingletonInstance(this))
+//                .setTrackSelector(trackSelector)
+//                .setBandwidthMeter(DefaultBandwidthMeter.getSingletonInstance(this))
                 .setLoadControl(loadControl)
-                .setRenderersFactory(renderersFactory)
-                .setMediaSourceFactory(mediaSourceFactory)
+//                .setRenderersFactory(renderersFactory)
+//                .setMediaSourceFactory(mediaSourceFactory)
                 .build();
         binding.exoPlayerView.setPlayer(mExoPlayer);
         binding.exoPlayerView.setShowBuffering(PlayerView.SHOW_BUFFERING_ALWAYS);
     }
 
+    private void initGLSurface() {
+        binding.container.removeAllViews();
+        MyGlSurfaceFragment glSurfaceFragment = new MyGlSurfaceFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, glSurfaceFragment).commit();
+        glSurfaceFragment.bindPlayer(mExoPlayer);
+    }
+
     private void setPlayerLocation(int width, int height) {
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) binding.exoPlayerView.getLayoutParams();
+        View playerView = binding.container.getChildAt(0);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) playerView.getLayoutParams();
         if (width >= height) {
             params.width = CommonUtil.getScreenWidth();
             params.height = CommonUtil.getScreenWidth() * height / width;
@@ -207,7 +217,7 @@ public class VideoExoActivity extends AppBaseActivity {
             params.height = CommonUtil.getScreenWidth();
             params.setMargins((params.height - params.width) / 2, 0, (params.height - params.width) / 2, 0);
         }
-        binding.exoPlayerView.setLayoutParams(params);
+        playerView.setLayoutParams(params);
     }
 
     private void play(Uri videoUri) {
