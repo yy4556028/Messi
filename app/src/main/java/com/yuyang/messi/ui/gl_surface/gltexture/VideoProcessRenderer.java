@@ -9,9 +9,9 @@ import androidx.annotation.OptIn;
 import androidx.media3.common.util.GlUtil;
 import androidx.media3.common.util.UnstableApi;
 
-import com.mobvoi.lib_avatar.video_process.filter.GPUImageFilter;
-import com.mobvoi.lib_avatar.video_process.utils.Rotation;
-import com.mobvoi.lib_avatar.video_process.utils.TextureRotationUtil;
+import com.yuyang.messi.ui.gl_surface.filter.GPUImageFilter;
+import com.yuyang.messi.ui.gl_surface.utils.Rotation;
+import com.yuyang.messi.ui.gl_surface.utils.TextureRotationUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

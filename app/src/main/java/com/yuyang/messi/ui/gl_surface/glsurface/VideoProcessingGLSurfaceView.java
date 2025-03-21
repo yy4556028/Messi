@@ -16,7 +16,7 @@ import android.view.Surface;
 import androidx.annotation.Nullable;
 import androidx.media3.exoplayer.ExoPlayer;
 
-import com.mobvoi.lib_avatar.video_process.filter.GPUImageChromaKeyBlendFilter;
+import com.yuyang.messi.ui.gl_surface.filter.GPUImageChromaKeyBlendFilter;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
