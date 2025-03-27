@@ -12,57 +12,78 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 public class PinyinUtil {
 
     /**
-     * 获取汉字串拼音首字母缩写，英文字符不变
+     * 获取汉字的首字母拼音
+     *
+     * @param chinese 要转换的汉字字符串
+     * @return 首字母拼音字符串
      * 于洋 -> yy
      */
-    public static String getHeadSpell(String chinese) {
+    public static String getFirstLetter(String chinese) {
         if (TextUtils.isEmpty(chinese)) return null;
-        StringBuilder sb = new StringBuilder();
-        char[] chars = chinese.toCharArray();
+        StringBuilder firstLetter = new StringBuilder();
+        char[] charArray = chinese.toCharArray();
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        //将 “ü” 显示为 “v”
         format.setVCharType(HanyuPinyinVCharType.WITH_V);
-        for (char c : chars) {
-            if (c > 128) {
+        for (char c : charArray) {
+            if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
                 String temp = getPinyinByHanzi(c, format);
                 if (temp != null) {
-                    sb.append(temp.charAt(0));
+                    firstLetter.append(temp.charAt(0));
                 }
             } else {
-                sb.append(c);
+                firstLetter.append(c);
             }
         }
-        return sb.toString().replaceAll("\\W", "").trim();
+        return firstLetter.toString().replaceAll("\\W", "").trim();
     }
 
     /**
-     * 获取汉字串拼音，英文字符不变
+     * 将汉字转换为拼音（全拼）
+     *
+     * @param chinese 要转换的汉字字符串
+     * @param split   分隔符，默认为空格
+     * @return 转换后的拼音字符串
      */
     public static String getFullSpell(String chinese, String split) {
         if (TextUtils.isEmpty(chinese)) return null;
-        StringBuilder sb = new StringBuilder();
-        char[] chars = chinese.toCharArray();
+        StringBuilder pinyin = new StringBuilder();
+        char[] charArray = chinese.toCharArray();
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        //将 “ü” 显示为 “v”
         format.setVCharType(HanyuPinyinVCharType.WITH_V);
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-            if (c > 128) {
+        for (int i = 0; i < charArray.length; i++) {
+            char c = charArray[i];
+            // 判断是否为汉字
+            if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
                 String temp = getPinyinByHanzi(c, format);
                 if (temp != null) {
-                    sb.append(temp);
+                    pinyin.append(temp);
                 }
+//                try {
+//                    // 获取该汉字的拼音数组，因为一个汉字可能有多个读音
+//                    String[] pinyinArray = PinyinHelper.toHanyuPinyinStringArray(c, format);
+//                    if (pinyinArray != null && pinyinArray.length > 0) {
+//                        // 这里取第一个读音
+//                        pinyin.append(pinyinArray[0]);
+//                    }
+//                } catch (BadHanyuPinyinOutputFormatCombination e) {
+//                    e.printStackTrace();
+//                }
             } else {
-                sb.append(c);
+                // 非汉字字符直接添加
+                pinyin.append(c);
             }
 
-            if (!TextUtils.isEmpty(split) && i < chars.length - 1) {
-                sb.append(split);
+            if (!TextUtils.isEmpty(split) && i < charArray.length - 1) {
+                pinyin.append(split);
             }
         }
-        return sb.toString();
+        return pinyin.toString();
     }
 
     private static String getPinyinByHanzi(char c, HanyuPinyinOutputFormat defaultFormat) {
