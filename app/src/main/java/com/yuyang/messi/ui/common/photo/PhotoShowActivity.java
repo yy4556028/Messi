@@ -86,13 +86,11 @@ public class PhotoShowActivity extends AppBaseActivity {
     }
 
     @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), false, false, true, true, true);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SystemBarUtil.configBar(getActivity(), false, false, true, true, true);
+
         supportPostponeEnterTransition();
         bitmap = getIntent().getParcelableExtra(KEY_BITMAP);
         resId = getIntent().getIntExtra(KEY_RES_ID, -1);

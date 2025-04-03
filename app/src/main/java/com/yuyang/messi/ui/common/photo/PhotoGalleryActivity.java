@@ -72,13 +72,10 @@ public class PhotoGalleryActivity extends AppBaseActivity {
     }
 
     @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), true, false, true, false, true);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SystemBarUtil.configBar(getActivity(), true, false, true, false, true);
 
         imageBeanList = getIntent().getParcelableArrayListExtra(KEY_LIST);
         colorList = new ArrayList<>();

@@ -1,6 +1,5 @@
 package com.yuyang.lib_base.utils;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,7 +10,6 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
@@ -24,7 +22,6 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import com.yuyang.lib_base.BaseApp;
 
 import java.lang.reflect.Method;
-
 
 //SystemUI Flag详解及使用情景：https://www.jianshu.com/p/e6656707f56c
 public final class SystemBarUtil {
@@ -42,26 +39,30 @@ public final class SystemBarUtil {
         controller.hide(hideType);
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public static void fullScreen_immersive(Activity activity,
-                                            boolean showStatusBar, boolean transStatusBar,
-                                            boolean showNavBar, boolean transNavBar,
-                                            boolean showBarsBySwipe) {
-//        immersiveStatusBar(activity);
-        Window window = activity.getWindow();
-        View decorView = window.getDecorView();
-
+    public static void immersive(Activity activity) {
+        View decorView = activity.getWindow().getDecorView();
         int uiOptions = decorView.getSystemUiVisibility()
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN         //Activity全屏显示，状态栏显示在Activity页面上面
 //                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION    //在不隐藏导航栏的情况下，将Activity的显示范围扩展到导航栏底部
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;            //布局稳定
 
         decorView.setSystemUiVisibility(uiOptions);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {//适配挖孔屏
+            WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            activity.getWindow().setAttributes(lp);
+        }
+    }
+
+    public static void configBar(Activity activity,
+                                 boolean showStatusBar,
+                                 boolean transStatusBar,
+                                 boolean showNavBar,
+                                 boolean transNavBar,
+                                 boolean showBarsBySwipe) {
         if (showStatusBar) {
             showSystemBar(activity, WindowInsetsCompat.Type.statusBars());
         } else {
@@ -95,12 +96,6 @@ public final class SystemBarUtil {
             controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
         } else {
             controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_DEFAULT);
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {//适配挖孔屏
-            WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            activity.getWindow().setAttributes(lp);
         }
     }
 
@@ -220,7 +215,31 @@ public final class SystemBarUtil {
      * @return
      */
     private static int getCurrentNavigationBarHeight(Activity activity) {
-        return getNavBarHeight(activity);
+        if (isNavigationBarShown(activity)) {
+            return getNavBarHeight(activity);
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * 非全面屏下 虚拟按键是否打开
+     *
+     * @param activity
+     * @return
+     */
+    private static boolean isNavigationBarShown(Activity activity) {
+        //虚拟键的view,为空或者不可见时是隐藏状态
+        View view = activity.findViewById(android.R.id.navigationBarBackground);
+        if (view == null) {
+            return false;
+        }
+        int visible = view.getVisibility();
+        if (visible == View.GONE || visible == View.INVISIBLE) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**

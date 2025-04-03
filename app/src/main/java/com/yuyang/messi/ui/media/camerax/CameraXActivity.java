@@ -119,15 +119,12 @@ public class CameraXActivity extends AppBaseActivity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+
+        SystemBarUtil.configBar(getActivity(), false, false, true, true, false);
+
         permissionsLauncher.launch(new String[]{
                 Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO});
-    }
-
-    @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), false, false, true, true, false);
     }
 
     private void initView() {

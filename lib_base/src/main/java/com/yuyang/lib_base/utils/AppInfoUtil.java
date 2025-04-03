@@ -92,7 +92,7 @@ public class AppInfoUtil {
         // 管理应用程序包
         PackageManager packageManager = BaseApp.getInstance().getPackageManager();
         // 获取手机内所有应用
-        List<ApplicationInfo> infoList = packageManager.getInstalledApplications(0);
+        List<ApplicationInfo> infoList = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         for (int i = 0; i < infoList.size(); i++) {
             ApplicationInfo info = infoList.get(i);
             // 判断是否为非系统预装的应用程序

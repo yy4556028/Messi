@@ -164,9 +164,6 @@
             android:name=".ui.football.FootballActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.live.LivePreActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.media.AlbumActivity"
             android:screenOrientation="portrait" />
         <activity

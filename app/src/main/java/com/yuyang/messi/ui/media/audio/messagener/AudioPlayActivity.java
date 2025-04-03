@@ -7,7 +7,6 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -15,7 +14,6 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -30,7 +28,7 @@ import com.yuyang.aidl_audioplayer.AudioBean;
 import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.lib_base.utils.BitmapUtil;
 import com.yuyang.lib_base.utils.CommonUtil;
-import com.yuyang.lib_base.utils.statusbar.MyStatusBarUtil;
+import com.yuyang.lib_base.utils.SystemBarUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.adapter.AudioPlayPagerAdapter;
 import com.yuyang.messi.helper.AudioHelper;
@@ -151,17 +149,11 @@ public class AudioPlayActivity extends AppBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SystemBarUtil.configBar(getActivity(), true, false, true, true, false);
+
         initView();
         initEvent();
-    }
-
-    @Override
-    public void setStatusBar() {
-        MyStatusBarUtil.setTranslucentStatus(getActivity());
-        MyStatusBarUtil.setRootViewFitsSystemWindows(getActivity(), true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
     }
 
     @Override

@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -14,12 +12,8 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
@@ -58,9 +52,7 @@ import com.yuyang.lib_base.utils.ToastUtil;
 import com.yuyang.lib_base.threadPool.ThreadPool;
 import com.yuyang.lib_base.utils.DateUtil;
 
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -500,7 +492,7 @@ public class BrowserFragment extends BaseFragment {
             FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
             decor.addView(view, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             mCustomView = view;
-            SystemBarUtil.fullScreen_immersive(getActivity(), false, false, false, false, true);
+            SystemBarUtil.configBar(getActivity(), false, false, false, false, true);
             mCustomViewCallback = callback;
 //            mWebView.setVisibility(View.GONE);
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -516,7 +508,7 @@ public class BrowserFragment extends BaseFragment {
                 return;
             }
 
-            SystemBarUtil.fullScreen_immersive(getActivity(), true, false, true, false, true);
+            SystemBarUtil.configBar(getActivity(), true, false, true, false, true);
             ((BaseActivity) getActivity()).setStatusBar();
             FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
             decor.removeView(mCustomView);

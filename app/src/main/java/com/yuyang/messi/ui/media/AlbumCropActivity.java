@@ -18,7 +18,6 @@ import com.yuyang.lib_base.myglide.GlideApp;
 import com.yuyang.lib_base.ui.header.HeaderLayout;
 import com.yuyang.lib_base.ui.header.HeaderRightBean;
 import com.yuyang.lib_base.utils.BitmapUtil;
-import com.yuyang.lib_base.utils.statusbar.MyStatusBarUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.bean.ImageBean;
 import com.yuyang.messi.ui.base.AppBaseActivity;
@@ -102,7 +101,6 @@ public class AlbumCropActivity extends AppBaseActivity {
                                 super.getVibrant(vibrant, vibrantDark, vibrantLight);
                                 headerLayout.setBackgroundColor(vibrant.getRgb());
                                 headerLayout.setImageAndTextColor(ColorUtil.getReverseColor(vibrant.getRgb()));
-                                MyStatusBarUtil.setStatusBarColor(getActivity(), vibrant.getRgb());
                             }
                         });
                     }

@@ -20,7 +20,7 @@
         android:id="@+id/activity_audio_play_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="60dp"
         android:background="@color/transparent"
         android:gravity="center_horizontal"
         android:orientation="vertical">

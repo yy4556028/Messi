@@ -55,23 +55,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void setStatusBar() {
         String plan = "planTest";
-        /**
-         * Unify方案：代码设置FitsSystemWindows，设置状态栏透明，状态栏颜色，深色主题
-         */
-        if (TextUtils.equals("planUnify", plan)) {
-            //当FitsSystemWindows为true，在屏幕上方预留出状态栏高度padding
-            MyStatusBarUtil.setRootViewFitsSystemWindows(this, true);
-            //设置状态栏透明
-            MyStatusBarUtil.setTranslucentStatus(this);
-            MyStatusBarUtil.setStatusBarColor(this, Color.WHITE);
-            /**
-             * 星盘方案:沉浸式状态栏，HeaderLayout顶部预留状态栏高度，深色主题
-             */
-        } else if (TextUtils.equals("planAstrolabe", plan)) {
-            //设置状态栏透明
-            MyStatusBarUtil.setTranslucentStatus(this);
-        } else if (TextUtils.equals("planTest", plan)) {
-            SystemBarUtil.fullScreen_immersive(this, true, false, true, false, false);
+
+        if (TextUtils.equals("planTest", plan)) {
+            SystemBarUtil.immersive(this);
+        } else if (TextUtils.equals("theme", plan)) {
+            //do nothing
         }
 
         //深色文字图标风格

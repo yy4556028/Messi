@@ -39,13 +39,11 @@ public class FolderActivity extends AppBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SystemBarUtil.configBar(getActivity(), false, false, true, false, true);
+
         initView();
         initEvent();
-    }
-
-    @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), false, false, true, false, true);
     }
 
     private void initView() {

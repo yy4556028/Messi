@@ -2,5 +2,6 @@
 <resources>
 
     <item name="glide_tag_id" type="id" />
+    <item name="view_inset_fit" type="id" />
 
 </resources>

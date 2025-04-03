@@ -105,14 +105,12 @@ public class Camera1Activity extends AppBaseActivity implements View.OnTouchList
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+
+        SystemBarUtil.configBar(getActivity(), false, false, true, true, false);
+
         permissionsLauncher.launch(new String[]{
                 Manifest.permission.CAMERA,
                 Manifest.permission.RECORD_AUDIO});
-    }
-
-    @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), false, false, true, true, false);
     }
 
     private void initView() {

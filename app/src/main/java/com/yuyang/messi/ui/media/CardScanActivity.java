@@ -80,13 +80,11 @@ public class CardScanActivity extends AppBaseActivity {
     }
 
     @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), false, false, true, true, false);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SystemBarUtil.configBar(getActivity(), false, false, true, true, false);
+
         progressDialog = new CustomProgressDialog(getActivity());
         permissionsLauncher.launch(new String[]{Manifest.permission.CAMERA});
     }

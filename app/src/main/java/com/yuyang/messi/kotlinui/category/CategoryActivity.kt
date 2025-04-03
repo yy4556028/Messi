@@ -27,7 +27,6 @@ import com.yuyang.messi.ui.category.plugin.PluginHostActivity
 import com.yuyang.messi.ui.category.scroll.RecyclerViewActivity
 import com.yuyang.messi.ui.category.sensor.SensorActivity
 import com.yuyang.messi.ui.chat.ChatActivity
-import com.yuyang.messi.ui.live.LivePreActivity
 import com.yuyang.messi.ui.login.LoginActivity
 import com.yuyang.messi.ui.screen_share.ScreenShareActivity
 import com.yuyang.messi.ui.shortcut.ShortcutPinActivity
@@ -164,7 +163,6 @@ class CategoryActivity : AppBaseActivity() {
             ModuleEntity("网络状态", NetStatusActivity::class.java),
             ModuleEntity("协程测试", CoroutinesActivity::class.java),
             ModuleEntity("AIDL Demo", AidlDemoActivity::class.java),
-            ModuleEntity("直播", LivePreActivity::class.java),
             ModuleEntity("嵌套滑动", NestScrollDemoActivity::class.java),
             ModuleEntity("插件化Demo", PluginHostActivity::class.java),
 //            ModuleEntity("虚拟定位", FaceLocationActivity::class.java),

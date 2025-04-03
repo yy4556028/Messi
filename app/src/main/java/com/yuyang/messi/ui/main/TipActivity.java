@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.yuyang.lib_base.utils.ToastUtil;
-import com.yuyang.lib_base.utils.statusbar.MyStatusBarUtil;
 import com.yuyang.messi.R;
 import com.yuyang.messi.ui.base.AppBaseActivity;
 
@@ -39,17 +38,9 @@ public class TipActivity extends AppBaseActivity {
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
+
         initViews();
         initEvents();
-    }
-
-    @Override
-    public void setStatusBar() {
-        MyStatusBarUtil.setTranslucentStatus(getActivity());
-        MyStatusBarUtil.setRootViewFitsSystemWindows(getActivity(), true);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
     }
 
     @Override

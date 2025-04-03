@@ -70,14 +70,12 @@ public class StartActivity extends AppBaseActivity {
     }
 
     @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), false, false, false, false, true);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
+
+        SystemBarUtil.configBar(getActivity(), false, false, false, false, true);
+
 //            adb shell am start -W -n com.yuyang.messi/com.yuyang.messi.ui.login.StartActivity
         reportFullyDrawn();
 

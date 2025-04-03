@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.yuyang.lib_base.utils.SystemBarUtil;
 import com.yuyang.lib_base.utils.ToastUtil;
-import com.yuyang.lib_base.utils.statusbar.MyStatusBarUtil;
 import com.yuyang.lib_share.ShareSDKAuthHelper;
 import com.yuyang.messi.R;
 import com.yuyang.messi.ui.base.AppBaseActivity;
@@ -40,17 +39,11 @@ public class LoginActivity extends AppBaseActivity {
     }
 
     @Override
-    public void setStatusBar() {
-        SystemBarUtil.fullScreen_immersive(getActivity(), true, false, false, true, true);
-        //深色文字图标风格
-        if (!MyStatusBarUtil.setStatusBarDarkTheme(this, true)) {
-            MyStatusBarUtil.setStatusBarColor(this, 0x55000000);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+
+        SystemBarUtil.configBar(getActivity(), true, false, false, false, true);
+
         initView();
         initEvent();
         new ActSwitchAnimTool(this)
